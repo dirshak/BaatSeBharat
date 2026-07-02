@@ -1,5 +1,6 @@
 import logging
 import os
+import sys
 from datetime import datetime
 
 def setup_logger(name, log_dir='./logs', level=logging.INFO):
@@ -35,16 +36,28 @@ def setup_logger(name, log_dir='./logs', level=logging.INFO):
         '%(levelname)s: %(message)s'
     )
     
-    # File handler (detailed)
+    # File handler (detailed). Explicit utf-8 because log messages
+    # throughout this codebase use unicode symbols (checkmarks, emoji) and
+    # the default Windows console codepage (cp1252) can't encode them --
+    # without this, FileHandler.emit() raises UnicodeEncodeError on every
+    # such message, which logging.Handler.handleError() silently swallows,
+    # so the log line is just lost rather than the process crashing.
     log_file = os.path.join(
         log_dir,
         f"{datetime.now().strftime('%Y%m%d')}_{name.replace('.', '_')}.log"
     )
-    file_handler = logging.FileHandler(log_file)
+    file_handler = logging.FileHandler(log_file, encoding='utf-8')
     file_handler.setLevel(level)
     file_handler.setFormatter(detailed_formatter)
-    
-    # Console handler (simple)
+
+    # Console handler (simple). Same unicode issue applies to stdout on
+    # Windows; reconfigure it to utf-8 with a safe fallback instead of
+    # raising/losing the message.
+    try:
+        if hasattr(sys.stdout, 'reconfigure'):
+            sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+    except Exception:
+        pass
     console_handler = logging.StreamHandler()
     console_handler.setLevel(level)
     console_handler.setFormatter(simple_formatter)

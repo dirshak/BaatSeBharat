@@ -468,7 +468,21 @@ class CentralizedSpeechScraper:
             return 0
 
         import glob
-        txt_files = sorted(glob.glob(os.path.join(transcripts_dir, 'mann_ki_baat_*.txt')))
+        # Only match the canonical "mann_ki_baat_<episode_number>.txt" naming.
+        # The directory also accumulates corrupted/legacy files from older,
+        # buggy scraper runs (e.g. "mann_ki_baat_None_...Speech__None.txt")
+        # whose header line is itself a previously-written header re-ingested
+        # as a title and re-saved, growing longer each time it round-trips.
+        # A loose glob here re-ingests that corruption as "new" episodes on
+        # every pipeline run, which is what inflated the speech count.
+        all_files = glob.glob(os.path.join(transcripts_dir, 'mann_ki_baat_*.txt'))
+        txt_files = sorted(
+            f for f in all_files
+            if re.fullmatch(r'mann_ki_baat_\d+\.txt', os.path.basename(f))
+        )
+        skipped = len(all_files) - len(txt_files)
+        if skipped:
+            logger.warning(f"Skipped {skipped} non-canonical/legacy files in {transcripts_dir}.")
         logger.info(f"Found {len(txt_files)} local MKB transcript files.")
 
         for fpath in txt_files:

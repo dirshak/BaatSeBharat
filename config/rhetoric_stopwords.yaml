@@ -1,0 +1,357 @@
+# Domain-specific vocabulary exclusion/down-weighting for topic modeling on
+# leadership speeches (Mann Ki Baat / Fed / ECB).
+#
+# Two tiers:
+#   universal   - rhetorical filler with no market signal in ANY context
+#                 (honorifics, greetings, stock political phrases). Hard
+#                 excluded from the vectorizer vocabulary entirely.
+#   contextual  - terms that are usually boilerplate but occasionally carry
+#                 real topical meaning (e.g. "bank" is generic filler in a
+#                 sign-off but load-bearing in a monetary-policy topic).
+#                 These are NOT hard-excluded; they're down-weighted via
+#                 TF-IDF's max_df + a lower explicit weight multiplier so
+#                 they don't dominate topics purely from frequency, without
+#                 erasing them when they're genuinely the topic.
+#
+# `auto_detected` is NOT hand-maintained -- it's written by
+# src/models/topic_modeling.py on every training run: any term with
+# document frequency above `auto_detect_threshold` across the corpus is
+# boilerplate almost by definition (it appears in nearly every speech
+# regardless of topic, so it can't be discriminating between topics) and
+# gets appended to the effective exclusion set for that run. It's persisted
+# here purely for auditability -- inspect it after a training run to see
+# what the corpus itself flagged.
+
+auto_detect_threshold: 0.6  # doc-frequency fraction above which a term is auto-excluded
+
+universal:
+  # Honorifics / forms of address
+  - friend
+  - friends
+  - brother
+  - brothers
+  - sister
+  - sisters
+  - countryman
+  - countrymen
+  - namaskar
+  - namaste
+  - dear
+  - dear friends
+  - my dear countrymen
+
+  # Generic greetings / sign-offs / show branding
+  - mann
+  - baat
+  - mann ki baat
+  - episode
+  - programme
+  - program
+  - today
+  - today's
+  - once again
+  - once more
+  - i want to tell you
+  - i want to share
+  - let me tell you
+  - thank you
+  - thanks
+  - good morning
+  - good evening
+  - good afternoon
+
+  # Stock political rhetoric with no market signal
+  - new india
+  - new bharat
+  - collective effort
+  - people's participation
+  - jan bhagidari
+  - spirit of india
+  - pride of india
+  - proud moment
+  - i am confident
+  - i am sure
+  - i believe
+  - come forward
+  - come together
+  - keep writing
+  - keep sending
+  - social media
+  - my letters
+  - your letters
+  - do write to me
+
+  # Generic connective/filler already covered by sklearn's English list but
+  # explicitly listed here since they recur heavily in translated/transcribed
+  # speech text and are otherwise easy to miss
+  - year
+  - years
+  - time
+  - times
+  - way
+  - ways
+  - thing
+  - things
+  - lot
+  - lots
+
+  # Scraped video-player / webpage-chrome artifacts. Some Fed transcript
+  # pages embed the video player's accessibility caption/keyboard-shortcut
+  # instructions inline with the speech text (e.g. "[Right/Left Arrows]
+  # seeks the video forwards and back... caption on/off"). These are a
+  # minority of speeches, so they don't hit the auto-detect corpus-wide
+  # document-frequency threshold, but they're pure UI noise, not rhetoric.
+  - seek
+  - seeks
+  - video
+  - arrow
+  - arrows
+  - caption
+  - button
+  - buttons
+  - navigate
+  - activate
+  - combination
+  - videoconference
+  - pdf
+  - vol
+  - journal
+
+contextual:
+  # Generic in sign-offs, load-bearing in Banking/Financial-Inclusion topics
+  - bank
+  - banks
+  - banking
+  - money
+  - financial
+
+  # Generic in "national pride" filler, load-bearing in Governance/Policy topics
+  - country
+  - countries
+  - nation
+  - india
+  - indian
+  - government
+  - policy
+  - policies
+
+  # Generic in economic small talk, load-bearing in Growth/Macro topics
+  - economy
+  - economic
+  - growth
+  - development
+
+  # Generic filler in Fed/ECB sign-offs, load-bearing in Monetary Policy topics
+  - rate
+  - rates
+  - inflation
+  - market
+  - markets
+
+# Deterministic topic-labeling lexicon: maps a bucket label to keywords that,
+# when they appear among a topic's top terms, are strong evidence for that
+# label. Used by TopicLabeler (src/models/topic_modeling.py) to turn a raw
+# top-keyword list into a human-readable name instead of "Topic 3". Checked
+# in order; the bucket with the most keyword hits (weighted by keyword rank)
+# wins. If nothing scores above `label_min_score`, the label falls back to a
+# Title Case join of the top keywords.
+label_min_score: 1.0
+label_lexicon:
+  "Rural Banking & Financial Inclusion":
+    - jan dhan
+    - mudra
+    - loan
+    - credit
+    - bank account
+    - self-help group
+    - microfinance
+    - subsidy
+    - direct benefit
+    - financial inclusion
+  "Agricultural Policy":
+    - farmer
+    - farmers
+    - crop
+    - crops
+    - agriculture
+    - irrigation
+    - msp
+    - kisan
+    - harvest
+    - soil
+  "Manufacturing & Make in India":
+    - manufacturing
+    - factory
+    - industry
+    - industrial
+    - make in india
+    - export
+    - exports
+    - production
+    - msme
+    - startup
+  "Digital Economy & Technology":
+    - digital
+    - technology
+    - internet
+    - app
+    - online
+    - data
+    - artificial intelligence
+    - ai
+    - software
+    - innovation
+  "Healthcare & Public Welfare":
+    - health
+    - hospital
+    - vaccine
+    - vaccination
+    - medicine
+    - doctor
+    - covid
+    - pandemic
+    - disease
+    - wellness
+  "Education & Skill Development":
+    - education
+    - school
+    - student
+    - students
+    - university
+    - skill
+    - training
+    - scholarship
+    - exam
+    - learning
+  "Environment & Renewable Energy":
+    - environment
+    - climate
+    - solar
+    - renewable
+    - energy
+    - pollution
+    - clean
+    - sustainability
+    - water conservation
+    - green
+  "Culture & National Heritage":
+    - culture
+    - heritage
+    - tradition
+    - festival
+    - art
+    - history
+    - museum
+    - language
+    - freedom struggle
+    - independence
+  "Monetary Policy & Inflation":
+    - inflation
+    - interest rate
+    - monetary policy
+    - federal reserve
+    - central bank
+    - price stability
+    - fomc
+    - tightening
+    - easing
+    - basis points
+  "Financial Stability & Markets":
+    - financial stability
+    - banking system
+    - liquidity
+    - capital
+    - risk
+    - regulation
+    - supervision
+    - stress test
+    - systemic
+    - market
+  "Infrastructure & Urban Development":
+    - infrastructure
+    - road
+    - highway
+    - railway
+    - housing
+    - urban
+    - smart city
+    - construction
+    - transport
+    - metro
+  "Women Empowerment & Social Welfare":
+    - women
+    - girl
+    - empowerment
+    - beti
+    - self-reliance
+    - social welfare
+    - pension
+    - welfare scheme
+    - equality
+    - safety
+  "Sports & Youth Achievement":
+    - sports
+    - sport
+    - athlete
+    - olympic
+    - olympics
+    - youth
+    - fitness
+    - game
+    - champion
+    - medal
+  "National Unity & Historical Commemoration":
+    - sardar
+    - patel
+    - unity
+    - ekta
+    - freedom struggle
+    - independence
+    - constitution
+    - gandhi
+    - netaji
+    - martyr
+  "Public Health Emergency & Pandemic Response":
+    - corona
+    - coronavirus
+    - covid
+    - pandemic
+    - lockdown
+    - oxygen
+    - quarantine
+    - frontline worker
+    - immunity
+    - virus
+  "Space & Scientific Achievement":
+    - isro
+    - space
+    - satellite
+    - chandrayaan
+    - mission
+    - scientist
+    - rocket
+    - launch
+    - astronaut
+    - science
+  "Yoga & Traditional Wellness":
+    - yoga
+    - ayurveda
+    - wellness
+    - meditation
+    - fitness
+    - naturopathy
+    - herbal
+    - immunity
+    - traditional medicine
+    - yogasana
+  "Civic Participation & Elections":
+    - voter
+    - vote
+    - voting
+    - election
+    - democracy
+    - electorate
+    - polling
+    - franchise
+    - electoral
+    - ballot

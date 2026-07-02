@@ -5,3 +5,4 @@
 [2026-06-20 16:05:06] Source: ECB PRs | Episodes scraped: 0/1
 [2026-06-20 16:05:18] Source: Fed | Episodes scraped: 6/6
 [2026-06-20 16:05:21] Source: Fed PRs | Episodes scraped: 0/0
+[2026-07-02 20:08:54] Source: Mann Ki Baat | Episodes scraped: 70/120 | Missing: None detected

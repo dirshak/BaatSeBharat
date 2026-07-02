@@ -1,316 +1,249 @@
-from sklearn.decomposition import LatentDirichletAllocation, NMF
-from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
-from bertopic import BERTopic
+"""
+Topic modeling for leadership-speech rhetoric.
+
+Approach: TF-IDF + NMF (Non-negative Matrix Factorization), not the previous
+LDA/NMF/BERTopic ensemble.
+
+Why NMF over the BERTopic-centric ensemble it replaces: this corpus is small
+(~1.3k speeches after dedup, ~70-750 per source). BERTopic's UMAP+HDBSCAN
+stage needs a much larger, denser embedding space to form stable clusters --
+on a corpus this size it is highly sensitive to random seed/parameters and
+tends to either collapse everything into one giant cluster or explode into
+dozens of one-document "micro-topics" (exactly what the previous
+`min_cluster_size=5, n_neighbors=5` config was doing). NMF over TF-IDF is
+the standard, well-understood choice at this corpus size: deterministic
+given a fixed seed, fast (no GPU/embedding step required), and produces
+non-negative topic weights that map directly onto this project's existing
+"topic strength" semantics (every downstream consumer already treats topic
+weight as a probability-like [0,1] strength, which is exactly NMF's native
+output after row-normalization).
+
+Two-tier stopword handling (config/rhetoric_stopwords.yaml):
+  - `universal`: hard-excluded from the vectorizer vocabulary (honorifics,
+    greetings, stock political phrases -- carry no market signal in any
+    context).
+  - `contextual`: NOT hard-excluded (e.g. "bank", "inflation" are generic
+    filler in a sign-off but load-bearing in a Monetary Policy topic).
+    These are naturally down-weighted by TF-IDF's own idf term and by
+    capping the vectorizer's `max_df` at `auto_detect_threshold`, so a term
+    that appears in nearly every document (regardless of tier) is
+    automatically excluded -- this is the "programmatic" half of the
+    requirement: high corpus-wide document frequency is itself evidence of
+    boilerplate, independent of any hand-curated list.
+
+Topic labeling is deterministic: top TF-IDF-weighted keywords per topic are
+scored against a curated label lexicon (config/rhetoric_stopwords.yaml ->
+label_lexicon); the highest-scoring bucket wins. If nothing scores above
+`label_min_score`, the label falls back to a Title Case join of the top 3
+keywords -- never "Topic N".
+"""
+
+import json
+import os
+import pickle
+import sqlite3
+import sys
+
 import numpy as np
 import pandas as pd
-import sqlite3
-import pickle
-import sys
-import os
-import torch
-from transformers import pipeline
+import yaml
+from sklearn.decomposition import NMF
+from sklearn.feature_extraction.text import ENGLISH_STOP_WORDS, TfidfVectorizer
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 from src.utils.logger import setup_logger
 
 logger = setup_logger(__name__)
 
-class HybridTopicModeler:
-    """
-    Ensemble topic modeling: LDA + NMF + BERTopic
-    """
-    
-    def __init__(self, n_topics=20):
+DEFAULT_STOPWORDS_CONFIG = os.path.join(
+    os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
+    'config', 'rhetoric_stopwords.yaml'
+)
+
+
+def _load_stopwords_config(path=DEFAULT_STOPWORDS_CONFIG):
+    with open(path, 'r', encoding='utf-8') as f:
+        cfg = yaml.safe_load(f)
+    return cfg
+
+
+class RhetoricTopicModel:
+    """TF-IDF + NMF topic model with domain stopword filtering and
+    deterministic, lexicon-based topic labeling."""
+
+    def __init__(self, n_topics=10, random_state=42, stopwords_config_path=DEFAULT_STOPWORDS_CONFIG):
         self.n_topics = n_topics
-        
-        # Models
-        self.lda_model = None
-        self.nmf_model = None
-        self.bertopic_model = None
-        
-        # Vectorizers
-        self.count_vectorizer = None
-        self.tfidf_vectorizer = None
+        self.random_state = random_state
 
-        # Domain-specific noise reduction
-        self.custom_stopwords = [
-            "countrymen", "new", "come", "dear", "episode", "mann", "baat", "modi", 
-            "namaste", "friends", "brothers", "sisters", "people", "today", "year",
-            "country", "nation", "time", "government", "india", "indian", "way"
-        ]
-    
-    def fit_lda(self, documents):
-        """Fit LDA model"""
-        logger.info("Fitting LDA model (Ensemble Part 1/3)...")
-        
-        # Create vectorizer
-        self.count_vectorizer = CountVectorizer(
-            max_features=5000,
+        cfg = _load_stopwords_config(stopwords_config_path)
+        self.universal_stopwords = set(cfg.get('universal', []))
+        self.contextual_stopwords = set(cfg.get('contextual', []))
+        self.auto_detect_threshold = float(cfg.get('auto_detect_threshold', 0.6))
+        self.label_lexicon = cfg.get('label_lexicon', {})
+        self.label_min_score = float(cfg.get('label_min_score', 1.0))
+
+        self.vectorizer = None
+        self.model = None
+        self.topic_dist = None          # (n_docs, n_topics), rows sum to 1
+        self.auto_detected_terms = []   # terms excluded purely by high doc-freq
+
+    def _stopword_list(self):
+        # Hard-exclude universal terms + sklearn's generic English stopwords.
+        # `contextual` terms stay IN the vocabulary; over-common ones are
+        # suppressed via max_df instead of being permanently erased.
+        return sorted(self.universal_stopwords | set(ENGLISH_STOP_WORDS))
+
+    def fit(self, documents):
+        """Fit on a list of preprocessed document strings. Returns the
+        (n_docs, n_topics) row-normalized topic distribution."""
+        if len(documents) < 2:
+            raise ValueError(f"Need at least 2 documents to fit a topic model, got {len(documents)}")
+
+        n_topics = max(2, min(self.n_topics, len(documents) - 1))
+        self.n_topics = n_topics
+
+        vectorizer = TfidfVectorizer(
+            max_features=4000,
             min_df=2,
-            max_df=0.8,
-            stop_words=self.custom_stopwords
+            max_df=self.auto_detect_threshold,
+            stop_words=self._stopword_list(),
+            ngram_range=(1, 2),
+            sublinear_tf=True,
         )
-        
-        doc_term_matrix = self.count_vectorizer.fit_transform(documents)
-        
-        # Train LDA
-        self.lda_model = LatentDirichletAllocation(
-            n_components=self.n_topics,
-            random_state=42,
-            max_iter=50,
-            learning_method='batch',
-            n_jobs=-1
-        )
-        
-        self.lda_model.fit(doc_term_matrix)
-        logger.info("✓ LDA model fitted")
-        return self.lda_model.transform(doc_term_matrix)
-    
-    def fit_nmf(self, documents):
-        """Fit NMF model"""
-        logger.info("Fitting NMF model (Ensemble Part 2/3)...")
-        
-        # Create vectorizer
-        self.tfidf_vectorizer = TfidfVectorizer(
-            max_features=5000,
-            min_df=2,
-            max_df=0.8,
-            stop_words=self.custom_stopwords
-        )
-        
-        tfidf_matrix = self.tfidf_vectorizer.fit_transform(documents)
-        
-        # Train NMF
-        self.nmf_model = NMF(
-            n_components=self.n_topics,
-            random_state=42,
+        tfidf = vectorizer.fit_transform(documents)
+
+        if tfidf.shape[1] == 0:
+            raise ValueError("Vocabulary is empty after stopword filtering -- corpus too small or too uniform.")
+
+        # Record which contextual/other terms got dropped purely by max_df
+        # (i.e. present in the raw vocabulary scan but excluded from the
+        # fitted vectorizer) for auditability.
+        raw_vectorizer = TfidfVectorizer(stop_words=self._stopword_list(), min_df=2)
+        try:
+            raw_vectorizer.fit(documents)
+            fitted_vocab = set(vectorizer.get_feature_names_out())
+            self.auto_detected_terms = sorted(
+                set(raw_vectorizer.get_feature_names_out()) - fitted_vocab
+            )[:200]
+        except Exception:
+            self.auto_detected_terms = []
+
+        model = NMF(
+            n_components=n_topics,
+            random_state=self.random_state,
             max_iter=500,
-            init='nndsvda' # Using SVD based initialization
+            init='nndsvda',
         )
-        
-        self.nmf_model.fit(tfidf_matrix)
-        logger.info("NMF model fitted")
-        return self.nmf_model.transform(tfidf_matrix)
-    
-    def fit_bertopic(self, documents, embeddings):
-        """Fit BERTopic model"""
-        logger.info("Fitting BERTopic model (Ensemble Part 3/3)...")
-        
-        # Enhanced Vectorizer with N-grams (captures phrases like "digital india")
-        vectorizer_model = CountVectorizer(
-            stop_words=self.custom_stopwords, 
-            min_df=2,
-            ngram_range=(1, 3)
-        )
-        
-        # High-granularity clustering configuration
-        from umap import UMAP
-        from hdbscan import HDBSCAN
-        from bertopic.vectorizers import ClassTfidfTransformer
-        
-        # More local neighbors = higher resolution clusters
-        umap_model = UMAP(n_neighbors=5, n_components=5, min_dist=0.0, metric='cosine', random_state=42)
-        
-        # Very small min_cluster_size to find micro-topics
-        hdbscan_model = HDBSCAN(min_cluster_size=5, min_samples=2, metric='euclidean', cluster_selection_method='eom', prediction_data=True)
+        W = model.fit_transform(tfidf)
 
-        # BM25 Weighting for more precise keywords
-        ctfidf_model = ClassTfidfTransformer(bm25_weighting=True, reduce_frequent_words=True)
+        row_sums = W.sum(axis=1, keepdims=True)
+        row_sums[row_sums == 0] = 1.0
+        topic_dist = W / row_sums
 
-        # Initialize BERTopic with None to keep ALL discovered clusters
-        self.bertopic_model = BERTopic(
-            nr_topics=None, 
-            vectorizer_model=vectorizer_model,
-            umap_model=umap_model,
-            hdbscan_model=hdbscan_model,
-            ctfidf_model=ctfidf_model,
-            calculate_probabilities=True,
-            verbose=False
-        )
-        
-        # Fit
-        topics, probs = self.bertopic_model.fit_transform(documents, embeddings)
-        
-        logger.info("BERTopic model fitted")
-        
-        # Get actual number of topics found (including outlier -1)
-        actual_n = len(self.bertopic_model.get_topic_info()) - 1
-        if actual_n < 1: actual_n = 1
-        
-        # Convert to topic distributions
-        topic_dist = np.zeros((len(documents), actual_n))
-        for i, (topic, prob_dist) in enumerate(zip(topics, probs)):
-            if topic != -1 and prob_dist is not None:
-                # BERTopic probabilities are for all topics except outlier
-                if isinstance(prob_dist, np.ndarray):
-                    if prob_dist.shape[0] == actual_n:
-                        topic_dist[i] = prob_dist
-                    elif prob_dist.shape[0] > 0:
-                        # Fallback if shapes differ slightly
-                        limit = min(prob_dist.shape[0], actual_n)
-                        topic_dist[i, :limit] = prob_dist[:limit]
-        
-        return topic_dist, topics
-    
-    def fit_ensemble(self, documents, embeddings):
-        """
-        Fit all three models in a high-precision cascade
-        """
-        logger.info(f"Training high-precision ensemble on {len(documents)} documents...")
-        
-        # 1. Fit BERTopic first to determine the natural number of micro-topics
-        bert_dist, bert_topics = self.fit_bertopic(documents, embeddings)
-        
-        # Determine how many topics were actually found
-        discovered_n = len(self.bertopic_model.get_topic_info()) - 1 # excluding outlier -1
-        if discovered_n < 5: discovered_n = self.n_topics # fallback
-        
-        logger.info(f"BERTopic discovered {discovered_n} micro-topics. Syncing LDA/NMF...")
-        self.n_topics = discovered_n
-        
-        # 2. Fit LDA and NMF with the same granularity
-        lda_topics = self.fit_lda(documents)
-        nmf_topics = self.fit_nmf(documents)
-        
-        # Ensure bert_dist is the correct shape if it wasn't before
-        # (re-running fit_bertopic logic inside here to ensure shape match)
-        # Actually, fit_bertopic already returns bert_dist, but we need to ensure it's (len, discovered_n)
-        if bert_dist.shape[1] != discovered_n:
-            # Re-pad or re-slice if necessary
-            new_bert_dist = np.zeros((len(documents), discovered_n))
-            min_cols = min(bert_dist.shape[1], discovered_n)
-            new_bert_dist[:, :min_cols] = bert_dist[:, :min_cols]
-            bert_dist = new_bert_dist
+        self.vectorizer = vectorizer
+        self.model = model
+        self.topic_dist = topic_dist
+        return topic_dist
 
-        distributions = {
-            'lda': lda_topics,
-            'nmf': nmf_topics,
-            'bertopic': bert_dist
-        }
-        
-        # 3. Create consensus
-        consensus = self.create_consensus(distributions)
-        
-        logger.info(f"Ensemble training complete. Consensus reached for {discovered_n} topics.")
-        
-        return consensus, distributions, bert_topics
-    
-    def create_consensus(self, distributions):
-        """
-        Weighted ensemble of topic distributions
-        """
-        consensus = (
-            0.3 * distributions['lda'] +
-            0.3 * distributions['nmf'] +
-            0.4 * distributions['bertopic']
-        )
-        
-        # Normalize
-        consensus = consensus / consensus.sum(axis=1, keepdims=True)
-        
-        return consensus
-    
-    def get_topic_labels(self):
-        """
-        Extract topic labels from each model
-        """
+    def top_keywords(self, topic_idx, n=15):
+        feature_names = self.vectorizer.get_feature_names_out()
+        row = self.model.components_[topic_idx]
+        top_idx = row.argsort()[-n:][::-1]
+        return [feature_names[i] for i in top_idx]
+
+    def label_topic(self, topic_idx, n_keywords=15):
+        keywords = self.top_keywords(topic_idx, n_keywords)
+        best_label, best_score = None, 0.0
+        for label, lex_terms in self.label_lexicon.items():
+            score = 0.0
+            for rank, kw in enumerate(keywords):
+                weight = 1.0 / (rank + 1)
+                if any(kw == term or kw in term or term in kw for term in lex_terms):
+                    score += weight
+            if score > best_score:
+                best_score = score
+                best_label = label
+        if best_label and best_score >= self.label_min_score:
+            return best_label
+        return " & ".join(k.title() for k in keywords[:3] if k)
+
+    def get_all_labels(self, n_keywords=15):
+        """Return {topic_id: {'label': ..., 'keywords': [...]}} for every topic."""
         labels = {}
-        
-        # LDA topics
-        if self.lda_model and self.count_vectorizer:
-            feature_names = self.count_vectorizer.get_feature_names_out()
-            for topic_idx, topic in enumerate(self.lda_model.components_):
-                top_words_idx = topic.argsort()[-10:][::-1]
-                top_words = [feature_names[i] for i in top_words_idx]
-                labels[f'Topic_{topic_idx}'] = {
-                    'model': 'LDA',
-                    'keywords': top_words
-                }
-        
-        # BERTopic topics
-        if self.bertopic_model:
-            topic_info = self.bertopic_model.get_topic_info()
-            for idx, row in topic_info.iterrows():
-                if row['Topic'] != -1:
-                    labels[f'Topic_{row["Topic"]}']['bertopic_label'] = row['Name']
-        
+        for i in range(self.n_topics):
+            labels[str(i)] = {
+                'label': self.label_topic(i, n_keywords),
+                'keywords': self.top_keywords(i, n_keywords),
+            }
         return labels
-    
-    def save_models(self, output_dir='./models/trained'):
-        """Save all models"""
-        import os
-        os.makedirs(output_dir, exist_ok=True)
-        
-        # Save each model
-        if self.lda_model:
-            with open(f'{output_dir}/lda_model.pkl', 'wb') as f:
-                pickle.dump(self.lda_model, f)
-            with open(f'{output_dir}/count_vectorizer.pkl', 'wb') as f:
-                pickle.dump(self.count_vectorizer, f)
-        
-        if self.nmf_model:
-            with open(f'{output_dir}/nmf_model.pkl', 'wb') as f:
-                pickle.dump(self.nmf_model, f)
-            with open(f'{output_dir}/tfidf_vectorizer.pkl', 'wb') as f:
-                pickle.dump(self.tfidf_vectorizer, f)
-        
-        if self.bertopic_model:
-            with open(f'{output_dir}/bertopic_model.pkl', 'wb') as f:
-                pickle.dump(self.bertopic_model, f)
-        
-        logger.info(f"✓ Models saved to {output_dir}")
 
-class ZeroShotLabeler:
+    def topic_distinctness(self):
+        """Average pairwise Jaccard distance between topics' top-10 keyword
+        sets. Near 0 => topics are near-duplicates (degenerate model);
+        closer to 1 => topics are well-separated."""
+        keyword_sets = [set(self.top_keywords(i, 10)) for i in range(self.n_topics)]
+        if len(keyword_sets) < 2:
+            return 1.0
+        distances = []
+        for i in range(len(keyword_sets)):
+            for j in range(i + 1, len(keyword_sets)):
+                a, b = keyword_sets[i], keyword_sets[j]
+                union = a | b
+                if not union:
+                    continue
+                jaccard_sim = len(a & b) / len(union)
+                distances.append(1.0 - jaccard_sim)
+        return float(np.mean(distances)) if distances else 1.0
+
+    def save(self, output_dir='./models/trained', prefix='rhetoric'):
+        os.makedirs(output_dir, exist_ok=True)
+        with open(os.path.join(output_dir, f'{prefix}_nmf_model.pkl'), 'wb') as f:
+            pickle.dump(self.model, f)
+        with open(os.path.join(output_dir, f'{prefix}_vectorizer.pkl'), 'wb') as f:
+            pickle.dump(self.vectorizer, f)
+        logger.info(f"Saved {prefix} NMF model + vectorizer to {output_dir}")
+
+
+def train_and_save(name, documents, speech_ids, n_topics=10, output_dir='./data/processed'):
+    """Fit a RhetoricTopicModel on `documents`, save the .npy distribution
+    array and the topic_labels_<name>.json file. Returns (model, topic_dist)
+    or (None, None) if there isn't enough data.
     """
-    Zero-shot topic classification using BART large MNLI
-    Maps raw topic distributions/keywords to high-level policy domains.
-    """
-    def __init__(self, model_name="facebook/bart-large-mnli", device=None):
-        if device is None:
-            self.device = 0 if torch.cuda.is_available() else -1
-        else:
-            self.device = device
-            
-        logger.info(f"Initializing ZeroShotLabeler with {model_name}...")
-        self.classifier = pipeline("zero-shot-classification", model=model_name, device=self.device)
-        self.candidate_labels = [
-            "Infrastructure", "Manufacturing", "Digital Economy", "Welfare", 
-            "Monetary Policy", "Inflation", "Geopolitics", "Agriculture",
-            "Healthcare", "Education", "Culture", "Taxation"
-        ]
-        
-    def classify_keywords(self, topic_keywords):
-        """
-        Takes a list of keywords and maps it to a high level category
-        """
-        text = " ".join(topic_keywords)
-        result = self.classifier(text, self.candidate_labels)
-        
-        # Return top label
-        return result['labels'][0], result['scores'][0]
+    if len(documents) < 2:
+        logger.warning(f"Not enough data for model '{name}' ({len(documents)} documents).")
+        return None, None
+
+    model = RhetoricTopicModel(n_topics=n_topics)
+    topic_dist = model.fit(documents)
+
+    os.makedirs(output_dir, exist_ok=True)
+    slug = name.lower().replace(' ', '_')
+
+    np.save(os.path.join(output_dir, f'topic_distributions_{slug}.npy'), topic_dist)
+
+    labels = model.get_all_labels()
+    with open(os.path.join(output_dir, f'topic_labels_{slug}.json'), 'w', encoding='utf-8') as f:
+        json.dump(labels, f, indent=2)
+
+    distinctness = model.topic_distinctness()
+    logger.info(
+        f"✓ {name}: {len(documents)} docs -> {model.n_topics} topics "
+        f"(distinctness={distinctness:.3f}, auto-excluded {len(model.auto_detected_terms)} "
+        f"high-frequency terms). Labels: {[v['label'] for v in labels.values()]}"
+    )
+
+    return model, topic_dist
+
 
 if __name__ == "__main__":
-    # Load data
     conn = sqlite3.connect('./data/market_rhetoric.db')
     df = pd.read_sql_query(
-        "SELECT processed_text FROM speeches WHERE processed_text IS NOT NULL",
+        "SELECT id, processed_text FROM speeches WHERE processed_text IS NOT NULL AND processed_text != ''",
         conn
     )
     conn.close()
-    
-    documents = df['processed_text'].tolist()
-    
-    if len(documents) > 0:
-        # Load embeddings
-        embeddings_dict = np.load('./data/processed/speech_embeddings.npy', allow_pickle=True).item()
-        embeddings = np.array(list(embeddings_dict.values()))
-        
-        # Train models
-        modeler = HybridTopicModeler(n_topics=20)
-        consensus, distributions = modeler.fit_ensemble(documents, embeddings)
-        
-        # Save
-        modeler.save_models()
-        np.save('./data/processed/topic_distributions.npy', consensus)
+
+    if len(df) > 0:
+        train_and_save('Combined', df['processed_text'].tolist(), df['id'].tolist())
     else:
         logger.error("No documents to process. Run preprocessing first.")

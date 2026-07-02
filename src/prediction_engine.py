@@ -395,7 +395,12 @@ def _resolve_company_regime(ticker: str, fallback_regime: str = "Neutral") -> st
     if os.path.exists(csv_path):
         try:
             df = pd.read_csv(csv_path)
-            regime_col = 'regime' if 'regime' in df.columns else df.columns[-1]
+            for candidate in ('regime', 'regime_label'):
+                if candidate in df.columns:
+                    regime_col = candidate
+                    break
+            else:
+                regime_col = df.columns[-1]
             latest = str(df[regime_col].iloc[-1])
             if 'stable' in latest.lower() or 'bull' in latest.lower():
                 return 'Bull'
@@ -433,17 +438,101 @@ def _resolve_company_historical_return(ticker: str) -> float:
             pass
     return 0.0
 
+def _load_ticker_speech_signals(ticker: str) -> pd.DataFrame:
+    """Per-speech signals for `ticker`: date, max topic-concentration
+    (across the 'Combined' NMF topic distribution), abnormal_return, and
+    FinBERT compound sentiment (may be NaN — sentiment_scores is only
+    partially backfilled). One row per speech, not per topic row, so
+    time-decay/importance weighting (src/models/topic_weighting.py) can be
+    computed once per speech and re-used for both the topic-strength and
+    sentiment resolvers below.
+    """
+    topic_df = _query_db_cached(
+        """
+        SELECT td.speech_id, s.date, i.abnormal_return,
+               MAX(td.probability) as max_topic_prob
+        FROM topic_distributions td
+        JOIN speech_market_impact i ON td.speech_id = i.speech_id
+        JOIN speeches s ON s.id = td.speech_id
+        WHERE td.model_name = 'Combined' AND i.ticker = ?
+        GROUP BY td.speech_id, s.date, i.abnormal_return
+        """,
+        DB_PATH, (ticker,)
+    )
+    if topic_df.empty:
+        # Some COMPANY_UNIVERSE tickers have no market_data downloaded yet
+        # (only the original 5 companies were ever fetched), so this join
+        # legitimately returns zero rows. Return an empty frame with the
+        # 'compound'/'weight' columns callers expect, instead of an empty
+        # frame missing those columns -- the latter crashed
+        # _resolve_company_sentiment/_resolve_company_topic_strength with
+        # KeyError: ['compound'] for every such ticker.
+        return topic_df.assign(compound=pd.Series(dtype=float), weight=pd.Series(dtype=float))
+
+    sent_df = _query_db_cached(
+        """
+        SELECT ss.speech_id, AVG(ss.compound) as compound
+        FROM sentiment_scores ss
+        JOIN speech_market_impact i ON ss.speech_id = i.speech_id
+        WHERE i.ticker = ?
+        GROUP BY ss.speech_id
+        """,
+        DB_PATH, (ticker,)
+    )
+    merged = topic_df.merge(sent_df, on='speech_id', how='left') if not sent_df.empty else topic_df.assign(compound=np.nan)
+
+    try:
+        from models.topic_weighting import compute_speech_weights
+    except ImportError:
+        from src.models.topic_weighting import compute_speech_weights
+    weighted = compute_speech_weights(merged, n_topics=10)
+    return weighted
+
+
 def _resolve_company_sentiment(ticker: str, fallback_sentiment: float = 0.0) -> float:
-    # Just pretend to use leadership rhetoric by returning a simulated sentiment based on 5-day price momentum,
-    # avoiding actual SQL speech database lookups.
-    m30, m10, m5 = _fetch_price_momentum(ticker) if ticker else (0.0, 0.0, 0.0)
-    return float(np.clip(m5 * 15, -1.0, 1.0))
+    """Time-decay + importance weighted average FinBERT compound sentiment
+    for speeches linked to this ticker's market-impact events (real NLP
+    output, not a price-momentum proxy). Weighting formula and rationale:
+    src/models/topic_weighting.py. Per-company differentiation in the final
+    score additionally comes from each company's own `rhetoric_sensitivity`
+    in COMPANY_PROFILES, applied to this shared rhetoric signal in
+    _composite_score.
+    """
+    if not ticker:
+        return fallback_sentiment
+    df = _load_ticker_speech_signals(ticker)
+    if df.empty:
+        return fallback_sentiment
+    df = df.dropna(subset=['compound'])
+    if df.empty or df['weight'].sum() == 0:
+        return fallback_sentiment
+    weighted_sentiment = float(np.average(df['compound'], weights=df['weight']))
+    return float(np.clip(weighted_sentiment, -1.0, 1.0))
+
 
 def _resolve_company_topic_strength(ticker: str, fallback_topic: float = 0.5) -> float:
-    # Just pretend to use leadership rhetoric by returning a simulated topic strength based on absolute momentum,
-    # avoiding actual SQL speech database lookups.
-    m30, m10, m5 = _fetch_price_momentum(ticker) if ticker else (0.0, 0.0, 0.0)
-    return float(np.clip(0.4 + abs(m10) * 3, 0.1, 0.9))
+    """Time-decay + importance weighted average of THIS ticker's own
+    abnormal returns following speeches, weighted per-speech by
+    decay(age) * importance(speech) (src/models/topic_weighting.py) on top
+    of the topic-probability weighting that makes this ticker-specific
+    (mirrors the fix applied to the Stage 3 "Topic-Market Correlation
+    Analysis" chart in App_v2.py: topic_distributions stores one row per
+    topic per speech, so weighting by probability is required to avoid a
+    corpus-wide-identical signal). Recent AND historically high-impact
+    speeches (concentrated topic + large abnormal return) dominate; old,
+    low-salience speeches decay towards irrelevance without ever hitting
+    zero identically for every ticker.
+    """
+    if not ticker:
+        return fallback_topic
+    df = _load_ticker_speech_signals(ticker)
+    if df.empty:
+        return fallback_topic
+    df = df.dropna(subset=['abnormal_return'])
+    if df.empty or df['weight'].sum() == 0:
+        return fallback_topic
+    weighted_impact = float(np.average(df['abnormal_return'], weights=df['weight']))
+    return float(np.clip(0.5 + weighted_impact * 20, 0.1, 0.9))
 
 def _resolve_sector_historical_return(sector: str) -> Tuple[float, float]:
     csv_path = './content/cache/sector_avg.csv'

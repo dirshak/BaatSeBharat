@@ -24,6 +24,7 @@ import numpy as np
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
+import requests
 import streamlit as st
 
 logger = logging.getLogger(__name__)
@@ -32,14 +33,26 @@ logger = logging.getLogger(__name__)
 collections.Sequence = collections.abc.Sequence
 
 # ──────────────────────────────────────────────────────────────────
-# Optional wbdata import
+# Optional wbdata import (kept as a secondary fallback only -- see
+# fetch_wb_data() docstring for why it's not the primary fetch path).
 # ──────────────────────────────────────────────────────────────────
 try:
     import wbdata
     _WBDATA_AVAILABLE = True
 except ImportError:
     _WBDATA_AVAILABLE = False
-    logger.warning("wbdata not installed — using simulated geo data.")
+    logger.warning("wbdata not installed — falling back to direct World Bank API calls.")
+
+# World Bank country-name aliases: the live API doesn't always use the same
+# display name our KEY_COUNTRIES list uses (renamed/hyphenated forms).
+_WB_COUNTRY_ALIASES = {
+    "South Korea": "Korea, Rep.",
+    "Russia": "Russian Federation",
+    "Turkey": "Turkiye",
+    "Egypt": "Egypt, Arab Rep.",
+    "Iran": "Iran, Islamic Rep.",
+    "Venezuela": "Venezuela, RB",
+}
 
 # ──────────────────────────────────────────────────────────────────
 # World Bank Indicator Codes
@@ -69,34 +82,105 @@ KEY_COUNTRIES = [
 # Data Fetching
 # ──────────────────────────────────────────────────────────────────
 
+def _fetch_wb_indicator_direct(indicator_code: str, indicator_name: str,
+                                start_year: int = 2018, end_year: int = 2023) -> pd.DataFrame:
+    """Fetch a World Bank indicator via a direct REST call.
+
+    This bypasses wbdata.get_dataframe(), which on the installed wbdata
+    0.3.0 queries the PLURAL endpoint form (api.worldbank.org/v2/countries/
+    .../indicators/...). That path no longer round-trips against the live
+    API -- it either times out or returns an empty body, which wbdata's
+    fetcher then feeds straight into json.loads(), raising
+    JSONDecodeError("Expecting value: line 1 column 1"), which
+    fetch_wb_data() was silently catching and masking by falling back to
+    fabricated data. The correct, currently-working endpoint uses the
+    SINGULAR form (.../v2/country/all/indicator/{code}), confirmed by
+    direct testing. Raises on failure -- callers decide the fallback.
+    """
+    url = f"https://api.worldbank.org/v2/country/all/indicator/{indicator_code}"
+    resp = requests.get(
+        url,
+        params={"format": "json", "per_page": 2000, "date": f"{start_year}:{end_year}"},
+        timeout=15,
+    )
+    resp.raise_for_status()
+    payload = resp.json()
+    if not isinstance(payload, list) or len(payload) < 2 or not payload[1]:
+        raise ValueError(f"World Bank API returned no records for {indicator_code}")
+
+    # World Bank's display names don't always match this app's KEY_COUNTRIES
+    # list (e.g. "Korea, Rep." vs "South Korea") -- normalize back to the
+    # app's canonical names so downstream filtering/defaults still match.
+    reverse_aliases = {wb_name: app_name for app_name, wb_name in _WB_COUNTRY_ALIASES.items()}
+
+    records = payload[1]
+    rows = [
+        {
+            "Country": reverse_aliases.get(rec["country"]["value"], rec["country"]["value"]),
+            "Year": int(rec["date"]),
+            indicator_name: rec["value"],
+        }
+        for rec in records
+        if rec.get("value") is not None
+    ]
+    if not rows:
+        raise ValueError(f"World Bank API returned only null values for {indicator_code}")
+    return pd.DataFrame(rows)
+
+
 @st.cache_data(ttl=3600)
 def fetch_wb_data(indicator_code: str, indicator_name: str) -> pd.DataFrame:
-    """Fetch World Bank data for all countries. Cached for 1 hour."""
-    if not _WBDATA_AVAILABLE:
-        return _simulated_wb_data(indicator_name)
+    """Fetch World Bank data for all countries. Cached for 1 hour.
 
+    Fetch order: direct REST call (known-working endpoint) -> wbdata
+    library (kept as a secondary fallback in case a future wbdata release
+    fixes its endpoint, or the direct call hits a transient issue) ->
+    simulated data as an explicit last resort. The returned DataFrame's
+    `.attrs['simulated']` flag tells the UI to show a visible notice
+    instead of silently presenting fabricated numbers as real.
+    """
     try:
-        import datetime
-        start = datetime.datetime(2018, 1, 1)
-        end   = datetime.datetime(2023, 1, 1)
-
-        df = wbdata.get_dataframe(
-            indicators={indicator_code: indicator_name},
-            data_date=(start, end),
-            convert_date=True
-        ).reset_index().dropna()
-
-        df["Year"] = df["date"].dt.year
-        df.rename(columns={"country": "Country"}, inplace=True)
+        df = _fetch_wb_indicator_direct(indicator_code, indicator_name)
+        df.attrs['simulated'] = False
         return df
     except Exception as exc:
-        logger.warning("World Bank data fetch failed for %s: %s", indicator_name, exc)
-        return _simulated_wb_data(indicator_name)
+        logger.warning("Direct World Bank API fetch failed for %s: %s", indicator_name, exc)
+
+    if _WBDATA_AVAILABLE:
+        try:
+            import datetime
+            start = datetime.datetime(2018, 1, 1)
+            end = datetime.datetime(2023, 1, 1)
+            df = wbdata.get_dataframe(
+                indicators={indicator_code: indicator_name},
+                data_date=(start, end),
+                convert_date=True
+            ).reset_index().dropna()
+            df["Year"] = df["date"].dt.year
+            df.rename(columns={"country": "Country"}, inplace=True)
+            df.attrs['simulated'] = False
+            return df
+        except Exception as exc:
+            logger.warning("wbdata fallback fetch failed for %s: %s", indicator_name, exc)
+
+    logger.error(
+        "All real World Bank data sources failed for %s -- serving simulated "
+        "data. This should be rare; check network access to api.worldbank.org.",
+        indicator_name,
+    )
+    df = _simulated_wb_data(indicator_name)
+    df.attrs['simulated'] = True
+    return df
 
 
 def _simulated_wb_data(indicator_name: str) -> pd.DataFrame:
-    """Generate plausible simulated data when wbdata is unavailable."""
-    np.random.seed(42)
+    """Generate plausible simulated data as a LAST-RESORT dev/offline
+    fallback when both the direct API and wbdata fail. Never the normal
+    path -- see fetch_wb_data(). Callers must check df.attrs['simulated']
+    and surface it to the user; this function does not silently pass as
+    real data on its own.
+    """
+    rng = np.random.default_rng(42)
     rows = []
     for year in [2019, 2020, 2021, 2022, 2023]:
         for country in KEY_COUNTRIES:
@@ -108,8 +192,12 @@ def _simulated_wb_data(indicator_name: str) -> pd.DataFrame:
                     "Current Account (% GDP)": -1.5}.get(indicator_name, 50.0)
             # COVID dip in 2020
             if year == 2020:
-                base -= np.random.uniform(2, 8)
-            value = base + np.random.normal(0, base * 0.15)
+                base -= rng.uniform(2, 8)
+            # abs(base) because `base` can be negative (e.g. Current
+            # Account % GDP defaults to -1.5) -- np.random.normal's scale
+            # argument must be non-negative, and a negative scale is what
+            # raised ValueError: scale < 0 in production.
+            value = base + rng.normal(0, abs(base) * 0.15)
             rows.append({"Country": country, "Year": year, indicator_name: value})
     return pd.DataFrame(rows)
 
@@ -591,6 +679,13 @@ def render_global_influence_map(company_predictions: Optional[list] = None) -> N
 
         with st.spinner(f"Fetching {indicator_name} from World Bank…"):
             wb_df = fetch_wb_data(indicator_code, indicator_name)
+
+        if wb_df.attrs.get('simulated'):
+            st.warning(
+                "⚠️ **Showing simulated data — live World Bank fetch unavailable.** "
+                "These values are synthetic placeholders, not real economic data. "
+                "Check network access to api.worldbank.org."
+            )
 
         if not wb_df.empty:
             # Filter to key countries only for performance

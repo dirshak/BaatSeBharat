@@ -25,7 +25,7 @@ from src.data.market_data_downloader import MarketDataDownloader
 from src.data.vix_downloader import VIXDownloader
 from src.features.text_preprocessing import TextPreprocessor
 from src.models.sentiment_overlay import SentimentOverlay
-from src.models.topic_modeling import HybridTopicModeler, ZeroShotLabeler
+from src.models.topic_modeling import train_and_save as train_topic_model
 from src.models.market_modeling import MarketModeler
 from src.models.fusion_engine import FusionEngine
 from src.models.causal_validation import CausalValidator
@@ -194,101 +194,45 @@ def run_prototype():
     conn.commit()
     logger.info(f"Done: Preprocessed and sentiment-analyzed {processed_count} speeches.")
 
-    # 4. Multi-Source Topic Modeling
+    # 4. Multi-Source Topic Modeling (TF-IDF + NMF, see src/models/topic_modeling.py)
     logger.info("Step 4: Multi-Source Topic Modeling...")
-    
-    def train_and_save_model(name, query):
+
+    def train_and_persist(name, query):
         logger.info(f"Training Topic Model: {name}...")
         df_subset = pd.read_sql_query(query, conn)
         docs = df_subset['processed_text'].tolist()
         speech_ids = df_subset['id'].tolist()
-        
-        if len(docs) < 2:
-            logger.warning(f"Not enough data for model '{name}' ({len(docs)} documents).")
-            return
-            
-        n_topics = min(10, len(docs))
-        modeler = HybridTopicModeler(n_topics=n_topics)
-        # Load real embeddings
-        embeddings_dict = np.load('./data/processed/speech_embeddings.npy', allow_pickle=True).item()
-        embeddings = np.array([embeddings_dict[sid] for sid in speech_ids if sid in embeddings_dict])
-        
-        if len(embeddings) == 0:
-            logger.warning(f"No embeddings found for model '{name}'. Skipping.")
-            return
-        
-        # Ensure docs match embeddings if some were missing
-        valid_indices = [i for i, sid in enumerate(speech_ids) if sid in embeddings_dict]
-        docs = [docs[i] for i in valid_indices]
-        speech_ids = [speech_ids[i] for i in valid_indices]
-        
-        try:
-            os.makedirs('./data/processed', exist_ok=True)
-            consensus, dists = modeler.fit_ensemble(docs, embeddings)
-            
-            # Save to npy
-            filename = f'topic_distributions_{name.lower().replace(" ", "_")}.npy'
-            np.save(f'./data/processed/{filename}', consensus)
-            logger.info(f"✓ Saved {filename}")
-            
-            # Persist to DB
-            conn.execute("DELETE FROM topic_distributions WHERE model_name = ?", (name,))
-            for i, speech_id in enumerate(speech_ids):
-                if i >= len(consensus): break
-                for topic_id, prob in enumerate(consensus[i]):
-                    conn.execute('''
-                        INSERT OR REPLACE INTO topic_distributions 
-                        (speech_id, topic_id, probability, model_name)
-                        VALUES (?, ?, ?, ?)
-                    ''', (int(speech_id), topic_id, float(prob), name))
-            conn.commit()
-            logger.info(f"Done: Persisted {name} model to DB.")
-            
-            # Save keywords for UI
-            topic_labels = modeler.get_topic_labels()
-            import json
-            labels_file = f'topic_labels_{name.lower().replace(" ", "_")}.json'
-            with open(f'./data/processed/{labels_file}', 'w') as f:
-                json.dump(topic_labels, f)
-            logger.info(f"Done: Saved keywords to {labels_file}")
-        except Exception as e:
-            logger.error(f"Failed training {name}: {e}")
 
-    # Define tasks
+        model, topic_dist = train_topic_model(name, docs, speech_ids, n_topics=10)
+        if model is None:
+            return
+
+        # Persist to DB: this is what Stage 3/5/6 (App_v2.py) and
+        # prediction_engine.py actually read from -- the .npy/.json files
+        # written by train_topic_model() are only used by Stage 2's
+        # per-model keyword/heatmap browser.
+        conn.execute("DELETE FROM topic_distributions WHERE model_name = ?", (name,))
+        for i, speech_id in enumerate(speech_ids):
+            if i >= len(topic_dist):
+                break
+            for topic_id, prob in enumerate(topic_dist[i]):
+                conn.execute('''
+                    INSERT OR REPLACE INTO topic_distributions
+                    (speech_id, topic_id, probability, model_name)
+                    VALUES (?, ?, ?, ?)
+                ''', (int(speech_id), topic_id, float(prob), name))
+        conn.commit()
+        logger.info(f"Done: Persisted {name} model ({len(speech_ids)} speeches) to DB.")
+
     model_tasks = [
         ("Combined", "SELECT id, processed_text FROM speeches WHERE processed_text IS NOT NULL AND processed_text != ''"),
         ("Fed", "SELECT id, processed_text FROM speeches WHERE source='Fed' AND processed_text IS NOT NULL AND processed_text != ''"),
         ("ECB", "SELECT id, processed_text FROM speeches WHERE source='ECB' AND processed_text IS NOT NULL AND processed_text != ''"),
         ("Mann Ki Baat", "SELECT id, processed_text FROM speeches WHERE source='Mann Ki Baat' AND processed_text IS NOT NULL AND processed_text != ''"),
-        ("Prototype", "SELECT id, processed_text FROM speeches WHERE processed_text IS NOT NULL AND processed_text != '' LIMIT 10") # For backward compatibility with App_v2
     ]
-    
-    for name, query in model_tasks:
-        train_and_save_model(name, query)
 
-    # Label topics using ZeroShot
-    logger.info("Applying Zero-Shot Classification to Topics...")
-    try:
-        labeler = ZeroShotLabeler()
-        for name, _ in model_tasks:
-            # We would technically load labels and map them. Simple check ensures it doesn't crash if model misses
-            labels_file = f'topic_labels_{name.lower().replace(" ", "_")}.json'
-            if os.path.exists(f'./data/processed/{labels_file}'):
-                import json
-                with open(f'./data/processed/{labels_file}', 'r') as f:
-                    topic_labels = json.load(f)
-                
-                for t_key, t_val in topic_labels.items():
-                    if 'keywords' in t_val:
-                        top_label, score = labeler.classify_keywords(t_val['keywords'])
-                        t_val['zero_shot_domain'] = top_label
-                        t_val['zero_shot_score'] = score
-                
-                with open(f'./data/processed/{labels_file}', 'w') as f:
-                    json.dump(topic_labels, f, indent=2)
-        logger.info("Zero-Shot Classification complete.")
-    except Exception as e:
-        logger.warning(f"ZeroShot labeling failed: {e}")
+    for name, query in model_tasks:
+        train_and_persist(name, query)
 
     conn.close()
 

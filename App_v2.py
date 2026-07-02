@@ -189,7 +189,12 @@ def _load_regime_from_csv(ticker: str) -> str:
     try:
         if os.path.exists(csv_path):
             df = pd.read_csv(csv_path)
-            regime_col = 'regime' if 'regime' in df.columns else df.columns[-1]
+            for candidate in ('regime', 'regime_label'):
+                if candidate in df.columns:
+                    regime_col = candidate
+                    break
+            else:
+                regime_col = df.columns[-1]
             latest = str(df[regime_col].iloc[-1])
             if 'stable' in latest.lower() or 'bull' in latest.lower():
                 return 'Bull'
@@ -260,8 +265,9 @@ def _cached_sector_predictions(
     """Cache sector predictions. DataFrames serialised to JSON for hashing."""
     if not _PRED_OK:
         return []
-    sector_returns = pd.read_json(sector_returns_json) if sector_returns_json else None
-    regime_df      = pd.read_json(regime_json)      if regime_json else None
+    import io
+    sector_returns = pd.read_json(io.StringIO(sector_returns_json)) if sector_returns_json else None
+    regime_df      = pd.read_json(io.StringIO(regime_json))         if regime_json else None
     return get_all_sector_predictions(
         sentiment_score=sentiment,
         topic_strength=topic_str,
@@ -277,15 +283,54 @@ if stage == "Executive Summary":
 
     s_count, m_count = load_db_stats()
 
+    @st.cache_data(ttl=3600, show_spinner=False)
+    def _active_topic_count():
+        path = "./data/processed/topic_labels_combined.json"
+        if os.path.exists(path):
+            with open(path, 'r', encoding='utf-8') as f:
+                return len(json.load(f))
+        return 0
+
+    @st.cache_data(ttl=3600, show_spinner=False)
+    def _directional_backtest():
+        # Real out-of-sample metric (src/models/causal_validation.py):
+        # trains a per-topic return-direction bias on the first 70% of
+        # speech events by date, tests on the remaining 30%. Replaces a
+        # previously hardcoded, never-computed "Baseline ROC-AUC: 0.72
+        # (+5%)" metric -- that number wasn't derived from anything.
+        try:
+            from models.causal_validation import CausalValidator
+        except ImportError:
+            from src.models.causal_validation import CausalValidator
+        try:
+            return CausalValidator(db_path=DB_PATH).backtest_directional_hit_rate()
+        except Exception:
+            return {}
+
     col1, col2, col3, col4 = st.columns(4)
     with col1:
         st.metric("Processed Speeches", s_count)
     with col2:
         st.metric("Market Data Points", m_count)
     with col3:
-        st.metric("Active Topics", "10", "Unified")
+        st.metric("Active Topics", _active_topic_count() or "—")
     with col4:
-        st.metric("Baseline ROC-AUC", "0.72", "+5%")
+        _bt = _directional_backtest()
+        if _bt:
+            hit_pct = _bt['hit_rate'] * 100
+            st.metric(
+                "Directional Hit Rate (OOS)",
+                f"{hit_pct:.1f}%",
+                f"{hit_pct - 50:+.1f}pp vs. random",
+                help=(
+                    f"Out-of-sample backtest: topic->return bias learned on speeches "
+                    f"before {_bt['cutoff_date']}, tested on {_bt['n_events']} events after. "
+                    "50% = no better than a coin flip; this is reported honestly, not "
+                    "adjusted to look better."
+                ),
+            )
+        else:
+            st.metric("Directional Hit Rate (OOS)", "—")
 
     st.markdown("---")
 
@@ -329,10 +374,30 @@ elif stage == "1. Data Ingestion":
     tab1, tab2 = st.tabs(["Speeches (Text)", "Market (Numerical)"])
 
     with tab1:
-        conn = get_db_connection(DB_PATH)
-        df = pd.read_sql_query(
-            "SELECT id, date, source, speaker, title, full_text FROM speeches ORDER BY date DESC", conn
-        )
+        @st.cache_data(ttl=1800, show_spinner=False)
+        def _load_speech_index(db_path):
+            # Metadata only (no full_text) -- this just populates a
+            # dropdown. Previously this pulled full_text for every one of
+            # the ~1300 speeches into memory on every page load/widget
+            # interaction just to show a list of titles; full_text is only
+            # needed for the single selected speech, fetched separately below.
+            conn = get_db_connection(db_path)
+            df = pd.read_sql_query(
+                "SELECT id, date, source, speaker, title FROM speeches ORDER BY date DESC", conn
+            )
+            conn.close()
+            return df
+
+        @st.cache_data(ttl=1800, show_spinner=False)
+        def _load_speech_text(db_path, speech_id):
+            conn = get_db_connection(db_path)
+            row = pd.read_sql_query(
+                "SELECT full_text FROM speeches WHERE id = ?", conn, params=(speech_id,)
+            )
+            conn.close()
+            return row['full_text'].iloc[0] if not row.empty else None
+
+        df = _load_speech_index(DB_PATH)
         if not df.empty:
             # Filter by source
             sources = ['All'] + sorted(df['source'].dropna().unique().tolist())
@@ -340,31 +405,35 @@ elif stage == "1. Data Ingestion":
             if sel_source != 'All':
                 df = df[df['source'] == sel_source]
 
-            # Create a display name that is likely unique, but use ID for selection
-            df['display_name'] = df['source'] + " | " + df['date'].fillna('N/A') + " | " + df['title'].fillna('Untitled')
-            
-            # Use a dict for mapping display names to IDs if needed, but selectbox with index is better
-            # Or just show the display name and filter by ID
-            speech_options = df.apply(lambda x: f"[{x['id']}] {x['display_name']}", axis=1).tolist()
-            selected_option = st.selectbox("Select Speech to Preview", speech_options)
-            
-            # Extract ID from the selected option
+            # Vectorized display-name build (was a row-wise .apply()).
+            display_names = (
+                "[" + df['id'].astype(str) + "] " + df['source'] + " | "
+                + df['date'].fillna('N/A') + " | " + df['title'].fillna('Untitled')
+            )
+            selected_option = st.selectbox("Select Speech to Preview", display_names.tolist())
+
             selected_id = int(selected_option.split(']')[0][1:])
             speech_row = df[df['id'] == selected_id].iloc[0]
+            full_text = _load_speech_text(DB_PATH, selected_id)
 
             st.markdown(
                 f"**Source:** {speech_row['source']} &nbsp;|&nbsp; "
                 f"**Speaker:** {speech_row.get('speaker', 'N/A')} &nbsp;|&nbsp; "
                 f"**Date:** {speech_row['date']}"
             )
-            st.text_area("Transcript Preview", speech_row['full_text'] or "(no text)", height=250)
+            st.text_area("Transcript Preview", full_text or "(no text)", height=250)
         else:
             st.info("Database empty. Run the pipeline first.")
-        conn.close()
 
     with tab2:
-        conn = get_db_connection(DB_PATH)
-        df_m = pd.read_sql_query("SELECT date, ticker, close FROM market_data", conn)
+        @st.cache_data(ttl=1800, show_spinner=False)
+        def _load_market_close(db_path):
+            conn = get_db_connection(db_path)
+            df = pd.read_sql_query("SELECT date, ticker, close FROM market_data", conn)
+            conn.close()
+            return df
+
+        df_m = _load_market_close(DB_PATH)
         if not df_m.empty:
             df_m['date'] = pd.to_datetime(df_m['date'])
             fig = px.line(
@@ -374,7 +443,6 @@ elif stage == "1. Data Ingestion":
             st.plotly_chart(fig, use_container_width=True)
         else:
             st.info("No market data. Run the pipeline first.")
-        conn.close()
 
 elif stage == "2. NLP Intelligence":
     st.title("🔍 Stage 2: NLP & Topic Modeling")
@@ -395,20 +463,35 @@ elif stage == "2. NLP Intelligence":
     selected_model_name = st.selectbox("Select Topic Model", list(model_options.keys()))
     current_topic_file = os.path.join("./data/processed", model_options[selected_model_name])
 
+    labels_file = os.path.join(
+        "./data/processed",
+        f"topic_labels_{selected_model_name.lower().replace(' (all sources)', '').replace('federal reserve (fed)', 'fed').replace('european central bank (ecb)', 'ecb').replace('mann ki baat (mkb)', 'mann_ki_baat').replace(' ', '_')}.json"
+    )
+    labels_data = {}
+    if os.path.exists(labels_file):
+        with open(labels_file, 'r', encoding='utf-8') as f:
+            labels_data = json.load(f)
+
+    def topic_label(i):
+        info = labels_data.get(str(i))
+        return info['label'] if info else f"Topic {i+1}"
+
     if os.path.exists(current_topic_file):
         topics = np.load(current_topic_file)
-        
+        topic_names = [topic_label(i) for i in range(topics.shape[1])]
+
         st.subheader(f"Topic distribution: {selected_model_name}")
-        st.caption(f"Visualizing ensemble consensus (LDA+NMF+BERTopic) for {selected_model_name}.")
+        st.caption(f"TF-IDF + NMF topic model for {selected_model_name}, deterministically labeled from top keywords.")
 
         # Show distribution for first speech in this set
         fig = px.bar(
-            x=[f"Topic {i+1}" for i in range(topics.shape[1])],
+            x=topic_names,
             y=topics[0],
-            labels={'x': 'Topic ID', 'y': 'Probability'},
+            labels={'x': 'Topic', 'y': 'Probability'},
             title=f"Dominant Rhetoric Components ({selected_model_name})",
             template="plotly_dark"
         )
+        fig.update_layout(xaxis_tickangle=-30)
         st.plotly_chart(fig, use_container_width=True)
 
         # Heatmap: topic distributions per speech (first 30)
@@ -417,41 +500,29 @@ elif stage == "2. NLP Intelligence":
             n_show = min(30, topics.shape[0])
             heat_df = pd.DataFrame(
                 topics[:n_show],
-                columns=[f"T{i+1}" for i in range(topics.shape[1])]
+                columns=topic_names
             )
             fig_heat = px.imshow(
                 heat_df.T,
                 aspect="auto",
                 color_continuous_scale="Blues",
                 title="Topic Probability Heatmap",
-                template="plotly_dark"
+                template="plotly_dark",
+                labels={'y': 'Topic'},
             )
             st.plotly_chart(fig_heat, use_container_width=True)
 
         col1, col2 = st.columns(2)
         with col1:
-            st.markdown("### Top Keywords (Ensemble)")
-            # Load actual keywords if available
-            labels_file = os.path.join("./data/processed", f"topic_labels_{selected_model_name.lower().replace(' (all sources)', '').replace('federal reserve (fed)', 'fed').replace('european central bank (ecb)', 'ecb').replace('mann ki baat (mkb)', 'mann_ki_baat').replace(' ', '_')}.json")
-            
-            if os.path.exists(labels_file):
-                import json
-                with open(labels_file, 'r') as f:
-                    labels_data = json.load(f)
-                
-                # Show keywords for top topics
-                for i in range(min(5, topics.shape[1])):
-                    topic_key = f"Topic_{i}"
-                    if topic_key in labels_data:
-                        keywords = ", ".join(labels_data[topic_key]['keywords'][:5])
-                        st.write(f"**T{i+1}:** {keywords}")
+            st.markdown("### Topics & Top Keywords")
+            if labels_data:
+                for i in range(topics.shape[1]):
+                    info = labels_data.get(str(i))
+                    if info:
+                        keywords = ", ".join(info['keywords'][:5])
+                        st.write(f"**{info['label']}:** {keywords}")
             else:
-                if "Fed" in selected_model_name or "ECB" in selected_model_name:
-                    st.write("1. Monetary Policy | 2. Inflation | 3. Interest Rates | 4. Stability | 5. Economy")
-                elif "Mann" in selected_model_name:
-                    st.write("1. Development | 2. Youth | 3. Culture | 4. Health | 5. India")
-                else:
-                    st.write("1. Policy | 2. Growth | 3. Inflation | 4. Stability | 5. Innovation")
+                st.warning(f"No label file found at `{labels_file}`. Run the pipeline to generate topic labels.")
         with col2:
             st.markdown("### Model Insight")
             st.info(f"Model trained on {topics.shape[0]} documents with {topics.shape[1]} latent topics.")
@@ -463,23 +534,27 @@ elif stage == "2. NLP Intelligence":
 elif stage == "3. Market Impact":
     st.title("📈 Stage 3: Speech Impact on Markets")
 
-    conn = get_db_connection(DB_PATH)
+    @st.cache_data(ttl=1800, show_spinner=False)
+    def _load_stage3_data(db_path):
+        # Previously re-ran on every widget interaction (ticker selectbox,
+        # source multiselect trigger a full script rerun) with no caching.
+        conn = get_db_connection(db_path)
+        impact = pd.read_sql_query('''
+            SELECT
+                s.date, s.source, s.speaker, s.title,
+                i.ticker, i.return_t1, i.return_t5, i.return_t10, i.abnormal_return
+            FROM speech_market_impact i
+            JOIN speeches s ON i.speech_id = s.id
+            WHERE s.date IS NOT NULL
+            ORDER BY s.date DESC
+        ''', conn)
+        market = pd.read_sql_query(
+            "SELECT date, ticker, close FROM market_data ORDER BY date", conn
+        )
+        conn.close()
+        return impact, market
 
-    # Load speeches with impact data
-    impact_df = pd.read_sql_query('''
-        SELECT
-            s.date, s.source, s.speaker, s.title,
-            i.ticker, i.return_t1, i.return_t5, i.return_t10, i.abnormal_return
-        FROM speech_market_impact i
-        JOIN speeches s ON i.speech_id = s.id
-        WHERE s.date IS NOT NULL
-        ORDER BY s.date DESC
-    ''', conn)
-
-    market_df = pd.read_sql_query(
-        "SELECT date, ticker, close FROM market_data ORDER BY date", conn
-    )
-    conn.close()
+    impact_df, market_df = _load_stage3_data(DB_PATH)
 
     if impact_df.empty or market_df.empty:
         st.warning(
@@ -563,14 +638,27 @@ elif stage == "3. Market Impact":
             line=dict(color='#8b949e', width=1.5)
         ))
 
-        # Add vertical markers per source
+        # Add vertical markers per source. Speech events can number in the
+        # thousands for a heavily-scraped ticker; calling fig.add_vline()
+        # once per event recomputes the whole figure layout on every call
+        # (effectively O(n^2) in Plotly), which is what made this page hang
+        # for minutes. Drawing all of a source's vertical lines as ONE
+        # Scatter trace (x/y interleaved with None separators) is O(n) and
+        # renders in milliseconds instead.
+        y_lo = float(ticker_market['close'].min()) if not ticker_market.empty else 0.0
+        y_hi = float(ticker_market['close'].max()) if not ticker_market.empty else 1.0
         for src, color in SOURCE_COLORS.items():
             src_dates = ticker_impact[ticker_impact['source'] == src]['date'].unique()
-            for d in src_dates:
-                fig.add_vline(
-                    x=d, line_width=1, line_dash="dot",
-                    line_color=color, opacity=0.5
-                )
+            if len(src_dates):
+                line_x, line_y = [], []
+                for d in src_dates:
+                    line_x.extend([d, d, None])
+                    line_y.extend([y_lo, y_hi, None])
+                fig.add_trace(go.Scatter(
+                    x=line_x, y=line_y, mode='lines',
+                    line=dict(color=color, width=1, dash='dot'),
+                    opacity=0.5, showlegend=False, hoverinfo='skip',
+                ))
             # Invisible scatter just for legend
             if len(src_dates):
                 # Ensure we have a date-indexed series for nearest-neighbor lookup
@@ -672,41 +760,61 @@ elif stage == "3. Market Impact":
             which themes drive the highest returns.
         """)
         
-        # Join impact with topic distributions (for the 'Combined' model)
-        conn_topic = get_db_connection(DB_PATH)
-        topic_impact_query = '''
-            SELECT 
-                td.topic_id,
-                AVG(i.return_t5) as avg_ret_t5,
-                AVG(i.abnormal_return) as avg_abnormal,
-                COUNT(i.id) as speech_count
-            FROM topic_distributions td
-            JOIN speech_market_impact i ON td.speech_id = i.speech_id
-            WHERE td.model_name = 'Combined' AND i.ticker = ?
-            GROUP BY td.topic_id
-            ORDER BY avg_abnormal DESC
-        '''
-        topic_impact_df = pd.read_sql_query(topic_impact_query, conn_topic, params=(sel_ticker,))
-
-        if topic_impact_df.empty:
-            # Fallback: Overall average across all tickers
-            topic_impact_query_fallback = '''
-                SELECT 
+        # Join impact with topic distributions (for the 'Combined' model).
+        # topic_distributions stores one row PER TOPIC per speech (a full
+        # probability vector, not just the dominant topic), so a plain JOIN
+        # attaches the SAME market-impact row to every topic_id for a given
+        # speech. An unweighted AVG() then averages the identical set of
+        # returns for every topic, producing identical bars regardless of
+        # topic. Weighting by td.probability makes topics with a stronger
+        # presence in a speech contribute more to that topic's average,
+        # which is what actually differentiates topics.
+        @st.cache_data(ttl=1800, show_spinner=False)
+        def _load_topic_impact(db_path, ticker):
+            conn_topic = get_db_connection(db_path)
+            topic_impact_query = '''
+                SELECT
                     td.topic_id,
-                    AVG(i.return_t5) as avg_ret_t5,
-                    AVG(i.abnormal_return) as avg_abnormal,
-                    COUNT(i.id) as speech_count
+                    SUM(td.probability * i.return_t5) / NULLIF(SUM(td.probability), 0) as avg_ret_t5,
+                    SUM(td.probability * i.abnormal_return) / NULLIF(SUM(td.probability), 0) as avg_abnormal,
+                    COUNT(DISTINCT i.id) as speech_count
                 FROM topic_distributions td
                 JOIN speech_market_impact i ON td.speech_id = i.speech_id
-                WHERE td.model_name = 'Combined'
+                WHERE td.model_name = 'Combined' AND i.ticker = ?
                 GROUP BY td.topic_id
                 ORDER BY avg_abnormal DESC
             '''
-            topic_impact_df = pd.read_sql_query(topic_impact_query_fallback, conn_topic)
-        conn_topic.close()  # close AFTER both queries are done
+            result = pd.read_sql_query(topic_impact_query, conn_topic, params=(ticker,))
+
+            if result.empty:
+                # Fallback: Overall average across all tickers
+                topic_impact_query_fallback = '''
+                    SELECT
+                        td.topic_id,
+                        SUM(td.probability * i.return_t5) / NULLIF(SUM(td.probability), 0) as avg_ret_t5,
+                        SUM(td.probability * i.abnormal_return) / NULLIF(SUM(td.probability), 0) as avg_abnormal,
+                        COUNT(DISTINCT i.id) as speech_count
+                    FROM topic_distributions td
+                    JOIN speech_market_impact i ON td.speech_id = i.speech_id
+                    WHERE td.model_name = 'Combined'
+                    GROUP BY td.topic_id
+                    ORDER BY avg_abnormal DESC
+                '''
+                result = pd.read_sql_query(topic_impact_query_fallback, conn_topic)
+            conn_topic.close()
+            return result
+
+        topic_impact_df = _load_topic_impact(DB_PATH, sel_ticker)
 
         if not topic_impact_df.empty:
-            topic_impact_df['topic_label'] = topic_impact_df['topic_id'].apply(lambda x: f"Topic {x+1}")
+            _labels_path = "./data/processed/topic_labels_combined.json"
+            _topic_label_map = {}
+            if os.path.exists(_labels_path):
+                with open(_labels_path, 'r', encoding='utf-8') as f:
+                    _topic_label_map = {int(k): v['label'] for k, v in json.load(f).items()}
+            topic_impact_df['topic_label'] = topic_impact_df['topic_id'].apply(
+                lambda x: _topic_label_map.get(x, f"Topic {x+1}")
+            )
             # Add signal column for topics too
             topic_impact_df['topic_signal'] = topic_impact_df['avg_abnormal'].apply(
                 lambda v: '🟢 Bullish' if v > 0 else ('🔴 Bearish' if v < 0 else '⚪ Neutral')
@@ -741,82 +849,166 @@ elif stage == "4. Regime Intelligence":
     st.title("🛡️ Stage 4: Market Regime Intelligence (HMM)")
     st.markdown("### Quantifying structural market shifts using Hidden Markov Models.")
 
-    conn = get_db_connection(DB_PATH)
-    regimes = pd.read_sql_query("SELECT date, sector, regime, confidence FROM regime_classifications ORDER BY date", conn)
-    market = pd.read_sql_query("SELECT date, ticker, close FROM market_data ORDER BY date", conn)
-    conn.close()
+    @st.cache_data(ttl=1800, show_spinner=False)
+    def _load_regime_and_market(db_path):
+        # Previously these two full-table reads ran on every widget
+        # interaction (not just page load), because Streamlit reruns the
+        # whole script on any interaction and this query had no caching.
+        conn = get_db_connection(db_path)
+        regimes_df = pd.read_sql_query(
+            "SELECT date, sector, regime, confidence FROM regime_classifications ORDER BY date", conn
+        )
+        market_df = pd.read_sql_query("SELECT date, ticker, close FROM market_data ORDER BY date", conn)
+        conn.close()
+        regimes_df['date'] = pd.to_datetime(regimes_df['date'])
+        market_df['date'] = pd.to_datetime(market_df['date'])
+        return regimes_df, market_df
+
+    regimes, market = _load_regime_and_market(DB_PATH)
 
     if regimes.empty or market.empty:
         st.warning("No regime data found. Run the pipeline first.")
     else:
-        regimes['date'] = pd.to_datetime(regimes['date'])
-        market['date'] = pd.to_datetime(market['date'])
-
         tickers = market['ticker'].unique()
         sel_ticker = st.selectbox("Select Ticker for Regime Timeline", tickers)
 
         t_market = market[market['ticker'] == sel_ticker]
-        t_regimes = regimes[regimes['sector'] == sel_ticker]
+        t_regimes = regimes[regimes['sector'] == sel_ticker].sort_values('date')
 
         fig = go.Figure()
         fig.add_trace(go.Scatter(x=t_market['date'], y=t_market['close'], name="Price", line=dict(color='white')))
 
-        # Add regime backgrounds
         colors = {'Stable': 'rgba(63, 185, 80, 0.2)', 'Transitional': 'rgba(240, 136, 62, 0.2)', 'Volatile': 'rgba(248, 81, 73, 0.2)'}
-        
-        # Group consecutive regimes to reduce shapes
-        t_regimes = t_regimes.sort_values('date')
+
         if not t_regimes.empty:
-            start_date = t_regimes.iloc[0]['date']
-            curr_regime = t_regimes.iloc[0]['regime']
-            
-            for i in range(1, len(t_regimes)):
-                if t_regimes.iloc[i]['regime'] != curr_regime:
-                    end_date = t_regimes.iloc[i]['date']
-                    fig.add_vrect(x0=start_date, x1=end_date, fillcolor=colors.get(curr_regime, 'gray'), opacity=0.5, layer="below", line_width=0)
-                    start_date = end_date
-                    curr_regime = t_regimes.iloc[i]['regime']
-            
-            # Last segment
-            fig.add_vrect(x0=start_date, x1=t_regimes.iloc[-1]['date'], fillcolor=colors.get(curr_regime, 'gray'), opacity=0.5, layer="below", line_width=0)
+            # Vectorized run-length encoding of consecutive same-regime
+            # segments (no row-by-row .iloc access). Shapes are built as
+            # plain dicts and assigned to the figure in one shot via
+            # update_layout(shapes=...) instead of calling add_vrect() in a
+            # loop -- add_vrect/add_shape revalidate the ENTIRE shapes list
+            # on every call, which is O(n^2) in the number of calls (the
+            # same class of bug that made Stage 3 hang; here it's smaller
+            # in scale but still the single biggest cost in profiling this
+            # page, ~60% of total render time even with only ~36 segments).
+            regime_vals = t_regimes['regime'].values
+            dates_vals = t_regimes['date'].values
+            segment_id = np.cumsum(np.concatenate(([0], regime_vals[1:] != regime_vals[:-1])))
+            seg_df = pd.DataFrame({'segment': segment_id, 'regime': regime_vals, 'date': dates_vals})
+            bounds = seg_df.groupby('segment').agg(regime=('regime', 'first'), x0=('date', 'first'), x1=('date', 'last'))
+
+            shapes = [
+                dict(
+                    type='rect', xref='x', yref='paper',
+                    x0=row.x0, x1=row.x1, y0=0, y1=1,
+                    fillcolor=colors.get(row.regime, 'gray'), opacity=0.5,
+                    line_width=0, layer='below',
+                )
+                for row in bounds.itertuples()
+            ]
+            fig.update_layout(shapes=shapes)
 
         fig.update_layout(title=f"{sel_ticker} Regime Timeline (Green=Stable, Yellow=Transitional, Red=Volatile)", template="plotly_dark", height=600)
         st.plotly_chart(fig, use_container_width=True)
+
+        if t_regimes.empty:
+            st.info(
+                f"No HMM regime classifications computed yet for **{sel_ticker}**. "
+                "Regime data currently only covers a subset of tickers "
+                f"({', '.join(sorted(regimes['sector'].unique()))}) — run the regime "
+                "modeling step (src/models/market_modeling.py) for the rest."
+            )
 
 elif stage == "5. Company Analytics":
     st.title("🏢 Stage 5: Company Specific Returns vs. Rhetoric")
     st.markdown("### Analyzing how leadership topics impact individual company performance.")
 
-    # In a real scenario, we'd have company-specific returns in the DB. 
-    # For this prototype, we'll use sector proxies or simulated company data.
-    
-    conn = get_db_connection(DB_PATH)
-    # Get topics
-    topics_df = pd.read_sql_query("SELECT s.date, td.topic_id, td.probability FROM topic_distributions td JOIN speeches s ON td.speech_id = s.id WHERE td.model_name = 'Combined'", conn)
-    conn.close()
+    # Map each company to its NSE ticker so the heatmap is scoped to that
+    # company's own speech-market-impact events, not the entire corpus.
+    COMPANY_TICKER_MAP = {
+        "HDFC Bank": "HDFCBANK.NS",
+        "Reliance Industries": "RELIANCE.NS",
+        "Infosys": "INFY.NS",
+        "TCS": "TCS.NS",
+        "ICICI Bank": "ICICIBANK.NS",
+    }
+    company = st.selectbox("Select Company", list(COMPANY_TICKER_MAP.keys()))
+    company_ticker = COMPANY_TICKER_MAP[company]
+
+    @st.cache_data(ttl=1800, show_spinner=False)
+    def _load_company_topics(db_path, ticker):
+        # Pull each speech's topic probabilities together with THIS
+        # company's own forward return (i.return_t5). Raw topic probability
+        # has no company dimension at all (the same speech, same topic
+        # weights, feed every ticker) -- filtering by ticker alone left the
+        # heatmap pixel-identical across companies. Weighting probability
+        # by the company's own return is what actually varies per company.
+        conn = get_db_connection(db_path)
+        result = pd.read_sql_query(
+            """
+            SELECT s.date, td.topic_id, td.probability, i.return_t5
+            FROM topic_distributions td
+            JOIN speeches s ON td.speech_id = s.id
+            JOIN speech_market_impact i ON i.speech_id = s.id
+            WHERE td.model_name = 'Combined' AND i.ticker = ?
+            """,
+            conn, params=(ticker,)
+        )
+        conn.close()
+        return result
+
+    topics_df = _load_company_topics(DB_PATH, company_ticker)
 
     if topics_df.empty:
-        st.warning("No topic data found. Run the pipeline first.")
+        st.warning(f"No topic-impact data found for {company}. Run the pipeline first.")
     else:
         topics_df['date'] = pd.to_datetime(topics_df['date'])
-        
-        company = st.selectbox("Select Company", ["HDFC Bank", "Reliance Industries", "Infosys", "TCS", "ICICI Bank"])
-        
+        topics_df['weighted_strength'] = topics_df['probability'] * topics_df['return_t5']
+
+        # Topic labels (deterministic, from src/models/topic_modeling.py),
+        # so the heatmap shows real topic names instead of raw topic_id.
+        labels_path = "./data/processed/topic_labels_combined.json"
+        topic_label_map = {}
+        if os.path.exists(labels_path):
+            with open(labels_path, 'r', encoding='utf-8') as f:
+                topic_label_map = {int(k): v['label'] for k, v in json.load(f).items()}
+
         st.subheader(f"{company} Topic Impact Heatmap")
-        
-        # Pivot topics for heatmap
-        pivot_topics = topics_df.groupby(['date', 'topic_id'])['probability'].mean().unstack().fillna(0)
-        
+
+        # Aggregate to monthly buckets: with 800+ distinct speech dates per
+        # ticker, a per-date heatmap has too many columns to read (or even
+        # show axis ticks for). Monthly mean keeps the signal real while
+        # making the chart legible.
+        topics_df['month'] = topics_df['date'].dt.to_period('M').dt.to_timestamp()
+        pivot_topics = (
+            topics_df.groupby(['month', 'topic_id'])['weighted_strength']
+            .mean().unstack().fillna(0)
+        )
+        topic_names = [topic_label_map.get(i, f"Topic {i}") for i in pivot_topics.columns]
+
+        zmax = float(np.abs(pivot_topics.values).max()) or 1.0
         fig_heat = go.Figure(data=go.Heatmap(
             z=pivot_topics.values.T,
             x=pivot_topics.index,
-            y=[f"Topic {i}" for i in pivot_topics.columns],
-            colorscale='Viridis'
+            y=topic_names,
+            colorscale='RdYlGn',
+            zmid=0, zmin=-zmax, zmax=zmax,
+            colorbar=dict(title="Avg 5D Fwd<br>Return × Topic<br>Probability"),
+            hovertemplate="%{y}<br>%{x|%Y-%m}<br>Impact: %{z:.4f}<extra></extra>",
         ))
-        fig_heat.update_layout(title=f"Leadership Topic Intensity Over Time vs {company}", template="plotly_dark")
+        fig_heat.update_layout(
+            title=f"Leadership Topic Impact Over Time vs {company} (Monthly, 5D Fwd Return-Weighted)",
+            template="plotly_dark",
+            xaxis_title="Month",
+            yaxis_title="Topic",
+            height=450,
+        )
         st.plotly_chart(fig_heat, use_container_width=True)
-        
-        st.info("💡 Heatmap shows topic strength. In a production environment, this would be correlated with T+N forward returns for the specific ticker.")
+
+        st.info(
+            f"💡 Each cell is the average of (topic probability × {company}'s 5-day forward return) "
+            f"for speeches in that month. Green = that theme historically preceded {company} gains; "
+            f"red = historically preceded {company} declines."
+        )
 
 elif stage == "6. AI Predictions":
     st.title("🤖 Stage 6: AI Market Predictions")
@@ -997,6 +1189,23 @@ elif stage == "6. AI Predictions":
         # ── All Companies Overview ──────────────────────────────────────────
         st.subheader("📋 All Companies — 5-Day Forecast")
         st.caption("Cached for 30 min. Adjust any slider above to invalidate cache.")
+
+        @st.cache_data(ttl=1800, show_spinner=False)
+        def _companies_missing_market_data(db_path):
+            conn = get_db_connection(db_path)
+            tickers_with_data = set(
+                pd.read_sql_query("SELECT DISTINCT ticker FROM market_data", conn)['ticker']
+            )
+            conn.close()
+            return [c for c, t in COMPANY_UNIVERSE.items() if t not in tickers_with_data]
+
+        _missing = _companies_missing_market_data(DB_PATH)
+        if _missing:
+            st.caption(
+                f"⚠️ No market_data downloaded yet for: {', '.join(_missing)}. "
+                "Their predictions fall back to profile-only baselines (no live "
+                "momentum or historical-return signal) until yfinance data is fetched for them."
+            )
 
         with st.spinner("Loading cached bulk predictions…"):
             all_co_preds = _cached_company_predictions(

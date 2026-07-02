@@ -21,10 +21,21 @@ data:
   
 models:
   topic_modeling:
-    n_topics: 20
-    lda_iterations: 50
+    n_topics: 10
     nmf_iterations: 500
-  
+
+  # Time-decay + importance weighting for the prediction engine's use of
+  # historical speeches (src/models/topic_weighting.py). A speech's final
+  # weight = decay(age) * importance(speech), so recent speeches are
+  # favored by default (decay), but a historically high-impact speech can
+  # still carry meaningful weight even when old (importance floor).
+  speech_weighting:
+    half_life_days: 180        # decay(age) = 0.5 ** (age_days / half_life_days)
+    reaction_cap: 0.05         # abnormal_return magnitude treated as "max importance" (5%)
+    importance_floor: 0.3      # minimum importance even for low-salience/low-reaction speeches
+    topic_weight: 0.5          # importance blend: topic-concentration share
+    reaction_weight: 0.5       # importance blend: historical-market-reaction share
+
   counterfactual:
     input_dim: 10
     hidden_dim: 128

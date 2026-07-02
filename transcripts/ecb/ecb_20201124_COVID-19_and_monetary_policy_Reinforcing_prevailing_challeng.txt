@@ -1,0 +1,185 @@
+COVID-19 and monetary policy: Reinforcing prevailing challenges | 2020-11-24 | European Central Bank | Speech
+
+Frankfurt am Main, 24 November 2020
+
+The pandemic has tested many parts of our societies and economies in ways we had never expected. Nine months into one of the most severe crises since World War II, we are still in the early stages of understanding the pandemic’s full ramifications.
+
+Some sectors of our economies may never return to their previous size. New business models are being developed. Inequality is rising, both within and across countries.[1]And global value chains are being re-examined.
+
+History unambiguously suggests that the crisis is likely to fundamentally reshape the way our economies operate. Ultimately, these shifts may also affect the conduct of monetary policy. Central banks may have to change how they pursue their mandates in the face of evolving consumer preferences and changing technologies.
+
+Predicting the direction and scope of these shifts for monetary policy is inherently difficult. Yet, the inability to predict is no excuse for not preparing for future contingencies. At the ECB, we are doing this as part of our ongoing monetary policy strategy review.[2]
+
+My remarks today will not in any way pre-empt the Governing Council’s ongoing discussions. Instead, what I would like to offer today is a way of thinking about how the pandemic is likely to reinforce three key challenges facing central banks: how we should think about price stability when inflation is low, how monetary policy affects output and prices in the vicinity of the effective lower bound, and how we design and calibrate our instruments.
+
+Let me explain each of these challenges in turn, starting with the meaning of price stability in times of low inflation.
+
+In 2003, when the Governing Council conducted the last review of its monetary policy strategy, it defined price stability as being consistent with consumer price inflation of “below, but close to, 2% over the medium term”. It agreed on this definition after a long period in which too high rather than too low inflation was the main predicament central banks were facing.
+
+Over the past few years, however, inflation has fallen short of our aim. Since 2014, it has averaged just 0.8% (see slide 2). Inflation has fallen short of target in other advanced economies too.
+
+Low inflation can be the outcome of favourable economic developments. Globalisation, for example, together with significant advances in the way manufactured goods are produced, has made many consumer goods cheaper over time.
+
+But if prices fall or stagnate for the wrong reasons, as is the case today, then they are typically the harbinger of lower future growth and employment. An economy paralysed by the pandemic has pushed underlying inflation – the rate of price change of less volatile goods and services – to a new historical low of 0.2% in October (see slide 2).
+
+Some of these price developments may prove temporary as the economy recovers from the crisis. But the pandemic is only the latest in a series of adverse disinflationary shocks that have hit advanced economies in recent years.
+
+Empirical evidence, for example, points to the ongoing demographic change having a persistent disinflationary impact in the euro area and other advanced economies (see left chart slide 3).[3]A longer life expectancy can induce people to save more to smooth consumption over a longer period of time.
+
+The parallel decline in trend productivity growth since the 1970s is likely to have added to price stagnation. Higher output per hour is a necessary precondition for higher sustainable wages, incomes and, ultimately, prices.
+
+The same forces that are weighing on inflation have also contributed to the decline in the real natural rate of interest – the rate that balances savings and investment without exerting pressure on prices (see right chart slide 3).
+
+A lower equilibrium rate means that central banks have to find new instruments that can provide policy accommodation in the vicinity of the effective lower bound. It has made monetary policy more complex and has increased both the probability and duration of lower bound episodes.
+
+Central banks cannot fundamentally change the long-run course of our economies. But they can, and should, make sure that the operationalisation of their mandates – the way they define and pursue price stability – leaves no doubt that too low inflation is as much a concern to society as too high inflation.
+
+This is all the more important in a currency union as large and diverse as the euro area, where too low area-wide inflation carries substantial risks that parts of the currency area potentially face long periods of falling prices.
+
+The euro area sovereign debt crisis has painfully demonstrated that such conditions can shift a disproportionate share of the macroeconomic adjustment burden onto workers, either through falling nominal wages or higher unemployment when wages are too sticky to adjust.
+
+Central banks can cater for such risks in their monetary policy frameworks by acting with the same determination to downward and upward deviations from their inflation aims. This is why we are already today stressing our commitment to symmetry in our introductory statements summarising our monetary policy decisions.
+
+When the pandemic broke out in late February, we honoured this commitment by reacting forcefully to the rapidly emerging downside risks to price stability.
+
+The pandemic emergency purchase programme, or PEPP, has been at the heart of our policy response.[4]By stabilising market conditions at a time of exceptional uncertainty and demand for safety, the PEPP acted as an important circuit breaker that stopped the pandemic from turning into a full-blown financial crisis (see slide 4).
+
+In doing so, it saved millions of jobs and businesses. Its strong impact on the economy was in line with a rich literature that suggests that monetary policy is most effective during periods of market turmoil or when the economy is in a severe recession.[5]
+
+In these circumstances, a tightening of financial conditions damages the economy more severely due to a negative multiplier effect (see left chart slide 5). Monetary policy that acts to offset a tightening in financial conditions is then highly effective.
+
+But empirical evidence also suggests that the marginal effects of financial conditions on output and inflation become less clear when the economy is recovering or expanding.[6]
+
+It is likely that this state-contingent effectiveness of monetary policy is also at play in current times.
+
+Although recent news on the effectiveness of vaccines provides light at the end of the tunnel, significant uncertainty about future income prospects can be expected to prevail for some time, also because the pace of the rollout of vaccines and their acceptance among the public remain uncertain.
+
+Heightened uncertainty, in turn, is likely to weaken the willingness and ability of firms and households to take full advantage of historically loose financial conditions.[7]
+
+In these situations, monetary policy cannot unfold its full potential. Fiscal expansion is then indispensable in order to sustain demand and mitigate the long-term costs of the crisis.
+
+The debate on the appropriate policy mix, however, predates the pandemic.
+
+In the years after the global financial and euro area sovereign debt crises, there has been a broad debate about the appropriate policy response to lift the euro area economy out of its low-growth, low-inflation trap.
+
+An important question in this debate is whether and how monetary policy transmission changes in the vicinity of the effective lower bound, and how this might affect the interaction between monetary and fiscal policy also outside crisis times.[8]
+
+This question goes to the very heart of monetary policymaking.
+
+To see this, it is useful to recall the canonical New Keynesian model that most central banks use to inform their decisions. At the core of these models is the Euler equation, or the IS curve, which provides two fundamental hypotheses on which policy transmission is built.
+
+The first is the “interest rate hypothesis” – the belief that aggregate demand reacts linearly to changes in real interest rates.
+
+The second is the “expectations hypothesis” – the belief thatexpectedreal interest rates matter and that changes in inflation expectations have real effects.
+
+These two cornerstones have long been taken for granted. But they are now under increasing scrutiny.
+
+The interest rate hypothesis needs closer inspection on three grounds.[9]
+
+First, an emerging literature suggests that monetary policy transmission may not be linear in the level of the interest rate.[10]In other words, the slope of the IS curve may be different when interest rates are low, or when they have been low for a protracted period of time.
+
+Evidence is too scant to draw definitive conclusions at this stage. But such non-linearities could affect the extent to which central banks can bring future activity into the present: researchers have dubbed this the “macroeconomic reversal rate”.[11]
+
+Second, the transmission of changes in policy rates to bank lending rates seems to weaken around the zero lower bound (see right chart slide 5).[12]All else equal, the lower the pass-through of interest rate changes to bank deposit rates, the smaller the effects of monetary policy on aggregate demand.[13]
+
+And third, people often cannot distinguish between real and nominal developments and may therefore react less to changes in real interest rates than what our models would tend to suggest.[14]Although money illusion has long been recognised in the economics profession, it continues to be largely ignored in core central bank models.
+
+Empirical evidence shows that money illusion affects financial decisions, particularly – but not only – those made by households, who often mistake changes in nominal interest rates for changes in real rates.[15]
+
+Recent experience suggests that money illusion may not only change the nature of the interest rate channel, it may also expose central banks to widespread criticism. The debate on the “expropriation” of savers is a prime example.[16]
+
+Many people may be surprised to learn that negative real interest rates are not a new phenomenon. In Germany, for example, since the euro was introduced, the average real interest rate for savings and demand deposits has been roughly the same as the average over the preceding two decades (see slide 6).
+
+This bias in people’s perception brings me to the second hypothesis – the expectations hypothesis.
+
+When policy space is limited, expectations become the main driver of monetary policy transmission in New Keynesian models. The idea of central banks providing forward guidance is largely built on this proposition.
+
+This is why many central bank scholars have been concerned about the gradual fall in market-based inflation expectations in recent years. It has raised real expected interest rates, thereby tightening financial conditions.
+
+The extent to which these developments have weighed on aggregate demand is subject to controversy, however, for two main reasons.
+
+First, a large part of the fall in market-based inflation expectations can be explained by a fall in the inflation risk premium (see left chart slide 7). Following years of persistently low inflation, investors no longer feel the need to protect themselves against high inflation.
+
+Once one corrects for the fall in the risk premium, developments in market-based and survey-based measures of inflation expectations are much more aligned (see right chart slide 7).
+
+Second, it is not clear how representative option prices in financial markets are for the broader economy. Empirical evidence suggests that such indicators can often provide only little additional forward-looking information about inflation, even for a horizon of only one to two years ahead.[17]
+
+This raises the question of whether inflation expectations of households and firms may be more relevant than those of the market for shaping macroeconomic outcomes in line with the expectations hypothesis.[18]
+
+By now, we have a relatively clear understanding that most households and firms cannot point with any certainty to the actual level of inflation or interest rates.[19]For example, in surveys a significant fraction of consumers report very high inflation expectations – often in excess of 10%.
+
+But a limited understanding of actual levels does not necessarily stop people from acting on their beliefs. Here the evidence is more mixed.
+
+ECB research, for example, finds that people tend to spend more than they would otherwise if they expect future inflation to be higher than the perceived level today (see left chart slide 8).[20]
+
+Other studies come to different conclusions, however. They find either no evidence of inflation expectations affecting consumption decisions or, more disturbingly, even suggest that higher inflation expectations could lower – rather than raise – consumption.[21]
+
+One interesting pattern that can help explain these findings is that rising inflation expectations often seem to go hand-in-hand with expectations of lower incomes and lower economic growth (see right chart slide 8).[22]
+
+These findings suggest that individuals are far from being as rational and forward-looking as our canonical models assume.[23]Indeed, controlling for these insights helps resolve the infamous “forward guidance puzzle”, i.e. the phenomenon that models predict that promises to keep rates low for longer will have unrealistically large effects on the real economy.[24]
+
+Bounded rationality may hence limit the efficacy of policies geared towards boosting inflation expectations, all the more so as new empirical evidence highlights that most households are very hesitant about adjusting their long-term inflation expectations in response to news.[25]
+
+None of this is to say that monetary policy is powerless. On the contrary, current highly accommodative financial conditions provide a continuous and measurable support to the euro area economy. Preserving them for as long as needed will be essential to ensure that inflation returns to our aim in the medium term.
+
+Bounded rationality and the way the interest rate channel works at the lower bound rather suggest two things.
+
+First, fiscal policy has become more important as a macroeconomic stabilisation tool, also once we leave the pandemic behind us.
+
+And, second, if people associate higher inflation with worse personal economic outcomes, then we should become better in explaining to the public what it is that we do and why current low inflation may be harmful to growth and employment.
+
+Trust in the ECB remains unacceptably low and has fallen over time, also as unconventional instruments have introduced concepts and terminology that are hardly accessible to a large part of our society (see slide 9). New research demonstrates that trust has a tangible impact on households’ inflation expectations.[26]
+
+The narrow mandate of the ECB compared with that of other major central banks arguably makes this mission even more complicated from a communication perspective: although there is often a “divine coincidence” between stable prices and employment, our actions ultimately have to be rooted in our primary mandate.
+
+We know that people – once inflation is low – care more about employment, which is part of the US Federal Reserve’s mandate. But it is much harder to explain why inflation of 2% is better than 1%.
+
+A much broader communication strategy that goes well beyond financial market participants will therefore be an important element in reinforcing the effectiveness of monetary policy.
+
+But what we learn from our analysis of how monetary policy transmission to the real economy may change in a low interest rate environment may ultimately also affect the way we calibrate and design our policy instruments, as well the horizon over which we want to achieve our inflation aim.
+
+In principle, central banks facing lower expected gains from easing monetary policy further in an environment of highly accommodative financial conditions could double down on their efforts to compensate for the loss in efficacy.
+
+They would face two pertinent challenges, however.
+
+The first is that monetary policy faces constraints. For example, we may not know precisely where the effective lower bound lies, but we know that there is one.
+
+Exempting a portion of excess reserves from negative rates, or rewarding lending activities at rates below our main policy rate, have been effective instruments in stretching our boundaries. But these instruments will ultimately also face constraints.
+
+The second challenge relates to the unintended side effects of monetary policy.
+
+The wide-ranging nature of the instruments we use today raises the bar of accountability. But side effects are a difficult topic for central banks, no less than for medical practitioners. The evidence on side effects is often inconclusive, before it is too late.
+
+Money illusion, for example, may push house prices increasingly away from fundamentals, despite real interest rates not being extraordinarily low.[27]
+
+Banks may start restricting their lending activities the lower yields are and the flatter the yield curve is, particularly in an environment in which capital buffers may need rebuilding following the coronavirus (COVID-19) crisis.[28]
+
+And the larger the share of bonds that we purchase, the higher the risk that market liquidity may deteriorate over time.
+
+These concerns raise the question as to whether monetary policy should take financial stability considerations more systematically into account and, if so, how this should be done.
+
+One aspect in this context is the optimal interaction between monetary and prudential policies. While macroprudential policies are the first line of defence against the build-up of financial vulnerabilities, it is widely acknowledged that such policies do not yet offer effective protection.[29]
+
+A second aspect relates to how a more effective integration of asset price developments into the monetary policy framework could better reflect the role of financial stability in preserving price stability over the medium term. The pandemic is the latest in a series of shocks that vividly demonstrate how financial factors may amplify real shocks, giving rise to huge costs for society as a whole.
+
+A third and complementary aspect is the horizon over which we want to bring inflation back to our aim.
+
+If shocks to aggregate demand, such as those seen during the pandemic, reinforce downward pressure on prices from long-lasting structural factors, and if the inflation expectations of firms and households are less sensitive than widely assumed, then it could be optimal to lengthen the “medium term” when monetary policy is already highly accommodative.[30]
+
+By accepting a somewhat slower return of inflation towards their aim, and by focusing more on the duration of policy support, central banks may effectively mitigate potential risks to financial stability arising from a more intense usage of their policy instruments in the pursuit of their mandate.
+
+A more elastic use of the “medium term” notion might be all the more conducive in an environment in which a high degree of prevailing uncertainty is likely to considerably increase the lags with which policy is transmitted to the real economy.
+
+Let me conclude.
+
+The pandemic hit the global economy at a time when far-reaching secular changes had already prompted central banks to reflect on the appropriateness of their monetary policy frameworks. COVID-19 has reinforced many of the challenges posed by these changes.
+
+In the euro area, the coincidence of a protracted period of low inflation, sluggish potential growth and highly accommodative financial conditions raises important questions as to how the Governing Council should interpret its mandate and how it should conduct and communicate its operations in a way that credibly conveys its strong commitment to achieving price stability while minimising any adverse consequences of its policies for society.
+
+These questions form important elements of our monetary policy strategy review. The outcome will be a framework that reflects our understanding of how the economy has changed since we conducted our last strategy review and ensures that monetary policy will continue to faithfully serve the people of Europe.
+
+Thank you.
+
+DisclaimerPlease note that related topic tags are currently available for selected content only.
+
+Reproduction is permitted provided that the source is acknowledged.

@@ -1,0 +1,109 @@
+Transition risk losses alone unlikely to threaten EU financial stability, “Fit-For-55” climate stress test shows | N/A | European Central Bank | Press Release
+
+The European Supervisory Authorities (EBA, EIOPA, and ESMA – the ESAs) together with the European Central Bank (ECB), today releasedthe results of the one-off “Fit-For-55” climate scenario analysis. Under the scenarios examined, transition risks alone are unlikely to threaten financial stability. However, when transition risks are combined with macroeconomic shocks, they can increase losses for financial institutions and may lead to disruptions. This calls for a coordinated policy approach to financing the green transition and the need for financial institutions to integrate climate risks into their risk management in a comprehensive and timely manner.
+
+The European Commissioninvitedthe ESAs and the ECB to assess the impact on the EU banking, investment fund, occupational pension fund and insurance sectors of three transition scenarios incorporating the implementation of the Fit-for-55 package, as well as the potential for contagion and amplification effects across the financial system. The European Union’s Fit-for-55 package aims to stimulate investment and innovation in the transition to a green economy and plays a crucial role in the EU’s goal to achieve an emissions’ reduction of 55% by 2030 and climate neutrality by 2050. It aims to bring EU legislation in line with these goals with a set of policies that include – among others – the EU emissions trading system, the carbon border adjustment mechanism, sector-specific emissions targets, as well as revisions to the renewable energy and energy efficiency directive.
+
+The climate stress test was conducted against threescenarios developed by the European Systemic Risk Board (ESRB), with the support of the ECB. The scenarios incorporate transition risks as well as macroeconomic factors, under the assumption that the Fit-for-55 package is implemented as planned.
+
+To measure the impact of the scenarios on the respective financial sectors (the so called “first-round effects”), and to assess the potential for contagion and amplification effects across the financial system (the so called “second-round effects”), the ESAs and the ECB used top-down models. The estimates are produced relying on granular data and consider a time horizon of 8 years (from 2022 to 2030). The ESAs and the ECB models cover loans to Non-Financial Corporations (NFCs), equity, debt securities (including government bonds) and positions in funds held by a sample of financial institutions composed by 110 banks, 2,331 insurers, 629 institutions for occupational retirement provision (IORPs) and around 22,000 EU-domiciled funds.
+
+The results of the exercise show that estimated losses stemming from a “Run-on-Brown” scenario have a limited impact on the EU financial system. Over the 8-year horizon, total first-round losses stand between 5.2% and 6.7% of starting point exposures, in each sector. The second-round losses are mostly relevant for investment funds, and amount to 11.2% of starting point exposures.
+
+The interaction of adverse macro-financial developments with transition risk factors could disrupt the evolving transition and substantially increase financial institutions’ losses, thereby impairing their financing capacity. This is assessed in the second adverse scenario where the “Run-on-Brown” shocks are coupled with adverse macroeconomic conditions. Under this scenario, the first-round losses registered by banks, insurers, occupational pension funds and investment funds stand between 10.9% and 21.5%, depending on the sector. Although sizeable, the impact of these losses on financial institutions’ capital is expected to be mitigated by factors such as banks’ income, insurers’ and occupational pension funds’ liabilities, and cash holdings by investment funds that were not included in the assessment.
+
+First-round losses
+
+First- and second-round losses (including cross-sectoral amplification)
+
+Baseline
+
+Adverse 1
+
+Adverse 2
+
+Baseline
+
+Adverse 1
+
+Adverse 2
+
+Banking sector
+
+-5.8
+
+-6.7
+
+-10.9
+
+-5.8
+
+-6.8
+
+-11.0
+
+Insurance sector
+
+-2.2
+
+-5.2
+
+-18.8
+
+-2.9
+
+-6.9
+
+-23.3
+
+IORP sector
+
+-3.0
+
+-6.4
+
+-21.5
+
+-
+
+-
+
+-
+
+Investment fund sector
+
+-4.0
+
+-6.1
+
+-15.8
+
+-6.6
+
+-11.2
+
+-25.0
+
+Total (financial system)
+
+-3.9
+
+-6.0
+
+-15.8
+
+-5.3
+
+-8.7
+
+-20.7
+
+Given the novelty of the methodological approaches and the data-related challenges, the results are subject to a large margin of uncertainty.
+
+This exercise is the result of a fruitful collaboration among EU institutions and supervisory authorities and provided a tangible opportunity to assess climate risks from a joint perspective that aligns methodologies and analytical tools while leveraging on sector-specific expertise. Its findings can help policymakers develop policy measures that ensure sufficient financial resources for the real economy to advance the green transition, while mitigating risks within the financial system.
+
+For media queries, please contactClara Martín Marqués, tel.: +49 69 1344 17919.
+
+DisclaimerPlease note that related topic tags are currently available for selected content only.
+
+Reproduction is permitted provided that the source is acknowledged.

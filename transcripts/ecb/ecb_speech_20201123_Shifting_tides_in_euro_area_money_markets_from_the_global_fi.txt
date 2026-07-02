@@ -1,0 +1,109 @@
+Shifting tides in euro area money markets: from the global financial crisis to the COVID-19 pandemic | 2020-11-23 | European Central Bank | Speech
+
+Frankfurt am Main, 23 November 2020
+
+I would like to welcome you warmly to our virtual ECB Conference on Money Markets.[1]
+
+This conference offers an excellent platform to facilitate the exchange between academic experts on money markets and policy makers. The conference papers address some of the most topical research questions with respect to money markets and will thus provide valuable input for the implementation of our monetary policy.
+
+Money markets are a cornerstone of the financial system.[2]Banks, non-bank financial institutions[3]and non-financial corporations all rely on money markets for their short-term funding, liquidity management and collateral needs. As a result, dislocations in money markets can severely undermine the stability of our financial system.
+
+Due to their central role as a source of short-term funding, money markets are also crucial for the implementation and transmission of our monetary policy. Money market rates serve as operational targets for central banks and also as benchmarks for the pricing of credit, thereby directly affecting financing conditions in the real economy. To ensure a smooth transmission of monetary policy to the real economy, it is therefore crucial that money market rates are well-aligned with central banks’ policy intentions.[4]
+
+In the first part of my remarks today, I will briefly describe the major longer-term trends in euro area money markets. In the second part, I will focus on monetary policy transmission through money markets and its key determinants.
+
+I will devote particular attention to money market functioning during the coronavirus (COVID-19) pandemic. This will allow me to contrast recent developments in money market activity with previous crisis episodes, including the global financial crisis and the sovereign debt crisis.
+
+Let me start by illustrating several longer-term trends in euro area money markets and their underlying drivers. Three key factors have shaped the trends in money markets since the global financial crisis: a heightened awareness of counterparty risk, a sharp increase in excess liquidity and regulatory reforms.
+
+Perhaps the most striking trend is the shift away from unsecured transactions towards transactions secured by collateral (left-hand side of Slide 1). The shift towards the secured (repo) market began with the financial and sovereign debt crises and was driven by heightened financial market stress and the significant counterparty risk it exposed for unsecured money market transactions.[5]
+
+The expansion of central bank liquidity provision during and after the global financial crisis substituted for impaired markets and thereby further reduced the need of market participants to rely on money markets for their liquidity. Instead, a substantial part of money market transactions in recent years has been driven by the demand for specific types of collateral.[6]Additionally, as a result of changes in the regulatory environment, unsecured money market transactions have become more costly in terms of bank capital and liquidity requirements.[7]This development has reinforced the shift towards secured money market transactions.
+
+Another trend is the marked shift in the types of counterparties involved in money market transactions. An increasing share of trades is cleared through central counterparties (CCPs) (right-hand side of Slide 1). CCPs mitigate counterparty risk and reduce the reliance on costly collateral by providing netting services.[8]They have been an integral part of the policy response to the shortcomings uncovered by the global financial crisis. Beyond the use of CCPs, the share of transactions between banks and non-banks has gradually increased, whereas banks have lower incentives to transact with each other in the current environment of abundant central bank liquidity.
+
+These trends likely contributed to the relative resilience of short-term money markets since the onset of the COVID-19 pandemic. Secured transactions, a majority of which are cleared by CCPs, have been much less affected by the tensions in the spring than unsecured trades.
+
+Changes in central bank policies and regulation have also had a significant impact on money market rates, leading, in particular, to changing anchors for money market rates.
+
+The financial and sovereign debt crises saw a heightened volatility of money market rates (left-hand side ofSlide 2). Unsecured rates and repo rates secured by stressed sovereign collateral were particularly affected. Prior to 2008, short-term money market rates had been anchored to the ECB’s Main Refinancing Operations (MRO) rate.
+
+Following the shift to a fixed-rate full-allotment approach, which led to an unprecedented increase in excess liquidity, these rates moved towards the Deposit Facility Rate (DFR). This gave rise to an effective shift from a corridor system with scarce liquidity to a floor system with ample (excess) liquidity.[9]
+
+After 2015, another shift occurred. Repo rates gradually moved below the DFR, starting with repos backed by German and French government bonds. These movements reflected a shortage of safe collateral assets, particularly around regulatory reporting dates such as quarter- and year-ends (right-hand side of Slide 2).
+
+Two factors contributed to a growing scarcity of safe collateral: asset purchases by central banks and regulatory reforms that required banks to increase their holdings of safe and liquid securities. Until more recently, these factors were exacerbated by the absence of an effective securities lending programme.
+
+The €STR rate, which also includes transactions with non-banks, has also edged below the DFR. One reason for this shift is the segmentation between banks, which have access to the ECB’s deposit facility, and non-banks as well as entities outside of the euro area, which do not have access. The conference paper by Eisenschmidt, Ma and Zhang (2020)[10]studies how this market segmentation can affect monetary policy transmission.
+
+I will now turn to the determinants of monetary policy transmission through money markets. One metric that can be used as an indicator of monetary policy pass-through is the volume-weighted cross-sectional dispersion of money market overnight rates (Slide 3). This metric, proposed by Duffie and Krishnamurthy (2016), is a useful way to combine information on money market rates and volumes.[11]
+
+Intuitively, the dispersion index is low in relatively frictionless markets. Increases in dispersion indicate that money market rates do not move in tandem, which can signal impairments in the pass-through of the monetary policy stance to private market rates.
+
+Based on the dispersion index, I will highlight the changing role of factors affecting monetary policy transmission in the euro area through money markets since the global financial crisis. I will focus on three key factors that have an impact on the transmission of monetary policy decisions through money markets: financial stress, central bank liquidity provision and regulatory changes.
+
+Prior to 2015, financial stress indicators exhibited a strong co-movement with the dispersion index (Slide 4). However, this relationship has since become less pronounced.
+
+The de-coupling of financial stress indicators and the dispersion index is particularly striking during the recent pandemic period. In the spring of 2020, when indicators of financial stress increased dramatically, the dispersion index of overnight money market rates remained at remarkably low levels, mainly owing to the structural shift to largely secured transactions and the high amounts of central bank liquidity outstanding even before the pandemic.
+
+The low dispersion across overnight rates during the pandemic stands in contrast to the sharp and persistent rise in term money market and commercial paper rates, which points to measurable tensions in other segments of the market (left-hand side of Slide 5). Commercial paper rates rose quickly as the demand for commercial paper from non-bank financial institutions froze at the height of the pandemic crisis. In March 2020, investment and money market funds faced heavy withdrawals from their investors due to a dash for cash and tried to sell off commercial paper before maturity to build up liquidity buffers.[12]
+
+The events of the spring therefore clearly demonstrated the extent to which the liquidity management policies of non-banks can have severe ramifications for broader market functioning and hence also for the transmission of monetary policy. In particular, the tensions in the commercial paper market also affected the term unsecured money market, not least because commercial paper rates are often used as a reference for the pricing of EURIBOR under the hybrid methodology.
+
+The Eurosystem reacted decisively to the tensions in financial markets that extended well beyond the money and commercial paper market. We launched additional liquidity-providing operations for banks against an expanded set of collateral via targeted longer-term refinancing operations (TLTROs) at highly favourable rates, longer-term refinancing operations (LTROs and PELTROs) as well as foreign currency liquidity arrangements (swap and repo lines).
+
+In addition, the Eurosystem sharply expanded its purchases of public and private sector assets, which also included purchases of commercial paper, under the Pandemic Emergency Purchase Programme (PEPP) and the Asset Purchase Programme (APP).[13]
+
+The Eurosystem’s policy interventions effectively eased the liquidity strains observed in the spring of 2020 and supported market functioning by ensuring ample liquidity support for banks and stopping self-reinforcing fire-sale dynamics in key financial market segments, such as investment and money market funds.[14]
+
+The interventions have had a sustained effect on money markets in the euro area. Both EURIBOR and commercial paper rates have continued to recede in recent months and are currently at historically low levels.[15]The yield curve in unsecured money markets has flattened substantially even compared to the pre-crisis period (right-hand side of Slide 5). These low money market rates support the Eurosystem’s highly accommodative monetary policy stance.
+
+This brings me to the second factor, namely central bank liquidity provision, which influences the effective pass-through of monetary policy decisions to money market rates and financing conditions more broadly. The relation between excess liquidity and overnight money market rate dispersion has also changed since the global financial crisis.
+
+Prior to 2015, higher levels of excess liquidity tended to lower the dispersion of money market rates (Slide 6). After 2015, increases in dispersion also occurred in periods of ample and rising excess liquidity.
+
+There are several reasons for this changing relationship.
+
+Prior to 2015, central bank liquidity provision and the associated Eurosystem balance sheet expansion were driven by the need to restore an impaired monetary policy transmission mechanism, caused by heightened market stress during the financial and sovereign debt crises.
+
+During the global financial crisis, when the unsecured interbank market came under stress, banks turned to the central bank to obtain liquidity. The Eurosystem essentially assumed the liquidity-providing role of the private market. During the sovereign debt crisis in the euro area, banks once again increased their demand for central bank liquidity. The provision of central bank liquidity also stimulated the supply of liquidity in the private market, especially to banks located in the periphery.[16]The optimal design of central bank liquidity policies is an important research question, which is examined in the conference paper by Robatto (2020).[17]
+
+The experience from these two crisis episodes shows that central bank liquidity provision can stimulate market functioning and lower money market rate dispersion.[18]During the pandemic, this was also clearly visible, as exemplified by the impact of our measures on term money market and commercial paper rates.[19]
+
+After 2015, excess liquidity was primarily driven by the Eurosystem’s large-scale asset purchases. Although excess liquidity reached new highs with the implementation of asset purchases and financial stress remained at relatively low levels, the dispersion index rose substantially in 2015 and 2016.
+
+One factor that could cause such a rise is an uneven distribution of excess liquidity across countries or across banks and non-banks, similar to what had happened in US money markets in September 2019.[20]
+
+However, in recent years, the divergence across overnight money market rates was primarily driven by repo rates secured by high-quality collateral. Research suggests that this increase in the dispersion index can be linked to scarcity effects, as asset purchases and the increased regulatory demand for safe government bonds withdrew collateral assets from the financial system.[21]
+
+To alleviate these scarcity effects, the Eurosystem introduced the securities lending programme in April 2015. However, the programme was initially only sparsely used. Only when the ECB introduced the cash-collateral option in December 2016, securities lending increased and contributed to lowering the dispersion of money market rates, thus supporting monetary policy transmission (Slide 7).[22]Just recently, the Eurosystem adjusted the pricing of the securities lending programme as of November 2020,[23]to reflect changes in euro area repo market conditions since December 2016 and to ensure that the Eurosystem securities lending facilities remain an effective backstop. This pricing adjustment has resulted in a pronounced increase in the ECB’s securities lending activity as measured by the outstanding balance of securities on loan. Counterparty feedback received to date suggests that the new pricing does not constitute a material change in policy but might help to alleviate some pressure in the repo market ahead of the year-end.
+
+There are two other factors that have further alleviated collateral scarcity after December 2016. First, the set of securities eligible for APP purchases was expanded in January 2017. Second, anecdotal evidence suggests that the use of private securities lending operations has increased.[24]The conference paper by Jank, Moench and Schneider (2019) investigates the re-use of collateral in response to scarcity induced by the Eurosystem’s large-scale asset purchases.[25]
+
+Since March 2020, excess liquidity and the size of the Eurosystem balance sheet have increased further, driven by the implementation of additional asset purchases under the PEPP and the APP, as well as the allotment of the TLTROs. Although the increase in asset purchases since March was substantial, scarcity effects have not become more pronounced.[26]Most importantly, COVID-19 related fiscal measures have led to a higher supply of government bonds, thus mitigating the effect of asset purchases on collateral scarcity.
+
+Collectively, these developments have limited the dispersion of money market rates during the COVID-19 pandemic period and thus provided tangible support for a smooth functioning of short-term money markets in the euro area.
+
+The regulatory environment has become another important determinant of money market functioning in recent years. The banking sector reforms introduced after the global financial crisis were crucial for enabling the banking sector to play a supporting role in the pandemic crisis. But the Basel III regulatory reforms also imposed new requirements for banks, which had a bearing on their balance sheet capacity. In turn, these regulatory amendments likely affected market functioning because banks act as key intermediaries in money markets.
+
+Since 2015, when the leverage ratio and the liquidity coverage ratio (LCR) regulations were phased in, the dispersion index started to spike regularly at quarter-ends (Slide 8). These spikes coincided with banks’ leverage ratio reporting dates. Research suggests that banks whose leverage ratio is close to the regulatory minimum scale down their balance sheet at quarter-ends by reducing money market borrowing. This “window-dressing” behaviour has a market-wide impact: money market rates decrease and rate dispersion increases at quarter-ends.[27]Focusing on the regulatory environment in the aftermath of the global financial crisis, the conference paper by Correa, Du and Liao (2020) investigates how U.S. global systemically important banks supply dollar liquidity in repo and foreign exchange swap markets.[28]
+
+In reaction to the COVID-19 pandemic, the ECB provided temporary regulatory relief to banks. The most relevant measures for money market functioning included the relaxation of the LCR requirement and the temporary exclusion of central bank reserve holdings from the leverage ratio.
+
+The relaxation of the LCR requirement enables banks to use their liquidity buffers under stress, even if this implies that their LCR falls below the required minimum level of 100%. This measure thus allows for more flexibility in banks’ liquidity management. The temporary exclusion of central bank reserve holdings from the leverage ratio alleviates bank balance sheet constraints and contributes to reducing the quarter-end effects in money markets. It also ensures that bank participation in monetary policy operations is not unduly affected by the regulatory requirements.[29]
+
+The introduction of these temporary regulatory relief measures is expected to support the functioning of money markets beyond the year-end. This also has positive ramifications for the smooth transmission of the Eurosystem’s monetary policy decisions to the real economy.
+
+I would now like to conclude my remarks.
+
+I have shown that, since the global financial crisis, money markets have experienced important structural shifts. These changes likely supported the functioning of money markets during the COVID-19 pandemic. Money market activity remained comparatively resilient. Most importantly, the decisive policy response by the Eurosystem prevented localised tensions from turning into a broader liquidity crisis, thereby ensuring the smooth transmission of our monetary policy.
+
+Looking ahead, three developments deserve careful monitoring. First, the availability of collateral in secured markets will remain decisive for market functioning, particularly against the backdrop of ongoing central bank asset purchases, even if collateral scarcity is mitigated by the broad fiscal policy response to the COVID-19 pandemic. Second, a high level of excess liquidity may further reduce cash-driven activity in some market segments, potentially raising challenges for setting money market benchmark rates. And third, non-bank financial institutions play an increasingly important role in money markets. Their market activity has a bearing on the formation of some money market rates, including the €STR. Unlike banks, these market participants often do not have access to central bank operations. Were the transmission across money market rates to weaken, or rates to decouple from policy intentions, this could have implications for monetary policy implementation in the future.
+
+Understanding the changing forces that affect money market activity is essential for policy makers. To foster an improved understanding of recent trends in money markets, this conference brings together some of the best academics, central bankers and practitioners. I look forward to many insightful discussions over the next two days.
+
+Thank you very much for your attention.
+
+DisclaimerPlease note that related topic tags are currently available for selected content only.
+
+Reproduction is permitted provided that the source is acknowledged.

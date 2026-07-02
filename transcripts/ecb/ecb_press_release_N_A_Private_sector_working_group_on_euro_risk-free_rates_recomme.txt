@@ -1,0 +1,23 @@
+Private sector working group on euro risk-free rates recommends ESTER as euro risk-free rate | N/A | European Central Bank | Press Release
+
+13 September 2018
+
+Today, the private sector working group on euro risk-free rates has recommended theeuro short-term rate(ESTER) as the new euro risk-free rate. The working group recommends, in particular, replacing the euro overnight index average (EONIA) with the new euro risk-free rate. This is because the EONIA as it stands will no longer meet the criteria of the EU Benchmarks Regulation and will therefore see its use restricted as of 1 January 2020. ESTER will also provide a basis for developing fallbacks for contracts referencing the Euribor, as the compliance of its reformed methodology with the requirements of the EU Benchmarks Regulation will be assessed in 2019.
+
+As with similar fora in other currency areas, the working group’s recommendation is not legally binding on market participants. However, it provides orientation and represents the prevailing market consensus as regards the preferred euro risk-free rate to which market participants can now start transitioning.
+
+On the selection of ESTER as the euro risk-free rate by the working group:
+
+In line with the working group’s terms of reference, its decision to recommend ESTER was taken by consensus by more than the required two-thirds majority.
+
+The selection process for recommending ESTER as the euro risk-free rate was the following: the working group developedkey selection criteriaagainst which it assessed a number of candidate rates. The result of this assessment was that three rates had characteristics that could potentially qualify them to become the euro risk-free rate: (i) ESTER – the new rate reflecting euro area banks’ borrowing costs in the wholesale unsecured overnight market to be produced by the ECB; (ii) GC Pooling Deferred, a one-day secured, centrally cleared, general collateral repo rate produced by STOXX; and (iii) the RepoFunds Rate, a one-day secured, centrally cleared, combined general and specific collateral repo rate produced by NEX Data Services Limited. The working group had also launched amarket-wide consultationon these three candidate rates before the vote, theoutcomeof which had provided valuable input into the decision-making process.
+
+On the working group on euro risk-free rates:
+
+Theworking group on euro risk-free ratesis an industry-led group established in 2018 by the European Central Bank, the Belgian Financial Services and Markets Authority (FSMA), the European Securities and Markets Authority (ESMA) and the European Commission. Its main tasks are to identify and recommend alternative risk-free rates and transition paths.
+
+This initiative to identify a new benchmark rate is consistent with the global recommendation of the Financial Stability Board (FSB). Following various scandals involving market manipulation of quote-based interest rate benchmarks, the FSB recommended the development and adoption of more appropriate near risk-free rates as robust alternatives to existing interest rate benchmarks.
+
+For media queries, please contact William Lelieveldt, tel.: +49 69 1344 7316
+
+Reproduction is permitted provided that the source is acknowledged.

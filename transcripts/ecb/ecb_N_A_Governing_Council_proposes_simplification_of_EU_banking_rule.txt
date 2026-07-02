@@ -1,0 +1,49 @@
+Governing Council proposes simplification of EU banking rules | N/A | European Central Bank | Press Release
+
+Governing Council endorses recommendations of High-Level Task Force on Simplification, which include:
+
+The European Central Bank (ECB) today publishedthe recommendations of the Governing Council’s High-Level Task Force on Simplificationto simplify the European regulatory, supervisory and reporting framework. These recommendations were endorsed by the Governing Council and will now be presented to the European Commission.
+
+These proposals intend to simplify the framework, while maintaining the resilience of the European banking system and ensuring that microprudential, macroprudential and resolution authorities continue to meet their objectives effectively. European harmonisation and financial integration should be fostered. International cooperation is crucial and all jurisdictions should ensure full, timely and faithful implementation of Basel III.
+
+The Governing Council strongly encourages the completion of banking union and the savings and investment union to reduce national fragmentation and allow for more efficient capital markets.
+
+One of the recommendations is to simplify the design of banks’ capital requirements and buffers, also known as capital stacks[1], via two changes. First, merging the existing layers of capital buffers into just two: a non-releasable buffer and a releasable buffer that authorities can lower in bad times.[2]When merging buffers, it will be important to preserve the authorities’ current powers and competencies. Second, reducing the leverage ratio framework from four elements to two, namely a 3% minimum requirement and a single buffer, which could be set to zero for smaller banks.
+
+To improve the quality of banks’ capital, the Governing Council proposes enhancing the capacity of Additional Tier 1 capital to absorb losses when a bank is operating normally, which would be Basel-compliant and maintain resilience. Alternatively, non-equity elements could be removed from the going-concern capital stack provided that Basel compliance and capital neutrality are not compromised.
+
+TheGoverning Council proposes significantly increasing proportionality under EU banking rules by expanding the existing small banks regime[3]to include more banks and simplifying their applicable rules in a prudent and harmonised manner.
+
+To simplify the macroprudential framework, the Governing Council recommends automatic reciprocation of macroprudential measures. This ensures all banks active in a country that applies a macroprudential measure will be subject to that measure.
+
+For the framework that applies when banks fail, the Governing Council recommends aligning the resolution requirements that apply to all banks more closely with those that apply to the global systemically important banks.[4]This should be done without reducing the components on banks’ balance sheets which can be used to absorb losses and recapitalise in case they fail, thereby keeping the EU in line with international standards and making the rules more transparent and predictable.
+
+To achieve further harmonisation, the Governing Council recommends shifting EU banking rules from directives to directly applicable regulations.
+
+With regard to supervision, the Governing Council recommends completing the Single Rulebook and harmonising rules on licensing, governance and transactions with related parties, which would reduce complexity. Supervisors should be given greater flexibility, for example, in how often they review banks’ internal models.
+
+The Governing Council proposes simplifying the EU-wide stress test by streamlining its methodology and scope and making its results more useful from a banking system and individual bank perspective. The results of this revised stress test exercise would help improve the coordination between macroprudential and microprudential buffers.
+
+The Governing Council proposes being made responsible for taking a holistic view of overall capital in the banking union and cross-country heterogeneities, which is currently missing. This could be done by expanding the role of the Macroprudential Forum, which already brings together the Governing Council and the Supervisory Board, to improve coordination and consistency across countries when setting micro- and macroprudential instruments.
+
+With regard to reporting, the Governing Council proposes that European authorities share their data more widely with each other, allowing banks to report only once, thereby creating a fully integrated reporting system at the European level for statistical, prudential and resolution purposes. This could be done, ideally, via the Joint Bank Reporting Committee. All reporting requirements could be reviewed every three to five years to ensure they are still needed. Banks and supervisors would focus on the important data, disregarding minor reporting errors by implementing a materiality threshold for data resubmission requests. Consolidating supervisory and disclosure data would further reduce reporting efforts, with public disclosure (Pillar 3 reports) derived from supervisory reporting.
+
+The ECB will present the proposals of today’s report to the European Commission, which is preparing a report on the overall situation of the banking system that is due to be presented in 2026.
+
+The ECB has also published todaya report entitled “Streamlining supervision, safeguarding resilience”, which discusses its ongoing agenda to increase the effectiveness, efficiency and risk focus of European banking supervision. The initiatives described in this report constitute the ongoing work by ECB Banking Supervision under the existing legislation. They complement the Governing Council’s recommendations and can be fully implemented independently of these recommendations.
+
+The ECB welcomes theESRB’s report on the simplificationof its tasks published today.
+
+For media queries, please contactEsther Tejedor, tel.: +49 172 5171280 orFrançois Peyratout, tel.: +49 172 8632119.
+
+Banking regulations set out two main sets of requirements:going-concernrequirements for banks to remain solvent when they are operating normally andgone-concern requirementsto absorb losses and recapitalise if the bank fails. Both frameworks includerisk-based requirements, which set requirements based on risk-weighted assets, andnon-risk-based requirementswhich, in contrast, set requirements based on non-risk weighted assets. This results in several capital stacks, each of which is classified as either going- or gone-concern, and as either risk-based or non-risk-based. Each of these different stacks consists of different elements, i.e. specific buffers and requirements.
+
+The newnon-releasable bufferwould result from merging thecapital conservation bufferwith theglobal systemically important institutions bufferor theother systemically important institutions buffer, whichever is higher. The newreleasable bufferwould result from merging thecountercyclical capital bufferwith thesystemic risk buffer. The non-binding Pillar 2 guidance would be kept separate, on top of the releasable buffer.
+
+EU banking rules include various proportionality provisions, including for small and non-complex institutions. These are banks that meet various criteria including having less than €5 billion on their total balance sheet and having limited trading activities.
+
+The EU has two gone-concern frameworks: theminimum requirement for own funds and eligible liabilities (MREL)applicable to all banks and thetotal loss-absorbing capacity (TLAC)applicable to global systemically important banks.
+
+DisclaimerPlease note that related topic tags are currently available for selected content only.
+
+Reproduction is permitted provided that the source is acknowledged.

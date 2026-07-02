@@ -1,0 +1,9 @@
+Using Economic Data to Understand the Economy | 2023-11-07 | Governor Christopher J. Waller | Press Release
+
+At "Beyond the Numbers," a conference hosted by the Research Division of the Federal Reserve Bank of St. Louis, St. Louis, Missouri
+
+Thank you, Katrina, for inviting me here today.1As I hope you all know, the Federal Reserve uses monetary policy to achieve its dual mandate of maximum employment and price stability. One of my key roles as a policymaker is to help determine what stance of policy will move the economy closer to that reality. To do that, I need to try to understand where the economy stands and where it is headed. And to do that, I look at a variety of economic and financial data.
+
+I have a team of advisers who help me compile and analyze data. But you don't need your own team of economists to get a good idea of what's happening in the U.S. economy. The staff here at the Federal Reserve Bank of St. Louis has created an easy-to-use interactive tool that brings economic data to your fingertips. FRED (Federal Reserve Economic Data) allows the public to access, plot, and analyze thousands of economic data series. I often use FRED myself when I want to look up current and historical data.
+
+In fact, I thought for today's talk, I could use FRED to show some of the data series I consult when thinking about the economy. I'll start with some slides on economic activity and then move on to the labor market and inflation. I'll tell you how I am interpreting these data, what they have meant for policy to date, and offer a few caveats we should all keep in mind when using data. I will not be discussing my expectations for future monetary policy.

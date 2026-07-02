@@ -1,0 +1,59 @@
+The Federal Reserve’s Review of Its Monetary Policy Strategy, Tools, and Communication Practices | 2019-05-13 | Vice Chair Richard H. Clarida | Press Release
+
+At "New England Perspectives on Fed Policymaking:  A 'Fed Listens' Conference" hosted by the Federal Reserve Bank of Boston, Boston, Massachusetts
+
+I am pleased to attend thisFed Listensevent providing a New England perspective for the Federal Reserve's review of our monetary policy strategy, tools, and communication practices.1We are bringing open minds to our review and are seeking a broad range of perspectives. To us, it simply seems like good institutional practice to engage with a wide range of interested individuals and groups as part of a comprehensive approach to enhanced transparency and accountability.2
+
+Motivation for the ReviewThe Congress charged the Federal Reserve with achieving a dual mandateâmaximum employment and price stabilityâand this review will take this mandate as given. We will also take as given that a 2 percent rate of inflation in the price index for personal consumption expenditures is the operational goal most consistent with our price-stability mandate. While we believe that our existing strategy, tools, and communications practices have generally served the public well, we are eager to evaluate ways they might be improved. That said, based on the experience of other central banks that have undertaken similar reviews, our review is more likely to produce evolution, not a revolution, in the way we conduct monetary policy.
+
+With the U.S. economy operating at or close to our maximum-employment and price-stability goals, now is an especially opportune time for this review. The unemployment rate is at a 50-year low, and inflation is running close to our 2 percent objective. We want to ensure that we continue to meet our statutory goals in coming years. In addition, we will evaluate the new policy tools and enhanced communication practices the Federal Reserve deployed in response to the Global Financial Crisis and the Great Recession. Furthermore, the U.S. and foreign economies have evolved significantly since before the crisis.
+
+Perhaps most importantly, neutral interest rates appear to have fallen in the United States and abroad.3This global decline in neutral rates is widely expected to persist for years and likely reflects several factors, including aging populations, changes in risk-taking behavior, and a slowdown in technology growth. These factors' contributions are highly uncertain, but, irrespective of their precise role, the policy implications of the decline in neutral rates are important. All else being equal, a fall in neutral rates increases the likelihood that a central bank's policy rate will reach its effective lower bound in future economic downturns. That development, in turn, could make it more difficult during downturns for monetary policy to support household spending, business investment, and employment and keep inflation from falling too low.4
+
+Another key development in recent decades is that inflation appears less responsive to resource slack, implying a change in the dynamic relationship between inflation and employment.5This change is, in a sense, a proverbial double-edged sword. It permits the Federal Reserve to support employment more aggressively during downturnsâas was the case during and after the Great Recessionâbecause a sustained inflation breakout is less likely when inflation is less responsive to employment conditions.6However, that dynamic also increases the cost, in terms of economic output, of reversing unwelcome increases in longer-run inflation expectations. Thus, it is all the more important that longer-run inflation expectations remain anchored at levels consistent with our 2 percent inflation objective.7
+
+Activities and Timeline for the ReviewOur monetary policy review will have several components.8The Board and the Reserve Banks are hostingFed Listenseventsâsuch as this one in Bostonâin which we are hearing from, among others, business and labor leaders, community development advocates, and academics. Next month, we are holding a System research conference at the Federal Reserve Bank of Chicago, with speakers and panelists from outside the Fed. The program includes overviews by academic experts of themes that are central to the review.
+
+Building on the perspectives we hear and on staff analysis, the Federal Open Market Committee will perform its own assessment of how it conducts monetary policy, beginning around the middle of the year. We expect to make our conclusions public in the first half of 2020.
+
+Concluding ThoughtsThe economy is constantly evolving, bringing with it new policy challenges. So it makes sense for us to remain open minded as we assess current practices and consider ideas that could potentially enhance our ability to deliver on the goals the Congress has assigned us. For this reason, my colleagues and I do not want to preempt or to predict our ultimate finding. What I can say is that any changes to our conduct of monetary policy that we might make will be aimed solely at improving our ability to achieve and sustain our dual-mandate objectives in the world we live in today.
+
+ReferencesBank for International Settlements (2017).87th Annual Report (PDF). Basel, Switzerland: BIS, June.
+
+Blanchard, Olivier, Eugenio Cerutti, and Lawrence Summers (2015)."Inflation and ActivityâTwo Explorations and their Monetary Policy Implications," (PDF)IMF Working Paper WP/5/230. Washington: International Monetary Fund, November.
+
+Boivin, Jean, and Marc P. Giannoni (2006). "Has Monetary Policy Become More Effective?"Review of Economics and Statistics,vol. 88 (August), pp. 445â62.
+
+Boivin, Jean, Michael T. Kiley, and Frederic S. Mishkin (2010). "How Has the Monetary Transmission Mechanism Evolved over Time?" in Benjamin M. Friedman and Michael Woodford, eds.,Handbook of Monetary Economics,vol. 3. Amsterdam: Elsevier, pp. 369â422.
+
+Brand, Claus, Marcin Bielecki, and Adrian Penalver (2018)."The Natural Rate of Interest: Estimates, Drivers, and Challenges to Monetary Policy,"Occasional Paper Series 217. Frankfurt: European Central Bank, December.
+
+Bullard, James (2018)."The Case of the Disappearing Phillips Curve,"speech delivered at the 2018 ECB Forum on Central Banking, Sintra, Portugal, June 19.
+
+Cecchetti, Stephen G., Michael E. Feroli, Peter Hooper, Anil K. Kashyap, and Kermit L. Schoenholtz (2017).Deflating Inflation Expectations: The Implications of Inflation's Simple Dynamics(PDF),report prepared for the 2017 U.S. Monetary Policy Forum, sponsored by the Initiative on Global Markets at the University of Chicago Booth School of Business, held in New York, March 3.
+
+Chung, Hess, Etienne Gagnon, Taisuke Nakata, Matthias Paustian, Bernd Schlusche, James Trevino, Diego Vilán, and Wei Zheng (2019)."Monetary Policy Options at the Effective Lower Bound: Assessing the Federal Reserve's Current Policy Toolkit," (PDF)Finance and Economics Discussion Series 2019-003. Washington: Board of Governors of the Federal Reserve System, January.
+
+Clarida, Richard, Jordi Galí, and Mark Gertler (2000). "Monetary Policy Rules and Macroeconomic Stability: Evidence and Some Theory,"Quarterly Journal of Economics,vol. 115 (February), pp. 147â80.
+
+Erceg, Christopher, James Hebden, Michael Kiley, David López-Salido, and Robert Tetlow (2018)."Some Implications of Uncertainty and Misperception for Monetary Policy," (PDF)Finance and Economics Discussion Series 2018-059. Washington: Board of Governors of the Federal Reserve System, August.
+
+Faust, Jon, and Jonathan H. Wright (2013). "Forecasting Inflation," in Graham Elliott, Clive Grander, and Allan Timmermann, eds.,Handbook of Economic Forecasting,vol. 2A. Amsterdam: Elsevier, pp. 2â56.
+
+Fuhrer, Jeffrey, Giovanni Olivei, Eric Rosengren, and Geoffrey Tootell (2018)."Should the Fed Regularly Evaluate Its Monetary Policy Framework?" (PDF)paper presented at the Brookings Papers on Economic ActivityConference,Fall, held at the Brookings Institution, Washington, September 13â14.
+
+Holston, Kathryn, Thomas Laubach, and John C. Williams (2017). "Measuring the Natural Rate of Interest: International Trends and Determinants,"Journal of International Economics,vol. 108, Supplement 1 (May), pp. S59â75.
+
+Kiley, Michael T., and John M. Roberts (2017)."Monetary Policy in a Low Interest Rate World," Brookings Papers on Economic Activity (PDF), Spring, pp. 317â96.
+
+King, Mervyn, and David Low (2014)."Measuring the 'World' Real Interest Rate," (PDF)NBER Working Paper Series 19887. Cambridge, Mass.: National Bureau of Economic Research, February.
+
+Rachel, Lukasz, and Thomas D. Smith (2017)."Are Low Real Interest Rates Here to Stay?" (PDF)International Journal of Central Banking,vol. 13 (September), pp. 1â42.
+
+Roberts, John M. (2006). "Monetary Policy and Inflation Dynamics,"International Journal of Central Banking,vol. 2 (September), pp. 193â230.
+
+Simon, John, Troy Matheson, and Damiano Sandri (2013)."The Dog That Didn't Bark: Has Inflation Been Muzzled or Was it Just Sleeping?" (PDF)inWorld Economic Outlook: Hopes, Realities, Risks.Washington: International Monetary Fund, April, pp. 79â95.
+
+Swanson, Eric T. (2018). "The Federal Reserve Is Not Very Constrained by the Lower Bound on Nominal Interest Rates," NBER Working Paper Series 25123. Cambridge, Mass.: National Bureau of Economic Research, October.
+
+Yellen, Janet (2015)."Inflation Dynamics and Monetary Policy,"speech delivered at the Philip Gamble Memorial Lecture, University of Massachusetts, Amherst, September 24.

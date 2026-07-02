@@ -1,0 +1,127 @@
+Dialogue in a changing world | 2021-11-29 | European Central Bank | Speech
+
+Turin, 29 November 2021
+
+It is a great pleasure to participate in this colloquium on science diplomacy.
+
+The task of separating truth from falsehood has plagued policymaking for centuries. During the Roman civil war following the death of Julius Caesar, Octavian famously prevailed over Mark Antony by spreading “fake news” about his fitness for office. He did so via slogans forged on specially commissioned coins – an early version of a tweet.[1]
+
+Today, this task of distilling the truth is more urgent than ever.
+
+We have seen during the pandemic how quickly misinformation can spread – be it about possible treatments, such as drinking chlorine, or about the safety of vaccines. Indeed, falsehoods on Twitter are found to spread about 10 to 20 times faster than facts.[2]
+
+At the same time, the nature of the challenges we face are increasingly global, complex and fast-moving. This means that establishing the facts and understanding how they are interconnected is a precondition for charting a course through a shifting, uncertain world.
+
+In this context, good policymaking has to rest on two foundations.
+
+First, policymakers have to be committed to searching for the truth, as best they can, through robust analysis and evidence-based policymaking. And because we can never have perfect knowledge, they must be prepared to adjust their views as the facts change.
+
+Second, they need to explain their analysis to the public in a way that reduces complexity and unites people around the case for action. We will not solve the challenges of today, in a world of “fake news”, unless we can bring the public on board.
+
+In my remarks this evening, I would like to explain why today’s challenges are different, why they can only be addressed by integrating scientific analysis deeply into policymaking, and why the public has to be mobilised in a new way to bring about change.
+
+Ultimately, we need to be guided by Leonardo da Vinci words: “learn how to see [and] realise that everything connects to everything else.”
+
+So what is it that makes the challenges we face now so difficult?
+
+Many of today’s challenges are not new. Environmental threats such as smog and acid rain plagued the developed world in the 19th and 20th centuries. Pandemics have ravaged many parts of the world. And global economic crises have been a feature of the world economy for as long as globalisation has existed.
+
+But what makes the contemporary challenges unique is their sheer scale – and their potential to change the world profoundly. The challenges have intensified in at least three ways: their scope, their complexity and their potential to amplify.
+
+First, the scope of today’s challenges is genuinely global. A century ago, the Spanish flu spread like wildfire across the globe, infecting around a third of the world’s population at the time.[3]But even in the highly globalised world that existed at that time, there were parts of the world the disease did not reach.
+
+COVID-19, on the other hand, has been the first truly global pandemic. In less than six months, no region of the world was left untouched (save for a few Pacific islands) and virtually no aspect of our lives was unaffected. Unprecedented containment measures, in turn, triggered one of the most severe economic slumps since the Second World War.[4]
+
+Second, global challenges are now highly complex and require unprecedented levels of multilateral coordination. For example, when countries set out to close the hole in the ozone layer in the mid-1980s, the solution essentially required only a handful of the largest chemical companies to stop producing CFCs[5]and find alternatives. This in turn laid the ground for major economies to agree to the Montreal Protocol in 1987.
+
+But addressing climate change is orders of magnitude more difficult. Not only do we have to contend with the multiple faces of climate change – more extreme weather patterns, rising sea levels, loss of ecosystems and biodiversity – but regions are also affected in different ways and at different speeds.[6]This makes devising timely and appropriate mitigation measures across countries exceptionally complex.
+
+Third, global shocks tend to amplify in the face of a more integrated global economy. The OECD estimates that, in advanced economies, the contribution of global factors to changes in GDP growth has risen from around 35% in the 1980s to almost 70% today.[7]
+
+The internet also amplifies the spread of misinformation, which in certain situations can make global shocks worse. For instance, research suggests that in the first three months of 2020, nearly 6,000 people worldwide were hospitalised because of coronavirus misinformation.[8]At a minimum, the spread of “fake news” leads to greater cynicism among the public about who is telling the truth and what sources to trust.
+
+The upshot is that we are operating in a world of much higher uncertainty – about the nature of the shocks we are facing, how they will propagate, and what the public will believe about them. And policymakers have to change the way they approach problems and the way they communicate to adapt to this world.
+
+First of all, when faced with rising uncertainty policymakers have an even greater responsibility to commit themselves to a rigorous search for the truth.
+
+To that end, their analysis has to be grounded in deep analysis, expert knowledge and the scientific method – which means constantly testing hypotheses and adjusting decisions in the light of new evidence. The public would be ill-served if policymakers mirrored what they believed to be the public mood and based their decisions purely on instinct rather than on objective reason.
+
+We have had a striking demonstration of the need to integrate scientific analysis into policymaking during the pandemic. This has been a fast-moving crisis that could not be addressed through hunches or preconceived notions. The only way to fight it has been to act on the basis of the emerging evidence.
+
+It is now clear that governments which chose to draw on the evolving science to inform the trade-offs lying before them have performed better – in terms of both protecting lives and shielding the economy – than those that did not.[9]And this has produced a virtuous circle of increasing demand for policy-relevant research. In the first half of 2020, publications on COVID-19 doubled every 20 days.[10]
+
+Yet the search for truth does not only apply to governments. In fact, for independent institutions such as central banks, the responsibility is even greater. We are entrusted with narrow mandates precisely to ensure that our decisions are based on facts rather than political influences. We therefore face an even stronger burden of proof to show that our decisions are guided by the weight of evidence alone.
+
+This is a key reason why we invest so heavily in research and analysis. The ECB is ranked first among central banks worldwide for the quality of its research, it is ranked first in the field of monetary economics, and 15 of its economists are among the top 10% of authors globally.[11]That knowledge base – which involves constantly studying the effects of our own policies – gives us the foundation to act in the face of new challenges.
+
+The benefits of that foundation were clearly visible in our own response to the pandemic. The shock to the economy was unprecedented, but we were able to draw on our past experience of financial disturbances in the euro area; on our analyses of how self-fulfilling destabilising dynamics could emerge; and on our research into the effects of our previous asset purchase programmes, to deliver a rapid and effective response.
+
+Indeed, our pandemic emergency purchase programme and long-term lending operations were able to rapidly remove tail risks in financial markets and avert a liquidity and credit crunch. Coupled with the actions of our banking supervision arm, our researchers estimate that these measures saved more than one million jobs.[12]
+
+Overall, the exceptional level of evidence-based policymaking in our societies during the pandemic has taken place because we have faced an existential threat, leading to the type of relentless focus on results that we usually only see in times of war.
+
+It is simply remarkable that, within weeks, the genome of the coronavirus had been sequenced. Within a few months, tests for infection had been made available. And within a year, highly effective vaccines had been developed.
+
+Having seen the incredible progress we can make when science and policy are united behind a common goal, in my view we should not now slide back into the pre-pandemic status quo. We must strive to continue this joined-up approach if we are to tackle the challenges we face today – and this applies perhaps most of all to climate change.
+
+It is not by chance that the international architecture set up to tackle climate change has placed the science-policy nexus firmly at its core. Over the years, the Intergovernmental Panel on Climate Change has acted as an anchor for the understanding of climate science, helping ground policy agreements in knowledge and evidence.[13]
+
+Without this institutional anchoring, we would now be facing even more dangerous and irreversible levels of climate change. Absent global measures, the world would be at or over the 1.5°C warming threshold and heading towards a projected 4.4°C. That would translate into a 30% loss of global GDP by the end of this century.[14]
+
+But clearly the work is not yet done. The drawn-out negotiations at the COP26 summit illustrate the difficulties in reaching global political consensus, despite solid scientific evidence and the buy-in of large parts of the private sector. And an important reason for this is that, to achieve sustained progress, the public must be brought on board as well.
+
+Indeed, the job policymakers is not only to make decisions based on the best assessment of available evidence, but also to explain that assessment in a way that reduces complexity and underpins the case for action.
+
+Today, faced with challenges that require far-reaching and unprecedented changes in all segments of society, the premium on effective communication has never been higher. To bring about change with the necessary speed and in line with democratic principles, we need a critical mass of people who are willing to overhaul many aspects of their daily lives.
+
+Yet the barriers we face are high. In a world where “fake news” can spread rapidly and people no longer know which sources they can trust, it is increasingly hard to centre public opinion around a broadly agreed course of action. However, it is not impossible.
+
+The pandemic has proven that societies can be mobilised by scientific evidence to make profound changes, if that evidence is communicated in an effective way. People have accepted sweeping restrictions on their usual freedoms in order to contribute to the common goal of saving lives and preventing an uncontrolled spread of the disease.
+
+So what are the elements that can help bring the public on board? To my mind, there are three: simplicity, framing and empathy.
+
+Starting with simplicity, we should not underestimate the ability of the public to evaluate and absorb factual evidence – but it has to be presented in an accessible way.[15]
+
+We have seen this in the area of climate. In an experiment where US citizens who knew little about the scientific consensus on climate change were shown a simple pie chart illustrating the overwhelming consensus in favour of its man-made origins, their estimates of the climate consensus increased by nearly 20% – and that was with just one exposure.[16]
+
+We know that simplicity works for monetary policy communication, too. Research finds that providing households with simple statistics about inflation, such as the central bank’s inflation target or forecast, has large and immediate effects on their inflation expectations. Providing more detailed statements and arguments, however, has no additional effect.[17]
+
+This is an important reason why one of the cornerstones of our strategy review was to make our inflation target clearer. Our new, symmetric 2% target is clear-cut and unambiguous.
+
+But the challenge is not only to present the facts simply. It is also incumbent on policymakers to find ways of framing those facts so they resonate broadly with the values of the people they are speaking to. This is the second element.
+
+It is well-known, for example, that framing climate change as a difficult trade-off between environmental benefits and economic costs tends to reduce support for mitigation measures, even for those who generally support action.[18]However, messages linked to healthier and more sustainable lifestyles – cleaner air, less waste – tend to meet with a positive response across a broad cross-section of the public.[19]
+
+Even the words we use matter. Studies from the United States find that conservatives are more likely to support preparing for environmental disasters when climate change is framed as “extreme weather”.[20]And people across the political spectrum feel more negatively about natural gas as a source of energy when it is termed “methane gas”.[21]
+
+Finally, we have to consider how the message is given and by whom. It has been clearly established that, when shaping people’s perceptions of a crisis, empathy and compassion are critical elements of leadership communication.[22]
+
+For instance, there is some evidence that female leaders have performed better during the pandemic[23], in part because their communication approach has balanced science and empathy. Female leaders have often sought to share common experience, engage with the public and reach out and speak to vulnerable groups.[24]
+
+We also understand the importance of empathy at the ECB. Trust in the ECB is found to hinge not just on our competence in delivering our mandate, but also on whether we are perceived to care about citizens and act responsibly. So, communicating how responsible ECB policy benefits people’s welfare can foster greater trust.[25]
+
+This is why, as ECB President, I have set out to overhaul our approach to communications. Among other initiatives, we have made our monetary policy communication more accessible and we now convey our decisions in a “layered” way that makes them more relatable for people. The aim is to be simple – but not simplistic.
+
+Let me conclude.
+
+The challenges facing the world today are truly unprecedented. They have immense scale, complexity and potential to amplify through our extensive economic and digital links. This places extraordinary demands on humanity to solve them.
+
+The coronavirus pandemic has demonstrated the speed with which risks can spread across the globe. And it may only be a dress rehearsal for the type of threat to our livelihoods that an overheating planet will pose to all its inhabitants.
+
+But crucially, our joint response to the pandemic holds important lessons for the future. It can provide, perhaps, an emerging template for dealing with the complexity and uncertainty of the global challenges ahead.
+
+In many ways, this response stands out for the considerable efforts made by all policy areas and the unprecedented policy measures taken. However, our ultimate success in tackling this crisis has stemmed from recognising that we have all had to act together.
+
+Indeed, joint action from different policy areas has proved hugely beneficial in coping with the breadth of the shock. Intensive dialogue between scientists and policymakers has been fundamental in dealing with complexity and uncertainty. And broad coordination across countries has proved crucial in managing the pace with which the virus has spread.
+
+Without this intensive cooperation, we would not have progressed nearly as fast with the economic recovery and the introduction of vaccines.
+
+So, the fundamental lesson to be learnt here is that we cannot afford to operate with a setup that confines our work to distinct spheres. In a more interconnected global economy, intersectoral and multilateral cooperation is more important than ever to face complex challenges that transcend national borders.
+
+As John Donne wrote, “no man is an island entire of itself; every man is a piece of the continent, a part of the main.” This is the reality that we face in a world where our common challenges bind us closely together.
+
+The benefits of science, policy and the public joining forces to realise our full potential are overwhelming. Only by working together in all areas can we draw on our strengths and build hope for a brighter future.
+
+DisclaimerPlease note that related topic tags are currently available for selected content only.
+
+Reproduction is permitted provided that the source is acknowledged.

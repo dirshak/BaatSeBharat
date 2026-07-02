@@ -1,0 +1,15 @@
+ECB introduces two-tier system for remunerating excess liquidity holdings | N/A | European Central Bank | Press Release
+
+The Governing Council of the European Central Bank (ECB) today decided to introduce a two-tier system for reserve remuneration, which exempts part of credit institutions’ excess liquidity holdings (i.e. reserve holdings in excess of minimum reserve requirements) from negative remuneration at the rate applicable on the deposit facility. This decision aims to support the bank-based transmission of monetary policy, while preserving the positive contribution of negative rates to the accommodative stance of monetary policy and to the continued sustained convergence of inflation to the ECB’s aim.
+
+All credit institutions subject to minimum reserve requirements under Regulation ECB/2003/9 will be eligible for the two-tier system. The two-tier system will apply to excess liquidity held in current accounts with the Eurosystem but will not apply to holdings at the ECB’s deposit facility. The volume of reserve holdings in excess of minimum reserve requirements that will be exempt from the deposit facility rate – the exempt tier – will be determined as a multiple of an institution’s minimum reserve requirements. The multiplier will be the same for all institutions. The Governing Council will set the multiplier such that euro short-term money market rates are not unduly influenced. The multiplier may be adjusted by the Governing Council in line with changing levels of excess liquidity holdings. Any adjustment to the multiplier will be announced and will apply as of the following maintenance period after such decision is made. The size of the exempt tier is determined on the basis of average end-of-calendar-day balances in the institutions’ reserve accounts over a maintenance period.
+
+The exempt tier of excess liquidity holdings will be remunerated at an annual rate of 0%. The non-exempt tier of excess liquidity holdings will continue to be remunerated at zero percent or the deposit facility rate, whichever is lower.
+
+The two-tier system will first be applied in the seventh maintenance period of 2019 starting on 30 October 2019. The multiplier that will be applicable as of that maintenance period will be set at 6. The remuneration rate of the exempt tier and the multiplier can be changed over time.
+
+For media queries, please contactStefan Ruhkamp, tel.: +49 69 1344 5057.
+
+Notes:
+
+Reproduction is permitted provided that the source is acknowledged.

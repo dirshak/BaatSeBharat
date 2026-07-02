@@ -1,0 +1,25 @@
+ECB amends Guidelines relating to the Eurosystem’s monetary policy implementation | N/A | European Central Bank | Press Release
+
+The European Central Bank (ECB) has today published three new guidelines (Guidelines ECB/2016/31, ECB/2016/32 and ECB/2016/33). These guidelines provide amendments to (i) the General Documentation Guideline on the implementation of the Eurosystem’s monetary policy (ECB/2014/60), (ii) the Guideline on Valuation Haircuts (ECB/2015/35) and (iii) the Guideline on Additional Temporary Measures relating to Eurosystem refinancing operations and eligibility of collateral (ECB/2014/31).
+
+The new Guidelines introduce changes to the monetary policy implementation framework, including:
+
+First, the Eurosystem is introducing some changes to the collateral eligibility criteria and risk control measures with respect to senior unsecured debt instruments issued by credit institutions or investment firms. The ECB announced these changes in a press release on 5 October 2016.
+
+Second, the Eurosystem is amending the rules on acceptable coupon structures to make certain assets with negative cash flows eligible. According to the new requirements, negative cash flows are allowed for coupon payments of marketable assets and for non‑marketable debt instruments backed by eligible credit claims (DECCs) so as to reflect the current context of low/negative market rates. The valuation methodology ensures that collateral prices are lowered by expected negative cash flows and risk-mitigating measures are in place to make sure counterparties are fully liable for negative cash flows that may materialise when such assets are mobilised as collateral.
+
+Third, in the context of asset-backed securities (ABS) loan-level data, the Eurosystem is further clarifying the criteria for a loan-level data repository to become “designated by the Eurosystem” and the application process for designation. Only ABS for which loan-level data submissions have been made to “designated” repositories may be considered for compliance with the Eurosystem’s ABS loan-level requirements.
+
+Fourth, as a further specification to the collateral eligibility criteria relating to credit claims, as of 1 January 2018 the Eurosystem is explicitly requiring that only those credit claims be mobilised as collateral for Eurosystem credit operations in which the set-off risk has been excluded or significantly mitigated. Set-off rights arise in situations where a debtor has a legal right to set off or net its obligations towards a creditor by the amount of outstanding claims the debtor has against the creditor. A set-off risk is the risk of loss for the ESCB which arises when an ESCB central bank enforces a credit claim presented as collateral by a defaulting counterparty whereby the credit claim mobilised as collateral would have lost part of its value as a result of set-off.
+
+Fifth, the Eurosystem is updating the haircut schedules for assets used as collateral in monetary policy operations, as detailed in a dedicated press release. These adjustments aim to improve the general consistency of the framework while having an overall minimal effect on the amount of collateral available.
+
+Sixth, the Eurosystem is introducing minimum disclosure requirements for covered bond ratings issued by credit rating agencies accepted in the Eurosystem credit assessment framework (ECAF). According to these requirements, as of 1 July 2017, credit rating agencies will be required to publish new issue reports and quarterly surveillance reports for rated covered bond programmes in order to meet the high credit standards of the ECAF. If these requirements are not met, the credit rating may not be used to establish the credit quality requirements for marketable assets. In addition to ensuring that credit ratings are up to date, these disclosure requirements aim to enhance the transparency of covered bond ratings accepted by the Eurosystem.
+
+Seventh, the Eurosystem is clarifying the acceptance criteria for credit rating agencies as External Credit Assessment Institutions in the ECAF. For example, further clarity is provided on the Eurosystem’s minimum coverage requirements as regards ratings of eligible issuers and assets, as well as additional details on how coverage is calculated. These changes fully reflect the corresponding announcement in January 2016 under “Other decisions” of the Governing Council.
+
+Guidelines ECB/2016/31, ECB/2016/32 and ECB/2016/33 have been published on the ECB’s website for information purposes. The Guidelines in 23 official EU languages are expected to be published in December 2016 in the Official Journal of the European Union.
+
+For media queries, please contact William Lelieveldt, tel.: +49 69 1344 7316.
+
+Reproduction is permitted provided that the source is acknowledged.

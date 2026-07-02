@@ -1,0 +1,620 @@
+# dashboard.py
+# ==========================================================
+# BAATSEBHARAT | LRDR-MRPRA DASHBOARD
+# LDA + NMF + FinBERT VERSION
+# ==========================================================
+
+import streamlit as st
+import pandas as pd
+import plotly.graph_objects as go
+import plotly.express as px
+import os
+from datetime import datetime
+
+# ==========================================================
+# PAGE CONFIG
+# ==========================================================
+
+st.set_page_config(
+    page_title="BaatSeBharat | Analytics",
+    page_icon="📈",
+    layout="wide"
+)
+
+# ==========================================================
+# PATHS
+# ==========================================================
+
+DATA_DIR = "./data/processed"
+
+TOPIC_DATASET = os.path.join(
+    DATA_DIR,
+    "topic_dataset.csv"
+)
+
+FINAL_TOPICS = os.path.join(
+    DATA_DIR,
+    "final_topics.csv"
+)
+
+NMF_TOPICS = os.path.join(
+    DATA_DIR,
+    "nmf_topics.csv"
+)
+
+IMPACT_CSV = os.path.join(
+    DATA_DIR,
+    "speech_market_impact_full.csv"
+)
+
+REPORT_PATH = os.path.join(
+    DATA_DIR,
+    "final_influence_report.txt"
+)
+
+HTML_CHART = (
+    "./outputs/"
+    "topic_strength_vs_sector_returns.html"
+)
+
+# ==========================================================
+# REQUIRED FILE CHECK
+# ==========================================================
+
+required_files = {
+    "topic_dataset.csv": TOPIC_DATASET,
+    "final_topics.csv": FINAL_TOPICS,
+    "nmf_topics.csv": NMF_TOPICS
+}
+
+missing_files = []
+
+for name, path in required_files.items():
+    if not os.path.exists(path):
+        missing_files.append(name)
+
+if missing_files:
+    st.error(
+        "Missing required files:\n\n"
+        + "\n".join(
+            [f"• {x}" for x in missing_files]
+        )
+    )
+    st.stop()
+
+# ==========================================================
+# HIGH CONTRAST THEME
+# ==========================================================
+
+st.markdown("""
+<style>
+
+html, body, [class*="css"] {
+    background-color: #0f172a;
+    color: #f1f5f9;
+}
+
+.hero-title {
+    color: #38bdf8;
+    font-weight: 700;
+    font-size: 2.6rem;
+}
+
+.hero-subtitle {
+    color: #94a3b8;
+    font-size: 1.05rem;
+}
+
+.stCard {
+    background-color: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 15px;
+}
+
+section[data-testid="stSidebar"] {
+    background-color: #1e293b;
+}
+
+</style>
+""", unsafe_allow_html=True)
+
+# ==========================================================
+# DATA LOADING
+# ==========================================================
+
+@st.cache_data
+def load_topic_dataset():
+
+    df = pd.read_csv(
+        TOPIC_DATASET
+    )
+
+    df["date"] = pd.to_datetime(
+        df["date"],
+        errors="coerce"
+    )
+
+    df["sentiment"] = (
+        df["positive"]
+        - df["negative"]
+    )
+
+    df["title"] = (
+        df["filename"]
+        .str.replace(".txt", "")
+    )
+
+    return df.dropna(
+        subset=["date"]
+    )
+
+
+@st.cache_data
+def load_topics():
+
+    return pd.read_csv(
+        FINAL_TOPICS
+    )
+
+
+@st.cache_data
+def load_nmf_topics():
+
+    return pd.read_csv(
+        NMF_TOPICS
+    )
+
+
+@st.cache_data
+def load_impact_data():
+
+    if os.path.exists(
+        IMPACT_CSV
+    ):
+        return pd.read_csv(
+            IMPACT_CSV
+        )
+
+    return pd.DataFrame()
+
+
+@st.cache_data
+def load_report():
+
+    if os.path.exists(
+        REPORT_PATH
+    ):
+        with open(
+            REPORT_PATH,
+            "r",
+            encoding="utf-8"
+        ) as f:
+            return f.read()
+
+    return ""
+
+
+# ==========================================================
+# HELPERS
+# ==========================================================
+
+def parse_report_sections(text):
+
+    sections = []
+
+    raw_sections = text.split(
+        "------------------------------------------------"
+    )
+
+    for sec in raw_sections:
+        if "EVENT" in sec:
+            sections.append(sec.strip())
+
+    return sections
+
+
+# ==========================================================
+# LOAD DATA
+# ==========================================================
+
+df_speeches = (
+    load_topic_dataset()
+)
+
+df_topics = (
+    load_topics()
+)
+
+df_nmf_topics = (
+    load_nmf_topics()
+)
+
+df_impact = (
+    load_impact_data()
+)
+
+report_text = (
+    load_report()
+)
+
+# ==========================================================
+# SIDEBAR
+# ==========================================================
+
+with st.sidebar:
+
+    st.image(
+        "https://img.icons8.com/color/96/bullish.png",
+        width=60
+    )
+
+    st.markdown(
+        "## BaatSeBharat"
+    )
+
+    st.markdown("---")
+
+    page = st.radio(
+        "SELECT VIEW",
+        [
+            "📊 OVERVIEW",
+            "📈 MARKET DYNAMICS",
+            "🔎 SPEECH AUDIT",
+            "🧠 TOPIC EXPLORER"
+        ]
+    )
+
+    st.markdown("---")
+
+    st.caption(
+        "v2.0 | LDA + NMF"
+    )
+
+# ==========================================================
+# OVERVIEW
+# ==========================================================
+
+if page == "📊 OVERVIEW":
+
+    st.markdown(
+        '<h1 class="hero-title">'
+        'Market Influence Analytics'
+        '</h1>',
+        unsafe_allow_html=True
+    )
+
+    st.markdown(
+        '<p class="hero-subtitle">'
+        'Leadership discourse vs market behaviour.'
+        '</p>',
+        unsafe_allow_html=True
+    )
+
+    c1, c2, c3 = st.columns(3)
+
+    with c1:
+        st.metric(
+            "Total Corpus",
+            len(df_speeches)
+        )
+
+    with c2:
+        st.metric(
+            "Financial Topics",
+            len(df_topics)
+        )
+
+    with c3:
+        st.metric(
+            "Average Sentiment",
+            round(
+                df_speeches[
+                    "sentiment"
+                ].mean(),
+                3
+            )
+        )
+
+    # Sentiment over time
+    st.markdown(
+        "### Sentiment Timeline"
+    )
+
+    timeline = (
+        df_speeches
+        .groupby("date")
+        ["sentiment"]
+        .mean()
+        .reset_index()
+    )
+
+    fig = go.Figure()
+
+    fig.add_trace(
+        go.Scatter(
+            x=timeline["date"],
+            y=timeline["sentiment"],
+            mode="lines",
+            name="Sentiment"
+        )
+    )
+
+    fig.update_layout(
+        template="plotly_dark",
+        height=450
+    )
+
+    st.plotly_chart(
+        fig,
+        use_container_width=True
+    )
+
+    # Report feed
+    st.markdown(
+        "### Recent Analysis Feed"
+    )
+
+    if report_text:
+
+        sections = (
+            parse_report_sections(
+                report_text
+            )
+        )
+
+        for sec in sections[:5]:
+
+            st.markdown(
+                f"""
+                <div class="stCard">
+                <pre>{sec}</pre>
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
+
+# ==========================================================
+# MARKET DYNAMICS
+# ==========================================================
+
+elif page == "📈 MARKET DYNAMICS":
+
+    st.markdown(
+        '<h1 class="hero-title">'
+        'Market Dynamics'
+        '</h1>',
+        unsafe_allow_html=True
+    )
+
+    if (
+        not df_impact.empty
+    ):
+
+        sector_avg = (
+            df_impact
+            .groupby("sector")
+            ["return_5d"]
+            .mean()
+            .reset_index()
+        )
+
+        fig = px.bar(
+            sector_avg,
+            x="sector",
+            y="return_5d",
+            title=(
+                "Sector-wise "
+                "5D Return"
+            )
+        )
+
+        fig.update_layout(
+            template="plotly_dark"
+        )
+
+        st.plotly_chart(
+            fig,
+            use_container_width=True
+        )
+
+    else:
+        st.info(
+            "Market impact data missing."
+        )
+
+    # external html
+    if os.path.exists(
+        HTML_CHART
+    ):
+
+        with open(
+            HTML_CHART,
+            "r",
+            encoding="utf-8"
+        ) as f:
+
+            html = f.read()
+
+        st.components.v1.html(
+            html,
+            height=850,
+            scrolling=True
+        )
+
+# ==========================================================
+# SPEECH AUDIT
+# ==========================================================
+
+elif page == "🔎 SPEECH AUDIT":
+
+    st.markdown(
+        '<h1 class="hero-title">'
+        'Speech Intelligence Explorer'
+        '</h1>',
+        unsafe_allow_html=True
+    )
+
+    search = st.text_input(
+        "Filter by keyword"
+    )
+
+    filtered = (
+        df_speeches.copy()
+    )
+
+    if search:
+
+        filtered = filtered[
+            filtered[
+                "title"
+            ]
+            .str.contains(
+                search,
+                case=False,
+                na=False
+            )
+        ]
+
+    st.dataframe(
+        filtered[
+            [
+                "date",
+                "source",
+                "title",
+                "positive",
+                "negative",
+                "neutral"
+            ]
+        ]
+        .sort_values(
+            "date",
+            ascending=False
+        ),
+        use_container_width=True,
+        hide_index=True
+    )
+
+    st.markdown("---")
+
+    if not filtered.empty:
+
+        selected_title = (
+            st.selectbox(
+                "Choose speech",
+                filtered[
+                    "title"
+                ].unique()
+            )
+        )
+
+        speech = filtered[
+            filtered[
+                "title"
+            ]
+            ==
+            selected_title
+        ].iloc[0]
+
+        st.markdown(
+            "### Speech Text"
+        )
+
+        st.text_area(
+            "Transcript",
+            speech["text"],
+            height=300
+        )
+
+        sentiment_fig = go.Figure(
+            data=[
+                go.Bar(
+                    x=[
+                        "Positive",
+                        "Negative",
+                        "Neutral"
+                    ],
+                    y=[
+                        speech[
+                            "positive"
+                        ],
+                        speech[
+                            "negative"
+                        ],
+                        speech[
+                            "neutral"
+                        ]
+                    ]
+                )
+            ]
+        )
+
+        sentiment_fig.update_layout(
+            title="FinBERT Sentiment",
+            template="plotly_dark"
+        )
+
+        st.plotly_chart(
+            sentiment_fig,
+            use_container_width=True
+        )
+
+# ==========================================================
+# TOPIC EXPLORER
+# ==========================================================
+
+elif page == "🧠 TOPIC EXPLORER":
+
+    st.markdown(
+        '<h1 class="hero-title">'
+        'Financial Topic Intelligence'
+        '</h1>',
+        unsafe_allow_html=True
+    )
+
+    st.markdown(
+        "### LDA Topics"
+    )
+
+    st.dataframe(
+        df_topics,
+        use_container_width=True,
+        hide_index=True
+    )
+
+    st.markdown(
+        "### NMF Topics"
+    )
+
+    st.dataframe(
+        df_nmf_topics,
+        use_container_width=True,
+        hide_index=True
+    )
+
+    top_scores = (
+        df_topics
+        .sort_values(
+            "score",
+            ascending=False
+        )
+        .head(10)
+    )
+
+    fig = px.bar(
+        top_scores,
+        x="topic_id",
+        y="score",
+        hover_data=["keywords"],
+        title="Top Financial Topics"
+    )
+
+    fig.update_layout(
+        template="plotly_dark"
+    )
+
+    st.plotly_chart(
+        fig,
+        use_container_width=True
+    )

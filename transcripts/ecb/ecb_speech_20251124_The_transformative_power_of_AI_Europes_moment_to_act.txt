@@ -1,0 +1,121 @@
+The transformative power of AI: Europe’s moment to act | 2025-11-24 | European Central Bank | Speech
+
+Bratislava, 24 November 2025
+
+It’s a privilege to speak with you today about artificial intelligence.
+
+In 1987 Robert Solow famously remarked that “you can see the computer age everywhere but in the productivity statistics.”
+
+The same observation could be made today. We see AI advancing at remarkable speed. Yet its aggregate impact is still barely visible in the data.
+
+Over the past year global corporate investment in AI reached USD 252 billion, and private AI firms raised a record USD 100 billion.[1]Five leading US investors in terms of capital expenditure are now companies that focus heavily on AI. None of these companies numbered among the top ten investors a decade ago.[2]
+
+Some view this surge as temporary exuberance running ahead of underlying fundamentals. But a debate framed only in terms of short-term ups and downs may miss the bigger picture.
+
+History offers many examples of intense investment waves that – despite swings in the investment cycle – ultimately left behind transformative technologies that reshaped economies for decades.[3]
+
+So the key question is not whether there are cycles – that is almost certain – but how long it will take before the enduring productivity benefits become visible.
+
+And there are reasons to believe AI could spread faster, and deliver tangible economic gains sooner, than previous technology waves.
+
+If that is the path we are on – and I believe it may be – Europe needs to position itself accordingly. We need to remove all the obstacles that stop us from embracing this transformation. Otherwise we risk letting the wave of AI adoption pass us by and jeopardise Europe’s future.
+
+To understand what is at stake, it is useful to look at history.
+
+Earlier general purpose technologies, such as electricity, computers or the internet, followed a recognisable trajectory. Disruption arrived early, with broad-based productivity gains only emerging slowly.[4]
+
+For example, it took around thirty years before the impact of electricity showed up clearly across the economy. Power grids had to be built, factories redesigned and workers reallocated from legacy tasks to new ones.
+
+Computers, too, required long-term investments in hardware, software, skills and new business models before they translated into measurable improvements.
+
+If Europe’s AI wave resembles the spread of electricity in the 1920s, annual productivity growth could be about 1.3 percentage points higher. But if it follows the US digital boom of the late 1990s, the boost would be closer to 0.8 points.[5]Even that lower bound would be significant for Europe, marking a clear step up from recent trend productivity.
+
+But AI has features that could compress this cycle and push forward even greater productivity gains. Two features – innovation and diffusion – point to a faster path.
+
+The first is that frontier innovation may accelerate because of the recursive nature of AI.
+
+AI systems can use their own output to enhance their performance in a continuous loop. This can lower not only the cost of producing goods and services, but also the cost of generating new ideas.[6]
+
+For instance, in fifty years, science resolved approximately 200,000 protein structures. AI achieved over 200 million protein structure predictions in about one year, vastly expanding the knowledge frontier.[7]
+
+This represents a significant change in the inputs to research and development. As the knowledge base expands almost overnight, downstream discovery can compound sooner, even before every lab or firm has fully reorganised.
+
+By accelerating the production of ideas, AI can lift not just thelevelof productivity but potentially the growthrateitself.[8]Some estimates suggest that suchAI-augmented R&Dcould double recent US productivity growth rates to between 1.6 and 2.4% annually – faster than previous technology waves.[9]
+
+Second, the diffusion of AI technologies can be faster because much of the supporting infrastructure already exists.
+
+It is true that there are bottlenecks. The current wave of investment in hyperscalers shows that compute capacity remains a constraint. Training and deploying larger models requires substantial investment in data centres and energy. In Europe we face particular challenges in this respect, given our higher energy costs and longer permitting delays.
+
+But unlike past technologies, such as electricity or computers that required new physical networks or coding skills, AI runs on existing internet devices and communicates with users through human language.
+
+Wide-scale use can therefore proceed even before the infrastructure build-out is complete. Many AI applications already deliver gains on existing hardware. So while a lack of computing capacity holds back the pace of model development, it does not necessarily block diffusion across the wider economy.[10]
+
+Moreover, the infrastructure itself is advancing quickly. While Moore’s Law forecasts a doubling in chip capacity every two years, AI model compute power has been doubling every six months – four times faster.
+
+What does this mean for Europe?
+
+The stakes could be extraordinarily high.
+
+With the United States and China ahead of the field, Europe has already missed the opportunity to be a first mover in AI. And we still bear the costs of having been slow adopters during the last digital revolution. We cannot afford to make the same mistake again.
+
+Yet the story is far from over. Europe can still emerge as a strong second mover if it acts decisively. Our goal should not be to out-build the leading AI models, but rather to deploy AI across the board. By focusing on rapid adoption and smart use of existing AI technologies across our wide-ranging industries, Europe can turn a late start into a competitive edge.[11]
+
+Our economy is highly diversified. The top ten firms in the US stock market account for roughly 40% of the market across just four sectors, whereas the top ten in the EU account for no more than 18% across almost twice as many sectors.
+
+And European firms are already adopting generative AI on a similar scale to those in the United States. What the ECB is hearing from large European companies confirms this trend: many are investing heavily in databases, cloud solutions and AI, with providers of these services reporting double-digit growth.[12]
+
+But to turn these benefits into a competitive advantage, we need to connect data across sectors. Thanks to industrial-scale data spaces, companies can share operational data and create training sets for AI models that no single firm could assemble alone.[13]
+
+Initiatives like Manufacturing-X and Catena-X in the automotive sector foster collaboration in data sharing, while the European Health Data Space enables interoperable health records, allowing us to leverage the broad anonymised patient datasets generated by our universal healthcare systems.[14]
+
+But these efforts will not be enough on their own.
+
+If our data spaces use technology stacks that are owned and governed outside Europe, we deepen – rather than reduce – our strategic dependencies. We must diversify critical parts of the AI supply chain and avoid single points of failure. In the foundational layers, such as compute capacity based on chips and data centres, we should maintain a minimum capacity.
+
+In the application layer, Europe should leverage the power of the Single Market to enforce interoperability and open standards. This will encourage competition among large models and prevent the kind of “lock-in” that has occurred with technology platforms in the past.
+
+Moreover, we must overcome a familiar set of old barriers that have prevented us from being first movers in the past.
+
+If we allow our energy costs to stay high, if regulations remain fragmented, and if capital markets fail to integrate and channel long-term, risk-bearing funding at scale, AI will diffuse more slowly.
+
+And this time, the consequences extend beyond losing the race in AI models. We would eventually face a further loss of competitiveness for many of our sectors and industries.
+
+Let me conclude.
+
+“It’ll be ten times bigger than the Industrial Revolution – and maybe ten times faster.” These words from Demis Hassabis – joint winner of the 2024 Nobel Prize in Chemistry for his AI research – capture the potential scale and speed of what may lie ahead.
+
+So the question is no longer whether this new frontier will arrive, but how soon – and the pace of progress in recent years suggests it is likely to be sooner than our institutions and regulations are prepared for.
+
+That means acting now to clear the obstacles that would slow AI diffusion and so delay prosperity for all Europeans in the decades ahead.
+
+Stanford Institute for Human-Centered Artificial Intelligence (2025),The 2025 AI Index Report, Chapter “Economy”.
+
+Fox, J. (2025), “The AI spending boom is massive but not unprecedented”,Bloomberg Opinion, 8 October.
+
+Turner, J.D. and Quinn, W. (2020),Boom and Bust: A Global History of Financial Bubbles.
+
+David, P. A. (1990), “The Dynamo and the Computer: An Historical Perspective on the Modern Productivity Paradox”,American Economic Review, Vol. 80, No 2, pp. 355–361.
+
+Aghion, P. and Bunel, S. (2024), “AI and Growth: Where Do We Stand?”,Federal Reserve Bank of San FranciscoWorking Paper, June.
+
+Aghion, P., Jones, B.F. and Jones, C.I. (2019), “Artificial Intelligence and Economic Growth”, in Agrawal, A., Gans, J. and Goldfarb, A. (eds.),The Economics of Artificial Intelligence: An Agenda, University of Chicago Press, pp. 237–282.
+
+SeeAlphaFold Protein Structure Databasedeveloped by European Bioinformatics Institute (EMBL-EBI) and Google DeepMind.
+
+Aghion, P., Jones, B.F. and Jones, C.I. (2017), “Artificial Intelligence and Economic Growth”,NBER Working Paper,No 23928.
+
+Besiroglu, T., Emery-Xu, N. and Thompson, N. (2022),Economic impacts of AI-augmented R&D.
+
+Duan, J., Zhang, S. and Wang, Z. et al.(2024), “Efficient Training of Large Language Models on Distributed Infrastructures: A Survey”,arXivpreprint, July.
+
+Tony Blair Institute for Global Change (2025),Europe in the Age of AI: How Technology Leadership Can Boost Competitiveness and Security, 17 November.
+
+Kuik, F., Morris, R., Roma, M. and Slavík, M. (2025), “Main findings from the ECB’s recent contacts with non-financial companies”,Economic Bulletin, Issue 7, ECB.
+
+Garicano, L. (2025), “The smart second mover: A European strategy for AI”,Silicon Continent, 9 July.
+
+The Regulation aims to facilitate, through increased standardisation, easier access to new markets for electronic health record systems across different Member States and to increase the availability of anonymised and pseudonymised electronic health data for use in applied research and innovation.
+
+DisclaimerPlease note that related topic tags are currently available for selected content only.
+
+Reproduction is permitted provided that the source is acknowledged.

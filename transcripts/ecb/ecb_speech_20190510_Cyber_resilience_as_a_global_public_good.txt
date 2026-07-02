@@ -1,0 +1,101 @@
+Cyber resilience as a global public good | 2019-05-10 | European Central Bank | Speech
+
+Thank you to the Banque de France for giving me the opportunity to speak at this conference, both as Chair of the Bank for International Settlements’ Committee on Payments and Market Infrastructures (CPMI) and as Member of the Executive Board of the European Central Bank. Since my remarks dwell on cyber resilience for financial market infrastructures, I would like to take this opportunity to pay tribute to Alberto Giovannini, who passed away two weeks ago. Alberto combined theoretical insight with a deep understanding of how financial markets work. His 2001 and 2003 reports on Cross-border Clearing and Settlement Arrangements in the EU have shaped the discussion on European post-market activities. He would have encouraged us to start our discussion from first principles and recognise cyber resilience for what it is: a global public good.
+
+The financial system is changing fast. Digitalisation has led to improvements in access to services, as well as in their quality and convenience. In the field of payments, services are increasingly instant, 24/7 and globally available. Non-bank participants, meanwhile, are disrupting traditional intermediation. Artificial intelligence and machine learning are just two of the innovations promising to revolutionise financial services.
+
+But revolution and evolution typically come with new risks, while not eliminating all the old ones. Criminals, for example, have always exploited technology. In 1973, the chief teller at a branch of the Union Dime Savings Bank in New York used the recently introduced computers to steal 1.5 million dollars from hundreds of accounts – the largest recorded theft from a savings bank at the time.[1]Identity theft, fraud and robbery are as old as human society.
+
+Yet, today thieves, fraud and robbers can leverage financial systems which are digital and global, making the threat remarkably larger. Cyber criminals often target the weakest entry points and exploit these vulnerabilities to penetrate the global financial network. The hackers who stole 81 million dollars from Bangladesh Bank’s account in New York in 2016 most probably did so from the other side of the world.
+
+State actors with no financial motivation and an ability to cause even greater destruction are also lurking. And even more worryingly, we are seeing a new form of organised crime. The dark web is home to a number of networks where access credentials and penetration tools are sold, hacking jobs are allocated to the lowest bidder and proceeds are laundered using cryptocurrencies.
+
+The implications for policymakers are clear. Because cyber risks are borderless, they can only be tackled jointly at the global level.[2]I commend the Banque de France for devoting an entire panel to this topic at this timely conference.
+
+In my remarks today I will first describe what international cooperation currently looks like in this area, before sharing some thoughts on how this cooperation can work both from the top down and from the bottom up. My remarks should be considered through the lens of both the policy and implementation work of the CPMI and the work of the ECB, together with other European institutions, to put into practice at European level the internationally agreed rules.
+
+The CPMI, as the global standard-setter for payments, clearing and settlement, naturally plays a key role in the global governance of issues related to cybersecurity. Together with the work of the G7 Cyber Expert Group, the Financial Stability Board and other international standard-setting bodies, such as the Basel Committee on Banking Supervision (BCBS) and the International Organization of Securities Commissions (IOSCO), the work of the CPMI provides the necessary basis for authorities around the world to help protect the financial system against cyber fraud.
+
+The CPMI’s overarching strategy is, in a nutshell, to “secure the periphery and protect the core”.
+
+By theperiphery, we mean the outer layers of the financial system – the endpoints and networks through which financial institutions connect to systemically important wholesale or interbank payment systems. That is, those endpoints exploited by the hackers to steal funds from Bangladesh Bank.
+
+To minimise such risks, last year we published a report that sets out a flexible way for both public and private stakeholders to prevent, detect, respond to and communicate about fraudulent payments and payment requests.[3]
+
+The other half of our strategy relates to thecoreof the financial system – the critical payment systems and financial market infrastructures (FMIs) that ensure the smooth functioning of our financial system – the backbone, or the “plumbing”.[4]To protect this core, three years ago the CPMI, together with our colleagues at IOSCO, published a report on cyber resilience for FMIs.[5]
+
+This was the first internationally agreed guidance on cyber security for the financial industry. Today, it still provides a coherent approach that requires strong governance and oversight of all aspects of prudent cyber risk management at FMIs, including robust testing, situational awareness and continued learning.
+
+And our approach is not just for FMIs. It can be applied to almost any financial or non-financial company. Indeed, one of the findings in the recent BCBS report on cyber practices is that the CPMI-IOSCO Guidance is one of the three standards currently used by banking supervisors.[6]
+
+Of course, the proof of the pudding is in the eating. The value of the work of standard-setting bodies lies in its implementation. CPMI and IOSCO authorities have been working closely with FMIs in their respective jurisdictions on the implementation of the CPMI-IOSCO Guidance. I will expand in a moment on what the ECB has done in this respect. At the international level, we plan to begin more detailed implementation monitoring this year.
+
+Our wholesale payments strategy, meanwhile, has been endorsed by all BIS governors, who are committed to implementing it in due course. To promote the widest possible application of the strategy and achieve global cohesion in standards, I, together with Mark Carney, Governor of the Bank of England and chair of two BIS central bank groups, recently addressed around 100 other central bank governors, encouraging them to commit to the strategy and providing details about how we can help each other learn and evolve. Many have already taken us up on our offer of support.
+
+Beyond this, we are coordinating with industry stakeholders to develop best practices to prevent wholesale payment fraud across the ecosystem, and sharing these best practices through our outreach efforts.
+
+Last September, I co-chaired here at the Banque de France the first roundtable among CEOs of the 22 largest global and regional FMIs and their supervisors. The meeting explored how we collectively – FMIs and supervisors – could strengthen cyber resilience to defend against a common threat. We identified three areas where the challenges require us to work closely together to find solutions: (i) data integrity; (ii) information-sharing; and (iii) third-party service providers.
+
+Data integrity is a broad concept but a lot of our discussion today focuses on the two-hour recovery time objective. The CPMI-IOSCO Principles for Financial Market Infrastructures require FMIs to be able to recover from an operational outage within two hours.
+
+At first, many dismissed this target as illusory. But technological progress has since made it universally achievable for most advanced and systemically important FMIs. Yet, there remains a critical risk that a rush for recovery after a cyber outage may be counterproductive in the event that the underlying data have been corrupted. Rebooting a system with corrupt data that break every participant’s reconciliation tools and sow further market discord would, to put it bluntly, be a disaster.
+
+How to tackle this issue is one of the topics that the industry is discussing in three international working groups that emerged from the CEO roundtable. There are a number of possible avenues to explore, including contingent arrangements, segregated ledgers and frequent reconciliations. The CPMI and IOSCO will act as catalysts for these groups, as needed, and we will keep up to date with their progress.
+
+Similar groups are planned to explore open issues related to the two other areas I mentioned before: information-sharing and third-party service provision. For information-sharing, common protocols exist to share financial events. But for operational incidents these protocols have so far been segregated by type of FMI, market and jurisdiction. A common international protocol for operational incidents could enable faster and better-informed responses.
+
+For third-party service provision, such as cloud services, cooperation among FMIs can improve safety arrangements by providing a clearer view of common service providers’ risk management practices. Common action also has the potential to improve efficiency by avoiding the duplication of third-party risk assessments.
+
+Taken together, the work of the CPMI and other standard-setting bodies has provided FMIs and other entities with a rich and diverse environment in which to learn how to effectively fend off cyber incidents, which are becoming more frequent and increasingly sophisticated.
+
+Work by other institutions supports these efforts at various levels. At a global level, for example, work by the G7 Cyber Expert Group sets out fundamental elements for risk management and simulates the impact of major cross-border cyber incidents involving G7 financial authorities.[7]
+
+Work at regional level can feed into and inform such global initiatives. The ECB is a good example of both bottom-up and top-down international cooperation.
+
+On the one hand, the ECB has taken the lead in implementing the CPMI-IOSCO guidance in recent years. The Governing Council quickly approved the Eurosystem Cyber Resilience Strategy for FMIs, which looks to operationalise the CPMI-IOSCO Cyber Guidance in the 19 euro area countries, in March 2017.
+
+At the same time, the ECB has also made an important contribution to establishing international best practices and building cyber resilience capacities in developing countries and emerging market economies.
+
+More specifically, the Eurosystem cyber strategy is built on three core pillars: (i) FMI resilience; (ii) sector resilience; and (iii) strategic industry-regulator dialogue. Let me briefly explain the key initiatives under each pillar.
+
+Under the first pillar, FMI resilience, in December 2018 the ECB published its cyber resilience oversight expectations (CROE), a tool for both FMIs and overseers.[8]These expectations contain detailed best practices for operationalising the CPMI-IOSCO Guidance. The Eurosystem is currently repeating a cyber survey among 76 FMIs to evaluate the extent to which the sector has improved in terms of cyber maturity and to assess the macro vulnerabilities of the sector more broadly.
+
+Last year, the Eurosystem also developed the European framework for Threat Intelligence-based Ethical Red Teaming (TIBER-EU).[9]Red teaming helps institutions to assess, by means of controlled “ethical hacking”, if and how an entity is capable of withstanding a cyber attack.
+
+And because TIBER-EU involves high-end testing on live production systems, we are currently reflecting on how to foster an accreditation and certification capability in the EU. This would allow cybersecurity service providers to raise standards around threat intelligence and red team testing and to have their capabilities in this field validated.
+
+Both the CROE and TIBER-EU are tools that could eventually be used around the world. In fact, I am pleased to announce that the CROE has recently been embraced by the World Bank with a view to promoting global harmonisation and enhancing the cyber resilience of FMIs in developing and emerging countries under its mandate.
+
+And, since its publication, TIBER-EU has been adopted by the ECB and a number of European countries. The ECB is also in close dialogue with other jurisdictions that are considering TIBER-EU as a tool for their respective financial sectors.
+
+Under the second pillar of the Eurosystem’s cyber strategy, sector resilience, we recognise the strong interconnectedness of the financial ecosystem and the potential of a coordinated cyber attack to trigger a broad contagion effect, which may have an impact on the financial sector as a whole.
+
+In June 2018, the ECB hosted UNITAS – a market-wide crisis communication exercise – which facilitated discussion among FMIs active at the pan-European level. These discussions focused on the scenario of a cyber attack on financial infrastructures that resulted in a loss of data integrity and broader knock-on effects.
+
+The exercise revealed that there were weaknesses at the European level, which are now being followed up on through the Euro Cyber Resilience Board for pan-European Financial Infrastructures (ECRB), which is a key element of the third pillar of the Eurosystem’s cyber strategy – a strategic industry-regulator dialogue.
+
+Like the CPMI’s CEO roundtable, the ECRB was established last year to facilitate a strategic cyber dialogue between pan-European FMIs and European authorities.[10]It is not a classic dialogue between regulators and industry. As one member put it, “we are all victims and we have to address the cyber challenge together”.
+
+Based on the results of the first round of our cyber survey and on the UNITAS exercise, the ECRB is focusing on five key areas: (i) information-sharing; (ii) European crisis management; (iii) training and awareness; (iv) ecosystem recovery and coordinated reconciliation; and (v) third-party risk.
+
+The work on information-sharing can feed directly into the global discussion held at CPMI-IOSCO level. The ECRB has established a working group with the market to design the building blocks for effective information-sharing, which we will operationalise by the end of 2019.
+
+On pan-European crisis management, a working group will determine what is considered to be a crisis, the key stakeholders that should be involved in crisis situations, and when such crisis management arrangements should be triggered. The ambition is to have a range of playbook scenarios that will be regularly tested at a collective level.
+
+On training and awareness, the ECRB will also host an industry workshop in the second half of 2019, exchanging best practices to raise general cyber awareness among staff at all levels in order to change their behaviour in the light of the actual and perceived cyber threats.
+
+Finally, also in the second half of 2019, the ECRB will echo similar initiatives at the CPMI-IOSCO level and turn its attention to ecosystem recovery and coordinated reconciliation, and third-party risk. In other words, it will focus on how to respond to a major cyber incident or prevent an incident stemming from our ever-expanding supply chain.
+
+This work is now led by my colleague Sabine Lautenschläger, who has taken over the responsibility for payments and market infrastructure oversight in the ECB Executive Board.
+
+Much progress has been made in recent years in strengthening cyber resilience, thanks in large part to the smooth interplay between global standard-setting bodies, regional authorities and industry stakeholders.
+
+But because the nature of the threat landscape is changing constantly, the risk of a major cyber incident remains real and is, in all likelihood, rising. Failure to adequately protect against cyber attacks may dent confidence in the stability of the financial system and have more far-reaching repercussions on the broader economy.
+
+To avert these risks, and to stay ahead of those trying to damage our financial system, we need to leverage the tools and best practices that already exist and strengthen multilateral cooperation to promote innovative ideas, practical solutions and experience-sharing. In doing so, we need to find solutions to the issues related to privacy, data protection and reputational concerns so we can keep our financial system safe.
+
+Thank you.
+
+DisclaimerPlease note that related topic tags are currently available for selected content only.
+
+Reproduction is permitted provided that the source is acknowledged.

@@ -1,0 +1,25 @@
+Eurosystem Unveils Appia Roadmap for Europe’s Tokenised Finance | N/A | European Central Bank | Press Release
+
+The Eurosystem today published theroadmap for Appia, a strategic initiative to shape the development of a European tokenised financial ecosystem in which central bank money continues to play a central role. It will bring together the Eurosystem as well as public and private sector stakeholders, with the aim of building integrated, innovative and resilient tokenised wholesale financial markets in Europe.
+
+“With Appia, we are building a road from today’s financial system to tomorrow’s tokenised markets, firmly grounded in central bank money,” said Piero Cipollone, member of the ECB’s Executive Board.
+
+Tokenisation is the process of issuing or representing assets in the form of digital “tokens”, typically recorded on Distributed Ledger Technology (DLT) networks. For wholesale financial markets, tokenisation and DLT have the potential to improve efficiency by allowing multiple steps of an asset’s lifecycle – from issuance and trading to settlement, custody and servicing – to be bundled on a single platform. Moreover, tokenisation allows the deployment of smart contracts that enable a large range of innovative solutions.
+
+The Eurosystem’s strategy for providing tokenised wholesale central bank money rests on two complementary initiatives: Pontes and Appia. Pontes is the Eurosystem’s DLT solution that will be launched in the third quarter of 2026 to enable central bank money settlement for DLT-based transactions. Appia has a broader, longer-term perspective and will involve close cooperation with the market to explore how a wholesale financial ecosystem based on tokenisation and DLT could be designed.
+
+The Eurosystem plans to crystallise its vision for this ecosystem in a blueprint to be published in 2028. In the meantime, the work under the Appia roadmap will inform and shape the delivery of tokenised market infrastructures and services both by the market and by the Eurosystem’s own Pontes offering, as it is gradually enhanced.
+
+By preserving the role of central bank money as the anchor of the monetary system through Appia, the Eurosystem aims to ensure that monetary policy implementation remains effective, and that financial stability and the smooth functioning of payment systems are safeguarded. The initiative seeks to foster a more integrated, competitive and innovative European payments and securities environment, strengthening Europe’s strategic autonomy and resilience, and ensuring the euro’s continued relevance as an international currency.
+
+It will be developed in close cooperation with market participants, public sector bodies and academia. The Eurosystem invites feedback from stakeholders and expressions of interest in contributing to the forthcoming analytical and practical work. Afeedback questionnaireis published alongside the Appia roadmap.
+
+Appia builds on the Eurosystem’s 2024 exploratory work on new technologies for wholesale central bank money settlement and marks a key step in translating experimentation into a concrete long-term strategy.
+
+Appia will investigate different configurations for DLT networks that could serve as basic infrastructures for wholesale financial services. Shared infrastructures based on common standards could help reduce fragmentation, lower barriers to entry and support competition and innovation across Europe’s financial markets. The analysis will consider technological, market-driven and broader economic and geopolitical factors, including the trade-offs between single shared networks and multiple interconnected networks. Ensuring common standards and European governance will be a key objective.
+
+For media queries, please contactAlessandro Speciale, tel.: +49 172 1670791.
+
+DisclaimerPlease note that related topic tags are currently available for selected content only.
+
+Reproduction is permitted provided that the source is acknowledged.

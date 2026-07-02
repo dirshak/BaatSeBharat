@@ -1,0 +1,25 @@
+sources:
+  - country: USA
+    url: "https://www.whitehouse.gov/briefing-room/speeches-remarks/"
+    type: economic_policy
+    weight: 0.25
+    
+  - country: UK
+    url: "https://www.gov.uk/government/speeches"
+    type: economic_policy
+    weight: 0.15
+    
+  - country: EU
+    url: "https://ec.europa.eu/commission/presscorner/"
+    type: economic_policy
+    weight: 0.20
+    
+  - country: China
+    url: "http://english.www.gov.cn/premier/"
+    type: economic_policy
+    weight: 0.20
+    
+  - country: UN
+    url: "https://www.un.org/sg/en/content/sg/speeches"
+    type: global_economic
+    weight: 0.10

@@ -1,0 +1,87 @@
+From the payments revolution to the reinvention of money | 2020-11-27 | European Central Bank | Speech
+
+Frankfurt am Main, 27 November 2020
+
+Retail payments play a fundamental role in our daily lives and for the economy. Last year, adults in the euro area made two payments per day on average.[1]The universe of retail transactions[2]amounted to 213 billion payments – two million every five minutes – with an estimated total value of €164 trillion.[3]
+
+As part of its mission to promote the smooth operation of the payment system, the Eurosystem has two main objectives in the area of retail payments. The first is to guarantee that people have access to efficient payment solutions that meet their preferences. The second is to ensure that transactions remain safe, underpinning confidence in our currency and the functioning of our economy.
+
+Technological innovation means that the policy implications of these objectives are changing, and new opportunities and risks are emerging. Today I will present the Eurosystem’s response: a strategy for empowering Europeans with efficient, inclusive and secure payments in the digital age. And I will argue that the impending revolution in payments requires us to stand ready to reinvent sovereign money.
+
+Payments have evolved substantially over time, but the key determinants of their success have remained fundamentally unchanged. People want payments that offer convenience and safety at a low cost. Convenience requires payments to be easy to use, fast and widely accepted, while safety requires low risk from an economic, financial and societal perspective.
+
+The digital transformation is raising the bar for convenience and safety. With the growth of e-commerce and connected lifestyles, people are increasingly demanding immediacy and seamless integration between payments and digital services. At the same time, they are increasingly concerned about privacy, cybersecurity and reliability.
+
+This wide range of desirable features creates scope for innovative payment solutions. Currently, none of the existing solutions – cash, cards, credit transfers, direct debits and e-money – meet all the required features at once. People are forced to use several instruments at the same time. In-person transactions[4]are mostly conducted with cash and cards.[5]Remote purchases are dominated by cards and e-payments.[6]And bills are generally paid using direct debits and credit transfers.[7]
+
+The coronavirus (COVID-19) shock has accelerated the trend towards digitalisation, leading to a surge in online transactions and contactless payments in shops. This trend is likely to persist once the pandemic is over.[8]So we must ask ourselves whether the available means of payment adequately meet the needs of consumers in the digital age.
+
+Cash offers a secure and inclusive way of making in-person payments, but it is not well suited for payments in a digital context, such as in e-commerce. So it is no surprise that it is being used less.[9]Payment cards, on the other hand,facilitate digital, contactless payments. But they are not accepted everywhere. And the Europe-wide acceptance of cards issued under national card schemes currently relies on agreements with international card schemes. As a result, people mostly use international schemes for cross-border card payments, and the European market for card payments is dominated by non-European schemes.
+
+Generally, Europe is increasingly relying on foreign providers, with a high degree of market concentration in some segments, such as card transactions and online payments.[10]
+
+We should not let this reliance turn into dependence. Dependence on foreign providers and excessive market concentration would harm competition, limiting the choice for consumers and exposing them to non-competitive pricing. It could reduce the resilience of the payment system and weaken the ability of European authorities to exercise controls.
+
+We must ensure that the payment market remains open to competition, including from European suppliers and technology.
+
+Fintech companies have sparked the latest wave of innovation, accelerating theevolutionof the payment system.[11]Many of them have adopted data-driven business models, where payment services are provided free of charge in exchange for personal data. Numerous banks are expanding their range of digital services by entering into agreements with fintechs; in some cases, integration is achieved when a bank acquires a fintech firm.
+
+The global tech giants – the so-called big techs – are aiming for arevolutionin the payments landscape, and represent a threat to traditional intermediation.[12]These firms can use data-driven models on an entirely new scale by leveraging their large customer base, real-time data and control of crucial infrastructures for commerce and economic activity – from online marketplaces to social media and mobile technologies. They can use these advantages, their financial strength and their global footprint to provide new payment solutions and expand in both domestic and cross-border transactions. This would offer them an even stronger base to further expand the range of their financial activities, including lending, as their superior ability to collect and analyse large volumes of data gives them an information advantage.
+
+If not properly regulated, big techs may pose considerable risks from an economic and social perspective and they may restrict, rather than expand, consumer choice. They can aggravate the risk of personal information being misused for commercial or other purposes, jeopardising privacy and competition. And they can make the European payment market dependent on technologies designed and governed elsewhere, exacerbating its vulnerability to external disruption such as cyberattacks.
+
+The big techs may also contribute to a rapid take-up, both domestically and across borders, of so-called stablecoins.[13]As I have argued previously[14], stablecoins raise concerns with regard to consumer protection and financial stability. In fact, the issuer of a stablecoin cannot guarantee the certainty of the value of the payment instrument it offers to consumers. Such a guarantee can only be provided by the central bank.
+
+Moreover, unlike bank deposits, stablecoins do not benefit from deposit guarantee schemes, their holders cannot rely on the degree of scrutiny that is now the norm in banking supervision, and the issuers do not have access to central bank standing facilities. As a result, stablecoin users are likely to bear higher credit, market and liquidity risks, and the stablecoins themselves are vulnerable to runs[15], with potentially systemic implications[16].
+
+These risks could be mitigated if the stablecoin issuer were able to invest its reserve assets[17]in the form of risk-free deposits at the central bank, as this would eliminate the investment risks that ultimately fall on the shoulders of stablecoin holders.[18]
+
+This would not be acceptable, however, as it would be tantamount to outsourcing the provision of central bank money. It could endanger monetary sovereignty if, as a result, private money – the stablecoin – were to largely displace sovereign money as a means of payment. Money would then be reduced to a “club good” offered in return for the payment of a fee or membership of a platform.[19]
+
+We should safeguard the role of sovereign money, a public good that central banks have been managing for centuries in the public interest and that should be available to all citizens to satisfy their need for safety.
+
+Monetary sovereignty could also be threatened if foreign central bank digital currencies became widely used in the euro area, with implications for international monetary spillovers.[20]
+
+These risks are not imminent. We must nonetheless be alert to possible non-linear developments that could endanger financial stability and monetary and economic sovereignty. As we aim to enhance the efficiency of European payments, we therefore need to be prepared to rethink the nature and the role of sovereign money.
+
+The Eurosystem is implementing a comprehensive policy to ensure that citizens’ payment needs are met, while safeguarding the integrity of the payment system and financial stability. Our policy is based on interconnected elements addressing the entire payment value chain.
+
+First, we have enhanced our retail payments strategy, in order to foster competitive and innovative payments with a strong European presence. We are actively promoting pan-European initiatives that offer secure, cheap and widely accepted payment solutions.[21]
+
+We are supporting access to bank accounts by non-bank providers, so that they can expand the range of payment initiation services they offer. Yesterday the Euro Retail Payments Board, chaired by the ECB, launched a work stream to facilitate this access. We are working to make the European e-identity and e-signature frameworks better suited for payments and the financial sector more broadly.
+
+Our retail payments strategy also builds on the promotion of instant payments, which make funds immediately available to recipients. We have created a solid basis for instant payments, with commonly agreed rules and powerful infrastructures, including the TARGET Instant Payment Settlement (TIPS) service, operated by the Eurosystem. Thanks to the measures we have taken in recent months, all euro instant payment providers and infrastructures will have access to TIPS by the end of 2021.
+
+Second, we are adapting our regulatory and oversight framework to the fast pace of financial and technological innovation. We have reviewed our Regulation on oversight requirements for systemically important payment systems[22], introducing a more forward-looking approach to identify payment systems that are systemically important. And today we are launching a public consultation on the new regulation, which will then become operational by mid-2021.
+
+We are also completing the public consultation on our new framework for electronic payment instruments, schemes and arrangements, the so-called PISA framework. PISA extends our oversight[23]to digital payment tokens[24], including stablecoins, and to payment arrangements providing functionalities to end users of electronic payment instruments[25]. As a result, technology providers can become subject to oversight.
+
+As part of our comprehensive policy, we are working to safeguard the role of sovereign money in the digital era: we want to be ready to introduce a digital euro, if needed.
+
+A digital euro would combine the efficiency of a digital payment instrument with the safety of central bank money. It would complement cash, not replace it. Together, these two types of money would be available to all, offering greater choice and access to simple, costless ways of paying.
+
+We have started a public consultation to seek feedback from people across Europe and gain a better understanding of their needs. It will be completed in January, and the results will be published once they have been analysed.
+
+A digital euro would need to be carefully designed, in order to enhance privacy in digital payments[26], respect the rules on countering illegal activities and avoid interference with central bank policies, first and foremost monetary policy and financial stability.
+
+In particular, a digital euro should be a means of payment, not a form of investment that competes with other financial instruments. This would require limiting the holdings of individual users[27]and mean that, unlike stablecoin issuers, the issuer of the digital euro – the ECB – would not aim to acquire deposits.
+
+A digital euro would support the modernisation of the financial sector and the broader economy. It would be designed to be interoperable with private payment solutions and would thus represent the “raw material” that supervised intermediaries could use to offer pan-European, front-end payment solutions.
+
+A digital euro would also generate synergies with other elements of our strategy, facilitating the digitalisation of information exchange in payments through e-invoices, e-receipts, e-identity and e-signature. And in making it easier for intermediaries to provide added value and advanced technological features at lower cost, it would give rise to products that could compete with those of the big techs, thereby benefitting end users.
+
+The ECB and the national central banks have started preliminary experimentation through four work streams. First, we will test the compatibility between a digital euro and existing central bank settlement services (such as TIPS).[28]Second, we will explore the interconnection between decentralised technologies, such as distributed ledgers, and centralised systems. Third, we will investigate the use of payment-dedicated blockchains with electronic identity. And fourth, we will assess the functionalities of hardware devices that could enable offline transactions, guaranteeing privacy.[29]
+
+We will take the necessary time to explore all aspects of different options: whether they are technically feasible, whether they comply with the principles and policy objectives of the Eurosystem, and whether they satisfy the needs of prospective users.
+
+Let me conclude. The digital transformation is triggering a revolution in the financial sector, which will bring innovation but also risks. In particular, big techs and stablecoins could disrupt the European financial system. And while they could offer convenient and efficient payment solutions, they also risk endangering competition, privacy, financial stability and even monetary sovereignty.
+
+Our policies provide a forceful policy reaction to the digital shock. We want to create the conditions for a resilient, innovative, diverse and competitive payments landscape that can better serve the evolving needs of European people and businesses. We are promoting safe, pan-European instant payments.
+
+What is at stake is nothing short of the future of money. As private money goes digital, sovereign money also needs to be reinvented. This requires central bank money to remain available under all circumstances – in the form of cash, of course, but also potentially as a digital euro.
+
+We want to enable people to choose their preferred way of paying without having to compromise on their expectations of fast, secure, inclusive and seamless payments. This is our aim today, and it will remain our aim in the future.
+
+DisclaimerPlease note that related topic tags are currently available for selected content only.
+
+Reproduction is permitted provided that the source is acknowledged.

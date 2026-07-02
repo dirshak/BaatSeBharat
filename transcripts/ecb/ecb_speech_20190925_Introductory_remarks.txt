@@ -1,0 +1,31 @@
+Introductory remarks | 2019-09-25 | European Central Bank | Speech
+
+It is my pleasure to join you today to discuss the topic of digital currencies, focusing on Libra.
+
+Payment systems have always been at the heart of finance but they have attracted heightened interest recently. Innovation is rampant, and new proposed solutions are testimony to the pervasive speed and scope of recent technological advances and their implications for our everyday lives. The traditional bank-based payments ecosystem is being disrupted from below by tech start-ups and from above by well-established big techs – firms that have a large digital footprint but whose core business models have so far been confined to non-financial activities.
+
+Despite progressive changes and improvements, the global payments system still faces two major challenges:accessandcross-border retail payments. Globally, 1.7 billion adults remain outside the payments system, with no access to basic services, even though 1.1 billion of them have a mobile phone and one in four also have internet access (World Bank, 2018). Payment accounts and e-wallets are gateways to additional financial services, such as credit and insurance, so a lack of access to them hampers financial inclusion more generally (Cœuré, 2019a).
+
+Cross-border retail payments, on the other hand, are vital for global commerce and for migrants who send remittances home. Yet they are generally slower, more expensive and more opaque than domestic payments (CPMI, 2018). Sadly, the cost of cross-border remittances imposes the greatest burden on those who are least able to bear it.
+
+A number of so-called “stablecoin” initiatives, backed by large technology or financial firms and built on blockchain technology, are designed to address at least one and, in the case of Libra, both of these failings. Although private digital forms of money have been around for decades, these new initiatives have access to large networks of existing users and customers, which suggests that they could be the first to have a truly global footprint.
+
+These initiatives raise formidable challenges across a broad range of policy domains. Of particular concern are the risks related to anti-money laundering and countering the financing of terrorism, as well as consumer and data protection, cyber resilience, fair competition and tax compliance. Partly in response to these concerns, a working group has been mandated by G7 finance ministers and central bank governors to examine global “stablecoins” in more detail. The group is expected to provide policy recommendations by the time of the IMF-World Bank Annual Meetings in October this year. The Financial Stability Board has also started looking into the regulatory implications of these initiatives and will report to G20 ministers and governors.
+
+Depending on the jurisdiction, the risks that have been identified so far could be addressed by existing regulatory and supervisory regimes, with the fundamental approach being that regulatory answers should be internationally consistent and the principle of “same business, same risks, same rules” should be rigorously applied.
+
+Some aspects may require novel approaches, however. In the European Union, for example, it is the role of the European Commission, together with Member States, the ECB and relevant authorities, to review whether the current framework is fit for purpose. Significant work and further engagement with the public and authorities will be required before we can expect any potential global “stablecoin” arrangements to be approved by the relevant authorities (BIS, 2019).
+
+“Stablecoin” initiatives also need to demonstrate a sound legal basis. The global nature of these initiatives means that potential conflicts of laws across jurisdictions need to be addressed. Ambiguity can make “stablecoin” arrangements vulnerable to a loss of confidence – an unacceptable risk in a global payments system with potentially systemic importance. Given that many of the “stablecoins” target retail users, it is critical that the rights of coin holders and the obligations of issuers be clearly communicated and legally precise.
+
+“Stablecoins” also rely on new entrants to the market operating nascent technology, which can potentially deliver new benefits to consumers but is largely untested in a real-world environment and on the scale required to run a global payments system. They are also being governed in new ways, using a distributed model. Consequently, their governance structures need to be well understood.
+
+If “stablecoins” become widely used, they could also give rise to issues related to monetary policy transmission and financial stability (Cœuré, 2019b). Where a “stablecoin” acts as a substitute for fiat currency, there may be the risk of the monetary sovereignty of countries being infringed. Furthermore, the transmission of monetary policy could be affected if “stablecoin”-denominated credit or overdraft extensions are provided. Finally, financial stability will be affected if the assets underlying “stablecoin” arrangements are not managed in a sufficiently safe and prudent manner to ensure that coin holders have confidence that their coins are redeemable at par, in good times and in bad.
+
+All things considered, Libra has undoubtedly been a wakeup call for central banks and policymakers. Global “stablecoin” initiatives are the natural result of rapid technological progress, globalisation and shifting consumer preferences. The demand for fast, reliable and cheap cross-border payments is bound to grow further in coming years. Policymakers and central banks should respond to these challenges.
+
+Thank you.
+
+DisclaimerPlease note that related topic tags are currently available for selected content only.
+
+Reproduction is permitted provided that the source is acknowledged.

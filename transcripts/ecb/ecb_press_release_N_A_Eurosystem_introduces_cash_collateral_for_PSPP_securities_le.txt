@@ -1,0 +1,13 @@
+Eurosystem introduces cash collateral for PSPP securities lending facilities | N/A | European Central Bank | Press Release
+
+Today, the Governing Council decided that Eurosystem central banks will have the possibility to also accept cash as collateral in their PSPP securities lending (SL) facilities without having to reinvest it in a cash-neutral manner.
+
+The following Eurosystem members will make securities lending available also against cash collateral by 15 December 2016: the ECB, Nationale Bank van België/Banque Nationale de Belgique, Deutsche Bundesbank, Central Bank of Ireland, Banco de España, Banque de France, and De Nederlandsche Bank.
+
+The overall limit for securities lending against cash collateral is set at €50 billion for the Eurosystem. To avoid unduly curtailing normal repo market activity, the cash collateral option will be offered at a rate equal to the lower of the rate of the deposit facility minus 30 basis points (i.e. currently -70 basis points) and the prevailing market repo rate.
+
+The introduction of cash as collateral in the context of PSPP securities lending is intended to enhance the effectiveness of the SL framework, thereby supporting the smooth implementation of the PSPP as well as the euro area repo market liquidity and functioning. This technical amendment does not represent any change in the monetary policy stance of the Eurosystem. It will be reviewed in light of operational needs and the level of excess liquidity.
+
+For media queries, please contact William Lelieveldt, tel.: +49 69 1344 7316.
+
+Reproduction is permitted provided that the source is acknowledged.

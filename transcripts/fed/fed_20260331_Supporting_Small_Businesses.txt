@@ -1,0 +1,33 @@
+Supporting Small Businesses | 2026-03-31 | Vice Chair for Supervision Michelle W. Bowman | Speech
+
+At CBA LIVE 26, Consumer Bankers Association, San Diego, California
+
+This is just one of the many reasons why small businesses truly are the backbone of our economy. In 2023, they employed 59 million Americans, accounting for nearly half of all private-sector jobs. In that year alone, small businesses generated $16 trillion in revenue and 44 percent of gross domestic product (GDP). After the pandemic, new business creation surged and has continued to exceed the pre-pandemic pace since that time.
+
+Whether it's a corner store, a microenterprise in an inner city, or a high-tech startup, these businesses are pathways to opportunity, wealth building, and economic mobility. Access to capital and creditis one of the keys to their success.
+
+Current Lending LandscapeIt should come as no surprise that community and smaller regional banks play a large role in supporting small business activity. Their unique relationship business model allows them to work with and provide nonfinancial support to these business owners from the idea phase through to funding. Currently, banks hold roughly $600 billion in business loans that were originated under $1 million. Banks are the primary financing channel for small business funding. Notably, the smallest banksâthose with less than $10 billion in total assetsâhold nearly one-third of these loans.
+
+Although large banks are less concentrated in small business lending, they are also a significant source of small business credit. As of the second quarter of 2025, the largest banksâthose with over $700 billion in assetsâprovided about 18 percent of business loans below $1 million, and 33 percent of business loans below $100,000.
+
+Even with this support by the banking industry, credit conditions for these businesses remain tight. This means banks are applying a more stringent approach to credit approval and lending conditions. According to the latest data from the Federal Reserve Bank of Kansas City's Small Business Lending Survey, 9 percent of banks, on net, reported tightening credit standards in the third quarter of 2025 on commercial and industrial (C&I) loans to small firms. Among banks that reported having tightened standards, 83 percent cited economic uncertainty as a reason for tightening.
+
+Despite these credit challenges, small businesses appear to be optimistic. According to the U.S. Chamber of Commerce's Small Business Index, 44 percent of small businesses expect to increase investment over the next year, and 42 percent expect to increase staffing.
+
+Given the vital role of small businesses in the U.S. economy, ensuring the availability of credit to support them is critical for a healthy labor market and for economic growth. Therefore, our policy considerations should certainly include a discussion of their presence and performance. The Kansas City Fed's survey also found that stronger lending could be encouraged by a number of policy considerations, including lower interest rates and a friendlier approach to technology adoption, tax policy, and banking regulations. This leads me to the role for bank regulators.
+
+Regulatory Landscape and Capital ProposalsUnderstanding the regulatory framework is essential to encouraging access to small business credit. Under our current standardized risk-based capital rules, banks must hold capital against their loan portfolios based on the credit risk of those assets. Today, loans to small businesses are generally risk-weighted at 100 percent, meaning that small business loans have the same capital requirement as many higher-risk bank assets. Our Basel III and standardized approach capital proposals are designed to encourage banks of all sizes to support these lending relationships.
+
+Earlier this month, the Federal Reserve Board and the other federal banking regulators published proposed changes to our capital rules. Our approach to modernizing the capital framework started from the bottom working up. We evaluated each requirement on its meritsâexamining whether it aligns with risk, achieves its intended purpose, and avoids creating unintended outcomes.
+
+In the standardized approach proposal, the risk weight for corporates would decrease from 100 percent to 95 percent. The proposed changes are currently subject to an open comment period, and we encourage stakeholder feedback on this and other changes.
+
+The Basel III proposal would make three changes. First, for small business loans exceeding $1 million, the proposal would generally reduce the risk weight from 100 percent to 65 percent for small businesses considered to be investment grade by the lending bank. This would free up capital that banks can use to extend additional credit to small businesses. It could also make larger loans more available and more affordable for growing companies that need capital for expansion, equipment purchases, or hiring.
+
+Second, for small business loans less than $1 million, the proposal would generally reduce the risk weight by 25 percentage pointsâfrom 100 percent to 75 percent. This more accurately reflects the lower risk of the diversified portfolios of smaller loans.
+
+Third, for small business credit cards specifically, the proposal would provide regulatory capital treatment that is more aligned with the actual risk of those exposures than the current rules, and relying more heavily on repayment history. We are also seeking comment on whether the proposed treatment of unused credit lines appropriately reflects the risk of these exposures.
+
+Regulation always involves tradeoffs, and that's precisely why it's important for us to hear from stakeholders during the public comment period. Your practical experience, insights and perspectives on how these changes would affect lending practices are invaluable as we work to get this right.
+
+ConclusionSupporting credit for small businesses is critical to our economy. As we evaluate the Basel proposals, we must ask whether these regulations support or restrict lending to the small businesses that drive US growth and create jobs. Our regulatory framework must provide access to capital for these businesses to ensure our rules support the economy. When small businesses succeed, so do American workers and our economy.

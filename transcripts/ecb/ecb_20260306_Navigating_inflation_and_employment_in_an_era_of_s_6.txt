@@ -1,0 +1,261 @@
+Navigating inflation and employment in an era of supply shocks and AI | 2026-03-06 | European Central Bank
+
+New York, 6 March 2026
+
+The post-pandemic inflation surge placed severe strain on our societies, fuelled political frustration and amplified institutional distrust. It also hit the most vulnerable hardest – those with low incomes and without real assets.
+
+But although the scars of this episode are still visible, pressure is building on central banks around the world to shift their focus away from inflation and towards growth. These calls are emerging at a time when central bank independence is under mounting pressure and fiscal consolidation is being constrained by deep political polarisation.[1]
+
+In the euro area, these arguments are sometimes framed as a push for a dual mandate, urging the ECB to place greater weight on employment alongside price stability, often drawing explicit comparisons with the Federal Reserve’s statutory objectives.
+
+In my remarks today, I will argue that a dual mandate rarely leads to fundamentally different policy prescriptions. In a world marked by more frequent supply-side shocks, the main challenge of central banks, regardless of their mandate, is to preserve a credible commitment to price stability.
+
+I will also draw lessons for monetary policy today and discuss the implications of the rise of artificial intelligence (AI), which could boost productivity and help ease the supply-side constraints arising from reduced immigration and demographic ageing.
+
+Calls for central banks to prioritise growth often appear intuitively reasonable. Growth creates jobs, raises incomes and strengthens the fabric of society.
+
+During the 1960s and 1970s, many central banks responded to exactly this logic. They often subordinated monetary policy to fiscal and political objectives, adopting policies explicitly aimed at sustaining growth and keeping unemployment low.
+
+History has shown that such policies can come at a high cost. Across countries, inflation rose sharply in the 1970s, forcing central banks to aggressively tighten monetary policy, resulting in a surge in unemployment (Slide 2). Stagflation severely eroded trust in economic institutions.
+
+This experience gave rise to the institutional framework we rely on today: independent central banks with clear mandates to anchor inflation expectations through credibility. This framework is built on the modern consensus of a vertical long-run Phillips curve, which invalidates the pre-1960s view of a stable, exploitable inflation-unemployment trade-off.[2]
+
+Yet, different economies drew lessons in different ways. Some, like the euro area, chose a single central bank mandate focused squarely on price stability, with growth and employment treated as secondary objectives. Others, like the United States, opted for a dual mandate, explicitly balancing price stability with maximum employment.
+
+Although policy paths have not always been fully aligned across these frameworks, both have ultimately succeeded in delivering price stability and anchoring inflation expectations.
+
+This shared success raises two deeper questions relevant to today’s debates.
+
+First, how does the conduct of monetary policy under a single mandate differ in practice from that under a dual mandate? Do these mandates produce materially different policy responses, or does the inflation process impose constraints that are more similar than the institutional language would suggest?
+
+Second, if the institutional framework was built to avoid repeating the mistakes of the past, what risks arise today when central banks are asked to place greater weight on employment? Have changes in labour markets, central bank credibility and the nature of inflation made these risks more manageable than before?
+
+The answer to the first question is that the distinction between a single and a dual mandate is often largely inconsequential. In practice, stabilising inflation and stabilising employment often lead to the same policy response.
+
+For demand-driven fluctuations, this is self-evident.
+
+When demand weakens, inflation tends to fall and unemployment rises. In this case, both a price stability mandate and an employment mandate point towards monetary policy easing. Conversely, when demand overheats, inflation rises and labour markets tighten. Then both mandates point towards monetary policy tightening.
+
+This insight closely resembles what economists call the “divine coincidence”: in a typical business cycle, monetary policy stabilises demand in a way that keeps both inflation and employment close to their desired levels.
+
+The dual mandate only truly “bites” when stabilising inflation requires accepting weaker employment outcomes. But even if such a trade-off arises, both mandates often lead to similar policies.
+
+The pandemic provides a recent illustration.
+
+When inflation surged, central banks around the world – whether operating under a single mandate or pursuing explicit employment objectives – responded with comparable vigour, even if doing so meant tolerating higher unemployment (Slide 3).
+
+The reason is straightforward: once the combination of excess savings, rising energy prices and disrupted global supply chains began to feed into inflation expectations and second-round effects, restoring price stability to limit the broader economic fallout became the overriding task.
+
+As a result, the scope for divergence was limited. Monetary policy had to ensure that supply-side shocks did not translate into persistently higher inflation.
+
+The same logic also works in reverse.
+
+In the euro area, once the disinflation process was firmly under way and medium-term inflation expectations remained anchored, the ECB began to remove policy restriction, even though domestic inflation was still elevated.
+
+This decision reflected a forward-looking assessment: maintaining an overly restrictive stance for too long would have risked imposing unnecessary economic costs in terms of weaker growth and higher unemployment.
+
+The experience during the pandemic thus illustrates an important point: a central bank with a single mandate is not indifferent to employment outcomes. It recognises that price stability must be secured in a manner that minimises avoidable volatility in output and labour markets.
+
+This is closely mirrored in the ECB’s mandate: price stability is the primary objective, while support for employment is conditional on it – that is, “without prejudice to the objective of price stability”.[3]
+
+For a central bank with a dual mandate, monetary policy is better understood as a balancing exercise rather than a lexicographic ordering.[4]Still, inflation imposes a constraint: employment can be supported only insofar as inflation remains consistent with price stability; once inflation deviates sustainably, the scope for employment support narrows sharply.
+
+In practice, many central banks therefore operate in remarkably similar ways, regardless of the formal structure of their mandates. The broad consensus, built over decades, is that without price stability, maximum employment cannot be sustained.
+
+The real distinction between mandates may therefore lie less in day-to-day policy decisions and more in communication, accountability and the political economy of central banking.
+
+This brings me to the second question: if the institutional framework of inflation targeting and central bank independence emerged because attempts to foster employment proved destabilising, then why would one think that asking central banks to pay more attention to employment today would lead to better outcomes?
+
+The pandemic offers three lessons suggesting this confidence may be misplaced.
+
+The first is that monetary policy becomes more of an art than a science when supply shocks become more prevalent.[5]
+
+In the years before the pandemic, policymakers increasingly came to believe that the Phillips curve was flat, as inflation proved remarkably unresponsive to tightening labour markets (Slide 4).[6]
+
+This experience helped explain why major central banks, including the ECB, entered the pandemic with policy settings that were historically accommodative, designed to tighten labour markets, strengthen wage growth and ultimately lift inflation back to target on a sustained basis.
+
+This growing conviction, however, fostered a misconception: namely that inflation could not re-emerge rapidly under certain conditions.
+
+In reality, the slope of the Phillips curve only tells us how inflation responds to changes in slack, holding other shocks constant. But a very flat curve does not imply immunity from inflation.
+
+That is what we saw during the pandemic.
+
+While strong demand played a role, the inflation episode was not simply a movement along a stable Phillips curve. Instead, we saw a steepening of the curve and large upward shifts, driven by supply bottlenecks, energy shocks and changes in price-setting behaviour and inflation expectations.[7]
+
+Looking ahead, the global economy is likely to be exposed more frequently to such supply-side disturbances – from energy price spikes and trade fragmentation to climate-related shocks. The recent escalation of the conflict in Iran, which has heavily affected energy markets and shipping routes, serves as a stark reminder of this vulnerability.
+
+As a result, managing inflation – regardless of whether central banks have single or dual mandates – is not about fine-tuning unemployment along a stable Phillips curve; it is about credibly committing to the inflation target.
+
+In today’s more volatile world, policy cannot rely on established empirical relationships. It must operate under uncertainty about the type, size, persistence and transmission of shocks. Judgement then becomes as important as models, and credibility becomes the central policy asset.
+
+In response to these insights, major central banks have adjusted their policy frameworks.
+
+The Federal Reserve has moved away from its flexible average inflation targeting approach, which had emphasised making up for past shortfalls by allowing inflation to run above target for some time. In the same vein, the ECB in its latest strategy statement no longer highlights a willingness to allow inflation to overshoot.[8]
+
+The second lesson is closely related: putting too much emphasis on employment can make it more difficult to control inflation.
+
+A key lesson from the pandemic is that when labour markets are tight, supply shocks transmit more forcefully into prices and wages.
+
+Second-round effects play an important role in understanding this mechanism.
+
+When unemployment is low and vacancies are high, workers have more bargaining power to recover real wages after an inflation shock. At the same time, firms are more likely to pass higher input costs into output prices to protect their margins when demand is strong enough to tolerate price increases.
+
+These processes can take place even when longer-term inflation expectations remain anchored.
+
+This is essentially what we observed during the pandemic inflation surge.
+
+In 2021 and 2022, the wage drift – reflecting firm-level adjustments, bonuses and labour market pressures beyond negotiated agreements – was a dominant driver of growth in compensation per employee in the euro area (Slide 5, left-hand side).
+
+In a tight labour market, employers typically offer newly hired or incumbent employees higher wages than those set out in prevailing collective agreements.[9]
+
+At the same time, firms were quick to pass on rising input costs to consumers. Many firms began to adjust prices far more frequently than they had done previously, reflecting demand conditions that were sufficiently robust to accommodate this pass-through (Slide 5, right-hand side).[10]
+
+In that sense, running the economy hot may make second-round effects more likely – and once these take hold, monetary policy would need to tighten more aggressively to prevent a wage-price spiral, eroding earlier employment benefits.
+
+The third lesson is that expansionary policies become less effective in stimulating employment once the economy is close to its potential.
+
+In the years following the sovereign debt crisis, the euro area economy operated below capacity. Unemployment was high, labour force participation was depressed and large parts of the workforce were either underemployed or discouraged.
+
+In this environment, an accommodative monetary policy stance delivered tangible gains. Existing slack was gradually reabsorbed, participation increased and unemployment fell (Slide 6, left-hand side). Monetary policy helped bring idle resources back into productive use.
+
+But once slack was absorbed, policy began to run into diminishing marginal returns.[11]Matching frictions became more and more important, slowing the pace at which unemployment could fall and driving up the vacancy-to-unemployment ratio (Slide 6, right-hand side).
+
+In such an environment, additional demand stimulus cannot sustainably increase employment. In fact, a large part of the improvement in euro area labour markets observed in recent years reflected supply‑side responses rather than demand stimulus.[12]
+
+In particular, rising participation and a significant influx of foreign workers helped expand the labour force and alleviate shortages. Foreign‑born workers accounted for around half of labour force growth in recent years, helping firms meet demand and significantly contributing to GDP growth (Slide 7).
+
+In that sense, over the past 15 years, the euro area economy has transitioned from a primarily demand-constrained regime to one in which supply constraints have become more prevalent.
+
+And in a supply-constrained environment, expansionary demand policies become a less effective tool for increasing employment or growth.[13]
+
+What do these lessons imply for monetary policy today?
+
+Euro area inflation is projected to be at our 2% target over the medium term.
+
+In the near term, the recent spike in energy prices following the tensions in Iran makes the inflation path more uncertain. However, as long as deviations from our target – in either direction – remain temporary and small with well-anchored inflation expectations, they are of limited relevance for policy decisions, as they naturally occur when an economy is exposed to volatile energy prices (Slide 8).
+
+What matters for monetary policy is the medium-term outlook – that is, whether underlying price dynamics and wage developments are consistent with the target over the policy-relevant horizon. Judged on this basis, the lessons from the pandemic suggest that policymakers must tread carefully.
+
+Although vacancy rates have declined from historical peaks, labour markets across the euro area remain tight by most conventional metrics. Unemployment is low by historical standards and is below estimates of the natural rate of unemployment (Slide 9, left-hand side). Firms in many sectors continue to report difficulties in filling positions (Slide 9, right-hand side).
+
+This tightness directly feeds into wages.
+
+While negotiated wage growth is expected to moderate, overall compensation per employee remains elevated relative to levels consistent with stable inflation (Slide 10). Wage drift continues to add to total labour costs in an environment where labour is becoming structurally scarcer owing to rapid demographic ageing, moderating immigration and rising skill mismatches.
+
+This constellation of factors poses upside risks to the future trajectory of domestic inflation, particularly in labour-intensive services where wages account for a large share of total costs and the pass‑through tends to be gradual but persistent.
+
+At the same time, expansionary fiscal policy is increasingly underpinning aggregate demand, pushing the economy towards its potential or even beyond it (Slide 11, left-hand side). In the manufacturing sector, new orders and expectations for future output have risen markedly and are now at their highest levels since the Russian invasion of Ukraine four years ago (Slide 11, right-hand side).
+
+In parallel, governments are actively responding to shifts in the global trade and security order. New trade agreements are opening alternative markets that should help offset part of the slowdown in trade with the United States.
+
+Efforts are also intensifying to better leverage the EU’s Single Market. Governments are reducing internal barriers to further strengthen both domestic demand and resilience.[14]
+
+Moreover, empirical evidence suggests that the ongoing adjustment in global trade patterns is unlikely to have a material impact on the euro area inflation outlook.
+
+ECB staff analysis finds that the estimated impact of trade diversion from China on the euro area is modest and statistically insignificant (Slide 12, left-hand side).[15]Even under extreme counterfactual scenarios in which imports from China rise markedly and import prices fall noticeably, the estimated impact on core inflation would remain small.[16]
+
+The exchange rate does not materially alter this picture. Since last summer, the euro has remained broadly stable in both nominal and real effective terms, including against the Chinese renminbi (Slide 12, right-hand side).
+
+Most of the appreciation observed in the first half of last year can be interpreted as a sign of confidence in the euro and in Europe’s economic potential at a time of elevated geopolitical uncertainty.
+
+The upshot is that, with tight labour markets and strengthening domestic demand, price pressures could re-emerge if demand outpaces supply. The lessons from the pandemic suggest that, in this environment, central banks should focus on anchoring expectations rather than trying to fine-tune economic activity.
+
+Central to understanding the evolving balance between supply and demand, and its implications for price stability, is whether technological progress driven by AI can meaningfully relax supply-side constraints arising from declining immigration and demographic ageing.
+
+A critical but unresolved question is whether AI will be labour-augmenting or labour-substituting. History suggests that, at least over the medium to long run, most general-purpose technologies, including digital technologies, enhance labour rather than replace it (Slide 13).[17]
+
+Recent firm-level evidence points in a similar direction: AI adoption appears to be associated more with task reallocation and productivity gains than with broad-based employment losses.[18]
+
+The challenge for central banks lies in identifying the effects of AI in real time. As with digital technologies in the 1990s, the adoption and widespread use of AI technology may take time to unfold, and early signals of productivity gains may be fragmented and slow to appear in macroeconomic data.
+
+This was essentially Alan Greenspan's wager at the time: he recognised that potential output was rising even before it was visible in headline statistics, and he was ultimately proven right when productivity growth surged.
+
+Also today, central banks need to consider the possibility that accelerating investment expenditure could be foreshadowing a rise in the economy’s supply potential.
+
+In this case, the monetary policy stance would ease endogenously, as higher productivity growth raises the marginal product of capital, which in turn increases the equilibrium real interest rate.[19]And if the equilibrium real rate rises, leaving policy rates unchanged would automatically imply a more accommodative stance, unless inflation fell at the same pace.[20]
+
+In that sense, central banks would already be accommodating the AI shock simply by not tightening, allowing the economy to expand without generating undue inflationary pressures.[21]
+
+In the euro area, expectations of stronger underlying growth, bolstered by the German fiscal package and a growing European reform momentum, have already led to a measurable and persistent rise in real distant forward rates – a widely-used market-based measure of the natural rate of interest (Slide 14, left-hand side). This trend could be reinforced by rising investment in and adoption of AI.
+
+However, today’s conditions call for greater prudence than in the late 1990s for two main reasons.
+
+The first is that, at the time, productivity data already showed signs of acceleration by the mid-1990s. The Federal Reserve did not bet on purely hypothetical gains.
+
+Today, by contrast, productivity growth remains subdued, at least in the euro area, and there is considerable uncertainty around the timing, scale and distribution of the productivity effects of AI. The transmission into measurable aggregate productivity may be gradual, uneven across sectors and accompanied by transitional frictions.[22]
+
+In fact, in the short run AI is more likely to be inflationary than disinflationary.[23]It requires large investments in energy-intensive data centres and may create new bottlenecks in specialised chips and skilled labour.
+
+The second reason for greater prudence today is that the stakes are arguably higher.
+
+The long period of elevated inflation, and the marked rise in the frequency of supply shocks, has left inflation expectations more fragile than in the past, as shown by the ECB’s Consumer Expectations Survey.[24]
+
+Despite the significant progress we have made in bringing inflation down,medianinflation expectations remain elevated across horizons, whilemeaninflation expectations have been creeping up even before the recent energy price shock (Slide 14, right-hand side).
+
+In this context, the costs of misjudging the balance between supply and demand are higher.
+
+If central banks were to accommodate aggregate demand based on AI optimism and inflation were to resurge, the loss of credibility would be severe. It could also fuel financial stability risks at a time when market participants are already concerned about potential overvaluations.
+
+A prudent approach, therefore, is to let the data guide policy rather than relying on a still speculative narrative.
+
+All in all, and with this I would like to conclude, the ECB’s price stability mandate is well-equipped and robust to deal with the challenges central banks face today. It provides a firm anchor in a world marked by more frequent supply-side shocks, and it is flexible enough to accommodate temporary deviations from target while keeping policy firmly focused on the medium term.
+
+In this volatile world, the lessons from the pandemic suggest that central banks should resist the temptation to fine-tune the economy, accommodate fiscal policy or deliberately run the economy hot in pursuit of marginal short-term gains. The costs of misjudgement can be significant: credibility, once eroded, is difficult to rebuild.
+
+Current monetary policy in the euro area is firmly grounded in these lessons. With inflation projected to be at our target over the medium term and inflation expectations anchored, monetary policy remains in a good place.
+
+But we cannot be complacent. We need to be vigilant as the current geopolitical and macroeconomic environment creates upside risks to inflation over the policy-relevant horizon. In particular, we must carefully monitor the persistence of the energy price shock, its impact on inflation expectations and any indication that firms start passing through higher input costs to their customers.
+
+Over time, the adoption and widespread use of new technologies like AI could expand supply, raise the natural rate of interest and relieve some of these structural constraints. The task of monetary policy will be to identify these forces and calibrate policy appropriately.
+
+Thank you.
+
+See also Kase H. et al. (2026), “The perils of narrowing fiscal spaces”,BIS Working Papers, No 1328.
+
+Friedman, M. (1968), “The Role of Monetary Policy”,American Economic Review,Vol. 58, No 1, pp. 1-17; and Phelps, E. S. (1967), “Phillips Curves, Expectations of Inflation and Optimal Unemployment over Time”,Economica,Vol. 34, No 135, pp. 254-281.
+
+See Article 127(1) of the Treaty on the Functioning of the European Union. The ECB’s primary mandate is price stability, but it is also tasked with supporting general economic policies in the EU, including policies to maintain high levels of employment – provided this does not conflict with price stability.
+
+See also Board of Governors of the Federal Reserve System,Statement on Longer Run Goals and Monetary Policy Strategy, as reaffirmed effective 27 January 2026.
+
+See also Blinder, A. S. (1998),Central Banking in Theory and Practice, MIT Press.
+
+Costain, J., Nakov, A. and Petit, B. (2022), “Flattening of the Phillips Curve with State-Dependent Prices and Wages Purchased”,The Economic Journal, Vol. 132, No 642, pp. 546-581; Benigno, P. and Ricci, L. A. (2011), “The inflation-output trade-off with downward wage rigidities”,American Economic Review, Vol. 101, No 4, pp. 1436-1466; Lombardi, M., Riggi, M. and Viviano, E. (2023), “Workers’ Bargaining Power and the Phillips Curve: A Micro–Macro Analysis”,Journal of the European Economic Association, Vol. 21, No 5, pp. 1905-1943; and Kohlscheen, E. and Moessner, R. (2022), “Globalisation and the slope of the Phillips curve”,Economics Letters, Vol. 216.
+
+See, for example, L’Huillier, J.-P. and Phelan, G. (2025), “Can Supply Shocks Be Inflationary with a Flat Phillips Curve?”,International Journal of Central Banking, Vol. 21, No 2, April; and Gudmundsson, T., Jackson, C., and Portillo, R. (2024), “The Shifting and Steepening of Phillips Curves During the Pandemic Recovery: International Evidence and Some Theory” , IMF Working Paper Series, WP/24/7. The evidence remains inconclusive as to whether the slope of the Phillips curve has steepened during the pandemic. See Beaudry, P., Hou, C. and Portier, F. (2025), “On the Fragility of the Nonlinear Phillips Curve View of Recent Inflation”,NBER Working Papers, No 33522, National Bureau of Economic Research; and Beschin, A. et al. (2025), “The slope of the euro area price Phillips curve: evidence from regional data”,Working Paper Series, No 3133, ECB, Frankfurt am Main, October.
+
+ECB (2025),The ECB’s monetary policy strategy statement (2025).
+
+See also Bates, C., Bodnár, K. and Schlieker, K. (2024), “Recent developments in wages and the role of wage drift”,Economic Bulletin, Issue 6, ECB.
+
+Ghassibe, M. and Nakov, A. (2025), “Business Cycles with Pricing Cascades”, Working Paper Series, ECB, No 3123.
+
+See also Schnabel, I. (2020), “Monetary policy in changing conditions”, speech at the second EBI Policy Conference on “Europe and the Covid-19 Crisis – Looking back and looking forward”, Frankfurt am Main, 4 November; and Schnabel, I. (2020), “COVID-19 and monetary policy: Reinforcing prevailing challenges”, speech at The Bank of Finland Monetary Policy webinar: New Challenges to Monetary Policy Strategies, Frankfurt am Main, 24 November.
+
+See also Lagarde, C. (2025),“Beyond hysteresis: resilience in Europe’s labour market”, opening panel remarks at the annual Economic Policy Symposium “The policy implications of labour market transition” organised by the Federal Reserve Bank of Kansas City in Jackson Hole, Jackson Hole, 23 August.
+
+Aggregate labour market outcomes are primarily structural in nature, reflecting unemployment benefits, the degree of union density, the tax wedge and product market policies which include opportunities for new firms to access markets.
+
+Schnabel, I. (2026), “Made in Europe”, speech at a lecture in memory of Eugen Böhm von Bawerk, Österreichische Akademie der Wissenschaften, Vienna, 11 February.
+
+Le Roux, J. and Spital, T. (2026), “Global trade redirection: tracking the role of trade diversion from US tariffs in Chinese export developments”,Economic Bulletin, Issue 1, ECB.
+
+Corsello, F., Pica, S. and Venditti, F. (2025), “The Great Wall of Chinese goods: The effect of tariff-induced re-rerouting on euro area consumer prices”,VOXEU column, 12 June.
+
+See also Autor, D. H. (2015), “Why Are There Still So Many Jobs? The History and Future of Workplace Automation”,Journal of Economic Perspectives, Vol. 29, No 3, pp. 3-30.
+
+Hampole, M. et al. (2025), “Artificial Intelligence and the Labor Market”, NBER Working Paper No 33509; and Albanesi, S. et al. (2025), “New technologies and jobs in Europe,"Economic Policy, Vol. 40(121), pp. 71-139. By contrast, if AI is primarily labour-substituting, it will automate tasks previously performed by workers without enhancing the productivity of remaining jobs.
+
+See Barr, M. S. (2026), “What Will Artificial Intelligence Mean for the Labor Market and the Economy?”, speech at the New York Association for Business Economics, New York, 17 February; and Cook, L. D. (2026), opening remarks for the “AI and Productivity across the Economy” panel at “The Great Realignment: Navigating AI, Demographic, and Geoeconomic Shifts”, 42nd Annual NABE Economic Policy Conference, Washington, D.C., 24 February. By contrast, higher labour insecurity arising from the concern that AI is labour-substituting could raise precautionary savings, thereby counteracting the impact of higher productivity growth on the natural rate of interest. Similarly, upward pressure on the natural rate would be mitigated if AI were to cause an increase in income and wealth inequality. See, for example, Aoki, Y. et al. (2025), “Expecting job replacement by GenAI: effects on workers' economic outlook and behavior”,BIS Working Paper, No 1269, May; and Rockall, E. J., Tavares, M. M. and Pizzinelli, C. (2025), “AI Adoption and Inequality”,IMF Working Paper, No 2025/068, April.
+
+Price and wage rigidities imply that even if cost savings from new technologies were to arise immediately, the associated disinflationary impulses would come with a measurable lag.
+
+ECB research shows that monetary policy itself may affect investment in innovative technologies. See Elfsbacka-Schmöller, M., Goldfayn-Frank, O. and Schmidt, T. (2025), „Beyond the short run: monetary policy and innovation investment”, Working Paper Series, ECB, No 3080.
+
+See also Daly, M. (2026), “The AI Moment? Possibilities, Productivity, and Policy”, speech at the Silicon Valley Leadership Group, San Jose, 17 February.
+
+See also Jefferson, P. N. (2026), “Economic Outlook and Supply-Side (Dis)Inflation Dynamics”, speech at the Brookings Institution, Washington, D.C., 6 February.
+
+See also Blanco, A., Ottonello, P. and Ranošová, T. (2025), “The Dynamics of Large Inflation Surges”,The Review of Economics and Statistics, March, pp. 1-31.
+
+Reproduction is permitted provided that the source is acknowledged.

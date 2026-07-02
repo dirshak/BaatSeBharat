@@ -1,0 +1,21 @@
+ECB publishes consolidated banking data for end-June 2020 | N/A | European Central Bank | Press Release
+
+Notes: The non-performing loans ratio is defined as the ratio of non-performing loans to total loans.
+
+Notes: Return on equity is defined as the ratio of total profit (loss) for the year to total equity. The data show the return on equity calculated on the basis for the second quarter of 2020. ISO codes have been used to indicate the country.
+
+Notes: The Common Equity Tier 1 ratio is defined as the ratio of Common Equity Tier 1 capital to the total risk exposure amount. ISO codes have been used to indicate the country.
+
+The European Central Bank (ECB) has published the consolidated banking data with reference to end-June 2020, a dataset of the EU banking system compiled on a group consolidated basis.
+
+The quarterly data cover information required for the analysis of the EU banking sector, comprising a subset of the information that is available in the year-end dataset. The end-June 2020 data refer to 326banking groupsand 2,656stand-alone credit institutionsoperating in the EU (including foreign subsidiaries and branches), covering nearly 100% of the EU banking sector balance sheet. This dataset includes an extensive range of indicators on profitability and efficiency, balance sheets, liquidity and funding, asset quality, asset encumbrance, capital adequacy and solvency. Aggregates and indicators are published for the full sample of the banking industry.
+
+Large reporters apply International Financial Reporting Standards and the Implementing Technical Standards on supervisory reporting of the European Banking Authority, while some smaller reporters may apply national accounting standards.Accordingly, aggregates and indicators may also cover data based on national accounting standards, depending on the availability of the underlying items.
+
+A few revisions to past dataare disclosed together with the end-June 2020 data.
+
+For media queries, please contactPhilippe Rispal, tel.: +49 69 1344 5482.
+
+DisclaimerPlease note that related topic tags are currently available for selected content only.
+
+Reproduction is permitted provided that the source is acknowledged.

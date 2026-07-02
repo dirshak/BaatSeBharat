@@ -1,0 +1,51 @@
+Payments for the people | 2019-05-27 | European Central Bank | Speech
+
+Thank you Agustín for the kind words of welcome and for hosting this fifth high-level meeting on financial inclusion. Thanks also for your continuing support of the Committee on Payments and Market Infrastructures (CPMI).
+
+I am honoured to be co-hosting this meeting with Queen Máxima of the Netherlands. Her Majesty is here today in her capacity as the United Nations Secretary-General’s Special Advocate for Inclusive Finance for Development (UNSGSA). You will also know Queen Máxima as an honorary patron of the G20’s Global Partnership for Financial Inclusion. By lending her voice to raise global awareness of the importance of financial inclusion in the fight against poverty and gender inequality, Her Majesty is an extremely effective advocate of universal access to affordable, effective and safe financial services. We are genuinely grateful for your support.
+
+Today, we are bringing together the United Nations, the global standard-setting bodies and a range of other international organisations, central banks and non-governmental organisations to discuss financial inclusion.[1]
+
+Before we turn to the agenda, allow me to reflect briefly on financial inclusion and payments, drawing on the work of the CPMI.[2]
+
+Milton Friedman once said that “inflation is always and everywhere a monetary phenomenon”. In a similar vein, I would argue thatfinancial inclusionis always and everywhere apaymentsphenomenon – at least in the early stages. Payments are the lifeblood of any economy. Think about the basic needs that we pay for on a daily basis: food, transportation, healthcare and clothing, to name but a few. Paul Volcker once famously asked how many financial innovations have been as important to the individual as the automatic teller machine.[3]
+
+So, financial inclusion starts with payments. It is the gateway to other financial services, such as savings accounts, credit or insurance, that allow individuals to invest and protect their income against risks. The distinguished role of payments has guided the work of the World Bank and the CPMI. Three years ago, we published a report on Payment Aspects of Financial Inclusion, affectionately known as PAFI, to help countries expand access to payment services.
+
+The PAFI principles outline concrete actions that countries can take, including (i) providing basic accounts at little or no cost, (ii) stepping up efforts to increase financial literacy, and (iii) leveraging large-volume payment programmes, such as government payments, by adopting electronic payment services.
+
+In the meantime, the PAFI framework has been adopted as the analytical underpinning for designing and implementing country-level actions under the World Bank’s Universal Financial Access 2020 agenda. By the end of last year, the PAFI framework had been used as a tool to critically analyse the degree of access to payment services and transaction accounts and their usage in about a dozen countries. In addition, many countries have used the framework to undertake a self-assessment of the financial infrastructure in their country.
+
+As we mark the PAFI report’s third anniversary, it seems like a good time to review the progress made in expanding access to payment services. Since 2011, more than one billion adults have gained access to basic transaction accounts – that is, accounts with a financial institution or a mobile money service provider.[4]
+
+Much of this gain can be attributed to the greater use of new technologies, including smartphones and the internet, which enable services to be provided using digital channels instead of through bricks-and-mortar operations. Such electronic channels support the efficient and low-cost delivery of services, even in remote areas, and open up markets to new providers.
+
+Yet, as of 2017, around 30% of the adult population worldwide still lacked access to payment services. While financial exclusion is also an issue in some advanced economies, it affects a majority of adults in Africa and South America. Only seven African countries have achieved a 60% penetration rate. In many African countries, less than half the population has access to basic payment services.
+
+Unfortunately, but not surprisingly, the lack of access to an account disproportionately affects low-income households and women. Financial exclusion of this type threatens the cohesion of societies. It is often part of a much wider social exclusion faced by individuals who lack access to education, insurance or healthcare.
+
+And those who do own an account often face large transaction costs, particlarly in cross-border payments. Take remittances as an example. The World Bank estimates that almost USD 530 billion in remittances were sent last year – more than three times the amount ofofficial development assistancesent to the receiving countries.[5]Evidence shows that foreign workers from low- and middle-income countries sending funds home face an average cost of about USD 14 for a USD 200 payment.[6]
+
+In other words, cross-border payments still tend to be notably slower, more expensive and more opaque than domestic payments. No wonder, then, that many turn to what I call “shadow payments”, such as informal networks or unregulated cryptocurrency platforms, that lack proper cyber security, basic risk management, legal certainty or consumer protection.[7]
+
+New SWIFT data that the CPMI is publishing today provides further evidence that access to safe and cost-effective cross-border payments is not improving. It shows that the correspondent banking network has shrunk by 20% over the past seven years and has become more concentrated as a result.
+
+Broader access to payment systems is therefore crucial.
+
+The PAFI report notes a number of potential barriers to providing transaction accounts, from high fees, low income levels and poor financial literacy, to economic and labour informality. Many of these issues remain today, and are also a problem for emerging fintech solutions. Many fintech solutions, for example, require a smart phone. Such requirements add to the cost of the solution and automatically exclude certain populations – those with low income levels or limited technical aptitude.
+
+These remaining obstacles clearly illustrate that we need to continue our efforts. That’s why, in late 2018, the CPMI and the World Bank embarked on the next stage of our journey on the road to ensuring universal access to transaction accounts. The PAFI task force will be focusing on the following three topics:
+
+As you can see, this is quite an ambitious work programme. We have also set ourselves an ambitious timeline: we aim to finish the PAFI work in the first half of next year. And in addition to the work being done by the PAFI task force, the CPMI is also supporting the Financial Inclusion Global Initiative, which is a three-year programme led by the World Bank Group, the International Telecommunications Union, the CPMI and the Bill & Melinda Gates Foundation. Its objective is to provide targeted technical assistance to China, Egypt and Mexico to increase acceptance of electronic payments, extend the use of digital identification for financial services and enhance payment system security, infrastructure and technology.
+
+Financial inclusion starts with payments, and with this I would like to conclude. It has therefore been, and remains, a key objective for the CPMI. Thanks also to the support of Queen Máxima, significant progress has been made in recent years, with a number of innovative solutions helping to increase access to payment services for underserved populations around the world.
+
+However, a significant number of people across the globe still lack the means to make fast, secure and trustworthy payments. Lack of access to basic payment services risks feeding wider social exclusion and supporting the rise of potentially unsafe shadow payments that do not offer legal certainty or sound credit and liquidity risk management.
+
+To protect consumers, and to spread the benefits of financial inclusion more widely, we need to continue our work – in close cooperation with all stakeholders – so that everyone, and not just a portion of the population, enjoys access to basic payment services. Ultimately, this work will not only benefit those who become financially included; it will also foster social cohesion and support economic prosperity more broadly.
+
+Thank you.
+
+DisclaimerPlease note that related topic tags are currently available for selected content only.
+
+Reproduction is permitted provided that the source is acknowledged.

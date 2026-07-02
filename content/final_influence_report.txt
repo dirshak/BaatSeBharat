@@ -1,0 +1,47 @@
+
+================================================================================
+      STOCK INFLUENCE REPORT: SPEECHES VS MARKET PERFORMANCE
+================================================================================
+
+[EVENT] N/A | ECB | N/A
+  Topic: Monetary Policy (Keywords: bank, financial, risk, market, banking)
+  No market impact data recorded for this event.
+
+[EVENT] N/A | ECB | ECB launches pilot project for research access to confidential statistical data
+  Topic: Monetary Policy (Keywords: bank, financial, risk, market, banking)
+  No market impact data recorded for this event.
+
+[EVENT] N/A | ECB | 404
+  Topic: Monetary Policy (Keywords: bank, financial, risk, market, banking)
+  No market impact data recorded for this event.
+
+[EVENT] N/A | ECB | ECB adopts opinion on appointment of new Executive Board member
+  Topic: Monetary Policy (Keywords: bank, financial, risk, market, banking)
+  No market impact data recorded for this event.
+
+[EVENT] N/A | ECB | ECB Consumer Expectations Survey results – September 2023
+  Topic: Inflation (Keywords: inflation, policy, rate, monetary, economic)
+  No market impact data recorded for this event.
+
+[EVENT] N/A | ECB | ECB adjusts its capital key
+  Topic: Monetary Policy (Keywords: bank, financial, risk, market, banking)
+  No market impact data recorded for this event.
+
+[EVENT] N/A | ECB | ECB Consumer Expectations Survey results – October 2022
+  Topic: Inflation (Keywords: inflation, policy, rate, monetary, economic)
+  No market impact data recorded for this event.
+
+[EVENT] N/A | ECB | October 2022 euro area bank lending survey
+  Topic: Inflation (Keywords: inflation, policy, rate, monetary, economic)
+  No market impact data recorded for this event.
+
+[EVENT] N/A | ECB | October 2022 euro area bank lending survey
+  Topic: Monetary Policy (Keywords: bank, financial, risk, market, banking)
+  No market impact data recorded for this event.
+
+[EVENT] N/A | ECB | ECB welcomes extension of Frank Elderson’s term as Vice-Chair of the Supervisory Board
+  Topic: Monetary Policy (Keywords: bank, financial, risk, market, banking)
+  No market impact data recorded for this event.
+
+================================================================================
+Report generated successfully.

@@ -1,0 +1,239 @@
+Navigating towards neutral | 2024-12-16 | European Central Bank | Speech
+
+Paris, 16 December 2024
+
+Monetary policy is at a critical juncture.
+
+Growing confidence in a sustainable decline of inflation towards our 2% target has allowed the Governing Council to remove substantial policy restriction over the past six months. With our decision last week to cut the three key policy rates by a further 25 basis points, the deposit facility rate is now at 3%, one percentage point below its peak.
+
+Today I will argue that, with interest rates approaching neutral territory and with risks to the inflation outlook broadly balanced, monetary policy should proceed gradually and remain data-dependent.
+
+In this way, we can ensure that disinflation does not stall above our 2% target, while avoiding unnecessary weakness in the labour market and the economy at large.
+
+I will also argue that, once price stability has been restored, the challenges for monetary policy will change. As inflation becomes dominated by idiosyncratic shocks again, central banks can afford to be more tolerant of moderate deviations from target – in both directions.
+
+Incoming data and the new Eurosystem staff projections have confirmed that the disinflation process remains well on track.
+
+Inflation is now expected to decline towards our 2% target in the course of 2025 and to oscillate around this level over the projection horizon, as domestic price pressures ease and base effects from energy prices fade (Slide 2, left-hand side).
+
+Growth has been revised down but is still expected to accelerate next year, as consumption and investment recover on the back of rising real incomes and less restrictive financing conditions (Slide 2, right-hand side).
+
+As ECB staff continue to project that the euro area economy will expand at a pace around its potential growth rate in the coming years, inflation should neither over- nor undershoot our 2% target materially over the projection horizon once past shocks have fully unwound.
+
+Three factors support the assumptions underlying this projected recovery.
+
+One is the upside surprise to growth in the third quarter, with private consumption picking up and inventories no longer weighing on growth (Slide 3, left-hand side). A turnaround in the inventory cycle would remove a significant drag on aggregate demand.
+
+Second, confidence in the retail trade sector as well as consumer expectations for major purchases over the next twelve months continued to improve in November, while savings intentions declined somewhat (Slide 3, right-hand side).
+
+Third, according to model-based analyses, over the next twelve months an economic expansion is still much more probable than a recession, despite the prospect of more trade barriers clouding the euro area economic outlook (Slide 4, left-hand side).
+
+Although the baseline forecast does not incorporate the potential impact of concrete policy measures of the new Trump administration, as these remain uncertain, recent sentiment indicators are likely to partially reflect the surge in trade policy uncertainty already (Slide 4, right-hand side).
+
+Empirical research suggests that, rather than the actual tariff increase itself, it is the rise in uncertainty that will be the main drag on growth. But these effects are often estimated to be short-lived, with growth rebounding sharply once uncertainty fades.[1]
+
+The staff projections are therefore consistent with bringing interest rates to a neutral setting as inflation stabilises sustainably around our 2% target.
+
+The question then is how fast we should remove policy restriction.
+
+Our decision last week to cut our key policy rates by 25 basis points reflects the conviction that a gradual and data-dependent approach remains the most appropriate strategy.[2]
+
+There are three reasons for this.
+
+First, while we are increasingly confident that price stability is within reach, an important part of disinflation has yet to materialise.
+
+Services inflation, in particular, remains high at 3.9%. At the same time, momentum indicators, such as the three-month-on-three-month rate, suggest that price pressures have started to ease. But such signals critically depend on the way the seasonal adjustment is done.
+
+For example, shifts in households’ consumption patterns in the wake of the pandemic may be making the seasonal adjustment more difficult. Estimates by financial market participants suggest that, when correcting for these potential shifts, momentum could be measurably higher than what our current estimates imply.[3]
+
+Indeed, over the past two years, November has turned out to be a notable outlier in terms of the month-on-month change in services inflation (Slide 5, left-hand side).
+
+Also, while the baseline scenario assumes a cyclical recovery in productivity growth that is expected to ease the growth in unit labour costs, hysteresis effects or other structural factors could weigh on productivity and investment over an extended period of time.
+
+Recent scenario analysis conducted by ECB staff shows that, in that case, growth would be lower and inflation higher – 0.3 percentage points cumulatively by 2026 – than in the baseline (Slide 5, right-hand side).[4]These effects would rise notably if the forces weighing on productivity growth were more permanent.
+
+So, even if most of the evidence points to continued disinflation, we should remain alert to signs that cast doubt on our baseline. A gradual approach allows us to react to such signs.
+
+Second, new shocks keep hitting the euro area economy, many of them posing upside risks to inflation.
+
+Gas prices, for example, have doubled since February (Slide 6, left-hand side). As a result, wholesale electricity prices have increased substantially. Food prices, too, have started rising at a concerning pace, at an annualised three-month-on-three-month rate of 4.6% in November, up from 0.9% in May (Slide 6, right-hand side).
+
+Moreover, climate mitigation measures are increasingly affecting prices over the medium term.
+
+In 2027, for example, Eurosystem staff expect inflation to rise above 2%, mainly due to the planned expansion of the EU emissions trading system to buildings, road transport and small industry (ETS2).[5]
+
+In addition, while the direction and persistence of the various effects of potential tariffs on inflation are ambiguous, their net effect is often estimated to be positive.
+
+While a decline in foreign demand for euro area goods as well as trade diversion, especially from China, are likely to be disinflationary, several channels could mitigate or even offset these forces.
+
+For example, the EU may retaliate with tariffs of its own, as it did in 2018. Also, the parallel impulse to the US economy coming from expansionary fiscal and supply-side policies could support foreign demand, even as tariffs increase, because many products are not substitutable in the short run.
+
+Finally, since the end of September the euro has depreciated by more than 6% against the US dollar, largely in anticipation of the incoming US administration’s economic policy intentions. This is already putting upward pressure on import prices.
+
+Such inflationary shocks are of particular concern in the current environment, as people are paying more attention to inflation after recent experiences. The latest Eurobarometer reveals that inflation remains people’s biggest concern in most euro area countries.[6]This attention makes inflation expectations more vulnerable after a long period of high inflation.
+
+Proceeding gradually allows us to respond to new shocks in an environment of elevated uncertainty and volatility.
+
+Third, a gradual approach is the most appropriate course of action the closer we are getting to neutral territory.
+
+There are two related sets of benchmarks for monetary policy.
+
+One is simple Taylor-type policy rules that are used in most structural models to replicate the systematic response of monetary policy to movements in inflation and growth. While such rules need to be treated with caution, they are a useful policy benchmark.
+
+As there are many ways such rules can be formulated and estimated, it is helpful to use a thick-modelling framework that reduces some of the data and model uncertainty.
+
+Such a framework currently suggests that the median rule points to a gradual dialling back of policy restriction (Slide 7). It also suggests that the distribution of projected interest rate outcomes is skewed to the upside.
+
+The second benchmark is the natural real rate of interest, r*. There is no consensus on what its main drivers are, or on how to best estimate it. As a result, the range of estimates is exceptionally large, both within and across models.
+
+Recent analysis by ECB staff across a suite of models suggest that the point estimate of r* ranges from about -0.5% to 1%, or about 1.5% to 3% in nominal terms.[7]This is similar to recent estimates by economists from the Bank for International Settlements.[8]
+
+Significant parameter uncertainty makes it even more challenging to use the natural rate as a guidepost for monetary policy.
+
+In this uncertain environment, it is helpful to focus on what has changed in recent years to understand whether real equilibrium rates could be higher today than during the 2010s. An increase would warrant a more cautious approach by central banks removing policy restriction.
+
+Changes in the demand for and supply of global savings suggest that equilibrium rates may have increased in recent years.
+
+The pandemic, Russia’s invasion of Ukraine and other shocks have led to an increase in public debt around the world (Slide 8, left-hand side). Net borrowing by governments remains substantial. In 2024, the public deficit will be around 5% of GDP across advanced economies and it is expected to decline only marginally in the coming years, also reflecting borrowing requirements associated with the digital and green transitions (Slide 8, right-hand side).
+
+The International Monetary Fund (IMF) projects that, in the coming years, overall global investment – public and private – will reach the highest share in GDP since the 1980s.
+
+It is likely that, as a result, real interest rates need to rise to clear the global market for savings. This may especially be the case as rising geopolitical fragmentation contributes to reducing the supply of savings, including those provided by price-insensitive investors.
+
+In the United States, for example, the decline in the share of foreign official holdings of US Treasury securities has accelerated in recent years (Slide 9, left-hand side). It is now at the lowest level in more than twenty years.[9]
+
+Incidentally, since about late 2022, asset swap spreads started to widen measurably in both the euro area and the United States, suggesting that investors are gradually demanding a higher return to warehouse the supply of global public bonds (Slide 9, right-hand side).[10]
+
+These developments are contributing to the reversal of the global savings glut, which put notable downward pressure on real rates for the greater part of the 21st century.[11]
+
+This has repercussions for the assessment of the monetary policy stance.
+
+For example, given the notable increase in real short-term rates expected to prevail in the distant future, which are often taken as proxies for the natural rate, the policy stance today may already be in neutral territory, as real spot rates have started to fall below their equilibrium levels (Slide 10).
+
+Other indicators point in a similar direction.
+
+In our most recent bank lending survey, for example, 93% of banks report that the general level of interest rates no longer plays a role in explaining weak loan demand. This contrasts sharply with a year ago when almost half of the banks said that interest rates were a factor contributing to lower loan demand.
+
+Similarly, the survey on the access to finance of enterprises shows that the pressure from interest expenses is gradually easing. The net percentage of firms indicating an increase in interest expenses fell from 36% to 19%, reaching similar levels to those recorded at the end of 2021.
+
+Finally, among households, we have observed a notable turnaround in the demand for housing loans. A net 39% of banks reported higher demand in the third quarter, a share close to the historical peak of 45% and well above the historical average (Slide 11, left-hand side).
+
+This increase in the demand for housing loans is broad-based across countries. Banks expect it to continue, reflecting both the decline in mortgage rates and improving housing market prospects. In the second quarter, the euro area house price index rose for the first time in more than a year (Slide 11, right-hand side).
+
+All this suggests that we should proceed with caution and remain data-dependent, assessing at each monetary policy meeting whether disinflation remains on track and whether, and to what extent, interest rates remain restrictive. In doing so, we can continuously cross-check the assumptions underlying the staff projections and thereby retain a forward-looking perspective.
+
+This is especially important at a time when past pandemic-related shocks are starting to recede, and new shocks are increasingly driving price and wage dynamics.
+
+This shift in regime – from a high-inflation environment to one where inflation is consistent with price stability – has two important implications for the conduct of monetary policy.[12]
+
+One is that it has a direct impact on the effectiveness of monetary policy.
+
+The success of central banks in paving the way towards restoring price stability after the recent inflation surge has a lot to do with how monetary policy works. In a high-inflation regime, price increases tend to reflect factors common to most goods and services.
+
+This is what has happened in recent years. The common component of inflation rose sharply as firms reacted to the combination of higher energy prices, supply-side bottlenecks and pent-up demand after the pandemic-induced lockdowns. This was reflected in the rapid broadening of inflation pressures across the goods and services contained in the consumption basket (Slide 12).
+
+Ultimately, these shocks affected all sectors of the economy, especially when second-round effects pushed wage demands higher across firms. Wage-price spirals are often the clearest sign of a regime shift, when changes in the general price level become a coordination device for price and wage setters.
+
+As monetary policy affects aggregate demand as well as the inflation expectations of both firms and households, it is powerful in counteracting such common shocks (Slide 13, left-hand side).
+
+As this process is nearing completion and we are re-entering a regime of price stability, idiosyncratic price shocks that reflect relative price changes, and that are mostly independent of each other, will again dominate in driving aggregate inflation.
+
+This is reflected in the measurable decline of the common component.
+
+Idiosyncratic price changes, however, tend to be less responsive to changes in aggregate demand and hence to changes in monetary policy (Slide 13, right-hand side). As a result, monetary policy becomes less effective in steering overall inflation.
+
+Central banks then need to carefully weigh the benefits and costs of trying to lean against relative price shocks. The strongest case for acting is when prices start to co-move again, either because of a new large shock or a series of shocks that move prices in the same direction.
+
+But in the absence of such shocks, policy should be careful not to overreact.
+
+This is especially the case if idiosyncratic shocks reflect structural forces. While it is inherently difficult to separate cyclical from structural factors, surveys among firms suggest that a significant part of the current weakness in parts of our economy relates to forces outside the realm of monetary policy.
+
+In our latest corporate telephone survey, for example, firms reported that the recent decline in business sentiment was driven by growing concerns about political developments, both in Europe and globally, and waning competitiveness amid high energy costs and the green transition.
+
+Firms expressed concerns about rising regulatory costs, such as those resulting from the Corporate Sustainability Reporting Directive (CSRD) or the Corporate Sustainability Due Diligence Directive (CSDDD). Compliance with these and other directives is seen as complex and resource-intensive, especially for smaller firms.[13]
+
+In other cases, such as the General Data Protection Regulation (GDPR) or the Artificial Intelligence (AI) Act, there is mounting concern that regulation is increasingly stifling innovation and competition, especially in important areas such as AI.[14]
+
+Particularly in Germany and France, these structural headwinds are causing businesses to postpone, or even refrain from, transformative investments and focus instead on efficiency and cost-cutting, which, in turn, is weighing on consumer confidence and spending.
+
+An expansionary monetary policy stance will change this dynamic only marginally, if at all.
+
+Recent research by Òscar Jordà, Sanjay Singh and Alan Taylor corroborates this view.[15]It shows that, while the effects of tight monetary policy can be persistent, central banks cannot boost potential output by bringing rates into expansionary territory (Slide 14, left-hand side).
+
+And while the benefits of using monetary policy to deal with idiosyncratic shocks are likely to be limited, the welfare costs that it has for society can be significant.
+
+One of the costs is that relative price adjustments support the efficient allocation of resources within the economy. Leaning too strongly against them in the absence of clear risks to price stability may inhibit this process.
+
+The other is that valuable policy space is lost and so will not be available to support employment and growth when the economy faces shocks that monetary policy can deal with more effectively.
+
+This was the case when the pandemic hit. At that time, interest rates were already close to their effective lower bound. As a result, central banks needed to resort to unconventional policy instruments. However, the effectiveness of such measures in stimulating aggregate demand is more uncertain, while their potential side effects are larger.[16]
+
+The second implication is that, when relative price shocks dominate, inflation is largely self-stabilising. As a result, central banks can have a greater tolerance for moderate deviations of inflation from target, in both directions.
+
+The reason is that the impact of changes in aggregate demand on inflation is weaker in an environment in which price changes are largely independent from each other. That is, the Phillips curve is highly non-linear: its slope is often steep when inflation is high, and it is flat when inflation is low.[17]
+
+In this environment, it takes a large shock to aggregate demand for inflation to measurably and persistently drift away from the economy’s nominal anchor – our 2% target. So there is less need for policy to respond to moderate shocks.
+
+This is especially true for disinflationary shocks. Overwhelming empirical evidence suggests that nominal wage cuts are extremely rare and that the frequency at which firms adjust prices lower is highly stable over time (Slide 14, right-hand side).[18]
+
+And when prices and wages do not chase each other as they did over the past years, inflation is largely self-stabilising. As such, the risk of falling into a truly harmful deflationary spiral is limited. Monetary policy can then be more patient and allow inflation to deviate from target for longer than in a situation in which risks of second-round effects are larger.[19]
+
+This can also be seen in the historical properties of commodity price shocks.
+
+When oil prices fell sharply and persistently in 2014, the pass-through to consumer prices and wages was moderate. Underlying inflation, while weak, never fundamentally drifted away from our 2% target.
+
+But in 2022, when inflation was already rising on the back of the repercussions of the pandemic, firms raised their prices considerably and much more frequently than when inflation was low and stable.
+
+Let me now conclude with three main take-aways.
+
+First, price stability is within reach. Considering the risks and uncertainties we are still facing, lowering policy rates gradually towards a neutral level is the most appropriate course of action.
+
+Second, once price stability has been restored in a sustainable manner, the behaviour of inflation will change such that central banks can afford to tolerate moderate deviations of inflation from target, in both directions.
+
+Given limited policy space, monetary policy should focus on responding forcefully to shocks that have the capacity to destabilise inflation expectations by pushing inflation measurably and persistently away from our 2% target over the medium term.
+
+Third, monetary policy is not a supply-side instrument. It cannot resolve structural issues that durably weigh on price pressures, as was the case during the 2010s, when a highly accommodative monetary policy stance over a long period was unable to lift the economy out of the low-growth, low-inflation environment. Structural policies are the responsibility of governments.
+
+Thank you.
+
+Bloom, N. (2009), “The Impact of Uncertainty Shocks”,Econometrica, Vol. 77(3), pp. 623-685.
+
+Lagarde, C. (2024), “Monetary policy in the euro area”, speech at the Bank of Lithuania’s Annual Economics Conference on “Pillars of Resilience Amid Global Geopolitical Shifts”, on the occasion of the 10th anniversary of euro introduction, Vilnius, Lithuania, 16 December.
+
+Choraria, N. (2024),Inflation Trading, Goldman Sachs International, 9 November.
+
+ECB (2024),Eurosystem staff macroeconomic projections for the euro area, June.
+
+European Commission,ETS2: buildings, road transport and additional sectors.
+
+Eurobarometer, November 2024.
+
+Brand, C., Lisack, N. and Mazelis, F. (2024), “Estimates of the natural interest rate for the euro area: an update”, Economic Bulletin, Issue 1, ECB.
+
+Benigno, G., Hofmann, B., Nuño, G. and Sandri, D. (2024), “Quo vadis, r*? The natural rate of interest after the pandemic”,BIS Quarterly Review, March.
+
+This has coincided with the price of gold – the world’s other safe haven asset – having more than doubled over the past ten years.
+
+Real rates could rise more substantially if investors were to regard government bonds as less safe, pushing equilibrium risk premia higher. Analysis by the IMF, for example, suggests that if the premia were to rise back to pre-2000 average levels, they could bring up natural rates in advanced economies by 70 basis points. See IMF (2023), “The natural rate of interest: drivers and policy implications”, World Economic Outlook, April.
+
+Bernanke, B. (2005), ”The Global Saving Glut and the U.S. Current Account Deficit”, remarks at the Sandridge Lecture, Virginia Association of Economists, Richmond, Virginia, 10 March.
+
+This part of the speech builds on insights contained in Borio, C., Lombardi, M., Yetman, J. and Zakrajšek, E. (2023), “The two-regime view of inflation”,BIS Papers,No 133.
+
+For instance, Mario Draghi’s report on the future of European competitiveness presented estimates of the costs for complying with the Corporate Sustainability Reporting Directive ranging from €150,000 for non-listed businesses to €1 million for listed companies. Also, according to the 2024 European Investment Bank survey, nearly a third of small and medium-sized firms report that more than 10% of their staff are employed to assess and comply with regulatory requirements and standards.
+
+Goldberg, S. (2023), “Balancing act: Protecting privacy, protecting competition”, Stanford Institute for Economic Policy Research,Policy Brief, January; Gal, M. and Aviv, O. (2020), “The Competitive Effects of the GDPR”,Journal of Competition Law & Economics, Vol. 16(3), pp. 349–391; and Chivot, E. and Castro, D. (2019), The EU Needs to Reform the GDPR to Remain Competitive in the Algorithmic Economy, Center for Data Innovation, 13 May.
+
+Jordà, O., Singh, S. and Taylor, A. (2020), “The Long-Run Effects of Monetary Policy”,NBER Working Paper,No 26666.
+
+Schnabel, I. (2024), “The benefits and costs of asset purchases”, speech at the 2024 BOJ-IMES Conference on “Price Dynamics and Monetary Policy Challenges: Lessons Learned and Going Forward”, Tokyo, 28 May; and Schnabel, I. (2024), “Reassessing monetary policy tools in a volatile macroeconomic environment”, speech at the 25th Jacques Polak Annual Research Conference, Washington, D.C., 14 November.
+
+Benigno, P. and Eggertsson, G. (2023), “It’s Baaack: The Surge in Inflation in the 2020s and the Return of the Non-Linear Phillips Curve”,NBER Working Paper, No 31197. See also Hooper, P., Mishkin, F.S. and Sufi, A. (2019), “Prospects for Inflation in a High Pressure Economy: is the Phillips Curve Dead or is it Just Hibernating?”,NBER Working Paper, No 25792.
+
+More recent contributions are Grigsby, J., Hurst, E. and Yildirmaz, A. (2021), “Aggregate nominal wage adjustments: new evidence from administrative payroll data”,American Economic Review, Vol. 111, No 2, pp. 428-471 and Schaefer, D. and Singleton, C. (2023), “The extent of downward nominal wage rigidity: New evidence from payroll data”,Review of Economic Dynamics, Vol. 51, pp. 60-76.
+
+Lagarde (2024, op.cit.).
+
+DisclaimerPlease note that related topic tags are currently available for selected content only.
+
+Reproduction is permitted provided that the source is acknowledged.

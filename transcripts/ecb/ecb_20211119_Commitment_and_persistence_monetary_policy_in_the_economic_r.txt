@@ -1,0 +1,109 @@
+Commitment and persistence: monetary policy in the economic recovery | 2021-11-19 | European Central Bank | Speech
+
+Frankfurt am Main, 19 November 2021
+
+It is a pleasure to speak to you this morning.
+
+Today’s conference focuses on adapting to the challenges of the post-pandemic world, which is crucial to ensuring that our economies can emerge from this crisis stronger. But as much as we need to look to the future, we still have hurdles to overcome in the present.
+
+We are still in a phase where the economy is reopening and the effects of the pandemic have not yet fully played out. In particular, rising energy prices, supply bottlenecks and the withdrawal of physical distancing measures are causing considerable frictions in some sectors. This is being reflected in high inflation rates, which are likely to increase further until the end of the year.
+
+This inflation is unwelcome and painful – and there are naturally concerns about how long it will last. We take those concerns very seriously and monitor developments carefully. In particular, we recognise that higher inflation squeezes people’s real incomes, especially those at the bottom of the income distribution.
+
+But to understand what monetary policy should do in the current circumstances, we have to identify the underlying drivers of inflation. Today, I will argue that those drivers are likely to fade over the medium term, which is the horizon that matters for monetary policy. And, because they largely stem from the supply side and energy prices, they will probably slow the pace of the recovery in the near term.
+
+Our recent strategy review provides us with a playbook for how to act in such a situation.
+
+Our review confirmed that we see negative and positive deviations from our 2% inflation target as equally undesirable. But for inflation to return sustainably to target when interest rates are near the effective lower bound, we need to be persistent in our monetary policy. In particular, we must not rush into a premature tightening when faced with passing or supply-driven inflation shocks.
+
+In the words of Abraham Lincoln, “commitment is what transforms a promise into a reality” – and this is the spirit we need to ensure that we reach our 2% target on a durable basis.
+
+At a time when purchasing power is already being squeezed by higher energy and fuel bills, an undue tightening would represent an unwarranted headwind for the recovery.
+
+However, as positive demand forces in the economy gain strength, the inflation outlook over the medium term is looking better than it did before the pandemic. So, we should continue nurturing these forces by not withdrawing policy support prematurely.
+
+What are the drivers of inflation in the euro area today?
+
+To begin with, there is still some inflation that is purely “mechanical” and results from base effects. Inflation fell dramatically last year during the lockdowns – averaging 0.3% – and that automatically leads to higher inflation this year, because we measure inflation on a year-on-year basis.
+
+For example, the Deutsche Bundesbank estimates that the reversal of the German VAT cut last year will add 1.2 percentage points to inflation in Germany in the second half of 2021.[1]But this also means that the same percentage will be subtracted from inflation in Germany in January of next year.[2]
+
+The more important drivers of inflation dynamics today are related to the frictions we are seeing as the economy reopens. These frictions are showing up in two main areas: the surge in energy prices and in supply-demand imbalances.
+
+First, energy inflation, which was negative from the start of the pandemic until the spring of 2021, shot up to 23.7% in October. This is by far the fastest growth rate since the monetary union began. It contributed 2.2 percentage points – more than half – to overall inflation of 4.1% in October.
+
+This surge is linked to the reopening of the economy and the recovery in global demand, as well as other special factors. These include restrictions in OPEC+ oil supply, sluggish US shale oil production and lower gas exports from Norway and Russia. That combination of high demand and supply shortages caused European gas prices to soar to record highs in October this year.
+
+Second, supply-demand imbalances are also visible outside of the energy sector, which are pushing up underlying inflation too. This is being reflected particularly in industrial goods inflation[3], which is currently close to its highest level since 1999 and could increase further towards the end of the year.
+
+The jump in industrial goods prices is a result of, on the demand side, the pandemic-related switch in consumption patterns from services towards goods – for example, people buying home workout equipment rather than renewing their gym memberships – which has still not fully reversed.
+
+On the supply side, manufacturers are facing acute shortages of key inputs, which are then being exacerbated by the “bullwhip effect” – a situation where firms encountering higher demand are placing larger and earlier orders than necessary to ensure goods keep flowing out the door. That ricochets down the supply chain and causes further disruptions and shortages.[4]
+
+Services inflation is also displaying similar – if less pronounced – patterns. People are eating out and travelling again, while labour supply has not yet fully normalised and input costs are rising. In particular, we are seeing high job vacancy rates in some contact-intensive sectors, even as the number of people in employment is lower by around half a million than before the pandemic.
+
+On the back of these factors, inflation is now broadening in the euro area. The share of items in the core inflation basket with inflation rates above 2% has risen to around 45%. This is much lower than in the United States, where that share is around 75%.
+
+It is hard to predict exactly when the current drivers of inflation will subside. The pandemic is an unprecedented situation, there are lagged effects at play[5]and we have few past regularities to fall back on. Nevertheless, we remain confident that inflation pressures will ease over time.
+
+This is because we do not see the conditions in place – either at the economy-wide level or at the sectoral level – for inflation rates above our target to become self-sustained.
+
+First, for this to happen, an economy-wide “amplification mechanism” is typically required, where output rises persistently above its potential level, with wages and then prices following. But we do not see these dynamics at work in the euro area today.
+
+At present, the euro area is experiencing strong “catch-up” demand, but we do not see excess demand. Aggregate demand is currently below its pre-crisis level. In addition, in the coming months the rise in energy prices will most likely weigh on consumer spending in the euro area more than it does in other major economies, since we are a net importer of energy[6]– although some governments are taking important steps to limit the impact of higher energy prices on the most vulnerable members of society.
+
+At the same time, we have no reason to believe that aggregate supply has fallen significantly, causing the output gap to close from above. In fact, the extraordinarily successful policy response in the euro area was designed precisely to preserve our supply capacity.[7]
+
+Slack in the labour market is receding but wage pressures have not yet started to emerge. Growth of negotiated wages remains subdued.[8]This is perhaps not surprising if we remember that, over a longer period, we are not in a high-inflation environment: the average yearly inflation from November 2019 to today is not far from 1%.[9]
+
+Second, at the sectoral level, the frictions pushing up inflation should be gradually resolved as supply-demand imbalances are ironed out.
+
+On the demand side, the large shifts in relative demand, away from services and towards goods, should unwind once the pandemic has passed. Consumption of durable goods surged last year but is now close to its pre-pandemic level. By contrast, consumption of durables in the United States is currently around 30% higher than it was before the pandemic.
+
+On the supply side, the eventual resolution of supply chain disruptions should have a self-limiting effect on inflation. Labour supply should also increase once job retention schemes are phased out and some discouraged workers[10]start looking for employment again.
+
+So far, while frictions exist in some sectors, we do not see broad-based signs of a skills mismatch in the labour market.[11]In fact, employment in the euro area has been recovering strongly, increasing by 0.9% in the third quarter of this year[12], the second-highest growth rate since 1999.
+
+Finally, although the main driver of higher inflation, the price of energy, is likely to stay elevated over the coming months, it should stabilise in the course of 2022 – as it normally has done historically after a sharp rise. Futures prices for oil, gas and electricity point to a decline in the coming period, and gas prices have already fallen by about 21% since their record highs in October.
+
+However, prices remain volatile and there is some uncertainty over the longer-run outlook: for example, a global shift away from emission-intensive energy could lead to a sustained demand for gas as a transition fuel, resulting in further periods of price volatility.[13]
+
+So, how should monetary policy respond?
+
+As I have already indicated, in our strategy review we considered carefully how to respond in circumstances where we face pronounced but passing inflation shocks. Three key elements of our strategy are relevant to the current situation.
+
+First, we focus on the medium term, not on current inflation numbers. This is because, for one, monetary policy affects the economy with a lag. So, when inflation pressure is expected to fade – as is the case today – it does not make sense to react by tightening policy. The tightening would not affect the economy until after the shock has already passed.
+
+Second, our strategy tailors our monetary policy response to the type of shock we are facing.
+
+If we are facing a demand shock, where domestic wages and prices are being pushed up by excess demand, tightening policy can help cool the economy and bring down inflation. A supply shock, however, will tend to push up inflation and depress output. In this situation, tighter monetary policy would only exacerbate the contractionary effect on the economy.
+
+Today, we are facing a mixture of shocks, which is partly related to catch-up demand but has a strong supply-driven element too. This is clear from the fact that inflation is rising but growth is losing momentum in the near term, as supply disruptions constrain production and higher energy prices eat into demand.
+
+Tightening policy prematurely would only make this squeeze on household incomes worse. At the same time, it would not address the root causes of inflation, because energy prices are set globally and supply bottlenecks cannot be remedied by the ECB’s monetary policy.
+
+The third key element of the new strategy is our conclusion that, when coming out of a period of too low inflation where interest rates are close to their effective lower bound, monetary policy has to be patient and persistent. This is because it takes time for stronger inflation dynamics to become self-sustained, and reacting too early to signs of rising inflation can derail that process.
+
+We expressed this persistent orientation via our forward guidance on interest rates, where we said that, for rates to rise, we need to see inflation reaching 2% well ahead of the end of our projection horizon and durably for the rest of the projection horizon, and we judge that realised progress in underlying inflation is sufficiently advanced to be consistent with inflation stabilising at 2% over the medium term.
+
+These conditions were designed especially to ensure that we do not overreact to supply-driven cost-push shocks that will not persist into the medium term and that, before raising rates, we have a high degree of confidence that underlying inflation dynamics have genuinely improved.
+
+As I have recently explained, the conditions to raise rates are very unlikely to be satisfied next year.[14]Moreover, even after the expected end of the pandemic emergency, it will still be important for monetary policy – including the appropriate calibration of asset purchases – to support the recovery and the sustainable return of inflation to our target of 2%. We will announce our intentions in this matter in December.
+
+But if we are patient and persistent now, I am confident that these conditions will eventually be met.
+
+GDP should reach its pre-pandemic level before the end of this year. Inflation expectations are rising towards our target. Measures of underlying inflation are moving in the right direction. And wage growth, which is a key element of underlying inflation, should start to gradually strengthen. The ECB’s recent contacts with large European companies suggest that wage growth will pick up somewhat next year.[15]
+
+Let me conclude.
+
+We do not take this phase of higher inflation lightly. But in our strategy review we have agreed on how to approach the type of situation we face today.
+
+We are committed to ensuring that inflation stabilises at our 2% target in the medium term. Today, inflation is largely being pushed up by the exceptional circumstances created by the pandemic. And the nature of the inflation is likely to slow the pace of the recovery in the near term.
+
+Monetary policy today must therefore remain patient and persistent, while being alert to any possible destabilising dynamics emerging. This is the best way to ensure that we return to our 2% inflation target on a sustained basis.
+
+Now, we need to follow Abraham Lincoln’s maxim and turn this promise into reality. And if we do, we will escape the low inflation environment of the last decade – and monetary policy will be able to adjust.
+
+DisclaimerPlease note that related topic tags are currently available for selected content only.
+
+Reproduction is permitted provided that the source is acknowledged.

@@ -1,0 +1,185 @@
+Monetary policy and financial stability | 2021-12-08 | European Central Bank | Speech
+
+Frankfurt am Main, 8 December 2021
+
+In 2008 the global economy was brought to its knees by a financial crisis that saw many of the largest financial institutions collapse, or teeter on the brink of collapse, with too little capital to support the economy when it was most needed.
+
+The consequences of the global financial crisis were still being felt many years later. In the euro area, where the sovereign debt crisis of 2011/12 hit at a time when the economy had just begun healing, it took more than ten years for unemployment to fall back to the levels seen in early 2008. The crisis left deep socioeconomic scars on millions of young people who faced the most precarious job market in decades.
+
+The efforts to rebuild our financial system to ensure that history does not repeat itself continue to this day. Tighter regulation and supervision have succeeded in making our financial system safer and more resilient. Unlike in 2008, banks acted as a critical backstop to our economy when the coronavirus (COVID-19) pandemic hit Europe last year, benefiting from the capital buffers they had built up in the years before.
+
+And yet, new risks to financial stability have appeared on the horizon. In our latest financial stability review, European Central Bank (ECB) staff identified pockets of exuberance in credit, asset and housing markets, echoing similar findings by experts at the International Monetary Fund. House prices, in particular, are rising at their fastest pace since 2005, while mortgage lending standards are deteriorating.[1]
+
+In my remarks today, I would like to discuss how monetary policy should take such financial stability risks into account. I will argue that the first line of defence – macroprudential policy – remains incomplete and not fully effective in the euro area, meaning that monetary policy cannot turn a blind eye to rising financial stability risks. This was one of the main conclusions of our monetary policy strategy review, which we completed in July of this year.
+
+I will then discuss the options available to central banks to manage the conflict that may, at times, arise between price stability and financial stability. These options include adjusting the horizon over which price stability is achieved, changing the policy mix, and adapting the design of individual policy instruments.
+
+The response of the global community to the havoc unleashed by the global financial crisis was to rewrite the rules governing the macro-financial policy framework. It strengthened the oversight and capital requirements of individual financial institutions and established macroprudential policy as a new policy domain in charge of ensuring the soundness of the entire financial system.
+
+The birth of macroprudential policy was a recognition that price stability and microprudential policies were not sufficient to ensure financial stability, and that financial stability was a necessary precondition for price stability.
+
+The new set-up foresaw a distribution of tasks according to the “separation principle”: by preventing the build-up of systemic financial vulnerabilities, macroprudential policies would allow central banks to focus on maintaining price stability and help offset the risks that monetary policy may, at times, pose to financial stability.
+
+The post-2008 paradigm has been built on growing empirical evidence that macroprudential policies, when available and activated, can be highly effective in promoting financial stability.[2]Unlike monetary policy, capital requirements and borrower-based measures, such as loan-to-value or loan-to-income ratios, are granular enough to be tailored to address imbalances where and when they arise.[3]
+
+Granularity is particularly beneficial in a currency union. In the euro area, for example, financial cycles are often not synchronised across countries, with imbalances building up within national boundaries (Slide 2, left-hand chart). In such circumstances, macroprudential policies designed to address country-specific developments will be more effective than area-wide measures, including changes in the ECB’s monetary policy stance.
+
+The institutional macroprudential landscape in the euro area reflects the benefits of subsidiarity.
+
+National authorities are the first line of defence in dealing with financial stability risks. Borrower-based instruments, for example, can only be activated and implemented at the national level. Supranational institutions, such as the ECB, retain the power to top up some national measures – mainly those linked to capital buffers – to respond, for example, to systemic risks posed by cross-country spillovers.
+
+In practice, however, the macroprudential framework in the euro area remains incomplete, making the separation principle untenable, for two main reasons.
+
+The first reason is inaction bias: macroprudential instruments are often activated too slowly or hesitantly. In many countries, macroprudential policies remain partly under the control of governments, making the implementation of politically sensitive instruments, such as borrower-based measures, more difficult, in particular if the costs of inaction become visible only over the medium term.[4]
+
+In the run-up to the pandemic, for example, the build-up of countercyclical capital buffers was limited, thereby restricting the macroprudential policy space available to the authorities when the COVID-19 crisis hit (Slide 2, right-hand chart).
+
+Today, rising vulnerabilities in residential real estate markets warrant a timely increase in system-wide resilience. Broad-based house price rises across both urban and rural areas, as well as growing signs of overvaluation, are rendering residential real estate markets in parts of the euro area increasingly prone to correction (Slide 3, left-hand chart).
+
+However, despite stretched valuations, lending for house purchases continues unabated (Slide 3, right-hand chart). In some countries, there is also evidence of a progressive deterioration in lending standards, as seen in the increasing share of loans with high loan-to-value and loan-to-income ratios.
+
+Owing to long transmission and implementation lags, macroprudential policy needs to be tightened today to counter the risks posed by these developments. Tighter lending standards, enforced through caps on loan-to-value or loan-to-income ratios, apply to new lending and therefore affect the resilience of banks’ mortgage portfolios only gradually.
+
+Our analysis shows that new or enhanced borrower-based measures should be implemented, or at least considered, in eight euro area economies. In two countries, targeted capital measures, such as the sectoral systemic risk buffer, should be considered with a view to building up resilience to risks related to high household indebtedness.
+
+However, the pace with which countries react to our recommendations, or those of the ESRB, varies significantly. While macroprudential policy is gradually being tightened in some countries, action remains insufficient in others.
+
+Germany, for example, received an ESRB warning already in 2019. Yet, although the German financial stability committee last week advocated that macroprudential policy should swiftly return to prevention mode, it remains the only euro area country where no macroprudential measures are currently in place – despite indicators of house price overvaluation having increased by 15 percentage points since the outbreak of the pandemic.
+
+The second reason why the euro area’s macroprudential framework remains incomplete relates to non-banks.
+
+The financial sector landscape in the euro area has changed significantly over the past decade. Today, non-bank credit accounts for around a third of firms’ total external debt financing, twice the share in 2008. These developments are to be welcomed. There are significant advantages in having a broad and diversified financial system.
+
+But while the regulatory response to the global financial crisis has succeeded in making the banking sector more resilient, the policy framework for the non-bank financial sector is far less developed, opening the door to regulatory arbitrage.
+
+In particular, the macroprudential framework for the non-bank financial sector is still in its infancy, which limits the ability of authorities to address emerging risks and vulnerabilities.
+
+These regulatory gaps were clearly visible during the market turmoil last year.[5]
+
+Bond and equity funds entered the COVID-19 crisis with historically low cash positions and other liquid asset holdings, resulting in a perilous mismatch between asset liquidity and redemption policies. Fund managers had to seek liquidity at a time when the capacity of markets to provide that liquidity had diminished sharply, resulting in forced asset sales and the amplification of adverse market dynamics.
+
+A properly developed and calibrated macroprudential framework for the non-bank financial sector could mitigate such risks and thereby support monetary policy in fulfilling its price stability mandate.[6]
+
+These shortcomings imply that monetary policy needs to take financial stability considerations into account for as long as the macroprudential framework in the euro area is incomplete and not fully effective.
+
+The pandemic has shown that this argument cuts both ways.
+
+When risks materialise in a procyclical manner, monetary policy needs to step in forcefully to secure price stability.
+
+The announcement of our pandemic emergency purchase programme (PEPP) in March 2020 had a strong and immediate stabilising effect on financial markets. It instantly addressed illiquidity and instilled confidence, thereby reducing systemic stress (Slide 4).
+
+To deal with the risks stemming from the non-bank sector, we also extended our purchases to commercial paper.
+
+Many money market funds came under severe liquidation pressure as investors redeemed large amounts of shares (Slide 5, left-hand chart). This, in turn, led to a freeze in the demand for commercial paper and a measurable rise in their issuance rate, draining liquidity from the system at a time when it was most needed (Slide 5, right-hand chart).
+
+In such situations, targeted interventions by the central bank are needed to stabilise the financial system and help fix impairments in the monetary policy transmission mechanism.[7]A failure to stabilise the financial system would severely jeopardise price stability.
+
+During economic upswings, however, central banks must recognise that the actions they take to deliver on their price stability mandate have the potential to contribute to a build-up of risks to financial stability.
+
+These risks have arguably increased in the vicinity of the zero lower bound. The progressive decline in the real equilibrium interest rate over the past few decades has severely limited the space that central banks have available to maintain stable prices by changing their key policy rates.
+
+As a result, central banks have to resort more often to balance sheet policies that entail the risk of contributing to the build-up of financial imbalances when the macroprudential policy framework is incomplete.
+
+In our recently concluded monetary policy strategy review, we explicitly recognised the potential financial stability risks that may accompany our policy measures, in particular with a more forceful or persistent policy response close to the lower bound.
+
+We therefore decided that, in addition to our economic analysis, our price stability assessment and proportionality analysis will now be based on an enhanced monetary and financial analysis.[8]
+
+In practice, taking financial stability considerations into account does not mean that central banks should adopt a policy of “leaning against the wind”, whereby monetary policy is systematically tightened when systemic risk builds up. There is a large body of empirical evidence suggesting that the costs of doing so typically outweigh the benefits.[9]
+
+Instead, there are three complementary avenues available to monetary policymakers to manage the conflict that may, at times, arise between price stability and financial stability.
+
+The first relates to the horizon over which monetary policy aims to bring inflation back to its target.
+
+The medium-term orientation of our monetary policy grants the flexibility required to tailor our policy response to the size, persistence and type of shock we are facing.
+
+The current environment is a good example.
+
+While a strong recovery in domestic demand and a rapid erosion of economic slack are expected to gradually bring inflation back to our target in the medium term, a combination of adverse supply-side shocks, mainly related to rising energy prices and supply chain disruptions, is now pushing inflation well above our target.
+
+Responding to such supply-side shocks by raising policy rates prematurely would risk choking the recovery and, given the long lags in transmission, exert downward pressure on inflation at a time when the shocks are likely to have already faded.
+
+To prevent this outcome, supply-side shocks typically warrant a temporary deviation from the target, provided price stability is restored over the medium term and inflation expectations remain anchored.
+
+The same logic applies to financial stability.
+
+Take the Governing Council’s decisions of December 2020 as an example.[10]
+
+At that time, the inflation outlook was fundamentally different from today. Consumer price inflation was projected to reach no more than 1.4% in 2023, well short of our 2% medium-term target. Vaccination campaigns had barely begun.
+
+Standard textbook economics would have prescribed a further easing of the monetary policy stance. Instead, the Governing Council opted for a policy of “preserving favourable financing conditions”, meaning that we would purchase assets under the PEPP flexibly according to market conditions rather than absorbing assets at a constant pace.
+
+We did so, in large part, because there was a risk that pushing real and nominal interest rates even lower – in an environment where monetary policy was already highly accommodative – would have further fuelled emerging overvaluations in parts of euro area financial and real estate markets.
+
+By tolerating a potential lengthening of the medium-term horizon, we effectively mitigated risks to financial stability which could have arisen from a more intense use of our policy instruments.
+
+In the future, challenges may reverse. For example, should inflation expectations become unanchored in response to a persistent period of inflation above our target, even if due to adverse supply-side shocks, this would call for a shortening of the horizon.
+
+In this case, monetary policy must not be held hostage by fiscal or financial dominance – that is, even if financial markets have become more sensitive to changes in policy, central banks need to find ways to secure price stability without jeopardising financial stability.
+
+Reversing the communicated order of instrument sequencing is not an appropriate policy response in such circumstances. Maintaining a high volume of asset purchases merely to avoid adjustments in long-term yields in spite of imminent risks to price stability would give way to fiscal and financial dominance.
+
+That said, given its current architecture, the euro area remains vulnerable to fragmentation, meaning there is a risk that unexpected policy adjustments may be amplified in parts of the euro area, leading to changes in financing conditions that are sharper than intended.
+
+A credible backstop that commits to counter such risks of fragmentation may help protect against disorderly movements and thereby allow the central bank to focus on its price stability mandate. The PEPP has effectively provided such a backstop function over the course of the pandemic.
+
+The second avenue to incorporate financial stability considerations into the monetary policy decision-making process concerns the choice of policy instruments. In short, provided the instruments are similarly effective, policymakers should prioritise the use of those that have the least adverse impact on financial stability.
+
+Asset purchases, for example, are an important tool for stabilising the economy at times of market turmoil or when the economy is at risk of falling into a deep recession, jeopardising price stability. But their cost-benefit ratio deteriorates as the economy gains ground, for three reasons.
+
+The first is moral hazard.
+
+If the financial sector can systematically count on central banks to absorb large amounts of credit and duration risk on their balance sheets, even in good times, this will create bad incentives.
+
+For example, despite the traumatising events of last year, liquidity holdings of investment funds remain at alarmingly low levels, leaving the sector vulnerable to large-scale outflows (Slide 6, left-hand chart).
+
+Liquidity risks are compounded by rising credit risks. Investment funds purchased around 70% of firms’ newly issued BBB and high-yield bonds, meaning they are exposed to the risk of substantial credit losses should conditions in the corporate sector deteriorate (Slide 6, right-hand chart). The average duration of their exposures has also increased during the pandemic, raising their vulnerability to a rise in interest rates.
+
+A second reason is asset valuations.
+
+By removing safe assets from financial markets, central bank asset purchases incentivise investors to rebalance their portfolios towards riskier and less liquid assets.[11]These rebalancing effects are important when risk-taking is too low rather than too high, in particular when the economy is in the midst of a recession.
+
+Over time, however, as the outlook gradually improves, the portfolio rebalancing channel may at some point result in excessive risk-taking and overvaluations. ECB staff estimates suggest, for example, that the return of a basket of global financial assets is currently far above its long-term average, while the likelihood of a costly downturn in economic activity has increased markedly over the medium term (Slide 7).
+
+The experience of the past few years demonstrates that portfolio rebalancing effects also extend to real assets, including residential and commercial real estate.
+
+New ECB research finds that monetary policy as well as mortgage supply have been major drivers of the recent marked rise in real estate valuations (Slide 8, left-hand chart). Unconventional measures, such as asset purchases, are likely to have contributed to these developments as they have been found to have a significantly larger impact on house prices than changes in short-term policy rates (Slide 8, right-hand chart).[12]
+
+The final reason relates to market functioning.
+
+Years of balance sheet expansion have caused the bond free float in some economies to decline to very low levels. In Germany, for example, our estimates suggest that less than a quarter of sovereign bonds are currently available for sale in financial markets (Slide 9, left-hand chart).
+
+As such, the market is at risk of not having available the amount of safe assets that it requires to function well. Although recent developments in euro area repo markets reflect a variety of factors, the increasing scarcity of assets may have contributed to amplifying the marked decline in German repo rates (Slide 9, right-hand chart).
+
+So, by gradually shifting the policy mix away from net asset purchases when the monetary policy objectives are within reach, central banks can mitigate financial stability risks effectively.
+
+This brings me to the third avenue that is available to policymakers in responding to financial stability concerns, namely designing policy instruments in a way that mitigates the risks they may pose to financial stability.
+
+At the ECB, we have done so in a number of ways.
+
+For example, only a few weeks ago we doubled the limit on cash that counterparties can pledge under our securities lending programme, thereby supporting bond and repo market liquidity at a time when the demand for collateral is rising and supply is limited.
+
+A second example relates to the design of our targeted longer-term refinancing operations (TLTROs). The target for lending that banks need to achieve to secure the most favourable rates deliberately focusses on bank lending to firms and excludes housing loans. In doing so, we aim to steer bank lending towards firms, limiting additional upward pressure on house prices.
+
+A third example concerns measures that protect the bank lending channel.
+
+There is abundant empirical evidence suggesting that the pass-through of changes in the policy rate to deposit rates diminishes in a low or negative rate environment, thereby reducing banks’ lending margins and their shock absorption capacity (Slide 10, left-hand chart).
+
+Even for deposits of firms, where the pass-through in negative territory has been strongest, the largest share is still accounted for by deposits with a rate stuck at, or slightly above, zero (Slide 10, right-hand chart).
+
+Two measures are contributing to offsetting some of the pressure that negative or very low rates imply for banks’ profitability and hence for the bank-based transmission of our monetary policy.[13]
+
+One is the introduction of the two-tier system under which part of banks’ excess reserves are exempted from negative rates. The other is the favourable rate at which banks can finance themselves through our TLTROs.
+
+Internal ECB analysis shows that, together, both measures broadly offset the costs banks incur when holding excess liquidity in a negative interest rate environment (Slide 11).[14]And both of these tools can be adapted and recalibrated should we see risks to the bank lending channel emerging.
+
+All in all, and with this I would like to conclude, a thorough financial stability analysis is needed to inform the choice, design and calibration of the various monetary policy instruments that we use in the pursuit of our price stability mandate.
+
+In doing so, we acknowledge that monetary policy itself may contribute to the build-up of financial stability risks, the potential societal costs of which are too large for central banks to ignore for as long as the macroprudential policy framework remains incomplete or not fully effective.
+
+Taking financial stability considerations into account does not mean that financial stability is itself an objective of monetary policy. But there is a broad consensus that it is a precondition for achieving price stability.
+
+Thank you.
+
+DisclaimerPlease note that related topic tags are currently available for selected content only.
+
+Reproduction is permitted provided that the source is acknowledged.

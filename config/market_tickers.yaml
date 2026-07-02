@@ -1,0 +1,66 @@
+sectors:
+  - name: "Banking"
+    tickers:
+      - symbol: "^NSEBANK"
+        exchange: "NSE"
+        type: "index"
+      - symbol: "HDFCBANK.NS"
+        exchange: "NSE"
+        type: "stock"
+      - symbol: "ICICIBANK.NS"
+        exchange: "NSE"
+        type: "stock"
+  
+  - name: "IT"
+    tickers:
+      - symbol: "^CNXIT"
+        exchange: "NSE"
+        type: "index"
+      - symbol: "TCS.NS"
+        exchange: "NSE"
+        type: "stock"
+      - symbol: "INFY.NS"
+        exchange: "NSE"
+        type: "stock"
+  
+  - name: "Pharma"
+    tickers:
+      - symbol: "^CNXPHARMA"
+        exchange: "NSE"
+        type: "index"
+      - symbol: "SUNPHARMA.NS"
+        exchange: "NSE"
+        type: "stock"
+  
+  - name: "Auto"
+    tickers:
+      - symbol: "^CNXAUTO"
+        exchange: "NSE"
+        type: "index"
+      - symbol: "MARUTI.NS"
+        exchange: "NSE"
+        type: "stock"
+  
+  - name: "Energy"
+    tickers:
+      - symbol: "^CNXENERGY"
+        exchange: "NSE"
+        type: "index"
+      - symbol: "RELIANCE.NS"
+        exchange: "NSE"
+        type: "stock"
+  
+  - name: "Broad Market"
+    tickers:
+      - symbol: "^NSEI"
+        exchange: "NSE"
+        type: "index"
+      - symbol: "^BSESN"
+        exchange: "BSE"
+        type: "index"
+      - symbol: "^GSPC"
+        exchange: "NYSE"
+        type: "index"
+      - symbol: "^GDAXI"
+        exchange: "XETRA"
+        type: "index"

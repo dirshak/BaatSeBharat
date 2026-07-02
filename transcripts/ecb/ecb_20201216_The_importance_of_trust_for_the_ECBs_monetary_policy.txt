@@ -1,0 +1,139 @@
+The importance of trust for the ECB’s monetary policy | 2020-12-16 | European Central Bank | Speech
+
+Frankfurt am Main, 16 December 2020
+
+Ladies and gentlemen,
+
+Thank you for inviting me to join this seminar series. I am pleased to speak to you today about Europe and about the euro. The seminar series “Havarie Europa”, literally translated as “shipwreck Europe”, touches on a topic that all proponents of European integration are forced to deal with time and again: euro-scepticism.
+
+Public trust in the European Union (EU) and European institutions like the European Central Bank (ECB) has suffered considerable strain in recent years due to the global financial crisis, the European sovereign debt crisis and the UK’s withdrawal from the EU. At present, the coronavirus (COVID-19) pandemic is posing huge challenges for the European Economic and Monetary Union (EMU).
+
+In these stormy conditions, the “ship Europe” has, however, not run aground. European institutions and national governments have responded rapidly and comprehensively to mitigate the economic impact of the pandemic. Europe has learned the lessons from past crises and shown that it is capable of navigating, even through turbulent waters. A “Havarie Europa” is therefore not within sight.
+
+The progress we have made in overcoming these shared challenges should be reason for confidence. A crisis-proof and economically successful Europe provides the best arguments to counter euro-scepticism. In the long run, a high degree of public trust will ensure European institutions’ capacity to act.
+
+This also holds true for the European Central Bank. The trust of citizens in the ECB and public support for the euro are essential for the effectiveness of our monetary policy and the independence of the central bank.
+
+Why is public trust so critically important for central banks?
+
+Money is a credence good. The euro bills and coins in our wallets, like deposits at the bank, are so-called fiat money. That is, they are not backed by an intrinsic value such as gold. Our money is a social convention, the value of which depends on trust in the money-issuing institution – i.e. the central bank.
+
+Public trust is therefore the cornerstone for fulfilling the ECB's primary mandate – maintaining price stability. Recent studies show that a high degree of trust is crucial for anchoring the inflation expectations of private households near the level that the central bank defines as price stability.[1]Stable inflation expectations in turn ensure that short-term deviations in inflation from the ECB’s medium-term target do not take hold in the price and wage decisions of companies and households. This mechanism can be self-reinforcing, as the achievement of our monetary policy mandate may in turn strengthen trust in the ECB.
+
+Furthermore, stable money and public trust in central banks are essential to generate broad acceptance of their independence in the population at large. Independence protects central banks against political interference and thus underpins the credibility of monetary policy. By contrast, a lack of public trust can render the central bank more vulnerable to political pressure. In a worst-case scenario, such a development can call into question the central bank’s independence.[2]
+
+Central banks’ public perception has changed substantially since the 2007-2009 global financial crisis. The tasks carried out by many central banks have become more diverse, for instance in the areas of banking supervision and financial stability. Many central banks today perform important functions in the field of macroprudential supervision, which deals with questions of systemic financial stability. In the area of monetary policy, the use of unconventional instruments has increased, in part reflecting long-term structural changes in the economy such as an ageing population or declining productivity growth. The ECB has thus introduced negative interest rates and bond-buying programmes to safeguard price stability in the euro area.
+
+The functioning of these measures is complex and its relationship to the mandate of the central bank is not easy to understand. Complexity often fuels suspicion. Hence the new measures are being questioned by parts of the public and some politicians, not least because of their suspected effects on house prices and inequality. This is all the more true as the ECB has not achieved its inflation target of below, but close to, 2 percent for several years, despite its extensive measures.
+
+Since the financial crisis, central banks therefore face new challenges relating to their communication and accountability. Transparency and a clear explanation of monetary policy measures are essential for a high degree of trust.
+
+These challenges are particularly pronounced for the ECB, as it is responsible for monetary policy in the entire euro area. The ECB has to gain public trust in 19 Member States, some of which have very different expectations when it comes to monetary policy. It is therefore all the more important for the ECB to analyse the evolution of public perceptions regarding its monetary policy, with a view to maintaining and increasing citizens’ trust in the long run.
+
+Public trust in European institutions and the ECB can be analysed using public surveys and empirical research.[3]The Eurobarometer survey offers a good basis for such an analysis, given that it provides data on trust in the currency union covering the entire period since its inception.
+
+Trust in the ECB – similar to trust in European institutions overall – has declined in the years following the financial crisis.[4]Net trust, the difference between the share of respondents who trust the ECB and those who do not, has been almost continuously negative for nearly ten years (Figure 1). Meanwhile, support for the euro has increased slightly over this period. According to the July 2020 Eurobarometer survey, 75 % of respondents are in favour of the European currency while 17 % are opposed to the euro, implying that net support is clearly positive.
+
+At first glance, this divergence between a comparatively low level of trust in the ECB on the one hand and growing support for the euro on the other hand appears contradictory, since the ECB, as a European institution, is responsible for the single currency. It is therefore important to analyse this divergence more precisely by considering different euro area countries and groups in the population.[5]
+
+In terms of attitudes towards the ECB and the euro, four groups can be distinguished: monetary union sceptics (red), who neither support the euro nor trust the ECB; ECB-sceptics (yellow), who support the euro, but do not trust the ECB; euro-sceptics (blue), who do not support the euro, but trust the ECB; and monetary union supporters (green), who support the euro and trust the ECB (Figure 2).
+
+For the euro area as a whole, monetary union supporters represent the largest share of the population in most years. The share of this group reached its lowest point in 2014 in the wake of the European sovereign debt crisis, but has grown to around 40 % since 2016 (Figure 3).
+
+Empirical data do, however, also show an increase in the share of respondents who support the euro but have no trust in the ECB.[6]Since the European sovereign debt crisis, this share has been stable at around 30 %.
+
+However, this overall picture for the euro area conceals heterogeneous developments in individual Member States. An analysis of empirical data at the country level suggests that attitudes towards the monetary union depend on economic developments.
+
+Countries that were severely affected by the financial crisis, such as Greece and Spain, experienced a relatively sharp decline in public support (Figure 4).[7]In Italy and Portugal, monetary union sceptics temporarily constituted the largest group. By contrast, the number of monetary union supporters in countries less affected by the financial crisis remained at a relatively high level.[8]
+
+However, even in France and Germany, ECB-sceptics temporarily represented the largest group.[9]
+
+The analysis at country level provides initial indications that citizens’ perceptions of the economic situation influence their attitudes towards the monetary union. The consideration of individual socio-economic characteristics confirms this conjecture: survey data support the conclusion that citizens who assess the current economic outlook in Europe positively are more supportive of the monetary union (Figure 5). Monetary union supporters constitute the clear majority among those respondents who assess the European economic situation at the time of the survey as rather good or very good. Conversely, monetary union sceptics form the largest group among those respondents who perceive the economy to be in a very bad state. The share of ECB-sceptics in all four groups of respondents has increased over time.
+
+A similar picture emerges when considering respondents’ personal financial situation. Those respondents who consider their own financial situation to be rather good or very good tend to be more supportive of the monetary union. Conversely, respondents with financial difficulties are more sceptical of the monetary union (Figure 6).
+
+Similar patterns are also reflected in the respondents’ attitudes towards the EMU depending on their level of education and their occupational background. People with a higher level of education are more likely to support the monetary union (Figure 7). For instance, manual workers and unemployed individuals display much lower levels of trust than white-collar workers and self-employed individuals.[10]
+
+However, no systematic differences in trust in the ECB and the single currency emerge when comparing differences in trust among various birth cohorts (Figure 8).[11]
+
+The descriptive analysis of Eurobarometer data can only provide limited insights into the key factors that influence trust in the ECB and the euro. It is therefore crucial to corroborate these study results by using more advanced analytical methods.
+
+Multivariate analyses confirm the influence of socio-economic variables on individuals’ trust in the ECB. For example, Bursian and Fürth (2015) show that even when controlling for other variables, respondents with a higher level of education, qualification and income, as well as individuals living in urban areas tend to trust the ECB more, while unemployed and retired individuals display a lower level of trust in the ECB.[12]
+
+Based on an analysis of Eurobarometer data, Farvaque et al. (2016) argue that the perception of future economic developments plays an important role: trust in the ECB grows with a more positive assessment of the economic outlook.[13]
+
+Moreover, the literature suggests that robust knowledge regarding the ECB’s mandate and tasks significantly strengthens trust in the central bank. For instance, Ehrmann et al. (2013) and Kaltenthaler et al. (2010) find that factual expertise regarding the ECB is accompanied by greater trust in the institution.[14]A study by Mellina and Schmidt (2018) concludes that the link between these characteristics also affects households’ inflation expectations.[15]
+
+In addition to advanced (objective) knowledge regarding the central bank, the subjective perception of one’s own monetary policy expertise also seems to affect trust in the ECB. Based on German data, Hayo and Neuenkirch (2014) conclude that – in addition to expert knowledge about the ECB and monetary policy – individuals’ subjectively perceived understanding of the ECB has a significant positive effect on respondents’ trust in the institution.[16]In a similar vein, Cruijsen and Eijffinger (2010) show that in the Netherlands, respondents tend to trust the ECB more if they view themselves as knowledgeable in the area of monetary policy.[17]
+
+Ehrmann et al. (2013) observe that there is a link between general support for EU institutions and trust in the ECB.[18]Kaltenthaler et al. (2010) show that trust in the ECB is greater in respondents who believe that their country’s interests are represented in the EU and who are satisfied with the functioning of democracy in the EU.[19]
+
+Studies also allow for a distinction to be drawn between those factors that affect trust in the ECB and support for the euro. Bergbauer et al. (2020) carry out an empirical analysis which shows that support for the euro tends to be related to respondents’ agreement regarding the general values of European cooperation. Trust in the ECB, on the other hand, hinges more on the citizens’ satisfaction with the concrete performance of the EU – and in particular its economic achievements.[20]
+
+These insights highlight the importance of successful economic policy to sustain and strengthen citizens’ trust in public institutions in the long term. The severe economic crisis resulting from the COVID-19 pandemic is therefore a major challenge to citizens’ trust in the ECB, the euro and the European Union in general.
+
+At the beginning of the pandemic period, the ECB was confronted with a dramatically deteriorating situation in financial markets. A rapid surge in uncertainty prompted market participants to abruptly withdraw funds invested in risky asset classes. Risk premia in many market segments rose sharply and funding conditions worsened markedly. However, the ECB’s swift and decisive policy response had a calming effect on financial markets. The Composite Indicator of Systemic Stress (CISS) used by the ECB indicates that this policy response has averted a severe financial market crisis in the spring of 2020 (Figure 9).
+
+The ECB’s crisis measures consist mainly of a new temporary asset purchase programme, tailored specifically to the pandemic crisis – the pandemic emergency purchase programme (PEPP). In addition, the ECB provides ample liquidity to banks at highly favourable conditions, thus ensuring that they continue to lend to businesses and households in the euro area. The ECB’s crisis measures thus ensure the smooth transmission of our monetary policy measures to the entire euro area.
+
+The economic consequences of the pandemic have especially affected those countries that already had relatively high debt levels prior to the crisis and where confidence in the ECB was rather low.[21]At the beginning of the pandemic period, there was thus a concern that limited fiscal space in some euro area countries would significantly constrain the fiscal response to the crisis. These fears increased the risk of fragmentation in euro area financing conditions, which was immediately reflected in the evolution of risk premia in European bond markets. The ECB effectively countered this risk, in particular by swiftly implementing the PEPP (Figure 10).
+
+Complementing the ECB’s crisis response and national fiscal support programmes, comprehensive measures were passed at the European level to provide financial support to governments, businesses and employees during the pandemic. In July, the European heads of state decided to expand the multiannual financial framework by €750 billion over a period of six years, starting in 2021, to enable long-term investments and structural reforms in the EU Member States. These European crisis measures contributed significantly to reducing financial market stress.
+
+It is undisputed that the large-scale monetary and fiscal policy measures cushioned the financial impact of the crisis significantly. However, it is still impossible to fully predict the impact on citizens’ trust in the ECB and the euro. The latest survey data can nevertheless offer some tentative, though rather sobering insights into how public trust has evolved over the course of the pandemic crisis.[22]
+
+Support for the euro has been largely stable.[23]By contrast, net trust in the ECB has fallen somewhat. A similar, yet even more pronounced, decrease could be observed with regard to trust in other supranational institutions like the European Commission and the European Parliament. Meanwhile, the latest survey results indicate that trust in national institutions seems to have increased over the course of the pandemic crisis (seeFigure11).
+
+This may be due to the fact that fiscal and healthcare policy initiatives at the national level were the most visible crisis response measures for the general public. Indeed, according to early surveys, a majority of respondents in the euro area (61 %) indicates satisfaction with the measures introduced by national governments. At the same time, respondents have split views regarding the measures taken by European institutions during the pandemic period: only 45 % of respondents view the crisis measures implemented to date favourably.[24]
+
+Nevertheless, citizens generally attribute a key role in handling the crisis to the EU: 62 % of respondents believe that the EU will take the right measures to tackle the crisis. 88 % are in favour of the EU drawing up an economic recovery plan to support all Member States.[25]Furthermore, 85 % of citizens agree that the necessary funds should be made available to the EU in order to better manage similar crises in the future.[26]
+
+According to many experts, the pandemic has demonstrated that European institutions, including the ECB, already have the capacity to effectively counteract an economic crisis in the euro area. Survey results are not yet reflecting this.
+
+What can European institutions take away from these findings?
+
+The pandemic carries the risk of reinforcing existing differences between individual EU Member States. Without a European policy response, Member States would have depended solely on their own fiscal space.
+
+The empirical findings suggest that such a divergence at country level would weaken trust in European institutions in some parts of the euro area. It is therefore in the ECB’s interest that European institutions can react to the challenges posed by the coronavirus pandemic in an efficient and coordinated manner.
+
+It is crucial for the funds from theNext Generation EUrecovery package to be used as productively as possible to sustainably increase countries’ growth potential, thereby mitigating the risk of economic divergence.
+
+A common monetary policy is an integral part of the European crisis response as it underpins the economic recovery by ensuring favourable financing conditions and ample liquidity provision. This allows monetary and fiscal policy measures to complement and reinforce each other.
+
+The European fiscal and monetary policy response to the crisis can only be a starting point. The crisis has once again exposed the missing elements of the euro area’s architecture. Nevertheless, the crisis has been countered decisively by means of a policy response at European level – in contrast to previous times.
+
+However, this does not alter the premise that a deepening of European integration would be important to support economic convergence in Europe, thus also increasing the effectiveness of our single monetary policy. Empirical evidence suggests that such economic convergence could in turn increase trust in the ECB and our monetary policy in a sustainable manner.
+
+On the one hand, there is a need for further European integration when it comes to the creation of common fiscal instruments at the European level and the reform of the fiscal framework. On the other hand, we should also focus on completing the banking union and strengthening the capital markets union.[27]All these elements would be important steps to make the single currency area more resilient to future crises.
+
+Improvements in communication are of vital importance for public trust in the ECB. A broad-based communication strategy is essential in our efforts to improve the public’s understanding of the ECB’s mandate and tasks. Empirical analysis of the survey results indicates that trust in the ECB remains particularly low in specific population groups. We must ask ourselves how we can ensure that our communication reaches all citizens across the entire euro area.
+
+A better understanding of the mandate and the necessary independence of central banks also fosters trust in the ECB. Acceptance of our independence, meanwhile, is important in ensuring that the ECB can continue to fulfil its mandate in the best interest of European citizens, without being subject to political interference.
+
+The complex structure of European decision-making processes poses particular challenges to communication efforts on the part of European institutions. In the ECB’s case, we face an additional difficulty: our decisions often concern complex economic issues. Furthermore, our communication has so far largely focused on market participants and monetary policy experts – this has done little to help the general public better understand monetary policy.
+
+The development of a more effective communication policy will therefore be a key topic in the context of our comprehensive monetary policy strategy review that we launched a few months ago.
+
+An important element of this review process is that the ECB and the Eurosystem’s national central banks engage in dialogue with civil society representatives. This dialogue will require us to engage with citizens’ expectations regarding the ECB’s role and to evaluate what these expectations imply for the review of our monetary policy strategy.[28]It is our aim to effectively use communication in order to strengthen public trust in the ECB in a sustainable manner.
+
+Let me conclude.
+
+Public trust in central banks is an indispensable foundation for successful monetary policy. In the case of the ECB, support for the euro is also a key indicator for the public’s acceptance of a common monetary policy in the European economic and monetary union.
+
+Survey data show that public support for the euro is high, even in crisis periods. However, public trust in the ECB has declined markedly since the global financial crisis.
+
+The analysis of survey data suggests that trust in the currency union is affected by macroeconomic developments and socio-economic variables. While many of these factors lie outside of our monetary policy remit, these studies still enable us to gain some insights on how to strengthen trust.
+
+A decisive European response to crises such as the current coronavirus pandemic can underpin trust in European institutions. This response requires a European architecture that provides suitable instruments to combat severe crises. Further steps towards European integration should strengthen Europe’s capacity to act.
+
+From the ECB’s perspective, we have to focus our efforts on improving communication with the public at large. Empirical studies show that a better understanding of our mandate is concomitant with greater trust in the central bank. Communication will therefore play an important role in the ECB’s strategy review.
+
+Public trust in the ECB has a direct impact on our monetary policy. Trust in the central bank stabilises inflation expectations of private agents and increases the effectiveness of monetary policy measures. The achievement of our mandate may, in turn, contribute to fortifying trust in the ECB. From this perspective, it is crucial that, during the current pandemic, the ECB has taken extensive measures to meet its price stability objective.
+
+Supported by strong European institutions, we have been able to withstand the turbulent waters of recent years. Together with the other European institutions, the ECB will continue to do its part to keep the “ship Europe” on course, even in the stormiest of conditions.
+
+Thank you very much for your attention.
+
+DisclaimerPlease note that related topic tags are currently available for selected content only.
+
+Reproduction is permitted provided that the source is acknowledged.

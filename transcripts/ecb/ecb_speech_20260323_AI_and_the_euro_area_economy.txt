@@ -1,0 +1,393 @@
+AI and the euro area economy | 2026-03-23 | European Central Bank | Speech
+
+Frankfurt, 23 March 2026
+
+Artificial intelligence (AI) stands out as a potentially-transformative general-purpose technology (GPT).[1][2]Like electricity or the internet before it, its potential lies not in any single application but its capacity to reshape entire production processes, business models and economic structures across the economy.[3]
+
+The AI technological frontier has advanced at a remarkable pace, progressing from narrow machine-learning systems capable of pattern recognition to large language models and generative AI platforms that can perform complex cognitive tasks. And the frontier keeps shifting. With agentic AI, the technology may increasingly act as an independent economic agent rather than a technology that merely augments human effort.[4]
+
+What distinguishes AI from earlier revolutionary technologies is its scope. Previous general-purpose technologies, from steam power to electrification to information and communications technology, primarily raised the productivity of goods and services production by making already-existing processes faster and cheaper. But AI has the potential to also raise the productivity of the innovation process itself. AI systems can meaningfully accelerate scientific discovery, shorten research and development cycles, and compress the time between knowledge creation and commercial application. The technology is set to not just shift the level of productive capacity but shift the rate at which productive capacity grows.
+
+This rapid evolution has spurred a fast-growing literature in economics and has also prompted extensive analytical work in the financial and consulting community. A striking feature of this literature is the extraordinary dispersion of its conclusions. In particular, estimates of the macroeconomic impact of AI range from the modest to the transformative, to the genuinely disruptive.
+
+Soon after generative AI emerged in late 2022, a March 2023 study by Goldman Sachs Research projected that widespread AI adoption could drive a 7 per cent increase in global GDP over a decade, raising annual labour productivity growth by around 1.5 percentage points.[5]A June 2023 study by McKinsey was even bolder, suggesting that AI, when combined with broader automation of work activities, could add as much as 3.4 percentage points per year to productivity growth through 2040.[6]
+
+More recent estimates span a wide range. At the lower end, Acemoglu (2025) concludes that aggregate total factor productivity (TFP) gains over the next ten years are unlikely to exceed 0.66 per cent in total, implying only a marginal increase in annual TFP growth.[7]In contrast, a 2025 OECD study projects that AI could add between 0.4 and 1.3 percentage points to annual aggregate labour productivity growth over the next decade in countries with high AI exposure and widespread adoption, such as the United States and the United Kingdom.[8]Aghion and Brunel (2024) generate a median estimate of 0.68 percentage point additional annual TFP growth.[9]Bergaud (2024) suggests an annual productivity boost for the euro area of 0.29 per cent.[10]
+
+Larger productivity gains are envisaged by studies that allow the innovation process to be transformed by AI, with the potential growth rate substantially boosted by computing power (“compute”) becoming a major input into the innovation process and AI also accelerating progress across a range of frontier technologies.[11][12]The most optimistic scenarios foresee AI transforming cognitive tasks and AI-powered robots transforming physical tasks, with compute generating the predominant share of total value added. At the same time, if some tasks and some industries turn out to be hard to automate, the aggregate economic impact of AI would be much more contained due to the “weakest link” constraint.[13]Since the long-run impact of AI will necessarily play out over decades, this debate will not be settled for a long time. In the rest of this speech, I will focus my attention on the shorter-run impact of AI.
+
+The early microeconomic evidence from specific deployments has been encouraging in some domains, even as the aggregate signal remains elusive. One experiment found that access to ChatGPT reduced the time taken on mid-level professional writing tasks by 40 per cent and raised output quality by 18 per cent, with the largest gains accruing to lower-ability workers.[14]Another study on the roll-out of a generative AI conversational assistant across more than 5,000 customer support agents found an average 15 per cent increase in issues resolved per hour.[15]These micro-level findings are suggestive but their macroeconomic significance remains uncertain: not all sectors have the same scope for AI-related process improvements.
+
+Beyond productivity, three interconnected analytical issues stand out as especially important for assessing the macroeconomic significance of AI. First, the speed of adoption. General-purpose technologies historically diffused slowly and unevenly.[16]Brynjolfsson et al. (2025) formalised this insight in the concept of the “Productivity J-Curve”, which outlines how investments in a new general-purpose technology initially reduce measured productivity, with aggregate gains materialising only after a substantial lag.[17]At the same time, Asirvathan, Mokski and Shleifer (2026) have calculated that the speed of adoption of general-purpose technologies has increased in recent decades, as vividly illustrated in Chart 1.[18]There is reason to believe, moreover, that the diffusion of AI may be especially fast and broad since the ease of deploying AI through available computer hardware and software lowers adoption barriers relative to earlier general-purpose technologies. At the same time, a by-product of faster adoption is the inevitability of greater adjustment frictions, with less time for workers and businesses to adapt to changes.[19]
+
+Second, and closely related, is the scale and composition of investment. AI is already driving a substantial surge in capital expenditure among leading technology firms, particularly in data centre infrastructure, semiconductors and energy systems. The extent to which this investment boom broadens beyond a narrow segment of the economy will shape its macroeconomic footprint. In turn, in view of the significant upfront capital outlays, access to finance will influence the pace and distribution of AI diffusion.
+
+The geographical distribution and nature of the required investment remain uncertain and, amongst other factors, depend on the relative capital intensities of AI producers and AI users. If productivity in the regions that are primarily AI users can benefit from the (intangible and tangible) capital accumulated in the AI-producing regions, then the investment required in the AI-using regions will be relatively lower than in the AI-producing regions. Chart 2 shows AI patent rates for the United States and the euro area, indicating a much higher rate for the United States.
+
+This is a general property in relation to technological capital. For instance, as shown in Chart 3, a striking pattern is the five-fold increase over the last decade in payments by euro area residents to owners of US-located intellectual property. This is consistent with technological investment in frontier countries also raising productivity overseas: it is not necessary for all countries to invest to the same extent.[20]
+
+Third, the impact of AI on employment and the labour market is potentially the most socially and politically salient aspect of the technology’s diffusion. A set of recent papers analyse the employment effects of exposure to generative AI. A 2024 IMF study estimates that almost 40 per cent of global employment is exposed to AI, with the share rising to around 60 per cent in advanced economies where cognitive-task-intensive occupations predominate.[21]Of the jobs that are exposed to AI in advanced economies, roughly half may benefit from AI integration through enhanced productivity, while the other half face the risk of displacement. Eloundou et al. (2023) show that around 80 per cent of the US workforce could have at least 10 per cent of their work tasks affected by the introduction of large language models.[22]A 2026 study by Massenkoff and McCrory assesses the impact of AI on employment in the United States based on a measure of AI displacement risk combining theoretical AI capability and real-world usage data for different occupations. These authors find no systematic increase in unemployment for highly exposed workers since late 2022, although there is suggestive evidence that hiring of younger workers has slowed in exposed occupations.[23]
+
+A recent survey across firms in the United States, the United Kingdom and Australia points to a discrepancy between the expectations of senior executives in private sector firms, who expect AI to lead to a reduction in employment, and employees, who expect AI to drive an increase.[24]For the EU, in particular, firm-level analysis shows that AI adoption by EU firms has resulted in a 4 per cent increase in productivity due to capital deepening, with no adverse effect on employment.[25]Taken together, the evidence suggests that the net effect of AI on employment will partly depend on the pace of adoption and the ability of labour markets to reallocate workers.
+
+These factors vary considerably across economies and are likely to produce divergent outcomes across sectors and skill groups.[26][27]
+
+Previous digital technologies were high-skill biased, increasing relative demand for college-educated workers, and were particularly complementary with the non-routine cognitive tasks concentrated at the top of the wage distribution.[28]The emerging evidence on whether this is also the case for AI is very mixed.[29]
+
+The existing literature on these issues has mostly focused on the United States, which hosts the dominant share of frontier AI development and is home to the most advanced early-adopting firms, providing the richest body of empirical evidence on deployment effects. The US evidence cannot be directly transposed to the European context, since both investment in AI and the rate of AI deployment are significantly lower in Europe than in the United States.[30]
+
+Furthermore, in assessing the macroeconomic impact of AI, it is also essential to take the global supply chain into account. The AI boom has been a key factor in the recent surge of global trade in high‑tech goods, particularly semiconductors (Chart 4). The United States is a substantial net importer of high‑tech goods, reflecting the import‑intensive nature of its AI‑related investment boom. With some exceptions, such as ASML in the Netherlands, most of the largest firms in the AI supply chain are in the United States, China, Taiwan and South Korea.[31]
+
+
+
+
+
+
+
+Mario Draghi identified the digital and innovation gap as a central structural weaknesses in European competitiveness, estimating that around 70 per cent of the EU’s per capita GDP gap with the United States can be attributed to lower productivity, with the primary driver being the gap between the US and European information and communication technology (ICT) sectors in terms of relative size and relative productivity growth.[32]The structural factors constraining adoption in Europe include the prevalence of small and medium-sized enterprises (SMEs), relatively shallow capital markets for high-risk innovation financing, a regulatory environment for AI adoption that, however well intentioned, can increase uncertainty and raise adjustment costs for early adopters, and, in some Member States, slower labour reallocation dynamics.[33]The recently released OECD.AI index, which provides a holistic view of national AI ecosystems (Chart 5), also suggests that the EU is not ideally positioned to take advantage of the technology.[34]
+
+
+
+
+
+If AI’s productivity dividend is adoption-dependent, then the diffusion trajectory in Europe becomes the decisive variable.[35]A scenario in which European firms adopt AI more slowly and unevenly than their US counterparts would not only compress Europe's productivity gains in absolute terms but could also widen the transatlantic productivity gap.[36]A similar gap may open up vis-à-vis China in view of its current intensive efforts towards economy-wide AI adoption. Furthermore, slow or uneven diffusion across firms, sectors and countries could also generate asymmetric productivity paths within the euro area, with knock-on effects on investment dynamics, wage growth and macro-financial conditions across the monetary union.
+
+Divergent international productivity paths also have implications for the current account and international financial flows. All else equal, higher productivity overseas should be associated with lower investment and higher savings in the euro area, generating a larger current account surplus and net financial outflows.[37]On the real side, classical trade theory suggests that the euro area could benefit from improved terms of trade, as a surge in US productivity lowers the price of its exports and thereby increases real wages in the euro area.[38]This benign channel may be offset, however, if frontier advances progressively displace euro area firms from technology-intensive sectors.
+
+It is against this backdrop that recent work on AI at the ECB has been conducted. The remainder of this speech presents some of this work and how it helps shed some light on the expected effects of AI adoption in Europe. I begin by reviewing what the data already show about the footprint of AI in the euro area economy. I then turn to the financial and funding dimensions of AI. Finally, I discuss the implications of AI for monetary policy. I will close with some observations on how we are deploying AI within the ECB’s own analytical and operational workflows.
+
+Let me briefly report on some insights from recent work by ECB staff on: (i) investment; (ii) AI diffusion and productivity growth; and (iii) employment in the euro area economy.
+
+Advances in AI are encouraging higher investment in digital technologies. Since 2014, digital investment in the euro area has become much more important, which can be illustrated by a proxy for digital investment based on annual euro area national accounts data.[39]The overall increase in digital investment between 2014 and 2024 was more than three times the aggregate growth rate in GDP and 1.5 times the growth of total business investment over that period. Intangible investment (including software and databases as well as research and development spending in the information and communication sector) accounts for the lion’s share of digital investment (Chart 6, panel a, red and green columns). Tangible business expenditure on ICT equipment also accounts for a significant share, while the proxy suggests that investment in data centre construction has remained relatively low in the euro area.
+
+While euro area digital investment has expanded markedly, the pace has remained well below that seen in the United States. Extending the digital proxy with more recent data suggests that euro area digital investment increased strongly in 2025, standing just over 60 per cent higher than in 2014 (Chart 6, panel b). Despite this strong growth, a similar proxy for the United States more than doubled over the same period, accelerating notably in 2025 on the back of a strong pick-up in data centre investment, leading to a striking – and widening – gap between the euro area and the United States.[40]
+
+Digital investment is expected to increase markedly, spurred by venture capital and Next Generation EU funding. In addition, two new EU-wide schemes – theAI Continent Action Planand theApply AI Strategy– have recently been introduced, with the aim of providing sizeable funding for digital investment and harnessing additional national funds from EU Member States. The latest Survey on the Access to Finance of Enterprises (SAFE) indicates that firms in the euro area plan to increase their AI investment over the next 12 months and that SMEs and large firms alike expect to allocate an average of 9 per cent of their total investment to AI in 2026.[41]Firms already using AI plan to increase their AI investment more than non-users, pointing to a potentially reinforcing cycle of adoption and innovation. Notably, SMEs that are significant AI users are expected to dedicate a larger share of their investments to AI compared with large firms, highlighting that some SMEs are at the forefront of AI adoption. These SMEs are predominantly small, belong to the services sector and are mostly family/single owned. However, according to a survey by the European Data Centre Association, a further acceleration of AI-related and digital investment could potentially be hampered by insufficient energy supply, shortages of skilled staff and overregulation.[42]Euro area digital investment could also be slower if AI does not deliver the expected productivity gains and cost reductions, leading to downward revisions to future demand.
+
+
+
+
+
+Diffusion of AI use is unfolding very quickly in the euro area. Recent data from the ECB’s Consumer Expectations Survey show that the share of employees adopting AI increased from 26 per cent in 2024 to 40 per cent in 2025 (Chart 7, panel a).[43]This is a much faster rate than the adoption of the internet or personal computers, which took about a decade to reach similar levels. AI usage is heterogeneous across demographic groups (Chart 7, panel b). Employees with a university education are more likely to use AI (47 per cent) than those without (28 per cent), and workers aged 18-34 are far more likely to use AI in their work (52 per cent) than those aged 55-74 (29 per cent). Gender differences only appear to play a marginal role in AI use.[44]
+
+Surveys of firms also show high adoption rates – with firm size playing an important role. Two-thirds of the 5,000 firms participating in the ECB’s SAFE reported that their employees use AI. This ranged from almost 90 per cent of firms with 250 or more employees to 60 per cent of firms with fewer than ten employees. While adoption rates are high, most firms in the euro area use AI only moderately or infrequently: the share of firms using AI significantly is only 7 per cent, with little difference between small and large firms, indicating that AI use is concentrated in a core set of firms (Chart 8, panel a).
+
+The relatively small share of firms that make significant use of AI suggests that AI is not yet embedded in corporate-level processes in many firms. This matters because firm adoption and organisational restructuring are historically the main channels through which general-purpose technologies create macroeconomic productivity gains. The survey responses indicate AI is primarily used to improve core and non-core processes, and less for reducing personnel costs, or supporting R&D and innovation (Chart 8, panel b). Firms not using AI or using it minimally cite a lack of AI skills, ethical concerns, or incompatibility with existing systems as barriers to adoption.
+
+
+
+
+
+The rate of AI adoption by employees and firms is crucial for the expected effects on productivity, in addition to the share of GDP exposed to AI tasks and the cost reductions associated with AI in those tasks.[45]Working through a range of scenarios analysed by ECB staff illustrates that the aggregate TFP impact of AI may vary widely, primarily driven by the speed of diffusion (Chart 9).[46]Faster adoption could yield substantially larger potential TFP gains over the coming decade – in the order of 0.3-0.4 percentage points per year, depending on the assumption of the scale of GDP exposure to AI. Slow adoption, as observed in past general-purpose technologies, would instead lead to TFP increases of around 0.2 percentage points per year. The critical role played by the adoption rate also implies that policies focusing on AI diffusion, training and SME adoption could be especially beneficial for boosting aggregate productivity.
+
+Assessing the overall impact of AI on employment at this early stage is especially difficult. In line with the recent literature, the evidence collected by the ECB so far also remains inconclusive.[47]
+
+According to the Consumer Expectations Survey, approximately 43 per cent of all workers believe that new technologies will have a positive effect on their productivity or job opportunities, another 34 per cent do not anticipate any effect and 23 per cent of workers have negative expectations, fearing job losses or worsening employment prospects (Chart 10, panel a). There are visible differences across demographic groups. Workers with university education and younger workers tend to hold more positive views about the effect of AI on their employment prospects.
+
+
+
+
+
+While workers in each sector are net positive about the employment impact of AI, there are some clear sectoral differences (Chart 10, panel b). In broad terms, workers in the high-contact sectors in which jobs are harder to automate are less pessimistic about the risk of job losses but are also less optimistic about improvements in employment opportunities.[48]
+
+On the firm side, references to AI in recent rounds of the ECB’s regular contacts with large non-financial companies (Corporate Telephone Survey, CTS) have surged, especially in discussions about the outlook for employment. At least among the very large firms included in the CTS, AI-enabled work process optimisation is reported to be one of the main drivers of a rather lacklustre employment outlook, despite an improving outlook for activity in recent months.[49]By contrast, econometric analyses based on the latest rounds of the SAFE find that AI use has been neutral for employment so far.[50]Moreover, for high intensity AI use, the effect is positive, driven by firms using AI for research and development.
+
+Overall, there is currently little evidence of a substantial effect of AI on employment in the euro area. Although AI entails significant displacement risks for many occupations, recent evidence suggests that these risks have not yet materialised.[51]
+
+AI adoption among euro area firms and employees has progressed rapidly, as shown by recent ECB analyses. This is fuelling expectations that AI will play an important role in shaping productivity growth and labour market dynamics. While recent work sheds light on how AI is already influencing investment patterns, it is still too early to draw firm conclusions about its longer-term effects on the euro area’s productive capacity, international position and labour market.
+
+The scale and nature of AI investment have implications for how it is financed. A useful starting point is the distinction between frontier firms developing AI technologies and the much larger set of firms seeking to adopt AI in their production, services and organisational processes. I will begin with the stock market perspective and then turn to how AI is financed “on the ground” by these different types of firms and to the role of the banking sector, which is an intensive user of AI in its own right.[52]
+
+
+
+
+
+AI has already left a clear mark on global equity markets. Since early 2023, AI-related narratives have been a central driver of US equity performance (Chart 11, panel a), largely because of the extraordinary rise in the earnings and valuations of the “Magnificent 7”, which are at the core of AI development. In the euro area, the picture is more muted. The Euro Stoxx 600 technology sector has only modestly outperformed the broad index. Two large firms with high AI exposure, ASML and SAP, drive much of this trend, but together they account for only about 4 per cent of the Euro Stoxx 600 market capitalisation. By contrast, the Magnificent 7 make up roughly 40 per cent of the S&P 500.
+
+The difference between the euro area and the United States shows up clearly also in the stock market reaction to AI news shocks: positive expectations of AI-driven productivity at the moment of filing an AI patent trigger a much sharper rise in US stock prices than in euro area stocks (Chart 12).
+
+A complementary view comes from comparing the performance of firms in high-AI and low-AI-intensity sectors within the euro area. Firms classified as high-AI-intensity have outperformed less exposed sectors in recent years across revenue growth, operating margins and earnings per share (Chart 11, panel b).[53]However, this performance gap narrows substantially once financial institutions are excluded from the group of AI-intensive sectors.
+
+The euro area is also participating in the AI boom as a portfolio investor. Euro area financial institutions, non-financial corporations and households have all increased their exposure to US technology stocks (Chart 13).[54]
+
+The distinction between AI creators and AI adopters is also relevant when considering how AI activity is financed, although both share the common trait of being less leveraged than other firms (Chart 14).[55]
+
+The large US IT firms that are currently driving the AI investment boom historically relied on internal funds, as their highly profitable operations generated cash flows that were more than sufficient to cover their investments. However, the scale of capital expenditures on AI is now so large that even these firms have had to turn to external financing, not just through equity (which may not be timely or cost-effective) but also through debt issuance and, increasingly, private credit.[56]
+
+Young frontier AI firms face high upfront development costs, long and uncertain paths to profitability, and balance sheets dominated by intangible assets such as intellectual property. These features make these firms ill-suited to traditional debt financing such as bank loans: they need long-term financing, carry elevated risk and their assets cannot be readily collateralised. As a result, they rely heavily on venture capital.
+
+In the euro area, venture-capital activity has increased, with a growing share being absorbed by AI-intensive sectors (Chart 15, panel a). Yet the pool of risk capital in the euro area remains shallow compared with the United States (Chart 15, panel b). This limits the ability of euro area start-ups to achieve scale. It has often been the case that, even when talent and early-stage research are European, incentives to relocate frontier technologies can be strong and the scaling takes place elsewhere. For instance, between 2008 and 2021, close to 30 per cent of the “unicorns” originally founded in Europe – start-ups that went on to be valued at over USD 1 billion – relocated abroad, with the vast majority moving to the United States.[57]The European Investment Bank (2026) reports that those firms that moved abroad, notably to the United States, cited better access to capital, proximity to large and unified markets and regulatory simplicity as reasons for their move.[58]
+
+
+
+
+
+For AI adopters, the financing mix of their AI initiatives has so far relied primarily on internal funds. According to the latest SAFE, firms that finance investment from retained earnings are more likely to use AI today (Chart 16). This is consistent with the observed recent uptick in the growth of cash holdings for firms with high AI activity (Chart 17).
+
+
+
+
+
+
+
+
+
+Data also show that only a modest share of bank lending flows to high AI-adoption sectors. In contrast to the recovery in bank loan growth seen in most sectors, loan growth in high AI-active sectors has been moderating recently (Chart 18, panel a). Instead, high AI-active firms have increasingly turned to market-based funding in the past year. The growth rate in debt securities issued by active AI users reached 13 per cent in January 2026, significantly higher than in less AI-active sectors (Chart 18, panel b).
+
+
+
+
+
+Private credit, which links investors directly with firms, has provided a useful complement to other sources of funding in AI-intensive sectors (Chart 19, panel a). By design, private credit funds can hold illiquid exposures for longer. Over the past three years, more than half of total private-credit volumes have gone to firms in “IT and other media” and healthcare. In contrast, only around 5 per cent of bank lending is directed to those sectors. The business models of private credit funds align more closely with the risks and financing needs of AI-related projects compared with bank lending. But, despite recent growth, private credit in the euro area remains very small and, mirroring the venture capital gap, far below US levels (Chart 19, panel b).
+
+
+
+
+
+Two implications follow.
+
+First, a firm’s capacity to adopt AI depends heavily on its balance-sheet strength. Better capitalised, more productive firms can finance AI adoption internally or access credit on favourable terms; weaker firms may be unable to undertake investments that would be profitable. SAFE evidence confirms that access to finance is a greater concern for firms investing in AI than for those that are not, especially in low and medium-intensity sectors.
+
+Second, the bank-centred financial system of the euro area is not well aligned with the scale and nature of the AI opportunity. Bank-based financing is structurally less suited to intangible, long-horizon investments, while alternative channels such as venture capital and private credit are too shallow in the euro area. Taken together, these patterns highlight the dual challenge facing the euro area: deepening capital market capacity to support frontier creators while ensuring reliable financing channels for widespread AI adoption. At the same time, private credit concentrates risks that public markets and bank regulation were designed to disperse. Opacity around valuations and underwriting standards, when combined with asset-liability mismatches as funds add liquid features to appeal to investors, creates new vulnerabilities. These structures can mask emerging losses and expose funds to redemption pressure just as market sentiment turns.
+
+This leads directly to the desirability of a deeper and more integrated capital market that can broaden the investor base for intangible-intensive projects, facilitate cross-border risk sharing and reduce the need for bank-based finance.[59]As such, the AI technology shock serves to illustrate the urgency of delivering the European Union’s savings and investments union.
+
+Although the banking system may not be well suited to financing AI investment, it is itself an intensive adopter of AI and is actively investing in digital technologies, among which AI plays a prominent role. Realised investments in 2025 amount to more than €4 billion in aggregate, equivalent to around 1.3 per cent of total tangible assets (Chart 20, panel a).Nearly 90 per cent of significant euro area banks already use AI technologies.[60]Adoption is especially high for fraud and cybercrime detection (more than half of banks), followed by marketing (around 50 per cent), chatbots (40 per cent) and credit scoring (30 per cent) (Chart 20, panel b).
+
+
+
+
+
+Banks typically develop AI tools in-house when they relate closely to proprietary knowledge, such as credit scoring or customer analytics (Chart 21, panel a). They rely more on external providers for fraud detection, cybersecurity and regulatory reporting. This pattern may reflect a balance between protecting competitive advantage and accessing specialised external expertise.
+
+
+
+
+
+If governed well, AI can strengthen risk assessment, improve operational resilience and enhance efficiency. More granular data and stronger predictive capabilities can improve credit pricing. Better detection tools can enhance security and reduce losses. Over time, these improvements can support a more efficient allocation of credit and greater risk-bearing capacity. To the extent that it enables a more efficient allocation of credit and pricing of risk, it may also stimulate loan demand. Consistent with this, the dispersion of interest rates on new term loans has increased over time for banks reporting stronger AI adoption for credit scoring relative to other banks, in line with greater information availability for loan pricing (Chart 21, panel b).
+
+But AI also brings new risks. Most obviously, there is an arms race between cyber criminals and banks in relation to the implementation of AI for fraud generation and fraud protection. In terms of credit risks, a key vulnerability stems from the growing exposure of the euro area financial sector to US firms at the frontier of AI development. An abrupt repricing of these valuations could generate spillovers into the euro area financial system.[61]A second concern is that stress in private credit and AI-linked debt markets could spill over to euro area banks and non-bank financial intermediaries. Risks may also arise from the structure of the AI industry itself. If the provision of critical AI tools is concentrated in a small number of technology firms, operational dependencies, including cyber risk, will deepen, potentially reinforcing “too‑big-to‑fail” dynamics.
+
+There is also the risk that AI may distort credit allocation. Evidence from recent research indicates that machine-learning credit models may worsen access to credit for minorities in the United States.[62]ECB staff analysis shows that AI-driven pricing algorithms may allow banks to exploit market power, potentially raising lending margins and reducing competitive pressure.[63][64]A larger customer base generates more data, enabling banks to refine products and expand services, which in turn produces yet more data, setting in motion a feedback loop.[65]
+
+The monetary policy implications of AI are highly uncertain.
+
+A natural benchmark analysis is to view AI as permanently increasing productivity, boosting incomes. If households and firms quickly internalise the permanent nature of the productivity shock and incorporate future increases in incomes into their spending decisions, the advent and adoption of AI could put upward pressure on inflation via this demand mechanism already early on during the transition phase.
+
+Yet, assuming that households and firms know precisely the nature, size and persistence of future productivity shocks is hardly realistic. A more sluggish consumption response can also be rationalised if the level of lagged consumption is an important determinant of the benefits of current consumption, as in “habit formation” models.[66]Consumers also face great individual-specific uncertainty about the income implications of the AI transition, providing a further reason to be slow to adjust consumption.[67]It is more plausible to posit that households and firms will learn about the income and employment impact of productivity shocks over time in a concurrent manner and will only slowly adapt spending to it.[68]In this event, the upfront inflationary effect would be strongly diminished.
+
+More generally, within the span of macroeconomic outcomes originating from different degrees of incorporating productivity and income gains into spending decisions, the inflationary effects of the AI transition will depend on a range of factors.
+
+One factor in determining the income, distribution and demand effects is whether the technological boost from AI will be labour or capital-augmenting. Technology is often modelled as labour augmenting: more can be produced with the same number of workers. This effect boosts labour income for workers, with the scale depending on their bargaining power and on institutional factors. Conversely, if AI is capital-augmenting, i.e. not enhancing labour productivity, income increases will accrue to capital owners, rather than labour, thereby increasing inequality of labour and capital income.[69]An increase in income and wealth inequalities could limit the extent to which demand expands across all sectors of the economy and thereby dampens the inflationary tendencies associated with AI-driven productivity gains.[70]
+
+A second factor is the scale of investment required to integrate AI into the economic value chain. Here, substantial computing power is likely required both in building AI foundational models and in implementing AI in business settings. Building the required computational infrastructure requires a substantial upfront increase in capital expenditures.
+
+A third factor is that the expansion in AI-related compute involves a substantial increase in energy demand and, until energy supply catches up, puts upward pressure on energy prices.[71]This dynamic is likely to add to inflationary pressure during the adoption phase of AI.
+
+The geographical distribution of AI activity is likely to be relevant for the impact on demand at the regional or national level. If AI activity turns out to remain concentrated in the United States and China and the AI supply chain remains heavily Asia-focused, then the increase in European investment and energy demand will be relatively muted. In this scenario, Europe would still face some upward inflation pressure from the effect of increased global demand on commodities and goods, especially in relation to products used as inputs into AI production. In contrast, if there is strong technological diffusion to Europe, then these demand-boosting channels will operate more powerfully in the euro area. This is especially true if technology diffusion can only be realised with some degree of local capital investment.
+
+We can translate the competing propositions about the degree of anticipation of the macroeconomic effects of the AI transition into implications for the natural rate of interest, defined as the real rate of interest that aligns desired savings and investment. In one direction, sustained optimism about the income and productivity gains from AI would boost investment and reduce savings, putting upward pressure on R*. In the opposite direction, the more households and firms are uncertain about the trajectory of the AI-induced income path and the distribution of income gains across regions and income groups, the less an increase in R* would materialise. In particular, precautionary savings could increase due to uncertainty about the displacement of labour or about constraints to financing AI-related investment.
+
+The time profile of R* also depends on the trajectory of technology adoption. Under one scenario, AI follows the typical S-shaped pattern, where adoption proceeds slowly in its early stages, accelerates during a phase of widespread implementation, and eventually plateaus as the technology matures. This profile means that AI permanently raises the level of productivity but does not permanently increase the growth rate of productivity. In contrast, an alternative scenario is that AI improves the innovation process, thereby shifting the economy to a permanently higher productivity growth rate. To the extent that productivity growth translates one-to-one into output and consumption growth, in the former scenario R* would eventually fall back to the level prevailing before the technological transformation, as the consumption growth path turns lower again once productivity gains abate, while in the latter scenario it would remain at a permanently higher level.
+
+Under either scenario, it might be expected that the investment rate turns out be quite volatile. One source of volatility is that there may be demand complementarities in implementing innovations, with each innovating sector benefiting if other sectors are also innovating.[72]Financial market sentiment to AI-related investment may also be subject to waves of optimism and pessimism, in view of the wide range of views concerning the long-term impact of AI. Indeed, there may exist multiple equilibria, with the transition to a high-capital equilibrium self-validated by optimistic beliefs that generate a financing feedback loop.[73]In the transition to the high-capital equilibrium investment initially surges and the interest rate is high but the interest rate subsequently falls sharply as capital becomes abundant and income mainly accrues to high-saving capital owners. At the same time, this mechanism is inherently fragile: a loss of confidence can trigger a self-fulfilling crash.
+
+Finally, if AI production opportunities remain concentrated in the United States and the AI adoption rate is higher in China than in Europe, there is a scenario in which investment declines in Europe, with investors reallocating capital both to the United States and China.[74]Especially if overseas AI capital can still boost European productivity through licensing arrangements, this scenario could still generate high incomes in Europe but with relatively little domestic investment, entailing downward pressure on R* in Europe. Some elements of this scenario are consistent with the high allocation to US technology stocks in euro area equity portfolios, the high level of European imports from the United States of intellectual property products and the increasing substitutability between Chinese and European products across a range of middle-tech and high-tech sectors.
+
+Given these different mechanisms, the net effect of the AI transition on R* remains uncertain. The most recent updates to staff estimates of euro area R* do not indicate a material change (noting that these were obtained before the onset of the current war in the Middle East).
+
+In particular, there have been only marginal changes in the range of R* estimates since 2024 (Chart 22). The upper bound of the range of estimates based on term structure models has drifted up from 2.25 to 2.50 per cent (rounded to 25 basis point steps). This is due to higher long-term market interest rates that have also been influenced by expectations of expansionary fiscal policy and the lower presence of the ECB in the bond market. Conversely, the lower end of the range remained stable at 1.75 per cent (rounded to 25 basis point steps), despite improvements in economic growth that contributed to a small uptick in business-cycle-related estimates of R*. Yet, elevated uncertainty, the accelerating demographic transition and still relatively sluggish productivity growth have continued to keep R* below steady-state growth levels.
+
+So far, I have focused in this discussion on the implications of the AI shock for monetary policy. Taking a broader perspective, it is also important to recognise the possible amplifying impact of AI in relation to other cyclical shocks that can hit the economy. Let me outline three (possibly inter-related) examples: (a) an energy shock; (b) a financial shock; and (c) a recession shock. The energy intensity of AI means that a persistent upward shock to energy prices could limit the rate of progress in building new AI models and also curtail the AI adoption rate. The capital intensity of AI production and AI adoption means that a tightening in financial conditions would also have an adverse impact on AI-producing and AI-using sectors. Finally, by offering a substitute for labour, AI could intensify labour shedding during a recession.[75]
+
+Clearly, there are potential feedback loops across these three channels. For example, a persistent energy shock that altered the economics of AI production and adoption could also lead to repricing of AI-related equity and debt in the financial system, which would be further amplified if it turned out that any downturn in the economy triggered a larger-than-anticipated correction in the labour market and thereby also reduced consumption. It also follows that a more resilient energy system reduces these risks, such that AI reinforces the logic of an accelerated transition to a renewables-dominant energy system.
+
+Let me now turn to how AI is being implemented within the ECB’s analytical and policy preparation environment.
+
+Over the past year, the ECB has significantly expanded the set of analytical tools that incorporate AI and machine‑learning techniques. Analytical projects focus on: (i) improving forecasting performance, especially by integrating high‑frequency indicators; (ii) extracting signals from alternative data, such as large textual and numerical datasets, including news, corporate reporting and consumer‑facing information; and (iii) enhancing nowcasting and improving the detection of turning points. These efforts are expanding the policy‑relevant analytical frontier, enabling faster and more granular economic and financial assessments.
+
+One well-established application is the deployment of quantile regression forests to produce density forecasts of inflation.[76]This machine-learning approach allows staff to model the entire distribution of possible inflation outcomes rather than a single point forecast, thereby improving risk assessment around the baseline. The median of the forecast distribution serves as a data-driven benchmark for short-term inflation projections. Recent applications enable staff to capture nonlinear relationships, assess how different inflation drivers contribute across the distribution, and generate real-time updates even when part of the dataset is missing or imputed. These tools are already used in forecasting exercises, where they help to quantify tail risks and support scenario design in the monetary policy preparation process. Interpretability techniques such as Shapley value decompositions are applied to the quantile regression forest outputs to help understand the factors shaping inflation risks.[77]
+
+The ECB also extracts signals from alternative databases, including major newspapers in the euro area, to derive relevant indicators such as the degree of attention devoted to inflation, the pass-through of shocks to inflation and the transmission of monetary policy. A recent ECB staff study shows that attention to inflation in the news peaked in the high inflation period and declined afterwards but stayed above pre-pandemic levels.[78]This is especially true for food inflation.
+
+AI is also being deployed to streamline business processes, where workflow‑automation tools help accelerate and enhance recurring tasks such as preparing briefings or generating summaries. Agentic AI is starting to play an increasingly important role in this context, also for central banking applications.[79]These applications operate within a safe and controlled environment established by the ECB to ensure data security and regulatory compliance. These early applications are already showing in speed, consistency and analytical precision. They also reduce manual workload, freeing up resources to focus on more conceptual tasks. All AI-generated output is carefully reviewed by human experts before use, ensuring that analytical quality and accountability standards are fully maintained.
+
+A prominent example of these gains is an AI-driven tool for the Corporate Telephone Survey.[80]The tool applies generative AI to streamline one of the ECB’s key business intelligence processes. It automatically prepares first draft summaries of company interviews from transcripts and proposes numerical scoring. In practice, this has reduced the time needed for each write‑up, typically from around an hour to 20-30 minutes, without reducing the quality and consistency of output. These efficiency gains have helped reduce overtime work during busy survey rounds. Looking ahead, we also want to apply natural language processing techniques to the rich Corporate Telephone Survey text dataset to extract quantitative indicators and use them in economic analysis and forecasting.
+
+Ultimately, we aim to integrate AI more deeply into our policy preparation cycle: In the run-up to Governing Council meetings, AI tools can be used to scan and condense large volumes of incoming information, including economic indicators and financial market developments but also alternative information sources such as news, satellite and social media data. This helps economists in nowcasting macro-financial developments and identifying emerging patterns. After meetings, AI‑enhanced tools support the efficient processing and archiving of documents to maintain institutional memory.
+
+Alignment with governance safeguards and the EU AI Act ensures that AI augments rather than replaces expert judgement, while meeting high standards of reliability, traceability and accountability.
+
+Over 2026 and 2027, we will move from experimentation to the systematic implementation of AI across the ECB. To this end we have developed a central banking digitalisation programme.[81]Designed as a bottom‑up, business area-driven initiative, the programme ensures that promising AI tools mature from isolated pilots into scalable institutional capabilities. It does so through three mutually reinforcing pillars. First, a data analysis hub provides an AI‑ready, multi‑modal data and machine‑learning environment to strengthen economic, financial and market analysis. Second, we are also establishing an AI research lab which fosters innovation, applied economic research and staff upskilling to equip colleagues with state-of-the-art analytical techniques. Third, an “assistants studio” is being designed to become a workbench for building and deploying AI assistants that automate and enhance central banking business processes. Ultimately, our objective is to integrate AI into most ECB business processes.
+
+For the euro area, the evidence to date points to rapid AI diffusion among firms and workers, rising digital investment and growing interest from financial markets. At the same time, the aggregate effects of AI on productivity, employment and inflation remain limited and uncertain at this stage. Its macroeconomic impact will heavily depend on the speed and breadth of adoption, the scale and composition of investment, and the capacity of economies to adapt.
+
+The ECB studies reported in this speech highlight both opportunities and vulnerabilities. AI can support productivity growth, including by strengthening analytical capabilities across the economy and improving a range of business processes. The greatest impact will be achieved if AI materially boosts the pace of innovation, as rather than just boosting the level of productivity, this could increase the long-run potential growth rate.
+
+However, Europe’s relatively slower investment response, shallower risk capital markets and dependence on foreign frontier technologies risk constraining the size and distribution of the gains from AI. Ensuring broad access to finance, supporting diffusion among smaller firms and investing in skills and complementary intangible assets will be central to realising AI’s potential while limiting adjustment costs.
+
+In relation to monetary policy, ECB staff will continue to deepen their analytical and empirical work on AI. The short-run and longer-run effects of AI warrant careful monitoring, in the context of a wide range of possible future paths for the economy and high uncertainty about distributional outcomes and global spillovers. In turn, which path is followed will determine the implications for demand and supply dynamics and the net impact on medium-term price pressures. Accordingly, it is prudent to follow a data-dependent approach in identifying the appropriate monetary policy stance.
+
+For their contributions to this speech, I am grateful to Malin Andersson, Oscar Arce, Jeanne Beck, Elena Bobeica, Leonardo Carrai, Claus Brand, Katarzyna Budnik, Kai Christoffel, António Dias Da Silva, Paola Di Casola, Maximilian Freier, Johannes Groß, Valerie Jarvis, Gerrit Koester, Laura Lebastard, Noëmie Lisack, Paloma Lopez Garcia, Falk Mazelis, Peter McQuade, Alexandros Melemenidis, Carlos Montes Galdon, Roberto Motto, Richard Morris, Giulio Nicoletti, Lluís Quintana Noriega, Judit Rariga, Stefan Schaefer, Martin Schmitz, Enrico Sette, David Sondermann, Marcel Tirpák and Dennis Zander. The views expressed here are my own and should not be interpreted as representing the collective view of the Governing Council.
+
+See also Lagarde, C. (2025), “The transformative power of AI,” welcome address at the ECB conference on “The transformative power of AI: economic implications and challenges” (1 April) and Lagarde, C. (2025), “The transformative power of AI: Europe’s moment to act,” speech to BratislavAI Forum (24 November).
+
+Agrawal, A., Gans, J. and Goldfarb, A. (2019), “The Economics of Artificial Intelligence: An Agenda”, National Bureau of Economic Research, May.
+
+Agentic AI systems are capable of autonomously planning, executing and iterating across complex multi-step tasks with minimal human intervention. The release of OpenClaw in January 2026 can be considered the “Agentic AI moment”, similar to the “Generative AI moment” with the release of ChatGPT in late 2022.
+
+Briggs, J. and Kodnani, D. (2023), “The Potentially Large Effects of Artificial Intelligence on Economic Growth”, Goldman Sachs Economics Research, 26 March.
+
+Chui, M., Hazan, E., Roberts, R., Singla, A., Smaje, K., Sukharevsky, A., Yee, L. and Zemmel, R. (2023), “The economic potential of generative AI: The next productivity frontier”, McKinsey & Company, June.
+
+Acemoglu, D. (2025), “The simple macroeconomics of AI”,Economic Policy, Vol. 40, No 121, January, pp. 13-58.
+
+Filippucci, F., Gal, P., Laengle, K. and Schief, M. (2025), “Macroeconomic productivity gains from Artificial Intelligence in G7 economies”,OECD Artificial Intelligence Papers Series, No 41, Organisation for Economic Co-operation and Development, June.
+
+Aghion, P. and Bunel, S. (2024), “AI and Growth: Where Do We Stand?”,Federal Reserve Bank of San Francisco Working Papers, June.
+
+Bergaud, A. (2024), “The Past, Present and Future of European Productivity”, paper presented at the ECB Forum on Central Banking, July.
+
+See, among other contributions, Restrepo, P. (2025), “We won’t be missed: Work and growth in the AGI world”,NBER Working Paper Series, No 34423, National Bureau of Economic Research, October, and Davidson, T., Halperin, B., Houlden, T. and Korinek, A. (2026), “When Does Automating Research Produce Explosive Growth?”, mimeo, University of Virginia, January.
+
+The 2026 Stanford Emerging Technology Report highlights in particular: biotech and synthetic biology; cryptography and computer security; energy technologies; materials science; robotics; neuroscience; semiconductors; quantum technologies; and space. See also Roubini, N. (2025), “Tech Trumps Tariffs: US Exceptionalism and the AI Productivity Boom”, Hudson Bay Research, November.
+
+See C. Jones (2026), “AI and our economic future,” Journal of Economic Perspectives, forthcoming; C. Jones and C. Tonetti (2026), “Past automation and future AI: how weak links tame the growth explosion,” mimeo, Stanford University.
+
+Noy, S. and Zhang, W. (2023), “Experimental evidence on the productivity effects of generative artificial intelligence”,Science, Vol. 381, No 6654, July.
+
+Brynjolfsson, E., Li, D. and Raymond, L. (2025), “Generative AI at Work”,The Quarterly Journal of Economics, Vol. 140, No 2, February, pp. 889-942.
+
+Paul David’s classic study of electrification showed how decades elapsed between the widespread availability of the electric dynamo and its detectable impact on aggregate productivity. The delay is explained by the time needed to redesign factory layouts and production processes. See David, P.A. (1990), “The Dynamo and the Computer: An Historical Perspective on the Modern Productivity Paradox”,The American Economic Review, Vol. 80, No 2, Papers and Proceedings of the Hundred and Second Annual Meeting of the American Economic Association, pp. 355-361, May.
+
+Brynjolfsson, E., Rock, D. and Syverson, C. (2021), “The Productivity J-Curve: How Intangibles Complement General Purpose Technologies”,American Economic Journal: Macroeconomics, Vol. 13, No 1, January, pp. 333-372.
+
+Asirvathan, H., Mokski, E. and Shleifer, A. (2026), “GPT as a Measurement Tool”,NBER Working Paper Series, No 34834, National Bureau of Economic Research, February.
+
+Barr, M.S. (2026), “What Will Artificial Intelligence Mean for the Labor Market and the Economy?”, remarks at the New York Association for Business Economics, New York, 17 February.
+
+Multinational firms play a key role in the international roll-out of technology capital through trade and investment linkages between the US parent firm and overseas affiliates. The licensing by the parent firm of intellectual property products to affiliates is a key mechanism. More broadly, the profitability of US affiliates in Europe has increased markedly. To the extent that US-owned affiliates export back to the United States, the net impact on the euro area should be adjusted. These channels are relevant for not only the information and communications technology sector but also the pharmaceutical and medical devices sectors. See Emter, L., Fidora, M., Pastoris, F., Schmitz, M. and Schuler, T. (2025), “US trade policies and the activity of US multinational enterprises in the euro area”,Economic Bulletin, Issue 4, ECB. For a theoretical framework, see McGrattan, E.R. and Prescott, E.C. (2010), “Technology Capital and the US Current Account”,American Economic Review, Vol. 100, No 4, September, pp. 1493-1522.
+
+Cazzaniga, M., Jaumotte, F., Li, L., Melina, G., Panton, A.J., Pizzinelli, C. Rockall, E. and Tavares, M.M. (2024), “Gen-AI: Artificial Intelligence and the Future of Work”,IMF Staff Discussion Notes, International Monetary Fund, January. Focusing on the pre-generative AI era, Albanesi et al. found that approximately 25 per cent of European jobs are highly exposed to AI. Furthermore, during the 2011-2019 period, they identified a positive correlation between AI exposure and growth in employment shares at the sectoral-occupational level. See Albanesi, S., Dias da Silva, A., Jimeno, J.F., Lamo, A. and Wabitsch, A. (2025), “New technologies and jobs in Europe”,Economic Policy, Vol.  40, No 121, January, pp. 71-139.
+
+Eloundou, T., Manning, S., Mishkin, P. and Rock, D. (2023), “GPTs are GPTs: An Early Look at the Labor Market Impact Potential of Large Language Models”, arXiv preprint arXiv:2303.10130.
+
+Massenkoff, M. and P. McCrory (2026), "Labor market impacts of AI: A new measure and early evidence",March 5, 2026.
+
+Yotzov, I., Barrero, J.M., Bloom, N., Bunn, P., Davis, S.J., Foster, K.M., Jalca, A., Meyer, B.H., Mizen, P., Navarrete, M.A., Smietanka, P., Thwaites, G. and Wang, B.Z. (2026), “Firm data on AI”,NBER Working Paper Series, No 34836, National Bureau of Economic Research.
+
+Aldasoro, I., Gambacorta, L., Pal, R., Revoltella, D., Weiss, C. and Woski, M. (2026), “AI adoption, productivity and employment: evidence from European firms”,BIS Working Papers, No 1325, Bank for International Settlements, January.
+
+Eloundou, T., Manning, S., Mishkin, P. and Rock, D. (2024), “GPTs are GPTs: Labor market impact potential of LLMs”,Science, Vol. 384, No 6702, June, pp. 1306-1308.
+
+Del Rio-Chanona, R.M., Ernst, E., Merola, R., Samaan, D. and Teutloff, O. (2025), “AI and jobs. A review of theory, estimates, and evidence”, September.
+
+Katz, L.F. and Murphy, K.M. (1992), “Changes in Relative Wages, 1963–1987: Supply and Demand Factors”,The Quarterly Journal of Economics, Vol. 107, No 1, February, pp. 35-78. See also Acemoglu, D. and Autor, D. (2011), “Skills, Tasks and Technologies: Implications for Employment and Earnings”, in Ashenfelter, O. and Card, D. (eds.),Handbook of Labor Economics, Vol. 4B, Chapter 12, pp. 1043-1171, Elsevier, Amsterdam.
+
+Brynjolfsson, E., Li, D. and Raymond, L. (2025), “Generative AI at Work”,The Quarterly Journal of Economics, Vol. 140, No 2, May, pp. 889-942. See
+
+Maslej, N. et al. (2025),Artificial Intelligence Index Report 2025, Stanford University.
+
+Frost, J., Shreeti, V. and Rishabh, K. (2026), “Global giants in the AI supply chain”,BIS Bulletin, No 122, 23 February.
+
+Draghi, M. (2024),The Draghi report: A competitiveness strategy for Europe, European Commission.
+
+Lagarde, C. (2026), “Turning size into scale: Europe’s new growth model”, acceptance speech for the 2026 Paul A. Volcker Lifetime Achievement Award at the 42nd Annual NABE Economic Policy Conference in Washington DC, United States, 23 February.
+
+The OECD.AI Index is a composite measurement framework designed to assess countries’ implementation of the OECD Recommendation on Artificial Intelligence. The index integrates 28 AI-specific indicators, organised into five components: AI Research and Development, AI Enabling Infrastructure, AI Policy Environment, Jobs and Skills, and International Co-operation. See Organisation for Economic Co-operation and Development (2026), “The OECD.AI Index”,OECD Technical Paper.
+
+A 2025 survey conducted by the European Commission Joint Research Centre, in collaboration with its Directorate-General for Employment, Social Affairs and Inclusion, found that 30 per cent of EU workers used AI tools, in particular AI chatbots powered by large language models. See Gonzalez Vazquez, I., Fernandez Macias, E., Wright, S. and Villani, D. (2025), “Digital Monitoring, Algorithmic Management and the Platformisation of Work in Europe”, European Commission Joint Research Centre.
+
+Demographics factors, such as an older population, could contribute to differences in the speed of AI adoption across countries. See Loschiavo, D., Armantier, O., Dalla Zuanna, A., Gambacorta, L., Moscatelli, M. and Supino, I. (2026), “Embracing gen AI: a comparison of Italian and US households”,BIS Working Papers, No 1322, Bank for International Settlements, January.
+
+On the impact of AI on the current account, see also Krogstrup, S. (2025), “Revisiting global imbalances – also in the context of the “AI hype””, speech at Aarhus Symposium, 7 November.
+
+Melitz, M.J. (2003), “The Impact of Trade on Intra-Industry Reallocations and Aggregate Industry Productivity,”Econometrica, Vol. 71, No 6, pp. 1695-1725.
+
+Andersson, M., Colombo, S., Jarvis, V. and Morris, R. (2026), “From bricks to clicks – an assessment of euro area digital investment”,Economic Bulletin, ECB, forthcoming.
+
+For a broader euro area-US investment comparison, see Andersson, M., Jarvis, V. and Soudan, M. (2025), “Business investment: why is the euro area lagging behind the United States?”,Economic Bulletin, Issue 2, ECB.
+
+See Ferrando, A, Lamboglia, S., Rariga, J. and Schmidt, M.(2026), ”Adopting and investing in AI: evidence from euro area firms in the SAFE”,Economic Bulletin, ECB, forthcoming. and Aldasoro, I., Gambacorta, L., Pal, R., Revoltella, D., Weiss, C. and Wolski, M. (2026), “AI adoption, productivity and employment: evidence from European firms”, BIS Working Papers, No 1325, Bank for International Settlements, January.
+
+See European Data Centre Association (2025), “State of European Data Centres 2025”, Inaugural flagship report.
+
+Dias da Silva, A. and Weißler, M. (2025), “AI adoption and employment prospects”,The ECB Blog, ECB, 21 March.
+
+These patterns across demographic groups are largely consistent with evidence in other surveys. For example, drawing on the Federal Reserve Bank of New York Survey of Consumer Expectations (SCE), the Bank for International Settlements reports that AI usage is lower for women, people without a college degree and people older than 60 in the United States. See Aldasoro, I., Armantier, O., Doerr, S., Gambacorta, L. and Oliviero, T. (2024), “Survey evidence on gen AI and households: job prospects amid trust concerns”,BIS Bulletin, No 86, Bank for International Settlements, 23 April.
+
+Acemoglu, D. (2024), “The simple macroeconomics of AI”,Economic Policy, Vol. 40, No 121, January, pp. 13-58.
+
+In addition to enhancing productivity and thereby gross domestic product (GDP), AI also enhances the value of non-market-based activities not measured in GDP. For example, AI can help save leisure time by planning meals, paying bills or filling tax returns. See also the discussion in Waller, C.J. (2025), “Innovation at the Speed of AI”, speech at DC Fintech Week, Arlington, Virginia, 15 October.
+
+Del Rio-Chanona, R.M., Ernst, E., Merola, R., Samaan, D. and Teutloff, O. (2025), “AI and jobs. A review of theory, estimates, and evidence”. See also Merola, R., Ernst, E., Samaan, D., del Rio-Chanona, M. and Teutloff, O. (2026), “Workers’ exposure to AI: What indicators tell us – and what they don’t”,ILO Research Brief, International Labour Organization, February.
+
+See the discussion in Massenkoff, M. and McCrory, P. (2026), “Labor market impacts of AI: A new measure and early evidence”, 5 March.
+
+De Bondt, G., Morris, R. and Roma, M. (2026), “Main findings from the ECB’s recent contacts with non‑financial companies”,Economic Bulletin, Issue 1, ECB.
+
+Lebastard, L. and Sondermann, D. (2026), “Artificial Intelligence: friend or foe for hiring in Europe today?”,The ECB Blog, ECB, 4  March.
+
+This is consistent with evidence for the United States, despite its faster rate of AI adoption and investment. See Massenkoff, M. and McCrory, P. (2026), “Labor market impacts of AI: A new measure and early evidence”, 5 March.
+
+The fast adoption of AI by financial institutions – with 85 per cent of large EU banks using AI – offers both opportunities and risks. See also Machado, P. (2026), “Technology is neutral, governance is not: AI adoption in the banking sector”, keynote speech at the KPMG RiskTech Conference, Frankfurt am Main, 24 February.
+
+Based on the classification proposed in Calvino, F., Dernis, H., Samek, L. and Ughi, A. (2024), “A sectoral taxonomy of AI intensity”,OECD Artificial Intelligence Papers, No 30, 12 December.
+
+President Lagarde recently noted that around one-third of the holdings of listed equities by euro area residents are in US capital markets and that euro area investors earned almost €200 billion from their US equity holdings, or around 1.3 per cent of GDP in 2025. See Lagarde, C. (2026), “Turning size into scale: Europe’s new growth model”, acceptance speech for the 2026 Paul A. Volcker Lifetime Achievement Award at the 42nd Annual NABE Economic Policy Conference in Washington DC, United States, 23 February.
+
+AI-related projects usually require longer maturities and are more illiquid than standard corporate loans. At the same time, banks face regulatory requirements, including capital adequacy rules that impose higher capital charges on non-collateralised lending. Intangible-intensive AI projects fit less easily within this framework.
+
+Aldasoro, I., Doerr, S. and Rees, D. (2026), “Financing the AI boom: from cash flows to debt”,BIS Bulletin,No 120, 7 January.
+
+Draghi, M. (2024),The Draghi report: A competitiveness strategy for Europe, September.
+
+European Investment Bank (2026),Investment Report 2025/26: Capitalising on Europe’s strengths,and European Investment Bank (2024),The scale-up gap: Financial market constraints holding back innovative firms in the European Union.
+
+See Lagarde, C. (2023), “A Kantian shift for the capital markets union”, speech at the European Banking Congress, Frankfurt am Main, 17 November.
+
+Singh, S., Schupbach, A., Asiala, A. and Siwiecki, D.A. (2025), “AI’s impact on banking: use cases for credit scoring and fraud detection”,Supervision Newsletter, European Central Bank, 20 November.
+
+See Section 2.3 of ECB (2025),Financial Stability Review, November.
+
+Fuster, A., Goldsmith-Pinkham, P., Ramadorai, T. and Walther, A. (2022), “Predictably Unequal? The Effects of Machine Learning on Credit Markets”,Journal of Finance, Vol. 77, No 1, pp. 5-47.
+
+Genovese, C., Schivardi, F., Sette, E. and Tarantino, E. (2026), “Algorithmic Pricing and Bank Lending”, mimeo.
+
+Calvano, E., Calzolari, G., Denicolò, V. and Pastorello, S. (2020), “Artificial Intelligence, Algorithmic Pricing, and Collusion”,American Economic Review, Vol. 110, No 10, October, pp. 3267–3297.
+
+Shin, H. S. (2019), “Big tech in finance: opportunities and risks”, speech at the BIS Annual General Meeting, Basel, 30 June.
+
+Carroll, C., Overland, J. and Weil, D.N. (2000), “Saving and Growth with Habit Formation,”American Economic Review, Vol. 90, No 3, June, pp. 341-355.
+
+Carroll, C.D. and Toche, P. (2009), “A Tractable Model of Buffer Stock Saving”,NBER Working Paper, No 15265, August.
+
+See discussion in Coenen, G., Karadi, P., Schmidt, S. and Warne, A. (2019), “The New Area-Wide Model II: and extended version of the ECB’s micro-founded model for forecasting and policy analysis with a financial sector”,ECB Working Paper, No 2200, pp. 33-34, drawing on Edge, R. M., Laubach, T. and Williams, J.C. (2007) “Learning and shifts in long-run productivity growth”,Journal of Monetary Economics,Vol. 54, No 8, pp. 2421-2438.
+
+In this vein, see Minniti, A., Prettner, K., Venturini, F. and Bloom, D. (2026), “AI and the distribution of income between capital and labour”, VoxEU, 3 March. They explore the income effects of AI and highlight the importance of policy interventions, such as education and taxation, to ensure equitable outcomes in an economy increasingly shaped by AI technologies and automation.
+
+See Carroll, C.D. (1998), “Why Do the Rich Save So Much?”,NBER Working Paper, No 6549, May, for an exploration of why wealthier individuals tend to save a larger portion of their income compared to lower-income households, emphasising the role of “habit formation” and consumption inertia.
+
+See Burian, V. and Stalla-Bourdillon, A. (2025), “The increasing energy demand of artificial intelligence and its impact on commodity prices”,Economic Bulletin, Issue 2, ECB. In the polar scenario, where the electricity demand of AI-driven data centres is fully met with natural gas, gas prices could rise by around 9 per cent in Asia and Europe, and by 7 per cent in the United States by 2026, with AI-driven data centres accounting for around 2 percentage points of the increase. For the United States, with its stronger AI industry, Bogmans et al. simulate scenarios according to which US electricity prices could increase by 8.6 per cent by 2030 due to AI. See Bogmans, C., Ganpurev, G., Gomez-Gonzales, P., Melina, G., Pescatori, A. and Thube, S. (2025), “Power Hungry: How AI Will Drive Energy Demand”,IMF Working Paper, Vol. 25, No 81, April.
+
+See Shleifer, A. (1986), “Implementation Cycles,”Journal of Political Economy, Vol. 94, No 6, pp. 1163-1190.
+
+Caballero, R.J. (2026), “Speculative Growth and the “AI bubble”, mimeo, MIT.
+
+On cross-country differences in terms of AI adoption speed, see Filippucci, F., Gal, P. , Laengle, K., Schief, M. and Yildirim, M.A. (2026), “AI meets trade: Global linkages and the cross-country distribution of the gains from AI”,OECD Artificial Intelligence Papers, No 57, 18 March. While countries that are late adopters of AI technology may benefit from importing cheaper goods from foreign early adopters, they may also suffer from competitivity loss on international markets due to less efficient domestic production technologies, triggering adverse production and income reallocation.
+
+See Gopinath, G. (2024), “Crisis amplifier? How to prevent AI from worsening the next economic downturn”, speech at the AI for Good Global Summit, Geneva, 30 May.
+
+Lenza, M., Moutachaker, I. and Paredes, J. (2023), “Density forecasts of inflation: a quantile regression forest approach”,Working Paper Series, No 2830, ECB, Frankfurt am Main, 14 July.
+
+Quantile regression forests are also used to estimate the quarterly level of bankruptcies in the euro area in real time. The method produces significantly more accurate estimates than alternative conventional models. The tool overcomes the challenge of delays in the publication of official bankruptcy statistics. It also provides a measure of the uncertainty surrounding the nowcast via uncertainty bands.
+
+Aarab, I., Bańbura, M., Bobeica, E. and Leguay, E. (2025), “Monitoring attention to inflation in the news”,Economic Bulletin, Issue 6, ECB.
+
+Bruno, G. (2026), “Agentic AI: can we streamline economic policy briefing?”, Occasional Papers,  No 1001, Banca d’Italia, March.
+
+Freier, M., Melemenidis, A. and Morris, R. (2026), “Using AI to transform the ECB’s Corporate Telephone Survey”,The ECB Blog, ECB, Frankfurt am Main, February.
+
+In parallel, ECB Banking Supervision has an extensive AI programme. The ECB corporate services group is also implementing a range of AI tools.
+
+Reproduction is permitted provided that the source is acknowledged.

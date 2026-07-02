@@ -1,0 +1,21 @@
+ECB report shows card fraud declined in 2019 | N/A | European Central Bank | Press Release
+
+In 2019 the total value of fraudulent transactions involving cards issued in the Single Euro Payments Area (SEPA) (which is made up of the EU Member States, Switzerland, Iceland, Lichtenstein and Norway) amounted to €1.87 billion out of a total value of all card transactions of €5.16 trillion. This means that 3.6 cents in every €100 spent using credit and debit cards were lost to fraud in 2019. This is the second lowest fraud share recorded since the start of data collection in 2007.
+
+The Eurosystem’sseventh report on card fraud, which analyses statistical information on card payment transactions and fraud in the euro area, reveals that 80% of fraudulent card transactions in 2019 resulted from so-called card-not-present (CNP) payments, which are mainly carried out via online or mobile transactions. Compared with 2018, the value of CNP fraud increased by 4.3%. Fraudulent transactions at point-of-sale (POS) terminals and automated teller machines (ATMs) accounted for 15% and 5% respectively of the total value of card fraud in 2019.
+
+Fraud committed at POS terminals was slightly higher, increasing by 2.2% in 2019, while fraud committed at ATMs decreased by 6.1%. The decline in fraud at ATMs was driven by a notable decline in fraudulent transactions involving counterfeit cards acquired outside SEPA, as the increasing global adoption of “chip and pin” technology (the EMV standard) has further reduced opportunities for committing fraud using cards with a counterfeit magnetic stripe.
+
+Source: All reporting card payment scheme operators
+
+The report also reveals that 65% of all fraudulent transactions conducted worldwide in 2019 using cards issued in SEPA involved cross-border payments (compared with 64% in 2018).
+
+Looking ahead, the market-wide implementation of the Regulatory Technical Standards for strong customer authentication and common and secure open standards of communication under the revised Payment Services Directive (PSD2)[1]could further reduce card fraud in Europe. Nevertheless, raising awareness and protecting secure communication between payment service providers and end-users remain key, as criminals continue to target card holders, especially in a world that increasingly relies on contactless and online payments in the wake of the coronavirus (COVID-19) pandemic.
+
+The Eurosystem will continue to monitor developments in payment fraud and the security of card payments and payment schemes, supported by the collection of detailed and comprehensive statistical information.
+
+For media queries, please contactGeorgina Garriga Sánchez, tel.: +39 69 1344 95368
+
+DisclaimerPlease note that related topic tags are currently available for selected content only.
+
+Reproduction is permitted provided that the source is acknowledged.

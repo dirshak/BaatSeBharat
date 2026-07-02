@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+ENV/
+
+# Data
+data/raw/*
+data/processed/*
+*.csv
+*.db
+*.sqlite
+
+# Models
+models/trained/*
+models/checkpoints/*
+
+# Outputs
+outputs/*
+logs/*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Credentials
+.env
+config/secrets.yaml

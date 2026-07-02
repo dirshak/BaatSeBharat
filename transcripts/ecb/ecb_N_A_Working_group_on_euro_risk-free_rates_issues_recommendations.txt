@@ -1,0 +1,15 @@
+Working group on euro risk-free rates issues recommendations to address impact of euro risk-free rates transition on risk management | N/A | European Central Bank | Press Release
+
+The private sector working group on euro risk-free rates has published areportcontaining recommendations, from a risk management perspective, on the transition to new risk-free rates. The analysis conducted in the report consists of: (i) general risk management considerations; (ii) risk management implications of transitioning from EONIA to the euro short-term rate (€STR); (iii) risk management implications of €STR-based fallback rates for EURIBOR; and (iv) additional risk management considerations for the asset management and insurance sectors.
+
+To ensure its recommendations are adopted by all market participants, the working group has created a financial accounting and risk management sub-group comprised of representatives from European and international credit institutions, consulting and accounting firms, clearing houses, and investment management firms and associations. The European Central Bank (ECB), European Securities and Markets Authority (ESMA), European Commission and Financial Services and Markets Authority (FSMA) all act as observers in the sub-group.
+
+The report does not focus on the effects of the transition on specific financial instruments but on the overall implications for managing interest rate risk, particularly during the implementation phase of the transition period.
+
+The full report sets out the detailed recommendations and underlying analyses. The working group’s recommendations are not legally binding. They nevertheless provide guidance for market participants preparing for the transition to risk-free rates.
+
+For media queries, please contactWilliam Lelieveldt, tel.: +49 69 1344 7316.
+
+The working group on euro risk-free rates, for which the ECB provides the secretariat, is an industry-led group established in 2018 by the ECB, FSMA, ESMA and the European Commission. Its main tasks are to identify and recommend alternative risk-free rates and transition paths.
+
+Reproduction is permitted provided that the source is acknowledged.

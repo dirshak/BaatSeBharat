@@ -1,0 +1,21 @@
+ECB report shows a fall in card fraud in 2016 | N/A | European Central Bank | Press Release
+
+26 September 2018
+
+In 2016 €1 in every €2,428 spent on credit and debit cards was lost to fraud. The total value of fraudulent transactions conducted using cards issued within the Single Euro Payments Area (SEPA: the EU Member States plus Switzerland, Iceland, Lichtenstein and Norway) amounted to €1.8 billion in 2016 – a decrease of 0.4% from 2015. In relative terms, i.e. as a share of the total value of card transactions of €4.38 trillion, fraud dropped by 0.001 percentage point to 0.041% in 2016, down from 0.042% in 2015. This is the first decrease since 2011.
+
+Thefifth ECB reporton card fraud published today shows that 73% of the value of card fraud resulted from card-not-present payments (which are mainly online fraud), 19% from transactions at points of sale (POS) and 8% from transactions at automated teller machines (ATMs). In 2016 there was a significant decrease in card fraud at ATMs (-12.4%) and POS (-3%) compared with 2015. With €1.32 billion in card fraud losses in 2016, online card fraud is the only category to have increased from the previous year, by 2.1%. As online card fraud had been growing at much higher rates in previous years, the 2016 slight increase in relative terms can be cautiously considered a positive sign that, in future, such fraud would decrease and e-commerce payments would become safer.
+
+This trend can be explained by increased security measures in the industry, encouraged by EU regulators. A significant decrease in counterfeit card fraud and fraud using lost and stolen cards, combined with the adoption of “Chip and PIN” (the EMV standard), explain the significant decrease in fraud at ATMs and POS, particularly for transactions outside the EU. Meanwhile since 2015 the “two factor” customer authentication adopted by banks and supported by merchants has also been helping to limit online card fraud.
+
+Data also show that cards issued inside SEPA and used outside SEPA are less subject to fraud than cards issued outside SEPA and used inside SEPA, which should reassure European cardholders when traveling abroad.
+
+
+
+Online card fraud is naturally increasing as digital services develop further and is becoming more and more sophisticated. The most common types of online fraud reported by the industry are “clean fraud” – where criminals obtain genuine cardholder details including 3D Secure and Address Verification credentials – and “identity theft” – where the fraudster steals the cardholder’s personal data in order to make unauthorised online transactions. However, in recent years there has been an increase in “friendly fraud”, where the payer first makes a genuine transaction then claims that their card has been used fraudulently and asks for money back.
+
+While increased security measures may explain the recent decrease in card fraud, market representatives are warning against complacency: payment fraud is constantly evolving and new types may still emerge. The banking sector has identified the increased usage of mobile payments as a new area to focus on.
+
+For media queries, please contact Alexandrine Bouilhet, tel.: +49 69 1344 8949.
+
+Reproduction is permitted provided that the source is acknowledged.

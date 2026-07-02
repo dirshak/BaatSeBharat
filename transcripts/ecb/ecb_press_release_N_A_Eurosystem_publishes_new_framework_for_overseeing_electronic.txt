@@ -1,0 +1,17 @@
+Eurosystem publishes new framework for overseeing electronic payments | N/A | European Central Bank | Press Release
+
+The ECB’s Governing Council has approved a new oversight framework for electronic payments following a public consultation. The framework is designed to make the current and future payments ecosystem safer and more efficient, as part of the ECB’s statutory task to promote the smooth operation of payment systems.
+
+The Eurosystemoversight frameworkfor electronic payment instruments, schemes and arrangements (PISA framework) includes anassessment methodologyand anexemption policy. It replaces the current Eurosystem oversight approach for payment instruments and complements the Eurosystem’soversightof payment systems. The Eurosystem will use the new framework to oversee companies enabling or supporting the use of payment cards, credit transfers, direct debits, e-money transfers and digital payment tokens, including electronic wallets. The PISA framework will also cover crypto-asset-related services, such as the acceptance of crypto-assets by merchants within a card payment scheme and the option to send, receive or pay with crypto-assets via an electronic wallet.
+
+“The retail payments ecosystem is evolving fast owing to innovation and technological change. This calls for a forward-looking approach in overseeing digital payment solutions,” said ECB Executive Board member Fabio Panetta. “The PISA framework will include digital payment tokens such as stablecoins, alongside traditional payment instruments and schemes we have gained experience in over the years. Internationally coordinated action will also have to be stepped up to cope with the challenges posed by global digital payment solutions and stablecoins.”
+
+The PISA framework complements forthcoming EU regulations on crypto-assets (including stablecoins) and international standards for global stablecoins. The Eurosystem also aims to cooperate with other authorities.
+
+Companies that are already subject to Eurosystem oversight are expected to adhere to the principles of the new framework by 15 November 2022. Other companies will have a grace period of one year from the moment they are notified that they will be subject to oversight under the new framework. All overseen companies will be invited to submit self-assessments and supporting documentation, which will form the basis of a continuous dialogue between them and the overseer.
+
+For media queries, please contactNicos Keranis, tel.: +49 69 1344 7806 and +49 172 758 7237.
+
+For terms used above, see theECB glossary.For documents replaced by the PISA framework package, see Table A.1 of the PISA framework and footnote 3 of the assessment methodology.
+
+Reproduction is permitted provided that the source is acknowledged.

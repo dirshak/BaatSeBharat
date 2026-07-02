@@ -1,0 +1,19 @@
+ECB announces independent review of payments system outage | N/A | European Central Bank | Press Release
+
+The European Central Bank (ECB) will launch an independent review of an incident that affected its real-time gross settlement system TARGET2 on 23 October 2020, causing an outage for almost 10 hours. An initial investigation determined that a software defect in a network device was the specific technical cause of the incident. The independent review will also take into account other incidents that affected TARGET Services during 2020, including those affecting directly and indirectly TARGET2 Securities (T2S), the securities settlement platform operated by the Eurosystem.
+
+The independent review will allow the Eurosystem to draw lessons from the incidents and address them. It will look into the robustness of the business continuity model, the adequacy of the regular recovery tests, the efficiency of the change management procedures and the communication protocols.
+
+The main findings of the review will be shared with market participants and made public by the second quarter of 2021.
+
+The Eurosystem is committed to identifying lessons learned from the recent incidents in full transparency and taking action accordingly in order to continue providing highly efficient and reliable financial market infrastructures to European agents.
+
+TARGET2 is the leading European platform for processing large-value payments. It is owned and operated by the Eurosystem, which comprises the ECB and the 19 national central banks of the euro area. Central banks and commercial banks can submit payment orders in euro to TARGET2, where they are processed and settled in central bank money, i.e. money held in an account with a central bank. TARGET2 settles payments related to the Eurosystem’s monetary policy operations, as well as bank-to-bank and commercial transactions.
+
+T2S is a platform managed by the Eurosystem that offers harmonised and centralised settlement of securities in central bank money. Currently 20 countries across Europe use T2S.
+
+For media queries, please contact Alexandrine Bouilhet, tel.: +49 172 174 93 66.
+
+DisclaimerPlease note that related topic tags are currently available for selected content only.
+
+Reproduction is permitted provided that the source is acknowledged.

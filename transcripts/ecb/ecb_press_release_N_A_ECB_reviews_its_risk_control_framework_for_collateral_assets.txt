@@ -1,0 +1,19 @@
+ECB reviews its risk control framework for collateral assets | N/A | European Central Bank | Press Release
+
+To maintain adequate risk protection, the European Central Bank (ECB) regularly adjusts its collateral eligibility rules and risk control measures applied when accepting collateral in Eurosystem monetary policy operations. The Governing Council of the ECB has decided on a number of measures to improve the overall consistency of the framework. The Governing Council decided in particular, with effect from 1 January 2017, to:
+
+1. Update the haircuts for marketable and non-marketable assets;
+
+2. Introduce graduated haircuts for eligible asset-backed securities (ABS) based on their Weighted Average Life (WAL) as calculated from expected cash flows
+
+Moreover, the Governing Council decided to:
+
+3. Introduce graduated haircuts depending on remaining maturity also for floating-rate assets, which are currently assigned a flat haircut irrespective of their maturities
+
+4. Adjust the risk control measures for retained covered bonds with extendible maturities (e.g. soft bullet and conditional pass-through covered bonds) to take into account the additional risk which results from the use of such securities by the issuer itself and to ensure a level playing field between securities with comparable risks
+
+As regards the first two measures, the new haircut schedules are defined in the new Guidelines ECB/2016/32 and ECB/2016/33 (amending Guideline ECB/2015/35 and Guideline ECB/2014/31, relating to the general and the temporary collateral framework, respectively). These guidelines have become available on the ECB’s website. As regards the last two measures, they will become applicable at a date to be announced in the second half of 2017.
+
+For media queries, please contact William Lelieveldt, tel.: +49 69 1344 7316.
+
+Reproduction is permitted provided that the source is acknowledged.

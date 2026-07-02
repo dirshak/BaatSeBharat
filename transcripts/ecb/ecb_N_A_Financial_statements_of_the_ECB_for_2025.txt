@@ -1,0 +1,87 @@
+Financial statements of the ECB for 2025 | N/A | European Central Bank | Press Release
+
+The financial statements of the European Central Bank (ECB) for 2025 show a loss of €1,254 million, which is much lower than the loss of €7,944 million reported in 2024, owing mainly to a significant reduction in net interest expense. The 2025 loss, like the losses from the prior years, will remain on the ECB’s balance sheet to be offset against future profits. As a result of the loss, there will be no profit distribution to euro area national central banks for 2025.
+
+The losses since 2022 come after many years of substantial profits and are the result of policy actions taken by the Eurosystem that were necessary to fulfil its primary mandate of maintaining price stability. These policies required the ECB to expand its balance sheet by purchasing financial assets, mostly with fixed interest rates and long maturities. This resulted in a corresponding rise in the liabilities on which the ECB pays interest at variable rates. Thus, increases in the key ECB interest rates in 2022 and 2023 to combat high inflation in the euro area immediately pushed up interest expenses on the liabilities, while interest income on the ECB’s assets, in particular on securities purchased under the asset purchase programme (APP) and the pandemic emergency purchase programme (PEPP), did not increase to the same extent. Subsequent decreases in the key ECB interest rates since 2024 and the continual decline in the ECB’s liabilities, following the maturing of securities under the APP and the PEPP, are substantially reducing the effects of this interest mismatch. Thus, the net interest expense in 2025 was significantly lower than in the preceding years.
+
+The ECB is expected to return to profit in 2026 or the year after, although this will depend on future levels of key ECB interest rates and foreign exchange rates, as well as on the size and composition of the ECB’s balance sheet. In any case, the ECB can operate effectively and fulfil its primary mandate of maintaining price stability regardless of any losses. Its financial strength is further underlined by its capital and its substantial revaluation accounts,which together amounted to €71 billion at the end of 2025, €12 billion higher than at the end of 2024.
+
+The ECB’s interest income and expenses in 2025 were as follows:
+
+2025
+
+2024
+
+Change
+
+Foreign reserves
+
+2.089
+
+2.537
+
+(449)
+
+Securities held for monetary policy purposes
+
+3.814
+
+3.850
+
+(36)
+
+Claims related to the allocation of euro banknotes within the Eurosystem
+
+2.900
+
+5.232
+
+(2.332)
+
+NCBs’ claims in respect of foreign reserves transferred
+
+(790)
+
+(1.448)
+
+659
+
+TARGET balances due from/to NCBs
+
+(7.706)
+
+(15.674)
+
+7.968
+
+Other
+
+(485)
+
+(1.479)
+
+994
+
+Net interest income/(expense)
+
+(178)
+
+(6.983)
+
+6.805
+
+Interest expenses in 2025 were far lower than in 2024. The decrease was driven mainly by a significant reduction in interest expense on the ECB’s net TARGET liability, primarily on account of a lower average remuneration rate (2025: 2.3%, 2024: 4.1%), following reductions in the key ECB interest rates and, to a lesser extent, the application of the deposit facility rate as the basis for remuneration instead of the main refinancing operations rate. Furthermore, the lower TARGET balances, attributable to the maturing of monetary policy securities, also contributed to this decrease. The lower average remuneration rate also led to a decline in the interest income on claims related to the allocation of euro banknotes in circulation and the interest due to the national central banks (NCBs) as remuneration of their claims in respect of foreign reserves transferred to the ECB. While the interest income on foreign reserves declined, mainly because of lower interest income from securities denominated in US dollars, the interest income on securities held for monetary policy purposes remained practically unchanged compared with last year.
+
+Exchange rate write-downs amounted to €1,316 million (2024: €81 million), arising mainly from the depreciation of the Japanese yen leading to a reduction in the value of the related currency holdings. These write-downs were partially offset by realised exchange rate gains resulting predominantly from a standard rebalancing of the composition of the ECB’s foreign reserves.
+
+Total staff costs decreased to €809 million (2024: €844 million), owing mainly to the lower expense in relation to post-employment and other long-term benefits. Other operating expenses fell slightly to €619 million (2024: €626 million), primarily on account of lower depreciation charges.
+
+Supervisory fee income (fees charged to supervised banks to recover expenses incurred by the ECB in the performance of its supervisory tasks) amounted to €690 million (2024: €681 million).
+
+The size of the ECB’s balance sheet decreased by €37 billion to €603 billion (2024: €641 billion), mainly reflecting the gradual decline in APP and PEPP holdings owing to redemptions.
+
+At the end of 2025 the size of the balance sheet of the Eurosystem, which comprises assets and liabilities of the euro area NCBs and the ECB vis-à-vis third parties, stood at €6,293 billion (2024: €6,421 billion). The contraction compared with 2024 was due to a decline in securities held for monetary policy purposes to €3,745 billion (2024: €4,283 billion), owing mainly to redemptions. APP holdings decreased by €351 billion to €2,322 billion, while PEPP holdings decreased by €186 billion to €1,423 billion. This decline was partially offset by an increase in the euro-equivalent value of the Eurosystem’s holdings of gold to €1,274 billion (2024: €872 billion) resulting from a rise in the market price of gold in euro terms.
+
+For media queries, please contactWilliam Lelieveldt, tel.: +49 69 1344 7316.
+
+Reproduction is permitted provided that the source is acknowledged.

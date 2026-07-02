@@ -1,0 +1,85 @@
+Designing a digital euro for the retail payments landscape of tomorrow | 2021-11-18 | European Central Bank | Speech
+
+Brussels, 18 November 2021
+
+Madam Chair, honourable members of the Committee on Economic and Monetary Affairs,
+
+Thank you for inviting me to report on the investigation phase of the digital euro project, which we started in October. I am happy to finally meet at least some of you in person, once again. Our interactions started a year ago when we published the Eurosystem report on a digital euro.[1]I am pleased that these exchanges of views continue, and I am committed to having regular topical hearings with you during the investigation phase of the project.[2]
+
+In my remarks today I will focus on why we would issue a digital euro. I will then outline how we will structure our work in the investigation phase to ensure that we design a digital means of payment that is attractive to consumers.
+
+When we decided to launch the investigation phase of the digital euro project in July[3], we did so knowing that we had the support of the European Parliament and other EU institutions, which all recognised the importance of this project.[4]
+
+Let me recall why such a project is necessary.[5]
+
+Issuing a digital euro for use in retail payments may appear superfluous to some, given that Europeans already have access to a wide range of private digital means of payment. These include bank deposits, credit cards and mobile applications.
+
+But even if private money and central bank money are used interchangeably by the public, we should not forget why this is possible. We take certain things for granted, and they are often the things that could create the biggest problems if they didn’t exist.
+
+Central bank money is by definition the safest form of money, because it is backed by the strength, the credibility and the authority of the State.
+
+Private forms of money are liabilities of private issuers. They rely on the soundness of the issuer and, ultimately, on the promise of convertibility into central bank money. But this promise could prove to be ephemeral, for instance if the issuer manages its liquidity or solvency imprudently.
+
+In practice, many people are unaware of these differences. This is what economists call “rational inattention”. We don’t think twice about storing and using our money via private intermediaries because we can regularly go to the cash machine and withdraw banknotes from our deposits without any problems. This provides tangible proof that our money in the bank is safe. It reassures us that we will always be able to get cash if we ask for it and that, when private forms of money cannot be used, we will still be able to make payments in cash. Runs on private money usually only start when the confidence in convertibility disappears.
+
+Convertibility with central bank money on a one-to-one basis anchors people’s confidence in private money, supporting its wide acceptance.[6]This is not to say that other safeguards like banking regulation and supervision, deposit insurance and the monitoring function of capital markets are not also important and effective. But they need to be complemented by the convertibility anchor as a basis for maintaining a well-functioning payments system and financial stability. And this is a pre-condition for preserving the transmission of monetary policy, and thus for protecting the value of money and trust in the currency.
+
+Today, people have easy access to central bank money in the form of cash. But we know that they increasingly prefer to pay digitally and shop online.[7]In an increasingly digital economy, cash could become marginalised because it would no longer serve people’s payment needs. And people would have little incentive to hold cash if they were unable to use it as a means of exchange.
+
+Let me be clear: the ECB intends to ensure that people continue to have access to cash. But at the same time, we need to ensure that central bank money remains fully usable and can provide an effective anchor at a time when payment behaviours are changing. And this is where our work on a digital euro comes in: it would enable people to continue using central bank money as a means of exchange in the digital era.
+
+But the decline in the use of cash is not the only factor that could alter the payments landscape in the years to come.
+
+Non-European payment providers already handle around 70% of European card payment transactions[8]and if the footprint of these providers continues to grow, it would raise serious questions for Europe’s autonomy in payments, with potential implications for users. Let me give you an example: today, many Europeans can use their debit cards – such as the German EC-Karte or the Italian Bancomat – abroad, thanks to an existing agreement between their banks and international credit card companies. But for some debit card schemes, this use in cross-border settings could be curtailed in the future as it depends on the continued willingness of the international card schemes to provide such services.[9]
+
+Moreover, although the take-up of digital assets such as crypto-assets and stablecoins – as well as their reach in payments – has remained limited so far, they are growing rapidly: the market capitalisation of stablecoins has increased from USD 5 billion to USD 120 billion since early 2020.[10]In parallel, big tech companies have entered the world of financial services. If these two trends meet, the functioning of global financial markets could be altered and traditional payment services could be crowded out.[11]
+
+These developments mean there is reason to redefine the regulatory and supervisory landscape, but this may not be enough.[12]The presence of a digital euro could reduce the risk that the functioning of – and competition in – European payments could be altered by the dominance of digital means of payment managed by foreign-based entities and big techs with scale and information advantages. If we want to preserve an open, level playing field in payments and monetary sovereignty, we should start taking action today.
+
+While individuals may currently only have access to central bank money in physical form, this is not the only form of central bank money that exists.
+
+Banks have been able to access central bank digital currency via the so-called TARGET services[13]for a long time, and the Eurosystem is currently working on a new consolidated TARGET platform to offer the market enhanced and modernised services.[14]In July 2021, the ECB’s Governing Council decided to launch a new Eurosystem work stream in order to explore possible technological improvements in the wholesale infrastructure.[15]
+
+By comparison, the digital euro project is about ensuring thateveryonecan use central bank money in digital form for their daily transactions. It would also allow users to benefit from high standards of privacy. With the digitalisation of payments, each individual transaction contains a large amount of personal data, which are often used by private companies for a variety of purposes. Regulation does its best to avoid these data being abused, but it often struggles to keep pace with technological innovation. Crucially, however, the ECB has no commercial interest in monetising user data, so a digital euro would improve citizens’ welfare by giving them the option to use a form of digital money that protects their privacy.[16]
+
+Finally, a digital euro would provide new business opportunities and act as a catalyst for technological progress and innovation in the private sector. It would create a level playing field for financial intermediaries and strengthen their competitiveness. And it would offer them the opportunity not only to distribute central bank money, but also to develop new services with “digital euro inside”.
+
+Over the next two years we will investigate the key issues related to the design and distribution of a digital euro.[17]We will have to strike the right balance between different priorities.
+
+For example, the digital euro will be designed to be an efficient means of payment, but also to preserve financial stability. We will be careful to ensure the financial sector can adjust in an orderly manner. To prevent excessive and abrupt shifts from commercial to central bank money, we will need to strike a balance between maximising its appeal as a means of exchange and limiting its use as a form of investment.
+
+Different design options and decisions all have a bearing on one another, so making a coherent set of choices will be key. We have a clear timeline that takes these interlinkages into account and will ensure a coherent product. The Eurosystem High-Level Task Force on Central Bank Digital Currency[18]that I chair is working to identify use cases and design options. After this phase we will move on to examining technological solutions. We expect to narrow down the design-related decisions by the beginning of 2023 and develop a prototype in the following months.
+
+I must stress that the digital euro will not be able to be everything everyone wants it to be on day one. We will need to strike a balance to design a digital euro that is immediately valuable to users but can be developed in a reasonable time frame.
+
+This brings me to my last point: finding out what potential users of a digital euro would want from this new means of payment.
+
+As already mentioned, the digital euro would be available for daily transactions to all potential users. However, the vast majority of transactions will likely involve consumers’ daily purchases at the “point of interaction” (in other words, payments at physical shops, from person to person and online).
+
+Consumers will only use a digital euro if it is widely accepted for payments, and merchants will want to be reassured that enough consumers want to use it. In practice, while we often mention the financial stability risk that would emerge if a digital euro were too successful[19], we equally need to address the opposite risk – the risk of it not being successful enough. To be successful, a digital euro must be attractive to users by providing a low-cost, efficient means of payment that is available everywhere.
+
+To find out what users want, we will engage extensively with the public, merchants and other stakeholders during the investigation phase.[20]
+
+Focus groups in all euro area countries will help us gain in-depth insights into the preferences of the public and small merchants, including people who do not currently have access to the internet or banking services.[21]
+
+Given the need to make the digital euro fully interoperable with existing payment services, we have also appointed 30 senior business professionals to provide expertise from an industry perspective.[22]Consumers, retailers, small and medium-sized enterprises and market representatives will have further opportunities to share their views through the Euro Retail Payments Board. In addition, technical workshops with experts will help us explore technological options for the design of a digital euro.[23]
+
+At the same time, the success of a digital euro will heavily depend on European authorities and institutions being closely aligned. We are therefore engaging closely with the European Parliament, the European Commission and the Eurogroup on major design issues and the aspects of a digital euro that are relevant for EU policy more broadly.
+
+Our discussion today is part of this endeavour. As representatives of European citizens, you have an important role to play in making sure that we design a digital euro that would meet their needs in the retail payments landscape of tomorrow.
+
+We are committed to holding regular exchanges like this one so that your views can inform the Eurosystem’s technical discussions before any endorsement by the ECB’s Governing Council, and so we can debrief you on any decisions taken thereafter.[24]
+
+As co-legislators you will play a key role in any changes to the EU legislative framework that may be necessary to introduce a digital euro. The ECB and the European Commission services are already jointly reviewing a broad range of legal questions at the technical level, taking into account their respective mandates and independence as provided for in the Treaties.[25]
+
+Let me conclude.
+
+Effective policymaking requires forward thinking. Central banks must innovate in the face of changing payment habits and global developments. When designing a digital euro, we need to consider not only the payments landscape of today, but also the landscape of tomorrow, which may be characterised by new actors, new digital assets and new payment solutions.
+
+The stakes here are high and we are in uncharted waters. We want to move fast, but we must not rush. We need to take the time to get it right and consider all aspects so that central bank money continues to play its role as an anchor of stability at the heart of the payment and financial system.
+
+I now look forward to your questions.
+
+DisclaimerPlease note that related topic tags are currently available for selected content only.
+
+Reproduction is permitted provided that the source is acknowledged.

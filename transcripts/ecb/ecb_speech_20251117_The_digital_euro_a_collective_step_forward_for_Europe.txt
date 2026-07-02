@@ -1,0 +1,129 @@
+The digital euro: a collective step forward for Europe | 2025-11-17 | European Central Bank | Speech
+
+Brussels, 17 November 2025
+
+I am pleased to join you once again to provide an update on the digital euro. This is my seventh exchange of views with this Committee on the topic.
+
+We are making progress on both legislative and technical preparations, bringing us closer to ensuring that central bank money can continue to serve Europe’s citizens, businesses and economy in the digital era.
+
+The EU Council aims to agree on its general approach to the draft legislation by the end of the year,[1]and you are working to define the European Parliament’s position.
+
+At the Euro Summit in October, euro area leaders reiterated the strategic importance of the digital euro. They stressed the importance of swiftly completing legislative work and accelerating other preparatory steps.[2]
+
+To ensure technical readiness, the ECB’s Governing Council recently decided to move to the next phase of the digital euro project.[3]
+
+As we continue to prepare for the potential issuance of a digital euro, I would like to address some recurring questions head-on. In the public debate, I frequently hear four questions in particular:
+
+Let me address each of them in turn.
+
+First, why do we need a digital euro? The simple answer is: to extend the benefits of cash to digital payments.
+
+Cash has multiple benefits: it is our sovereign money, issued by an EU institution, the European Central Bank. It is accepted throughout the euro area. It is easy to use, free of charge and inclusive, and it protects privacy. Research shows that consumers value these features.[4]
+
+But we cannot use cash – and enjoy its benefits – for digital payments. Online payments are a case in point. They now account for more than a third of our day-to-day purchases.
+
+For consumers, the absence of cash for online transactions – and digital transactions more broadly – reduces their options and thus their freedom in deciding how to pay.
+
+For merchants, this means less negotiating power and higher costs for accepting digital payments, ultimately resulting in lower margins for them and higher prices for consumers.
+
+The digital euro aims to address these issues by offering a digital form of cash. And there is demand for it. In a survey conducted by the Eurosystem, 66% of Europeans, after being introduced to the digital euro, expressed interest in trying it.[5]Merchants, meanwhile, have emphasised the potential of the digital euro to make it easier and cheaper for them to accept digital payments.[6]
+
+But for Europe in particular, there is an additional, specific and critically important reason: not having a digital form of cash puts our strategic autonomy at risk.
+
+25 years on from the launch of the euro, we still do not have a European payment solution that enables people to pay digitally throughout the euro area for all day-to-day payments. The fragmentation of the payments market means that the euro area depends on the “kindness of strangers” for retail digital transactions. And we have hard data to demonstrate this.
+
+15 out of 20 euro area countries do not currently have a domestic solution that is used significantly for digital payments in shops, and over half do not have a widely accepted domestic solution for e-commerce payments.[7]Even those domestic card schemes that provide a European alternative in some countries still rely on non-European card schemes for cross-border transactions within the euro area. Today, international card schemes settle two-thirds of card-based transactions in the euro area.
+
+So, we have a clear problem, to which the digital euro offers a clear solution. The digital euro will provide a digital form of cash that will complement the banknotes and coins we are familiar with, thereby ensuring that we can keep payments – both physical and digital – working at all times, without depending on decisions made outside Europe.
+
+The digital euro will be a European digital payment solution built on European infrastructure – all the providers we have selected are EU nationals controlled by EU nationals.[8]And it will ensure that the euro remains the single unit of account, protecting our monetary sovereignty even with the expansion of stablecoins – which are currently mostly denominated in foreign currencies – and unbacked crypto-assets.
+
+Let me now turn to the implications for banks. The digital euro will allow them to preserve their business models and enhance the payment services they can offer.
+
+From the outset, we have envisaged that the digital euro would be distributed through banks. This is because they play a key role in financing the euro area economy and in the transmission of monetary policy.
+
+We have designed the digital euro in a way that ensures that banks will not be disintermediated. Like cash, digital euro holdings will not be remunerated. They will also be capped to avoid any risk of excessive deposit outflows, while a link to commercial bank accounts will ensure that people can pay and be paid seamlessly with digital euro, even for large amounts. Our recent technical assessments confirm that introducing the digital euro would not undermine financial stability.[9]
+
+What about the costs and benefits for banks’ payment business?
+
+With international card schemes, banks lose fees. With big tech mobile payment solutions, they lose fees and data. And in the future, with stablecoins – which do not face holding limits – they would lose fees, data and stable retail deposits.
+
+With the digital euro, however, the compensation model will ensure that banks benefit whenever a payment via one of these solutions is replaced by a digital euro transaction. This is because the Eurosystem will not charge scheme or settlement fees, creating savings that can be distributed among banks and merchants. Moreover, the digital euro will strengthen banks’ bargaining power vis-à-vis international card schemes.
+
+In addition, the digital euro will allow banks to enhance and scale up their payment services at a reduced cost. It will provide an open acceptance network and standards that private European initiatives, such as Wero and the European Payments Alliance, can leverage to increase their commercial appeal and achieve pan-European reach.[10]These providers will also be able to integrate the digital euro seamlessly into their existing payment solutions, for instance digital wallets, or co-badge it on physical cards.[11]
+
+Let me reiterate: there is no competition between public and private solutions. Rather, we envisage a mutually beneficial cooperation that makes Europe’s strategic autonomy in the retail payments market more achievable and credible.
+
+On the cost side, we have found that the digital euro investment costs for banks are likely to be significantly lower than some external studies have suggested and correspond to approximately 3.4% of significant banks’ annual IT upgrade budgets over a period of four years. The total investment costs are expected to be broadly comparable to those estimated for the revised Payment Services Directive (PSD2), and well below those for the Single Euro Payments Area (SEPA).[12]
+
+Turning to concerns about the future of cash, we have been very clear that the digital euro will complement cash, not replace it – so that everyone is free to choose how they pay.
+
+In line with our Eurosystem cash strategy, we are working to ensure that physical cash continues to be available and accepted across the euro area as both a means of payment and a store of value.
+
+Cash is central bank money – euro banknotes are issued by the ECB. So we have no interest in discontinuing the issuance of cash. On the contrary, it is at the heart of our mandate.
+
+In fact, we are working on the third series of euro banknotes. The ongoing euro banknote redesign, which will bring improved security features, demonstrates that the ECB is committed to the future of cash.
+
+We have also been vocal supporters of strengthening the legal tender status of cash, which is an essential part of the Single Currency Package proposed by the European Commission and will help preserve the benefits of cash that I have already mentioned. We want people to be able to continue using cash in both physical and digital form, as they prefer.
+
+The digital euro will also protect Europeans’ privacy and freedom – concerns that it could be used as a surveillance tool are unfounded.
+
+First, the offline functionality of the digital euro will offer cash-like privacy: when money moves from one wallet to another, the transaction details will be known only to the payer and the payee. No existing payment method offers comparable privacy levels, besides cash.
+
+Second, for online payments, the Eurosystem will not be able to identify the payer or the payee. We will use state-of-the-art technology to pseudonymise and encrypt all data, so we will not see any personal information – just codes representing the payer, the payee and the transaction amount, which only their banks will be able to link with their respective identities. Even for these codes there will be very strict rules on who can access them for the purpose of running the system. And we will make sure this can be audited.
+
+We will be supervised by independent data protection authorities to ensure that we comply with EU data protection law. We want them to see what we are doing, and we want to make sure that everybody knows we do as we say we will do. We will also remain open to exploring privacy-enhancing techniques in the future so that we can adopt more advanced technologies as soon as they are ready to be implemented – a necessity in a system that has to run one billion transactions every day.
+
+Third, checks to prevent fraud, money laundering and the financing of terrorism will be performed by banks, as is already the case.
+
+Fourth, the digital euro will never be programmable money: it will not be possible to restrict its use to predefined purposes. In other words, there will be no built-in limitations on where, when or for what it can be used.
+
+Finally, nobody will be forced to use the digital euro – it will only offer an additional payment option. Those who still harbour concerns will be able to continue using physical cash or other means of payment.
+
+The digital euro will be like physical cash, but in digital form. It will enhance Europeans’ freedom to choose how they pay, offering an additional option for all digital payments throughout the euro area.
+
+Delivering on the digital euro hinges on both legislative and technical readiness.
+
+The legislation will play a central role in securing the digital euro’s benefits. In particular, mandatory distribution and legal tender status are key to ensuring that the digital euro is accessible to everyone and accepted for any digital payment. Moreover, the digital euro’s online and offline functionalities will complement one another, combining the convenience of digital payments with the resilience and accessibility of cash – allowing the digital euro to be used in any situation, from e-commerce platforms to remote areas without network coverage.
+
+On our side, we are working on ensuring we are technically ready for the potential issuance of the digital euro. Building on the work we have done so far[13], the new phase of the digital euro project will be focused on developing the necessary technical capacity. The ECB Governing Council’s final decision on whether to issue a digital euro will only be taken once the legislation has been adopted. Assuming that European co-legislators adopt the Regulation on the establishment of the digital euro in the course of next year, a pilot exercise and initial transactions could take place as of mid-2027, and the digital euro could be ready for first issuance in 2029.
+
+Let me conclude.
+
+The introduction of the digital euro is not merely a technical undertaking – it is a vital, forward-looking step to ensure that central bank money continues to serve Europeans in an increasingly digital world.
+
+The digital euro will complement euro banknotes and coins, extending the benefits of cash to digital payments. It will give the euro area a sovereign, universally accepted digital means of payment. And it will make it easier for private European solutions to expand their reach.
+
+Consumers, merchants and banks all stand to benefit. And Europe’s dependencies on non-European providers will be reduced, strengthening our resilience, autonomy and economic security. The longer we wait, the longer it will take for these benefits to materialise.
+
+The ECB will continue to support the legislative deliberations with technical input and provide transparent updates on the progress of the digital euro project. To that end, we have published additional supporting material as an annex to my statement today.
+
+Thank you for your attention.
+
+See “Eurogroup, 19 September 2025”.
+
+See “Statement of the Euro Summit, meeting in inclusive format”, 20 March 2025, and “Statement of the Euro Summit, meeting in inclusive format”, 23 October 2025.
+
+See ECB (2025), “Eurosystem moving to next phase of digital euro project”,press release, 30 October.
+
+See ECB (2025),Progress on the preparation phase of a digital euro – Closing progress report, 30 October.
+
+ibid.
+
+See EuroCommerce (2024), “EU businesses’ competitiveness impacted by current cards payments landscape – a call for urgent action”,Position paper, 8 July; and Ipsos (2025),ECB digital euro user research, 30 October.
+
+See Table 1 in ECB (2025),Progress on the preparation phase of a digital euro – Closing progress report, October. A domestic solution that is used significantly is defined as a solution with an estimated market share exceeding 10% within the respective use case, though other domestic options may also be technically present. In the absence of reliable data on the acceptance of domestic payment solutions by country and use case, the classification is based on the use of a domestic payment solution.
+
+“EU national” means any legal entity with registered offices in an EU Member State or any natural person that has the nationality of an EU Member State. “Control” means the ability to exercise a decisive influence on an undertaking, directly, or indirectly through one or more intermediate undertakings. Control can take any of the following forms: (i) the direct or indirect holding of more than 50% of the nominal value of the issued share capital in the legal entity concerned, or of a majority of the voting rights of the shareholders or associates of that entity; (ii) the direct or indirect holding, in fact or in law, of decision-making powers in the legal entity concerned. See ECB (2025), “ECB selects digital euro service providers”,press release, 2 October.
+
+In response to requests by the co-legislators, the ECB has conducted a detailed assessment of the potential financial stability impact of various hypothetical holding limits. Our analysis confirms that the use of the digital euro for day-to-day payments would not undermine financial stability. Even under an extremely conservative and highly unlikely crisis scenario, the stability of the financial system would remain intact. See ECB (2025), “Technical data on the financial stability impact of the digital euro”, October.
+
+See ECB (2025),Fit of the digital euro in the payment ecosystem – Report on the dedicated Euro Retail Payments Board (ERPB) technical workstream, October.
+
+In both instances, the digital euro could be the “fall-back” that enables full pan-European reach while preserving the market share of domestic or regional schemes where and to the extent that they are accepted. In the voluntary co-branding scenario, the private sector schemes could be the preferred brand wherever they are accepted, and the digital euro would be the fall-back solution wherever the private sector scheme is not (yet) accepted. This would be a low-cost form of interoperability between domestic/regional solutions and the digital euro, ensuring that the user always pays with a European solution. It could reduce the dependency on international card schemes, essentially meaning they would be required only for non-EU payments. See the annexes to ECB (2025),Fit of the digital euro in the payment ecosystem, Report on the dedicated Euro Retail Payments Board (ERPB) technical workstream, 30 October.
+
+Based on our technical analysis, the total investment costs required by banks could range from €1 billion to €1.44 billion annually over a four-year period. This estimate is consistent with the European Commission’s impact assessment, significantly below the costs incurred during the implementation of the SEPA, and five to six times lower than the figures presented in a study by PwC. See PwC (2025),Digital Euro Cost Study, June. See also ECB (2025),A view on recent assessments of digital euro investment costs for the euro area banking sector, October.
+
+Theconclusion of the preparation phasemarks an important milestone in the digital euro project. In the preparation phase we moved towards refining the practical design of the digital euro, building on the insights gained during the investigation phase conducted from 2020 to 2023. Key achievements include (i) the development of the draftdigital euro scheme rulebook, (ii) theselection of providersfor digital euro components and related services, (iii) the successful running of aninnovation platformfor experimentation with market participants, as well as (iv) theinvestigationby a technical workstream into the fit of the digital euro in the payment ecosystem. See ECB (2025), “Eurosystem moving to next phase of digital euro project”,press release, 30 October.
+
+Reproduction is permitted provided that the source is acknowledged.

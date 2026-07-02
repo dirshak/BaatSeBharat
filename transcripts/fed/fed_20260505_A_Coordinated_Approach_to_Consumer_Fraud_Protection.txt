@@ -1,0 +1,45 @@
+A Coordinated Approach to Consumer Fraud Protection | 2026-05-05 | Vice Chair for Supervision Michelle W. Bowman | Speech
+
+At the 2026 Women in Housing and Finance Symposium, Washington, D.C.
+
+Good morning. It is a pleasure to join you for the annual Women in Housing and Finance Symposium.1As a woman in finance, I appreciate this organization's focus on women in the industry. Thank you for the invitation to join you.
+
+Today I would like to discuss an issue that is critical to ensuring the financial security of all Americans, but especially those who are most financially vulnerableâconsumer fraud.
+
+Obviously, this is not a new topic, in fact, it has been around as long as money itself. Since people have transacted things of value, there have been those who seek to exploit trust for profit. From ancient Greece to the Ponzi schemes of the 1920s to the telemarketing scams of the 1990s, fraud has always evolved alongside commerce.2But in today's environment of rapid technological advances, what we are seeing today is different in scale, sophistication, and impact.
+
+The consistent theme is that the messages seem authentic. The links appear legitimate and often mimic the retailer's actual website. But that personal information is later used for unauthorized purchases. These sophisticated fraud attempts are occurring at an increasing velocity on a scale that targets significant numbers of consumers.
+
+It may not seem obvious why, as a member of the Board and as the vice chair for supervision, I am raising consumer fraud as a priority issue for the Federal Reserve. The reason is that in addition to the individual harm to consumers, ultimately fraud threatens the integrity and reliability of our financial system. One of the Federal Reserve's most important roles is to regulate banks and payments, and fraud poses a significant risk for both. At its foundation, nearly every fraud affects a bank account or is tied to a payment that involves a bank account.
+
+Banks of all sizes are working to identify, mitigate, and address circumstances that result from or lead to fraud. In fact, fraud losses are one of the largest expenses for community banks.3Smaller regional banks also experience significant financial impact from fraudâone bank estimated its annual fraud costs at $40 million. The financial impact of fraud is increasing industrywide, with losses in the hundreds of millions of dollars annually for the largest institutions.
+
+This issue extends far beyond banks. Consumer fraud and scams pose increasing risks to the financial system as noted in the Financial Stability Oversight Council (FSOC) 2025 annual report, which highlighted concerns about fraud, including cyber-enabled fraud. Fraud was also a topic discussed during the FSOC's March meeting in the context of the impact of fraud on household balance sheets.
+
+Starting with the DataOur own data, as shown in the 2025 Survey of Household Economics and Decision makingâthe SHEDâindicated that one in five American adults experienced financial fraud or scams in 2024.4To put that into context, that's 21 percent of the adult population.
+
+While credit card fraud was the most common type of financial fraud, the impact to the consumer is less direct as individuals are not typically required to bear these financial losses. Other types of financial products, including bank accounts, investment accounts, or other financial products were involved in fraudulent activity for 8 percent of households. With these products, in many cases there is no automatic protection and no guarantee of recovery.
+
+The total loss from non-credit card fraud across the financial system was $84 billion in 2024. Of this amount, only $21 billion was recovered, resulting in an estimated net loss of $63 billion in losses for individual consumers.
+
+What does this mean in practice for individual households? According to the SHED survey, on average, the median loss for victims was $500, before any recovery. Even when victims were successfully able to recover funds, about half of those victims still lost money. In the broader context of Americans' financial capacity, 13 percent of Americans cannot cover a $400 emergency expense using cash or its equivalent.
+
+Let that sink inâthirteen percent of Americans don't have $400 in cash on hand for an emergency. The median fraud loss before recovery is $500. Therefore, it should not be surprising that 30 percent of Americans who lost money in an online scam said that it negatively impacted their financial condition.5For financially vulnerable households, a fraud loss can quickly escalate from an inconvenience to a crisis affecting their ability to cover essential expenses.
+
+Given these devastating impacts on individual households, you might expect certain groups to be more vulnerable than others. But here's what the data actually shows. Adults aged 45 and older were more likely to experience fraud, largely due to higher credit card usage among these consumers. And elderly consumers are more likely to lose large amounts of money to fraud.6But when we examined income levels, race, ethnicity, and gender, we found that the incidence of fraud was similar across all groups.7This threat cuts across all demographic lines. No particular individual is insulated from these threats.
+
+Our banking system runs on trustâthe belief that accounts are secure and customers can transfer money safely and reliably. When one in five adults experiences fraud and $63 billion disappears from household accounts, that trust erodes. But here's the challenge: The payment tools banks provide that allow customers to manage their financial livesâchecks, debit cards, credit cards, and electronic paymentsâare instrumental for criminals trying to perpetrate fraud. More than half of non-credit card fraud involved a bank account product. Bank transfers and payments were the mechanism for almost 40 percent of aggregate reported losses from fraud in 2024. Criminals are exploiting vulnerabilities in payment systems, authentication processes, and the security measures designed to protect households.
+
+In response, banks are making unprecedented investments in security and consumer education. Yet instances of fraud continue to increase as fraudsters exploit new vulnerabilities and new technologies, while the industry works to create more effective mechanisms to identify, prevent, and remediate fraud. For example, many fraud operations are conducted in overseas scam centers beyond U.S. law enforcement reach, which complicates the ability to combat these schemes.
+
+The Path ForwardEffectively addressing payments fraud is a complex and wide-ranging challenge that extends well beyond the Federal Reserve Board, and beyond the broader responsibilities of the Federal Reserve System. To be effective, this effort requires a comprehensive, multifaceted response and no single agency or private-sector entity can address this threat alone. Effective solutions demand coordinated action.
+
+With that said, the Federal Reserve is committed to a comprehensive strategy that leverages our unique authorities to prevent payments fraud and protect consumers, businesses, and supervised institutions. The Board has carefully reviewed over 250 comments received in response to a Request for Information we jointly issued with the FDIC and OCC last June. These insights are now informing our approach to this issue and our work together.
+
+Promoting and standardizing a common language can also aid in better sharing of consistent data and identifying fraud schemes that are being repeated across payment methods and institutions, allowing for the development of more-informed, holistic strategies.
+
+Success in combating payments fraud also requires strong partnerships. We are committed to working closely with state and federal partners, including law enforcement, to address this evolving threat together.
+
+We must also strengthen bank defenses and improve victim recovery. We must examine whether our regulations address modern fraud and are positioned for the threats consumers will face in the future. And we must ensure the financial system serves everyone safely and securely. The criminals are sophisticated, organized, and relentless. Our approach must be equally robust.
+
+I look forward to the next steps in our workâcoordinating with banks, fellow regulators, law enforcement, consumer advocates, and policymakers to confront this crisis and to preserve and enhance the public's trust in the financial system.

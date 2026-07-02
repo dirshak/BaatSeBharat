@@ -1,0 +1,17 @@
+ECB publishes Consolidated Banking Data for end-June 2016 | N/A | European Central Bank | Press Release
+
+The European Central Bank (ECB) has published the end-June 2016 Consolidated Banking Data (CBD), a data set of the European Union (EU) banking system on a group consolidated basis.
+
+The quarterly CBD cover relevant information required for the analysis of the EU banking sector, although a leaner subset compared to corresponding end-year data. The end-June 2016 data refer to 353 banking groups together with 3,201 stand-alone credit institutions, and include data for 957 foreign-controlled branches and subsidiaries operating in the EU, covering nearly 100% of the EU banking sector balance sheet. This dataset includes an extensive range of indicators on profitability and efficiency, balance sheets, liquidity and funding, asset quality, asset encumbrance, capital adequacy and solvency.
+
+Aggregates and indicators are published for the full sample of the banking industry. While large reporters apply International Financial Reporting Standards and the European Banking Authority (EBA) Implementing Technical Standards on supervisory reporting, in other cases reporters may apply national accounting standards, jointly with the EBA standards or not. Accordingly, aggregates and indicators are published also for data based on national accounting standards, depending on the availability of the underlying items.
+
+Together with end-June 2016 data, also a few revisions to past data are disclosed.
+
+For media queries, please contact Stefan Ruhkamp, tel.: +49 69 1344 5057.
+
+The Consolidated Banking Data are available in the ECB Statistical Data Warehouse:http://sdw.ecb.europa.eu/browse.do?node=9691144.
+
+More information about the methodology behind the data compilation is available on the ECB’s website:http://www.ecb.int/stats/money/consolidated/html/index.en.html.
+
+Reproduction is permitted provided that the source is acknowledged.

@@ -1,0 +1,207 @@
+Monetary policy and inequality | 2021-11-09 | European Central Bank | Speech
+
+Frankfurt am Main, 9 November 2021
+
+Economic and social inequality is one of the biggest challenges facing societies worldwide. Even before the outbreak of the coronavirus (COVID-19) pandemic, a large majority of European citizens considered differences in people’s incomes to be too large and thought the government should take measures to reduce them.[1]
+
+The pandemic has exacerbated perceptions of rising inequality. Despite far-reaching fiscal measures supporting the incomes of those most affected by the crisis in particular, rising asset prices, such as those of stocks and real estate, have fuelled concerns in parts of society about an economic system that is increasingly perceived as being unjust.
+
+Central banks are no longer considered bystanders in this discussion. The use of asset purchases, in particular, has triggered concerns that monetary policy may raise economic inequality by favouring those who own financial assets.
+
+In my remarks today I would like to respond to these concerns by discussing the distributional effects of monetary policy. I will start by explaining that structural trends, far beyond the realm of monetary policy, have been the main drivers of rising economic inequality, and that it is the responsibility of elected governments to mitigate their effects.
+
+I will then show that, by pursuing our primary mandate, monetary policy tends to reducelabour incomeinequality, as the earnings of households in lower income quintiles are, on average, more sensitive to sharp downturns in economic activity.
+
+Finally, I will argue that the effects of monetary policy onwealthinequality are less clear. A substantial part of the euro area population do not own bonds, shares or real estate, and – to the extent that some policy instruments, such as asset purchases, boost the prices of these assets – there is a risk that monetary policy may disproportionally benefit those in the higher ranks of the wealth distribution.
+
+Central banks therefore have a duty to integrate such considerations into their decision-making process as part of their regular proportionality assessment, so as to choose a set of policy instruments that ensures their mandate is fulfilled while minimising the potential distributional effects of monetary policy.
+
+Since the 1980s income and wealth inequality have increased measurably in many advanced economies, including large parts of the euro area. According to the World Inequality Database, for example, the pre-tax national income share accruing to the richest 10% of households, i.e. before redistributive policies, has increased by about eight percentage points both in Germany and Italy (Slide 2).
+
+In Germany, just before the pandemic, more than one-third of pre-tax income went to the top 10% of earners. In the United States, the concentration of income is even larger – the top 10% accounted for 45% of pre-tax national income in 2019, up from 34% in 1980.
+
+The distribution of the total stock of household wealth is even more concentrated. Reliable data on the evolution of wealth inequality over time are scarce.
+
+However, the latest Eurosystem Household Finance and Consumption Survey suggests that, in 2017, the bottom 40% of euro area households held only 3% of total assets, while the upper 10% owned nearly half of total assets (Slide 3). In the United States, the top decile owned a staggering 70% of net personal wealth in 2019.
+
+A significant amount of research has been devoted to analysing and understanding the sources of growing income and wealth inequality. There is general consensus that two broad, and interrelated, structural trends can explain the bulk of recent developments.
+
+The first relates to the distributional effects of technological change. Over the past few decades, technological advances have been increasingly skill-biased, causing the wages of more educated workers to grow at a significantly faster pace than those of less-skilled workers – a trend that, at least in the United States, had ground to a halt already before the start of the pandemic (Slide 4, left-hand chart).[2]
+
+The second trend relates to the gradual erosion of workers’ wage bargaining power.[3]Globalisation, which exposed economies to stronger price competition, and a marked decline in the relative price of capital goods have made it cheaper and easier for firms to reallocate labour across countries, or to replace labour with capital by automating routine, low-skilled jobs.[4]
+
+As a result, trade union membership rates have fallen measurably over the past few decades (Slide 4, right-hand chart), and productivity gains have not been matched by real wage growth, widening the gulf between workers and capital owners.[5]
+
+Mitigating the effects of these structural trends on inequality is the responsibility of elected governments.[6]
+
+Inclusive education policies, for example, that equip children from all social backgrounds with the skills needed to thrive in today’s globalised labour markets, or measures that minimise excessive rent-seeking, are powerful tools to make the distribution ofpre-taxincomes more equal.[7]
+
+They can go a long way to ensuring that more people benefit from the opportunities offered by globalisation and new technologies. This may be particularly important in the wake of the pandemic, as home schooling has tended to widen the educational gap between children of different backgrounds.
+
+Income or wealth taxes and transfers, in turn, can help alleviate uneven market outcomes and thereby reducepost-taxincome inequality. In all major euro area economies, income inequality after tax and transfers, as measured by the Gini coefficient, is significantly lower than inequality of pre-tax income, and often lower than in other advanced economies (Slide 5).[8]
+
+Discretionary fiscal policy measures can be equally powerful. The pandemic is a case in point. Far-reaching restrictions in contact-intensive service industries heavily skewed unemployment risks and income losses towards households in lower income quintiles (Slide 6, left-hand chart).[9]
+
+Large-scale national job retention programmes succeeded in preventing lay-offs and a significant rise in unemployment, protecting the most vulnerable members of society (Slide 6, right-hand chart). At their peak, such programmes provided fiscal support to around one-fifth of the euro area labour force.
+
+Furthermore, the European Commission’s support to mitigate unemployment risks in an emergency (SURE) and the Next Generation EU programme have complemented and reinforced national initiatives, reducing rising income differencesacrosseuro area countries.
+
+Inequality is thus, by and large, the result of long-term structural trends.[10]The question, then, is whether there is also a link between monetary policy and inequality, and whether and how central banks should take distributional effects into account when conducting policy.
+
+There are two aspects to this question.
+
+The first is the impact of inequality on the transmission of monetary policy. For a long time, policymakers have largely ignored distributional effects, with mainstream central bank models building on the notion of a single representative household.
+
+Today, heterogeneity in income and wealth is widely considered to be a prime channel of policy transmission.[11]Differences in how spending behaviour of individual households changes in response to income and wealth shocks – the marginal propensity to consume – are likely to significantly influence the effectiveness of monetary policy.
+
+Income inequality can also constrain how much space there is for monetary policy to respond to disinflationary shocks.
+
+In the United States, for example, new research suggests that the marked rise in the income share of high-income cohorts is likely to have been a prime driver behind the significant and persistent increase in the economy’s aggregate savings rate, putting downward pressure on real interest rates.[12]
+
+Lower real interest rates, in turn, have made it more difficult for monetary policy to stabilise or stimulate the economy through cuts in the main policy rates.[13]
+
+The second aspect is whether or not, and how, monetary policy itself may affect the distribution of income and wealth.[14]
+
+A natural starting point to answering this question is the primary mandate of many central banks: protecting price stability.
+
+Inflation is often considered one of the most regressive taxes. Differences in spending patterns across households often imply that the cost of living of poorer households is most sensitive to fluctuations in the level of prices.
+
+By protecting the purchasing power of people, monetary policy has been an important source of improvement in livelihoods of households with low income. There is broad empirical evidence suggesting that income inequality tends to decline visibly when monetary policy succeeds in anchoring inflation at low and stable levels.[15]
+
+Monetary policy also has effects on the distribution of income and wealth in the way it transmits through the economy.
+
+Changes in interest rates, for example, always have distributional consequences, whether they reflect a change in the monetary policy stance or whether they are the result of other macroeconomic factors, such as changes in the demand for capital.
+
+As a rule, changes in interest rates redistribute income between debtors and creditors. They also have an impact on aggregate spending by changing the incentives for savings and investments, which then affects prices, employment, income and wealth.
+
+Research shows that the impact on aggregate spending by far dominates the redistributive effect between debtors and creditors. While interest income of net savers declines in response to a cut in policy rates, labour income rises significantly for both net borrowers and net savers owing to the stimulating effects of monetary easing on aggregate demand and employment (Slide 7).[16]
+
+On net, a decline in interest rates is found to reduce income inequality, as households with lower incomes tend to have, on average, a higher risk of losing employment during a recession than workers further up the income ladder, so that the positive effect of an expansionary monetary policy, through its effect on GDP growth, mainly benefits the lowest income group (Slide 8, left-hand chart).[17]
+
+This was also the case during the pandemic, where monetary policy has played an important role in dampening cyclical increases in income inequality.
+
+There is broad consensus that our pandemic emergency purchase programme (PEPP) has prevented a collapse of the financial system, which could have had dramatic consequences for society at large.
+
+The global financial crisis of 2008-09 laid bare that large and protracted recessions primarily hurt younger and less-skilled workers, with significant risks of permanent scarring (Slide 8, right-hand chart).
+
+The implication is that stability-oriented central banks, by pursuing their primary mandate, tend to protect the most vulnerable and disadvantaged members of society first and foremost.
+
+New research, however, suggests that the effects of monetary policy on the broader income distribution are more nuanced when also considering realised capital gains, such as from sales of shares or real estate, which are typically not included in official measures of personal income.[18]
+
+Based on highly disaggregated data, economists at Sveriges Riksbank found that the effects of monetary policy on the income distribution are U-shaped once realised capital gains are included – that is, both low and high-income earners benefit disproportionally from lower interest rates, at the expense of the middle class.[19]
+
+In other words, net wealth also generates revenue. And capital income and realised capital gains typically constitute a larger share of total income for those at the top of the income distribution.
+
+Evidence from Denmark, also based on household-level data, even suggests that households with the highest incomes tend to benefit the most from lower interest rates.[20]Monetary policy then increases income inequality.
+
+These different findings do not necessarily contradict each other. After all, the distribution of assets and liabilities varies across economies. But they do suggest that the distribution of net wealth, and the effects of monetary policy on the prices of real and financial assets, play an important role in the overall picture.
+
+This asset price channel is likely to have become more important over time.
+
+Faced with the constraints of the zero-lower bound and years of subdued price pressure, many central banks have increasingly resorted to asset purchases to stimulate or stabilise the economy. The ECB, for example, since late 2014 has bought sovereign and corporate bonds worth more than €4.5 trillion, or nearly 40% of euro area GDP in 2019 (Slide 9, left-hand chart).
+
+Such purchases are a necessary, suitable and proportionate instrument for central banks to fulfil their statutory mandates when policy rates are close to the effective lower bound.[21]But since they directly affect the prices of longer-dated assets, their impact on relative incomes and wealth may be more pronounced than that of changes in short-term policy rates.
+
+I would distinguish between two types of effect: direct and indirect.
+
+The direct effect relates to the capital gains that the holders of securities accrue because of our purchases. These benefits tend to be highly concentrated.
+
+In the euro area, low-wealth households tend to predominantly invest their financial assets in short-term bank deposits. Less than 0.1% of households in the bottom net wealth quintile hold bonds, compared with more than 10% of the top decile (Slide 9, right-hand chart). And only around 1% of low-wealth households hold shares in mutual funds, compared with 30% of households in the top net wealth decile. Similar shares are found for stock holdings.
+
+Hence, central banks purchasing longer-dated assets disproportionally benefit wealthier households whose assets tend to have longer durations than their liabilities.[22]
+
+In addition, when considering the consolidated balance sheet of the public sector, which includes the central bank, there is a risk that very long periods of asset purchases may penalise the average taxpayer in a future crisis.
+
+New research shows that there is a trade-off between protecting bondholders by making debt safe, and protecting taxpayers by providing fiscal support in economic downturns.[23]
+
+Low and negative interest rates have mitigated this trade-off. But to the extent that asset purchases contribute to making debt safer, they may, at some point, be protecting bondholders at the expense of the average taxpayer.
+
+None of these effects call into question the stabilising power of asset purchases that benefits society at large in a deep recession, or when financial markets are at risk of collapse. At the lower bound, asset purchases have become an indispensable tool for monetary policy.
+
+Research also suggests that the eventual welfare consequences from higher asset prices are, on the face of it, unclear – that is, whether valuation gains will translate into higher consumption inequality depends critically on whether households will ultimately respond to higher market values of assets.[24]Often, this is not the case.
+
+Rather, what these findings suggest is that, once the economy has stabilised, undesirable distributional effects from asset purchases may increase.
+
+This brings me to theindirecteffects of our purchases on the distribution of wealth and income, namely the broader portfolio rebalancing triggered by the compression of risk-free interest rates.
+
+Faced with low and falling yields, many investors have looked beyond financial markets to generate returns for their clients. Real assets, including residential and commercial real estate, have been among the key asset classes experiencing significant investor interest, even well before the pandemic.
+
+In the Netherlands, for example, real estate investment trusts owned assets worth almost 10% of the country’s GDP in 2018 (Slide 10, left-hand chart). In Germany, that percentage share reached 5% last year, having continued to rise even during the pandemic.
+
+Residential real estate transactions account for a growing share of the acquisitions of these and other institutional investors. According to data from Real Capital Analytics, residential real estate assets accounted for one-fifth of institutional investors’ total transactions in the first half of 2021.
+
+Research by the International Monetary Fund (IMF) has found that those investors respond to global financial conditions.[25]By searching for yield in a low interest rate environment, they may have played a non-negligible role in pushing up real estate prices in recent years, not only in the euro area but across advanced economies, especially in major cities.
+
+As a result, house prices are increasingly behaving like those of any other globally traded financial asset, and therefore risk diverging from national income developments.
+
+In the euro area, for example, residential property prices have risen by 35% since 2015, noticeably faster than disposable income (Slide 10, right-hand chart). In Germany, house prices have even soared by nearly 60% over the same period, and by more than 10% compared with last year.
+
+Of course, rising house prices reflect a variety of factors, in particular supply constraints owing to a lack of building permits and demand-side factors such as the migration to urban areas or greater demand for living space per capita. Monetary policy and low interest rates are only one factor.
+
+Yet, new ECB research corroborates the IMF’s findings, suggesting that unconventional monetary policy measures, such as asset purchases, are likely to have a significantly larger impact on house prices than changes in short-term policy rates (Slide 11, left-hand chart).[26]
+
+In countries where homeownership rates have traditionally been high, such as Spain, Italy and Portugal, the impact of rising house prices on economic inequality is less alarming, with house price increases generally benefiting a large share of the population.
+
+But in countries such as Germany and Austria, where less than half of the population owns their main residence, the recent sharp increase in house prices could heighten inequality and social tensions. In the Netherlands and France too, over 40% of households do not own their main residence.
+
+Surging house prices are making it more difficult for people living in those countries to afford housing and accumulate wealth – a concern that has been raised at a number of our “ECB Listens” events.
+
+Indeed, homeownership rates in most euro area countries have fallen over the past few years. Today, fewer households own their main residence, both in countries that have suffered economic hardship in the wake of the sovereign debt crisis, and in countries that have prospered, such as Germany and Austria.
+
+Rising house prices are also making it harder for low-income workers and younger generations to relocate, potentially exacerbating labour shortages in major cities.[27]
+
+Even before the pandemic, around one-third of all households in the lowest quintile of the income distribution were overburdened, meaning that their total housing costs amounted to more than 40% of their disposable income.[28]
+
+Although the pass-through of house price increases to rents is not generally one to one, in part reflecting the relatively large share of administered rental contracts, over time investors who have acquired property while prices are high will want to recover some of their purchase price.
+
+Let me conclude with the policy implications, which are twofold.
+
+First, central banks must pay more attention to house prices, from both a price stability and a financial stability perspective.
+
+As part of our monetary policy strategy review, the Governing Council recommended a roadmap for the inclusion of owner-occupied housing in the Harmonised Index of Consumer Prices (HICP).[29]The augmented HICP will not only better represent actual consumption expenditures by households, but also better reflect the transmission of our monetary policy.
+
+Preliminary estimates show that the inclusion of owner-occupied housing costs would have increased the cyclicality of inflation in past years and led to persistently higher inflation since around 2014 (Slide 11, right-hand chart). In the second quarter of this year, owner-occupied housing would have contributed between 0.4 and 0.5 percentage points to a new, augmented HICP.[30]
+
+Should we judge that differences of this magnitude are likely to persist over the medium term, they then become relevant for the appropriate calibration of our monetary policy stance.
+
+Our revised framework also explicitly recognises that financial stability is a pre-condition for price stability.
+
+ECB estimates suggest that, in the euro area as a whole, house prices are currently overvalued relative to fundamentals, making them vulnerable to future price corrections (Slide 12, left-hand chart).[31]
+
+Bank lending for house purchase has also increased notably, particularly in Germany and France, and, in the euro area as a whole, it is now expanding at its fastest pace since 2008 (Slide 12, right-hand chart).
+
+Monetary policy cannot turn a blind eye on such developments in an institutional setting in which macroprudential policies are, in principle, the first line of defence but are not yet fully effective.
+
+This brings me to the second implication.
+
+All of our policy actions are subject to a careful proportionality assessment, which consists in a systematic analysis of the evolving balance between the benefits and costs of our actions. Distributional effects with regard to income and wealth, as well as financial stability risks, are part of this assessment.
+
+If we conclude that a different policy configuration would achieve our mandate with fewer side effects, we would need to alter the relative intensity with which we use our various instruments.
+
+At the current juncture, for example, it is likely that the large stock of acquired assets, in conjunction with our strong forward guidance on policy rates, will prevent an unwarranted tightening of long-term rates once net asset purchases have been terminated.[32]
+
+From today’s perspective, this can be expected to happen in March 2022 in the case of net purchases under the PEPP, while the pace and duration of our net purchases under the asset purchase programme (APP) will critically depend on a thorough reassessment of the medium-term inflation outlook.
+
+By gradually shifting the policy mix away from net asset purchases, we will prevent the distributional footprint of our measures from increasing and mitigate financial stability risks while the economy recovers.
+
+These considerations are also relevant in determining the appropriate sequencing when the time has come to gradually withdraw monetary stimulus. One reason for ending net asset purchases before raising policy rates has to do with the potentially adverse distributional consequences of reversing the order of policy normalisation.
+
+In raising policy rates before ending net asset purchases, central banks would be willingly accepting losses on their balance sheets that would ultimately lead to losses for the average taxpayer, and the continuation of net asset purchases would benefit mostly wealthier households.
+
+Our forward guidance, in turn, ensures that we will not respond hastily to rising inflation rates.
+
+We are taking the impact of current high inflation rates on the purchasing power of people very seriously. We recognise that current high energy inflation has a particularly concerning effect on the incomes of households at the lower end of the income distribution.
+
+However, monetary policy cannot mitigate short-term spikes in inflation. Because of the long lags in the transmission of monetary policy, our mandate is firmly framed in terms of the medium term. Our efforts are therefore focused on assessing how persistent current price pressures will ultimately be.
+
+At our last Governing Council meeting, we concluded that there remains good reason to believe that euro area inflation will decline visibly over the course of next year and gradually fall back below our target of 2% in the medium term, meaning that the conditions for raising interest rates, as set out in our revised forward guidance, are very unlikely to be met next year.
+
+Prematurely raising policy rates in response to a temporary inflation surge would hurt households with low incomes the most. By choking the recovery, it would put employment opportunities at risk, especially for the many workers that have still not been able to rejoin the labour market.
+
+Nonetheless, significant uncertainty remains as to how persistent some of the current price pressures will prove to be. The ECB therefore continues to carefully monitor inflationary developments in the euro area.
+
+Thank you.
+
+DisclaimerPlease note that related topic tags are currently available for selected content only.
+
+Reproduction is permitted provided that the source is acknowledged.

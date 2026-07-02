@@ -1,0 +1,169 @@
+The Federal Reserve’s Review of Its Monetary Policy Strategy, Tools, and Communication Practices | 2019-09-26 | Vice Chair Richard H. Clarida | Press Release
+
+At âA Hot Economy:  Sustainability and Trade-Offs,â a Fed Listens event sponsored by the Federal Reserve Bank of San Francisco, San Francisco, California
+
+I am delighted to be in San Francisco today to participate in thisFed Listensconference, "A Hot Economy: Sustainability and Trade-Offs," which is one of a series of events associated with the Federal Reserve's 2019 review of our monetary policy strategy, tools, and communication practices.1
+
+Motivation for the ReviewAlthough I will have more to say about the review in a moment, let me state at the outset that we believe our existing framework, which has been in place since 2012, has served us well and has enabled us to achieve and sustain our statutorily assigned goals of maximum employment and price stability. However, we also believe now is a good time to step back and assess whether, and in what possible ways, we can refine our strategy, tools, and communication practices to achieve and maintain our goals as consistently and robustly as possible.2
+
+With the U.S. economy operating at or close to maximum employment and price stability, now is an especially opportune time to conduct this review. The unemployment rate is near a 50-year low, and inflation is running close to our 2 percent objective. With this review, we hope to ensure that we are well positioned to continue to meet our statutory goals in coming years.
+
+The U.S. and foreign economies have changed in some important ways since the Global Financial Crisis. Perhaps most significantly, neutral interest rates appear to have fallen in the United States.3A fall in neutral rates increases the likelihood that a central bank's policy rate will hit its effective lower bound (ELB) in future economic downturns. That development, in turn, could make it more difficult during downturns for monetary policy to support spending and employment and to keep inflation from falling too far below the 2 percent objective.4
+
+Another key development in recent decades is that price inflation appears less responsive to resource slack. That is, the short-run price Phillips curveâif not the wage Phillips curveâappears to have flattened, implying a change in the dynamic relationship between inflation and employment.5A flatter Phillips curve permits the Federal Reserve to support employment more aggressively during downturnsâas was the case during and after the Great Recessionâbecause a sustained inflation breakout is less likely when the Phillips curve is flatter.6However, a flatter Phillips curve also increases the cost, in terms of lost economic output, of reversing unwelcome increases in longer-run inflation expectations. Thus, a flatter Phillips curve makes it all the more important that inflation expectations remain anchored at levels consistent with our 2 percent inflation objective.7And let me emphasize that, based on the evidence I have reviewed, I judge that U.S. inflation expectations today do reside in a range I consider consistent with our priceâstability mandate.
+
+A Robust U.S. Labor MarketFor some time now, price stability in the United States has coincided with a historically low unemployment rate. This low unemployment rate, 3.7 percent in August, has been interpreted by many as suggesting that the labor market is currently operating beyond full employment. However, we cannot directly observe the level of the unemployment rate that is consistent with full employment and price stability, u*, but must infer it from data via models. I myself believe that the range of plausible estimates of u* extends to 4 percent and below and includes the current unemployment rate of 3.7 percent. As the unemployment rate has declined in recent years, labor force participation for people in their prime working years has increased significantly, with the August participation rate at a cycle high of 82.6 percent.8Increased prime-age participation has provided employers with additional labor resources and has been one factor, along with a pickup in labor productivity, restraining inflationary pressures. Whether participation will continue to increase in a tight labor market remains to be seen. But I note that prime-age participation still remains below levels seen in previous business cycle expansions.
+
+The strong job gains of recent years also have delivered benefits to groups that have historically been disadvantaged in the labor market. For example, African Americans and Hispanics have experienced persistently higher unemployment rates than whites for many decades.10However, those unemployment rate gaps have narrowed as the labor market has strengthened, and, as President Daly's research shows, there is some indication these groups especially benefit when the unemployment rate remains very low.11Likewise, the gaps between unemployment rates for less-educated workers and their more-educated counterparts appear to narrow as the labor market strengthens.12Wage increases in the past couple of years have been strongest for less-educated workers and for those at the lower end of the wage distribution.13
+
+Scope of the ReviewThe Federal Reserve Act assigns to the Fed the responsibility to conduct monetary policy "so as to promote effectively the goals of maximum employment, stable prices, and moderate long-term interest rates."14Our review this year takes this statutory mandate as given and also takes as given that inflation at a rate of 2 percent is most consistent over the longer run with the congressional mandate.
+
+Our existing monetary policy strategy is laid out in the Committee's Statement on Longer-Run Goals and Monetary Policy Strategy.15First adopted in January 2012, the statement indicates that the Committee seeks to mitigate deviations of inflation from 2 percent and deviations of employment from assessments of its maximum level. In doing so, the Federal Open Market Committee (FOMC) recognizes that these assessments of maximum employment are necessarily uncertain and subject to revision.
+
+The review of our current framework is wide ranging, and we are not prejudging where it will take us, but events of the past decade highlight three broad questions that we will seek to answer with our review.
+
+Three QuestionsThe first question is, "Can the Federal Reserve best meet its statutory objectives with its existing monetary policy strategy, or should it consider strategies that aim to reverse past misses of the inflation objective?"
+
+Under our current approach as well as the approaches of many central banks around the world, persistent inflation shortfalls of the target are treated as "bygones." Central banks are generally believed to have effective tools for preventing persistent inflation overshoots, but the ELB on interest rates makes persistent undershoots more of a challenge. Persistent inflation shortfallscarry the risk that longer-term inflation expectations become anchored below the stated inflation goal.17
+
+In part because of that concern, some economists have advocated "makeup" strategies under which policymakers seek to undo past inflation deviations from target. These strategies include targeting average inflation and price-level targeting, in which policymakers seek to stabilize the price level around a constant growth path.18Other makeup strategies seek to reverse shortfalls in policy accommodation at the ELB by keeping the policy rate lower for longer than otherwise would be the case.19In many models that incorporate the ELB, these makeup strategies lead to better average performance on both legs of the dual mandate.20
+
+The success of makeup strategies relies on households and firms believing in advance that the makeup will, in fact, be delivered when the time comesâfor example, that a persistent inflation shortfall will be met by future inflation above 2 percent. As is well known from the research literature, makeup strategies, in general, are not time consistent because when the time comes to push inflation above 2 percent, conditions at that time will not justify that action. Thus, one of the most important questions we will seek to answer in our review is whether the Fed could, in practice, attain the benefits of makeup strategies that are possible in theoretical models.
+
+The next question the review will consider is, "Are existing monetary policy tools adequate to achieve and maintain maximum employment and price stability, or should the toolkit be expanded? And, if so, how?" The FOMC's primary monetary policy tool is its target range for the federal funds rate. In December 2008, the FOMC cut that target to just above zero in response to financial turmoil and deteriorating economic conditions. Because the U.S. economy required additional support after the ELB was reached, the FOMC deployed two additional tools in the years following the crisis: balance sheet policies and forward guidance about the likely path of the federal funds rate.21
+
+In addition to assessing the efficacy of these existing tools, the review will examine additional tools for easing policy when the ELB is binding. During the crisis and its aftermath, the Federal Reserve considered but ultimately found some of the tools deployed by other central banks wanting in the U.S. context. But the review will reassess the case for these and other tools in light of more recent experience with using these tools in other countries.
+
+The third question the review will consider is, "How can the FOMC's communication of its policy framework and implementation be improved?" Our communication practices have evolved considerably since 1994, when the Federal Reserve released the first statement after an FOMC meeting. Over the past decade or so, the FOMC has enhanced its communication both to promote public understanding of its policy goals, strategy, and actions and to foster democratic accountability. These enhancements include the Statement on Longer-Run Goals and Monetary Policy Strategy; postmeeting press conferences; various statements about the principles and strategy guiding the Committee's normalization of monetary policy; and quarterly summaries of individual FOMC participants' economic projections, assessments about the appropriate path of the federal funds rate, and judgments of the uncertainty and balance of risks around their projections.22
+
+As part of the review, we will assess the Committee's current and past communications and additional forms of communication that could be helpful. For example, there might be ways to improve communication about the coordination of policy tools or the interplay between monetary policy and financial stability.
+
+Activities and Timeline for the ReviewLet me turn now to our review process itself.23At ourFed Listensevents, we are hearing from a broad range of interested individuals and groups, including business and labor leaders, community development professionals, and academics. At a research conference at the Federal Reserve Bank of Chicago in early June, we heard from prominent academic economists as well as national and community leaders. One panel discussion provided a valuable perspective on the labor market that could not otherwise be gleaned from the aggregate statistics we often consult. Another panel discussion offered insights into how the monetary levers we pull and push affect communities, credit availability, and small businesses. In addition to the Chicago conference, all 12 Reserve Banks and the Board of Governors have hosted or will soon hostFed Listensevents.
+
+This summer, the FOMC began to assess what we have learned at theFed Listensevents and to receive briefings from System staff on topics relevant to the review.24At our July meeting, FOMC participants agreed that our current framework for monetary policy has served the Committee and the U.S. economy well over the past decade. FOMC participants noted that the Committee's experience with forward guidance and asset purchases has improved its understanding of how these tools operate. As a result, the Committee could proceed more confidently in using these tools in the future if economic circumstances warranted. However, overall, we judged that forward guidance and balance sheet tools, while helpful, did not eliminate the risk of returning to the ELB. If forward guidance or balance sheet actions prove to be insufficient in future episodes, ELB constraints could impede the attainment of the Federal Reserve's dual-mandate objectives over time. At our July meeting, we also noted that the Committee's Statement on Longer-Run Goals and Monetary Policy Strategy has been helpful in articulating and clarifying the Federal Reserve's approach to monetary policy and agreed that any changes we might make to our strategy would likely call for some modification of this consensus statement.
+
+Concluding ThoughtsThe economy is constantly evolving, bringing with it new policy challenges. So it makes sense for us to remain open minded as we assess current practices and consider ideas that could potentially enhance our ability to deliver on the goals the Congress has assigned us. For this reason, my colleagues and I do not want to preempt or to predict our ultimate findings. What I can say is that any refinements or more material changes to our framework that we might make will be aimed solely at enhancing our ability to achieve and sustain our dual-mandate objectives in the world we live in today.
+
+Thank you very much for your time and attention. I look forward to the excellent program President Daly and her team have put together.
+
+ReferencesAaronson, Stephanie R., Mary C. Daly, William Wascher, and David W. Wilcox (2019). "Okun Revisited: Who Benefits Most from a Strong Economy? (PDF)" paper presented at the Brookings Papers on Economic Activity Conference, held at the Brookings Institution, Washington, March 7â8.
+
+Adam, Klaus, and Roberto M. Billi (2007). "Discretionary Monetary Policy and the Zero Lower Bound on Nominal Interest Rates,"Journal of Monetary Economics,vol. 54 (April), pp. 728â52.
+
+Bank for International Settlements (2017).87th Annual Report (PDF).Basel, Switzerland: BIS, June.
+
+Bauer, Michael D., and Glenn D. Rudebusch (2014). "The Signaling Channel for Federal Reserve Bond Purchases (PDF),"International Journal of Central Banking,vol. 10 (September), pp. 233â89.
+
+Baumeister, Christiane, and Luca Benati (2013). "Unconventional Monetary Policy and the Great Recession: Estimating the Macroeconomic Effects of a Spread Compression at the Zero Lower Bound (PDF),"International Journal of Central Banking,vol. 9 (June), pp. 165â212.
+
+Berg, Claes, and Lars Jonung (1999). "Pioneering Price Level Targeting: The Swedish Experience 1931â1937,"Journal of Monetary Economics,vol. 43 (June), pp. 525â51.
+
+Bernanke, Ben S. (2007). "Federal Reserve Communications," speech delivered at the Cato Institute 25th Annual Monetary Conference, Washington, November 14.
+
+âââ (2017). "Temporary Price-Level Targeting: An Alternative Framework for Monetary Policy,"Ben Bernanke's Blog,October 12.
+
+Blanchard, Olivier, Eugenio Cerutti, and Lawrence Summers (2015). "Inflation and ActivityâTwo Explorations and their Monetary Policy Implications (PDF)," IMF Working Paper WP/5/230. Washington: International Monetary Fund, November.
+
+Board of Governors of the Federal Reserve System (2018a).Monetary Policy Report.Washington: Board of Governors, February.
+
+âââ (2018b).Monetary Policy Report.Washington: Board of Governors, July.
+
+âââ (2019a).Monetary Policy Report.Washington: Board of Governors, February.
+
+âââ (2019b). "Minutes of the Federal Open Market Committee, July 30â31, 2019," press release, August 21.
+
+Boivin, Jean, and Marc P. Giannoni (2006). "Has Monetary Policy Become More Effective?"Review of Economics and Statistics,vol. 88 (August), pp. 445â62.
+
+Boivin, Jean, Michael T. Kiley, and Frederic S. Mishkin (2010). "How Has the Monetary Transmission Mechanism Evolved over Time?" in Benjamin M. Friedman and Michael Woodford, eds.,Handbook of Monetary Economics, vol. 3. Amsterdam: Elsevier, pp. 369â422.
+
+Brand, Claus, Marcin Bielecki, and Adrian Penalver (2018). "The Natural Rate of Interest: Estimates, Drivers, and Challenges to Monetary Policy (PDF)," Occasional Paper Series 217. Frankfurt: European Central Bank, December.
+
+Bullard, James (2018). "The Case of the Disappearing Phillips Curve (PDF)," speech delivered at the 2018 ECB Forum on Central Banking, Sintra, Portugal, June 19.
+
+Cajner, Tomaz, Tyler Radler, David Ratner, and Ivan Vidangos (2017). "Racial Gaps in Labor Market Outcomes in the Last Four Decades and over the Business Cycle (PDF)," Finance and Economics Discussion Series 2017-071. Washington: Board of Governors of the Federal Reserve System, June.
+
+Campbell, Jeffrey R., Charles L. Evans, Jonas D.M. Fisher, and Alejandro Justiniano (2012). "Macroeconomic Effects of Federal Reserve Forward Guidance (PDF),"Brookings Papers on Economic Activity,Spring, pp. 1â80.
+
+Campbell, Jeffrey R., Jonas D.M. Fisher, Alejandro Justiniano, and Leonardo Melosi (2017). "Forward Guidance and Macroeconomic Outcomes since the Financial Crisis," in Martin Eichenbaum and Jonathan A. Parker, eds.,NBER Macroeconomics Annual 2016,vol. 31. Chicago: University of Chicago Press, pp. 283â357.
+
+Cecchetti, Stephen G., Michael E. Feroli, Peter Hooper, Anil K. Kashyap, and Kermit L. Schoenholtz (2017).Deflating Inflation Expectations: The Implications of Inflation's Simple Dynamics (PDF),report prepared for the 2017 U.S. Monetary Policy Forum, sponsored by the Initiative on Global Markets at the University of Chicago Booth School of Business, held in New York, March 3.
+
+Chen, Han, Vasco Cúrdia, and Andrea Ferrero (2012). "The Macroeconomic Effects of LargeâScale Asset Purchase Programmes,"Economic Journal,vol. 122 (November), pp. F289â315.
+
+Chung, Hess, Etienne Gagnon, Taisuke Nakata, Matthias Paustian, Bernd Schlusche, James Trevino, Diego Vilán, and Wei Zheng (2019). "Monetary Policy Options at the Effective Lower Bound: Assessing the Federal Reserve's Current Policy Toolkit (PDF)," Finance and Economics Discussion Series 2019-003. Washington: Board of Governors of the Federal Reserve System, January.
+
+Clarida, Richard H. (2012). "What Hasâand Has NotâBeen Learned about Monetary Policy in a LowâInflation Environment? A Review of the 2000s,"Journal of Money, Credit and Banking,vol. 44, s1 (February), pp. 123â40.
+
+âââ (2016). "Good News for the Fed,"International Economy, Spring, pp. 44â45 and 75â76.
+
+Clarida, Richard, Jordi Galí, and Mark Gertler (2000). "Monetary Policy Rules and Macroeconomic Stability: Evidence and Some Theory,"Quarterly Journal of Economics,vol. 115 (February), pp. 147â80.
+
+Clinton, Kevin, Charles Freedman, Michel Juillard, Ondra Kamenik, Douglas Laxton, and Hou Wang (2015). "Inflation-Forecast Targeting: Applying the Principle of Transparency (PDF)," IMF Working Paper WP/15/132. Washington: International Monetary Fund, June.
+
+D'Amico, Stefania, William English, David LópezâSalido, and Edward Nelson (2012). "The Federal Reserve's LargeâScale Asset Purchase Programmes: Rationale and Effects,"Economic Journal,vol. 122 (November), pp. F415â46.
+
+D'Amico, Stefania, and Thomas B. King (2013). "Flow and Stock Effects of LargeâScale Treasury Purchases: Evidence on the Importance of Local Supply,"Journal of Financial Economics,vol. 108 (May), pp. 425â48.
+
+Economic Policy Institute (2019).State of Working America Data Library. Washington: EPI, March.
+
+Eggertsson, Gauti B., and Michael Woodford (2003). "The Zero Bound on Interest Rates and Optimal Monetary Policy (PDF),"Brookings Papers on Economic Activity,no. 1, pp. 139â235.
+
+Engen, Eric M., Thomas Laubach, and David Reifschneider (2015). "The Macroeconomic Effects of the Federal Reserve's Unconventional Monetary Policies (PDF)," Finance and Economics Discussion Series 2015-005. Washington: Board of Governors of the Federal Reserve System, January.
+
+English, William B., David López-Salido, and Robert Tetlow (2015). "The Federal Reserve's Framework for Monetary Policy: Recent Changes and New Questions,"IMF Economic Review,vol. 63 (May), pp. 22â70.
+
+Erceg, Christopher, James Hebden, Michael Kiley, David López-Salido, and Robert Tetlow (2018). "Some Implications of Uncertainty and Misperception for Monetary Policy (PDF)," Finance and Economics Discussion Series 2018-059. Washington: Board of Governors of the Federal Reserve System, August.
+
+Faust, Jon, and Jonathan H. Wright (2013). "Forecasting Inflation," in Graham Elliott, Clive Grander, and Allan Timmermann, eds.,Handbook of Economic Forecasting,vol. 2A. Amsterdam: Elsevier, pp. 2â56.
+
+Fuhrer, Jeffrey, Giovanni Olivei, Eric Rosengren, and Geoffrey Tootell (2018). "Should the Fed Regularly Evaluate Its Monetary Policy Framework? (PDF)" paper presented at the Brookings Papers on Economic Activity Conference, Fall, held at the Brookings Institution, Washington, September 13â14.
+
+Gagnon, Joseph, Matthew Raskin, Julie Remache, and Brian P. Sack (2011). "Large-Scale Asset Purchases by the Federal Reserve: Did They Work? (PDF)"FRBNYEconomic Policy Review,vol. 17 (May), pp. 41â59.
+
+Hamilton, James D., and Jing Cynthia Wu (2012). "The Effectiveness of Alternative Monetary Policy Tools in a Zero Lower Bound Environment,"Journal of Money, Credit and Banking,vol. 44, s1 (February), pp. 3â46.
+
+Hebden, James, and David López-Salido (2018). "From Taylor's Rule to Bernanke's Temporary Price Level Targeting (PDF)," Finance and Economics Discussion Series 2018-051. Washington: Board of Governors of the Federal Reserve System, July.
+
+Hills, Timothy S., Taisuke Nakata, and Sebastian Schmidt (2016). "The Risky Steady State and the Interest Rate Lower Bound (PDF)," Finance and Economics Discussion Series 2016-009. Washington: Board of Governors of the Federal Reserve System, January.
+
+Holston, Kathryn, Thomas Laubach, and John C. Williams (2017). "Measuring the Natural Rate of Interest: International Trends and Determinants,"Journal of International Economics,vol. 108, Supplement 1 (May), pp. S59â75.
+
+Joyce, Michael, Ana Lasaosa, Ibrahim Stevens, and Matthew Tong (2011). "The Financial Market Impact of Quantitative Easing in the United Kingdom (PDF),"International Journal of Central Banking,vol. 7 (September), pp. 113â61.
+
+Joyce, Michael, David Miles, Andrew Scott, and Dimitri Vayanos (2012). "Quantitative Easing and Unconventional Monetary PolicyâAn Introduction,"Economic Journal,vol. 122 (November), pp. F271â88.
+
+Kiley, Michael T., and John M. Roberts (2017). "Monetary Policy in a Low Interest Rate World (PDF),"Brookings Papers on Economic Activity,Spring, pp. 317â96.
+
+King, Mervyn, and David Low (2014). "Measuring the 'World' Real Interest Rate," NBER Working Paper Series 19887. Cambridge, Mass.: National Bureau of Economic Research, February.
+
+Mishkin, Frederic S. (2007). "Monetary Policy and the Dual Mandate," speech delivered at Bridgewater College, Bridgewater, Va., April 10.
+
+Nakov, Anton (2008). "Optimal and Simple Monetary Policy Rules with Zero Floor on the Nominal Interest Rate (PDF),"International Journal of Central Banking,vol. 4 (June), pp. 73â127.
+
+Nessén, Marianne, and David Vestin (2005). "Average Inflation Targeting,"Journal of Money, Credit and Banking, vol. 37 (October), pp. 837â63.
+
+Rachel, Lukasz, and Thomas D. Smith (2017). "Are Low Real Interest Rates Here to Stay? (PDF)"International Journal of Central Banking,vol. 13 (September), pp. 1â42.
+
+Reifschneider, David L., and John C. Williams (2000). "Three Lessons for Monetary Policy in a Low-Inflation Era,"Journal of Money, Credit and Banking,vol. 32 (November), pp. 936â66.
+
+Roberts, John M. (2006). "Monetary Policy and Inflation Dynamics,"International Journal of Central Banking, vol. 2 (September), pp. 193â230.
+
+Romer, David (2010). "A New Data Set on Monetary Policy: The Economic Forecasts of Individual Members of the FOMC,"Journal of Money, Credit and Banking,vol. 42 (August), pp. 951â57.
+
+Ruge-Murcia, Francisco (2014). "Do Inflation-Targeting Central Banks Implicitly Target the Price Level? (PDF)"International Journal of Central Banking,vol. 10 (June), pp. 301â26.
+
+Simon, John, Troy Matheson, and Damiano Sandri (2013). "The Dog That Didn't Bark: Has Inflation Been Muzzled or Was it Just Sleeping? (PDF)" inWorld Economic Outlook: Hopes, Realities, Risks.Washington: International Monetary Fund, April, pp. 79â95.
+
+Swanson, Eric T. (2017). "Measuring the Effects of Federal Reserve Forward Guidance and Asset Purchases on Financial Markets," NBER Working Paper Series 23311. Cambridge, Mass.: National Bureau of Economic Research, April (revised August 2018).
+
+âââ (2018). "The Federal Reserve Is Not Very Constrained by the Lower Bound on Nominal Interest Rates," NBER Working Paper Series 25123. Cambridge, Mass.: National Bureau of Economic Research, October.
+
+Weingarden, Alison (2017). "Labor Market Outcomes in Metropolitan and Non-Metropolitan Areas: Signs of Growing Disparities," FEDS Notes. Washington: Board of Governors of the Federal Reserve System, September 25.
+
+Woodford, Michael (2012). "Methods of Policy Accommodation at the Interest-Rate Lower Bound (PDF)," paper presented at "The Changing Policy Landscape," a symposium sponsored by the Federal Reserve Bank of Kansas City, held in Jackson Hole, Wyo., August 30âSeptember 1.
+
+Yellen, Janet (2015). "Inflation Dynamics and Monetary Policy," speech delivered at the Philip Gamble Memorial Lecture, University of Massachusetts, Amherst, September 24.
+
+âââ (2017). "The Economic Outlook and the Conduct of Monetary Policy," speech delivered at the Stanford Institute for Economic Policy Research, Stanford University, Stanford, Calif., January 19.
+
+18. Eggertsson and Woodford (2003) provide an early discussion of how optimal monetary policy at the ELB entails a commitment to reflate the price level during the subsequent economic expansion. Nessén and Vestin (2005) discuss the relationship between average inflation targeting and price-level targeting. There is a dearth of empirical evidence on strategies seeking to make up for inflation deviations. Central banks that pursue an inflation goal generally seek to achieve a specific rate of inflation by some time horizonâtypically a couple of years ahead or over the "medium run"âwithout regard to past inflation deviations. One exception is the Reserve Bank of Australia, whose inflation goal is specified as a range of 2â3 percent, on average, over the medium term" and thus might embed some notion of history dependence. However, Ruge-Murcia (2014) argues that the drift in the price level in Australia is comparable with the drifts observed in economies with purely forward-looking specification of the inflation goal. The only known historical example of price-level targeting occurred in Sweden from 1931 to 1933 when the country abandoned the gold standard and attempted instead to maintain its price level. The temporary adoption of price-level targeting is credited with helping Sweden avoid deflation, an outcome that contrasted with that in countries that stayed on the gold standard. See Berg and Jonung (1999).

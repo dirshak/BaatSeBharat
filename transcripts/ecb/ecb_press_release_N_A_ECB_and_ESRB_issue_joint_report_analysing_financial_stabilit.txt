@@ -1,0 +1,15 @@
+ECB and ESRB issue joint report analysing financial stability risks from linkages between banks and the non-bank financial intermediation sector | N/A | European Central Bank | Press Release
+
+The European Central Bank (ECB) and the European Systemic Risk Board (ESRB) today published a joint report entitled “Financial stability risks from linkages between banks and the non-bank financial intermediation sector”. The report finds linkages between banks and the non-bank financial intermediation (NBFI) sector to be significant, and while they do not currently pose acute risks to financial stability, they create important vulnerabilities that could amplify stress in adverse market conditions. Furthermore, these vulnerabilities are highly concentrated in a small number of large euro area global systemically important banks (G-SIBs). Risk-bearing capacity among euro area G-SIBs is key to absorbing shocks in the financial system and preventing the amplification of financial stress.
+
+The report identifies three important and interlinked roles played by banks in interactions with the NBFI sector: liquidity management, provision of leverage and market-making. It analyses how interactions between banks and NBFIs may affect financial stability in the EU.
+
+These three roles may lead to the materialisation of systemic risks through two main channels.
+
+The report provides novel insights based on granular transaction and exposure-level data. Such data are key to understanding bank-NBFI linkages, but the analysis is constrained by data gaps and fragmented data access. Notably, data on exposures outside the EU and transactions taking place outside the EU are largely missing, reducing the visibility of risks to the EU financial sector. Improved information sharing, including a centralised mechanism for data access and sharing, could remedy some of these constraints.
+
+For media queries, please contactVerena Reith, tel.: +49 69 1344 5737.
+
+DisclaimerPlease note that related topic tags are currently available for selected content only.
+
+Reproduction is permitted provided that the source is acknowledged.

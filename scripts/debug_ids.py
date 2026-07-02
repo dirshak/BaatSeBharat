@@ -1,0 +1,11 @@
+import sqlite3, numpy as np
+conn = sqlite3.connect('./data/market_rhetoric.db')
+print('Total speeches:', conn.execute("SELECT COUNT(*) FROM speeches").fetchone()[0])
+print('Speeches with dates:', conn.execute("SELECT COUNT(*) FROM speeches WHERE date IS NOT NULL AND date != ''").fetchone()[0])
+print('Sample IDs:', [r[0] for r in conn.execute("SELECT id FROM speeches ORDER BY id LIMIT 10").fetchall()])
+emb = np.load('./data/processed/speech_embeddings.npy', allow_pickle=True).item()
+print('Embedding IDs (first 10):', list(emb.keys())[:10])
+ids_in_db = set(r[0] for r in conn.execute("SELECT id FROM speeches").fetchall())
+ids_in_emb = set(emb.keys())
+print('Overlap (speeches with embeddings):', len(ids_in_db & ids_in_emb))
+conn.close()

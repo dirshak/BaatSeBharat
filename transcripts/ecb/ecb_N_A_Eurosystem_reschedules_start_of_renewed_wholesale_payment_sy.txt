@@ -1,0 +1,15 @@
+Eurosystem reschedules start of renewed wholesale payment system | N/A | European Central Bank | Press Release
+
+The Governing Council of the European Central Bank (ECB) has decided to reschedule the launch of the new real-time gross settlement (RTGS) system and its central liquidity management model, T2. The go-live has therefore been postponed by four months, from 21 November 2022 to 20 March 2023. The decision, following an assessment by the ECB’s Market Infrastructure Board, was driven by the need to allow users more time to complete their testing in a stable environment. The decision also took into account the importance and systemic nature of T2, especially in view of the current geopolitical conditions and volatile financial markets.
+
+While most users would have been ready for the scheduled go-live date, others would not have fully completed their testing. Delays encountered by market participants were also due to the temporary unavailability of the test environment and initial software deficiencies.
+
+The Eurosystem will provide all the necessary support to market participants during their final preparations. Market participants that have not completed their testing successfully are encouraged to front-load their testing efforts in the additional period provided.
+
+The consolidated platform brings together the RTGS system and the securities settlement platform run by the Eurosystem, thus contributing to the further harmonisation of European financial markets. It also unifies the technical and functional aspects of theTARGET2andTARGET2-Securitiesplatforms and introduces new common and optimised features. In addition, RTGS will replace TARGET2 and optimise liquidity management across allTARGET Services. Four central banks (Deutsche Bundesbank, Banca d’Italia, Banque de France and Banco de España) act as service providers for TARGET Services. They are delivering the software and providing the test environment for the T2-T2S consolidation project.
+
+For media queries, please contactNicos Keranis, tel.: +49 172 758 7237.
+
+DisclaimerPlease note that related topic tags are currently available for selected content only.
+
+Reproduction is permitted provided that the source is acknowledged.

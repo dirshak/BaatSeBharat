@@ -1,0 +1,19 @@
+ECB publishes consolidated banking data for end-June 2024 | N/A | European Central Bank | Press Release
+
+The European Central Bank (ECB) has published consolidated banking data as at end-June 2024, a dataset for the EU banking system compiled on a group consolidated basis.
+
+The quarterly data provide information required to analyse the EU banking sector and comprise a subset of the information that is available in the year-end dataset. The data cover 344banking groupsand 2374stand-alone credit institutionsand non-EU controlled subsidiaries and branches operating in the EU, accounting for nearly 100% of the EU banking sector’s balance sheet. They include an extensive range of indicators on profitability and efficiency, balance sheet composition, liquidity and funding, asset quality, asset encumbrance, capital adequacy and solvency. Aggregates and indicators are published for the reporting population.
+
+Reporters generally apply International Financial Reporting Standards and the European Banking Authority’s Implementing Technical Standards on Supervisory Reporting. However, some small and medium-sized reporters may apply national accounting standards. Accordingly, aggregates and indicators may include some data that are based on national accounting standards, depending on the availability of the underlying items.
+
+In addition to data as at end-June 2024, the published figures also include a few revisions to past data.
+
+For media queries, please contactNicosKeranis, tel.: +49 69 1344 5482.
+
+[1]Defined as the ratio of non-performing loans to total loans. Cash balances at central banks and other demand deposits are included.
+
+[2]Defined as the ratio of total profit (loss) for the first six months of 2024 (non-annualised) to total equity. Profitability indicators are not annualised.
+
+[3]Defined as the ratio of Common Equity Tier 1 capital to the total risk exposure amount.
+
+Reproduction is permitted provided that the source is acknowledged.

@@ -1,0 +1,331 @@
+New data release: ECB wage tracker continues to suggest negotiated wage pressures easing in 2026 | N/A | European Central Bank | Press Release
+
+The European Central Bank (ECB) wage tracker, which covers active collective bargaining agreements, indicates negotiated wage growth with smoothed one-off payments of 3.2% in 2025 (based on a coverage of 50.7% of employees in participating countries) and2.3%in 2026 (based on a coverage of39.7%). Coverage gradually declines over the forward-looking horizon as agreements are still being signed in 2026.
+
+Compared with theFebruary 2026 data release, the ECB wage tracker with smoothed one-off payments has been revised down by 0.1 percentage points for 2026. The ECB wage tracker with unsmoothed one-off payments indicates negotiated wage growth of 3.0% in 2025 and2.6%in 2026 (down by 0.1 percentage points for 2026). The wage tracker excluding one-off payments indicates an easing of negotiated wage growth from 3.9% in 2025 to2.6%in 2026 (down by 0.1 percentage points for 2026).
+
+The headline ECB wage tracker is better suited to describing quarterly or monthly dynamics in negotiated wages as it smooths one-off payments over time. Meanwhile, the ECB wage tracker with unsmoothed one-off payments is better suited to describing yearly dynamics.
+
+For 2026 theheadline ECB wage trackeraverages 1.9% in the first quarter, 2.1% in the second quarter, 2.5% in the third quarter and 2.6% in the fourth quarter. The increase over the course of the year mainly reflects statistical effects related to the treatment of earlier one-off payments rather than new wage pressures. These mechanical effects are expected to virtually disappear in the headline indicator as the year progresses.
+
+TheECB wage tracker with unsmoothed one-off paymentsalso reflects a more stable and less volatile outlook for negotiated wage growth in 2026 (averaging 2.9% in the first quarter, 2.6% in the second quarter, 2.4% in the third quarter and 2.5% in the fourth quarter) compared with previous years. Thewage tracker excluding one-off paymentsis expected to hover around 2.6% in 2026 (averaging 2.7% in the first quarter, 2.6% in the second quarter, 2.5% in the third quarter and 2.6% in the fourth quarter), again suggesting more moderate dynamics in negotiated base wages than in previous years.
+
+Employee coveragefor 2026 stands at 44.1% in the first quarter of the year, 41.3% in the second quarter, 37.1% in the third quarter and 36.3% in the fourth quarter. See Chart 1 and Table 1 for further details.
+
+For this data release, the forward-looking horizon of the wage tracker remains unchanged up to December 2026. As new agreements are being signed and coverage of contracts reaching beyond 2026 is gradually increasing, the forward-looking horizon of the wage tracker will be extended to the first quarter of 2027 in the July 2026 data release.
+
+Overall, the ECB wage tracker may be subject to revision, and the forward-looking component should not be interpreted as a forecast, as it only captures information that is currently available for active collective bargaining agreements. Moreover, the ECB wage tracker does not track the indicator of negotiated wage growth precisely, and deviations are to be expected over time. Negotiated wage growth is only one component of overall labour cost developments, which are also affected by employment composition, bonuses and hours worked. For a more comprehensive assessment of labour cost developments in the euro area, please refer to theMarch 2026 ECB staff macroeconomic projections for the euro area, which indicate a yearly growth rate of compensation per employee of 3.4% in 2026.
+
+The ECB publishes four wage tracker indicators for the aggregate of the nine participating euro area countries on theECB Data Portal.
+
+ECB wage tracker
+
+Share of employees (%)
+
+2013-24
+
+2.2
+
+2.3
+
+2.1
+
+50.2
+
+2025
+
+3.2
+
+3.0
+
+3.9
+
+50.7
+
+2026
+
+2.3
+
+2.6
+
+2.6
+
+39.7
+
+Q1 2025
+
+4.7
+
+2.7
+
+4.5
+
+50.8
+
+Q2 2025
+
+4.0
+
+4.1
+
+4.3
+
+51.0
+
+Q3 2025
+
+2.4
+
+2.1
+
+3.5
+
+50.7
+
+Q4 2025
+
+1.9
+
+3.1
+
+3.1
+
+50.3
+
+January 2026
+
+2.0
+
+3.9
+
+3.0
+
+44.2
+
+February 2026
+
+1.7
+
+2.3
+
+2.6
+
+44.2
+
+March 2026
+
+1.9
+
+2.5
+
+2.5
+
+44.0
+
+April 2026
+
+1.9
+
+2.4
+
+2.5
+
+42.4
+
+May 2026
+
+2.2
+
+2.6
+
+2.6
+
+40.7
+
+June 2026
+
+2.2
+
+2.6
+
+2.6
+
+40.6
+
+Q3 2026
+
+2.5
+
+2.4
+
+2.5
+
+37.1
+
+Q4 2026
+
+2.6
+
+2.5
+
+2.6
+
+36.3
+
+Belgium
+
+Germany
+
+Greece
+
+Spain
+
+France
+
+Italy
+
+Netherlands
+
+Austria
+
+Finland
+
+Euro area
+
+2013-24
+
+38.2
+
+42.5
+
+10.7
+
+62.6
+
+52.1
+
+51.7
+
+64.1
+
+66.6
+
+66.3
+
+50.2
+
+2025
+
+44.6
+
+45.7
+
+14.2
+
+53.3
+
+55.7
+
+48.7
+
+61.8
+
+78.3
+
+62.3
+
+50.7
+
+Q1 2026
+
+44.1
+
+45.3
+
+10.1
+
+37.3
+
+38.2
+
+48.6
+
+58.5
+
+72.0
+
+62.3
+
+44.1
+
+Q2 2026
+
+44.1
+
+41.2
+
+9.9
+
+36.5
+
+33.9
+
+48.2
+
+57.3
+
+59.0
+
+62.2
+
+41.3
+
+Q3 2026
+
+44.0
+
+33.5
+
+9.8
+
+33.9
+
+29.2
+
+48.1
+
+55.0
+
+53.0
+
+59.7
+
+37.1
+
+Q4 2026
+
+43.9
+
+32.9
+
+9.8
+
+33.6
+
+27.9
+
+47.1
+
+54.5
+
+51.0
+
+57.5
+
+36.3
+
+For media queries, please contactBenoit Deeg, tel.: +491721683704
+
+DisclaimerPlease note that related topic tags are currently available for selected content only.
+
+Reproduction is permitted provided that the source is acknowledged.

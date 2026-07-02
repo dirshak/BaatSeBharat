@@ -1,0 +1,81 @@
+Welcome address | 2020-12-14 | European Central Bank | Speech
+
+Frankfurt am Main, 14 December 2020
+
+Good afternoon and welcome to the third roundtable of the industry working group on euro risk-free rates.
+
+This year has brought unprecedented challenges on many fronts. Not least, it has forced us to transition to virtual modes of working. I very much hope that the public health situation will soon allow us to meet again in person.
+
+Despite the challenging circumstances, I am happy to see that so many of you have joined today’s virtual event, representing the full range of stakeholders from the private financial and non-financial sectors as well as the public sector.
+
+The working group was established in 2017 to proactively address vulnerabilities related to EONIA and EURIBOR, thus following up on the recommendations issued by the Financial Stability Board. Looking back, we can all be proud of the considerable progress that has been made to date.
+
+Today’s roundtable will provide a platform to exchange views on the development of robust fallback provisions for EURIBOR, which remains a systemically relevant benchmark. Based on two recently released public consultations, we will also consider the role of the ECB’s euro short-term rate, the €STR, in establishing resilient fallback provisions.
+
+Financial institutions, non-financial institutions and consumers continue to use EURIBOR as the benchmark for a variety of financial instruments and contracts. The administrator of EURIBOR, the European Money Markets Institute, or EMMI, has been authorised to provide the rate under the hybrid methodology by its current supervisor, the Belgian Financial Services and Markets Authority. As a result, EURIBOR is still used extensively in both new and legacy contracts for cash and derivatives products.
+
+Given that EURIBOR remains operational, why do we even need to discuss fallback arrangements? Let me answer this question metaphorically.
+
+Fallback provisions are like seatbelts. In the improbable event of a car accident, fastened seatbelts substantially reduce the likelihood of injury.
+
+Fallback provisions for benchmark rates serve a similar purpose. Many contracts in financial markets make reference to benchmark rates, including EURIBOR. If the benchmark rate ceased to exist, the absence of a fallback rate would expose the counterparties to substantial risk.
+
+Fallback provisions therefore act as “seatbelts” for contractual arrangements in financial markets. By ensuring the continuity of a contract, robust fallbacks prevent potential losses from materialising.
+
+In fact, there is already a legal requirement to use fallback provisions. The EU Benchmarks Regulation requires all supervised entities to draw up robust plans to mitigate the potential impact of a benchmark being discontinued. We will hear more about the current regulatory and supervisory landscape from the European Commission and the European Securities and Markets Authority (ESMA) later in the session.
+
+In addition to these legal requirements, there is also a clear financial stability justification to ensure there are workable fallback provisions that reduce contractual uncertainties in the event of EURIBOR ceasing to exist.
+
+I assume we can thus all agree that EURIBOR fallback provisions are essential. However, this basic premise begs a more difficult question: what are feasible alternative rates that can be used if a fallback scenario is triggered?
+
+In an effort to address this question, the working group has recently launched two public consultations. Stakeholders can contribute to these consultations until 15 January 2021. The objectives of the two consultations will be presented and discussed over the course of this roundtable event.
+
+The public consultations build on a common theme, namely the use of the ECB’s €STR in the proposed fallback measures. For the public consultation, the working group has used two alternative €STR-based approaches to approximate a term rate that could serve as a fallback.
+
+First, the working group has analysed the Overnight Indexed Swap (OIS) market and proposed a methodology to derive a forward-looking term rate.
+
+Second, the working group has used realised values of the €STR and compounded them over the interest period, thus deriving a backward-looking term rate.
+
+The €STR is a suitable rate for use in EURIBOR fallback arrangements. It is designed to meet the IOSCO principles. Moreover, it fulfils the requirements that are deemed essential for a fallback rate: it is robust and reliable; it is simple in construction; and it is determined in a transparent way, with a market-neutral authority – the ECB – acting as administrator.
+
+Importantly, the €STR remains available during periods of market dislocation. The market stress observed during the coronavirus (COVID-19) pandemic has underscored the relevance of this criterion. At the height of the crisis, volumes underpinning the €STR increased, in contrast to volumes observed for longer tenors in the unsecured market segment. A high level of liquidity in the unsecured segment is concentrated in the overnight maturity, thus anchoring the €STR based on a large pool of daily transactions.
+
+A few days ago, the ECB published its firstannual review of the methodologyused to calculate the €STR. This review confirms that the methodology correctly reflects the developments in the overnight unsecured money market and thus appropriately measures the underlying interest.
+
+However, despite the apparent qualities of the €STR, progress in adopting it has been rather slow.
+
+Since 2 October 2019, the €STR has also determined the level of EONIA. As EONIA has been converted into a €STR tracker rate, the benefits of switching to the €STR may not be immediately obvious. Many market participants continue to rely on EONIA in their derivatives trading, mostly out of habit or a lack of sufficient technical preparedness, while others are hesitant to use the €STR when originating assets.
+
+There are two reasons why market participants should urgently work on their preparedness for an orderly transition from EONIA to the €STR.
+
+First, the discontinuation of EONIA is imminent, with its last publication scheduled for 3 January 2022. Before that date, all EONIA-linked contracts or instruments should either be converted into €STR-linked equivalents or incorporate workable fallbacks. I urge market participants to actively use the €STR for new contracts, in order to ensure a smooth transition from EONIA to the €STR well before the end of 2021.
+
+Second, a broader use of the €STR will support the development of common standards and practices, for example in the origination of assets. If the proposed fallback provisions were ever activated, the market would have to rely extensively on the €STR. A lack of knowledge and experience in using the rate may then hamper market functioning.
+
+The ECB will continue to facilitate the replacement of EONIA in euro area markets by maintaining a robust and representative €STR.
+
+In order to encourage a more widespread use of the €STR, and not just as a basis for fallback rates, the ECB is considering publishing compounded €STR average rates as well as a compounded index.
+
+We will provide further information on these efforts in the coming months.
+
+Resilient fallback provisions for benchmark rates are essential.
+
+Fallbacks act as “seatbelts” by safeguarding continued market functioning during episodes of uncertainty that may affect the future robustness and representativeness of benchmark rates, including EURIBOR, which in turn may lead to the benchmark ceasing to exist. The imminent discontinuation of EONIA should be seized as an opportunity for market participants to “fasten their seatbelts” by linking their contracts to an alternative benchmark rate, the €STR, and thus also supporting the establishment of robust fallback provisions for EURIBOR in the process.
+
+The €STR is an ideal candidate for this transition. It can support market participants in building robust fallback procedures for a potential discontinuation of EURIBOR. Users should therefore swiftly replace EONIA and make wider use of the €STR in cash and derivatives markets.
+
+As part of the ongoing efforts to establish resilient EURIBOR fallback provisions, I encourage all EURIBOR users to review the working group’s public consultation documents and to provide input by 15 January 2021.
+
+Before giving the floor to Tanate Phutrakul, Chair of the working group on euro risk-free rates, I would like to thank the working group members for their continued efforts during the benchmark reform deliberations and for delivering the two public consultations on EURIBOR fallbacks.
+
+In particular, I would like to thank Mr Phutrakul, his predecessors Steven van Rijswijk and Koos Timmermans, and the entire ING team for the unwavering commitment and dedication they have demonstrated in leading the working group.
+
+I would also like to thank the ECB team that has been supporting the working group by providing the secretariat. Last but not least, we are grateful to our colleagues at ESMA, the European Commission and the Belgian Financial Services and Markets Authority for their contributions to and support for the benchmark reform process.
+
+I now wish all of you an insightful and productive roundtable.
+
+Thank you for your attention.
+
+DisclaimerPlease note that related topic tags are currently available for selected content only.
+
+Reproduction is permitted provided that the source is acknowledged.

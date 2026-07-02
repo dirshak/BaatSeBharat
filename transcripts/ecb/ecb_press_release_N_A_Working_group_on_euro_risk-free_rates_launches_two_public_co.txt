@@ -1,0 +1,21 @@
+Working group on euro risk-free rates launches two public consultations on fallbacks to EURIBOR | N/A | European Central Bank | Press Release
+
+The working group on euro risk-free rates has today released two public consultations on the topic of fallback rates to EURIBOR. Fallback rates are rates that can be relied upon in case of an unavailability of the main rate. In one consultation, stakeholders are invited to provide their views on fallback rates based on the euro short-term rate (€STR) and spread adjustment methodologies in order to produce the most suitable EURIBOR fallback measures per asset class. In the other consultation, stakeholders are invited to give their views on potential events that could trigger such fallback measures.
+
+As regards €STR-based fallback rates, the working group considered two types of rates:
+
+1) Forward-looking rates which are based on the derivatives markets referencing the €STR and which reflect market expectations of the evolution of the €STR. These rates are known at the start of the interest rate period.
+
+2) Backward-looking rates which are based on simple mathematical calculations of the value of past realised daily fixings of the €STR over a given period of time. These rates are known and available at the end of the interest rate period.
+
+Based on its analysis and international standards and practices the working group acknowledges that for more sophisticated and globally operating market participants the most appropriate EURIBOR fallback measure would be based on backward-looking rates. However, the working group also acknowledges that there may be some use cases for certain products or for less sophisticated and locally operating market participants where it is necessary to know the interest rate in advance, and therefore the forward-looking rates could be applied. As these rates do not exist at this stage and should such rates not be available in due time, the working group proposes a waterfall structure according to product types, thereby allowing users to know what rates can be used, depending on circumstances and/or preferences.
+
+As regards potential trigger events, the working group has identified a generic set of potential EURIBOR fallback trigger events that market participants could consider including in fallback provisions in their contracts and financial instruments referencing EURIBOR.
+
+For both consultations, stakeholders are invited to provide their views by 15 January 2021. The working group members would like to encourage responses from as many user groups as possible, among others from banks, non-bank financial corporates, non-financial corporates, industry organisations, consumer associations. A summary of the feedback received will be published. A final recommendation by the working group on euro risk-free rates on both topics, taking into account the views expressed by stakeholders in this public consultation, is expected to be published in the course of the first quarter of 2021.
+
+For media queries, please contactWilliam Lelieveldt, tel.: +49 69 1344 7316.
+
+DisclaimerPlease note that related topic tags are currently available for selected content only.
+
+Reproduction is permitted provided that the source is acknowledged.

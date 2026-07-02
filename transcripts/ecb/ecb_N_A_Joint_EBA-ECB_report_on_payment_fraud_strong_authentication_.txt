@@ -1,0 +1,25 @@
+Joint EBA-ECB report on payment fraud: strong authentication remains effective but fraudsters are adapting | N/A | European Central Bank | Press Release
+
+The European Banking Authority (EBA) and the European Central Bank (ECB) today published the2025 edition of their joint report on payment fraud. The report covers the semi-annual data for 2022 to 2024 and confirms that the legal requirement for strong customer authentication (SCA) introduced in 2020 has contributed to reducing fraud levels. However, it also highlights the need for continued vigilance and for security measures to be adapted to combat new emerging types of fraud.
+
+The report assesses payment fraud reported by the industry across the European Economic Area (EEA), which amounted to €3.4 billion in 2022, €3.5 billion in 2023 and €4.2 billion in 2024. It examines the total number of payment transactions and the subset of fraudulent transactions in terms of value and volume.
+
+Alongside aggregated values, the report also presents data broken down by means of payment, such as credit transfers, direct debits, card payments, cash withdrawals and e-money transactions. Country-specific breakdowns are also included.
+
+Transactions that were verified with SCA were generally less susceptible to fraud than those without it, especially card payments. For other payment types, such as credit transfers, this effect was less clear. Notably, card payment fraud was 17 times higher when the payment recipient was outside the EEA, where SCA is not legally required and often not used.
+
+The report therefore confirms the beneficial impact of the SCA requirements that were introduced under the revisedEU Payment Services Directive (PSD2)in 2020 and the supportingtechnical standardsissued by the EBA, in close cooperation with the ECB, in 2018. However, the report also highlights that new types of fraud are emerging, often targeting transactions for which an SCA exemption is applied or manipulating legitimate users into authenticating fraudulent transactions.
+
+Furthermore, the report shows that the distribution of fraud losses varied by payment instrument and that there were significant differences across the EEA. For 2024, the overall losses for credit transfers were €2.200 billion (a year-on-year increase of 16%), and for card payments with cards issued in the EU/EEA they were €1.329 billion (a year-on-year increase of 29%). For credit transfers, payment service users bore approximately 85% of total fraud losses in 2024, mainly as a result of scams that tricked users into initiating fraudulent transactions.
+
+Article 96(6) of Directive 2015/2366/EU (PSD2) requires payment service providers (PSPs) to report statistical data on fraud relating to different means of payment to their national competent authorities (NCAs). The NCAs, in turn, are required to provide both the EBA and the ECB with these data in aggregated form. Detailed reporting requirements are set out in theEBA Guidelines on fraud reporting under PSD2(EBA/GL/2018/05).
+
+In addition,Regulation (EU) No 1409/2013 of the ECB on payments statisticsrequires PSPs located in the euro area to report payment fraud data to their national central banks, which in turn are required to share the data in aggregated form with the ECB.
+
+Data under both the EBA Guidelines and the ECB Regulation are reported to the EBA and ECB on a semi-annual basis via a single data flow.
+
+The EBA and the ECB will continue to monitor and publish payment fraud data to provide a robust basis for informed policy decisions, and for supervisory and oversight actions on how to combat payment fraud.
+
+For media queries, please contactAlessandro Speciale, tel.: +49 172 1670791.
+
+Reproduction is permitted provided that the source is acknowledged.

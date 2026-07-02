@@ -1,0 +1,69 @@
+Hearing of the Committee on Economic and Monetary Affairs of the European Parliament | 2025-12-03 | European Central Bank | Speech
+
+Brussels, 3 December 2025
+
+It is a pleasure to address this Committee for the fourth time this year.
+
+Recent years have witnessed profound technological, geopolitical, and structural changes which continue to redefine our economic landscape. These shifts underscore not just the importance of improving Europe’s resilience and competitiveness, but also the imperative to build lasting internal economic strength.[1]
+
+In our previous hearings, we examined this shifting global environment and its implications for the European economy. Today, I will focus my remarks on the instruments in our toolkit, in line with the topic you have selected for this hearing.
+
+Before turning to these tools, let me first outline our assessment of the euro area economy and our current monetary policy stance.
+
+The economy grew by 0.2% in the third quarter of the year, supported by robust domestic demand. The services sector continued to expand, boosted by tourism and a pick-up in digital services, as many firms stepped up efforts to modernise their IT infrastructures and integrate artificial intelligence into their operations. By contrast, manufacturing and exports were held back by higher tariffs, still-heightened uncertainty and a stronger euro.
+
+Looking ahead, growth in economic activity should benefit from increased household spending and a resilient and more inclusive labour market – with the highest labour force participation rate since the start of the euro. Substantial infrastructure and defence spending are also expected to support economic activity. The global environment is likely to remain a headwind, as the impact of higher tariffs on euro area exports and manufacturing investment continues to unfold.
+
+Risks to the outlook have become more balanced thanks to the EU-US trade deal reached over the summer, the ceasefire in the Middle East and progress in the US-China trade negotiations. At the same time, the outlook remains uncertain – owing to a still volatile global trade environment, a potential deterioration in financial market sentiment and geopolitical tensions.
+
+Inflation remains close to our 2% medium-term target. According to Eurostat’s flash estimate, inflation edged up slightly to 2.2% in November, mainly due to higher services and energy inflation. Core inflation – excluding energy and food – was constant at 2.4%. Indicators of underlying inflation remain consistent with our 2% medium-term target.
+
+The reduction in inflation towards our medium-term target has been supported by a gradual moderation in wage growth from its peak of 5.7% in the second quarter of 2023 to 3.9% in the same quarter of this year. Forward-looking indicators, such as the ECB’s wage tracker and surveys on wage expectations, point to slower wage growth over the remainder of the year and the first half of 2026.
+
+We expect inflation to stay around our 2% target in the coming months. Risks to the outlook continue to be two-sided, while uncertainty remains higher than usual owing to volatile global trade policies. The next Eurosystem staff projections, to be published on 18 December, will shed further light on the outlook for growth and inflation.
+
+As our assessment of the inflation outlook was broadly unchanged, we decided at our October monetary policy meeting to keep the key ECB interest rates unchanged. We continue to follow a data-dependent and meeting-by-meeting approach to determining the appropriate monetary policy stance. In particular, our interest rate decisions will be based on our assessment of the inflation outlook and the risks surrounding it, as well as the dynamics of underlying inflation and the strength of monetary policy transmission. We are not pre-committing to a particular rate path.
+
+Let me now turn to the ECB’s instruments.
+
+As reconfirmed in our recent strategy assessment, we are committed to setting monetary policy such that inflation stabilises at our 2% target in the medium term.[2]Our primary monetary policy instrument is the set of three key ECB interest rates. However, we may also employ other instruments, as appropriate, to preserve the smooth functioning of monetary policy transmission and provide additional accommodation when interest rates approach their lower bound.
+
+Effective transmission of our monetary policy stance across the euro area is critical for delivering on our price stability mandate. We must therefore remain attentive to situations in which cross-country differences in the impact of our policy on key economic variables become excessive or signal that the transmission mechanism is impaired. To address such concerns, we have developed tools to safeguard the smooth transmission of our monetary policy.
+
+I will now briefly outline three key instruments in our monetary policy toolkit: Outright Monetary Transactions (OMTs), the technical features of which were announced in August and September 2012;[3]the Transmission Protection Instrument (TPI) announced in July 2022;[4]and the pandemic emergency purchase programme (PEPP) announced in March 2020.[5]
+
+Outright Monetary Transactions are designed to safeguard the transmission of monetary policy in all euro area countries. OMTs enable us to address severe distortions in government bond markets which originate from, in particular, unfounded fears among investors of the reversibility of the euro. A necessary condition for OMTs is strict and effective conditionality attached to an appropriate European Stability Mechanism programme.[6]
+
+The Transmission Protection Instrument can be activated to counter unwarranted, disorderly dynamics in the market for securities issued in countries experiencing a deterioration in financing conditions not warranted by country-specific fundamentals. The Governing Council will consider a cumulative list of criteria to assess whether the countries in which the Eurosystem may conduct purchases under TPI are pursuing sound and sustainable fiscal and macroeconomic policies. The criteria include, among others, compliance with the EU’s fiscal framework and an absence of severe macroeconomic imbalances.
+
+The pandemic emergency purchase programme was launched and used in response to the COVID-19 shock, which affected all euro area countries, but to different degrees. The programme was designed with a dual role: on the one hand, it supported market functioning as well as the transmission of monetary policy; on the other hand, it enabled a substantial easing of the monetary policy stance to counter the serious downside risks to price stability posed by the pandemic.
+
+In the face of the extraordinary economic and financial shock, the programme’s flexibility – which allowed the pace and composition of purchases to be adjusted – proved critical in stabilising markets, addressing impediments to transmission, supporting the economic recovery and safeguarding price stability.[7]As circumstances evolved, the size and pace of the PEPP were recalibrated, and reinvestments of maturing bonds were fully discontinued as of December 2024, contributing to the normalisation of our balance sheet.[8]
+
+Together, these tools demonstrate that the ECB’s toolkit is adaptable to unprecedented challenges while remaining clearly within the scope of our monetary policy competence. Consistent with our commitment to transparency and accountability, we have engaged extensively with this Committee to explain our assessments and answer questions on these tools. This ongoing dialogue underscores our dedication to ensuring that our actions are thoroughly scrutinised and clearly understood by the public.
+
+To conclude – as also highlighted in our monetary policy strategy statement, the Governing Council will continue to respond flexibly to new challenges as they arise and will consider, as needed, new policy instruments in the pursuit of its price stability objective.
+
+It is essential that other policies take the lead in strengthening Europe’s prospects and reducing vulnerability to future shocks. This means creating the right conditions for Europe’s sources of economic strength to reach their full potential – most notably by making the Single Market truly single.
+
+In this context, I warmly welcome the European Commission’s forthcoming package on capital market integration and supervision. These proposals are key for overcoming fragmentation, enhancing the efficiency of capital markets, and fostering innovation.
+
+There are clear solutions at hand – now is the time to implement them.
+
+Lagarde, C. (2025), “From resilience to strength: unleashing Europe’s domestic market”, speech at the 35th Frankfurt European Banking Congress, 21 November.
+
+ECB (2025),The ECB’s monetary policy strategy statement (2025).
+
+ECB (2012),Introductory statement to the press conferencefollowing the monetary policy meeting of the Governing Council on 2 August; ECB (2012),Introductory statement to the press conferencefollowing the monetary policy meeting of the Governing Council on 6 September; ECB (2012), “Technical features of Outright Monetary Transactions”,press release, 6 September.
+
+ECB (2022), “The Transmission Protection Instrument”,press release, 21 July.
+
+ECB (2020), “ECB announces €750 billion Pandemic Emergency Purchase Programme (PEPP)”,press release, 18 March.
+
+ECB (2012), “Technical features of Outright Monetary Transactions”, op. cit.
+
+Böninghausen, B. et al. (2022), “The pandemic emergency purchase programme – an initial review”,Economic Bulletin, Issue 8, ECB.
+
+For a detailed overview of holdings and expected redemption amounts, see thepandemic emergency purchase programmepage on the ECB’s website.
+
+Reproduction is permitted provided that the source is acknowledged.

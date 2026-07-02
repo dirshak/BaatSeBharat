@@ -1,0 +1,15 @@
+Working group on euro risk-free rates seeks market feedback on transition from EONIA to ESTER and ESTER-based term structure methodologies | N/A | European Central Bank | Press Release
+
+20 December 2018
+
+The working group on euro risk-free rates, for which the European Central Bank (ECB) provides the secretariat, is calling on market participants and all other interested parties to comment on its technical analysis of the paths available for transitioning from the euro overnight index average (EONIA) to the euro short-term rate (ESTER), as well as on its recommendation of the preferred transition option.
+
+The working group is also seeking market feedback on its assessment of alternative ESTER-based term structure methodologies that can serve as a fallback for EURIBOR-linked contracts, as well as on their specific use cases.
+
+The working group on euro risk-free rates is an industry-led group established in 2018 by the European Central Bank, the Financial Services and Markets Authority, the European Securities and Markets Authority and the European Commission. Its main tasks are to identify and recommend alternative risk-free rates and transition paths. On 13 September 2018 the working group recommended ESTER as the new euro risk-free rate. ESTER reflects the wholesale euro unsecured overnight borrowing costs of euro area banks and will be produced by the ECB as of October 2019 at the latest. The next steps for the working group are to finalise its recommendation on the transition from EONIA to ESTER and to develop and recommend a term structure methodology as a fallback to EURIBOR.
+
+You are invited to submit your comments on the report and the consultation using the response forms provided. Please send your responses to EuroRFR@ecb.europa.eu by 17:00 Frankfurt time on 1 February 2019. For each document, an anonymised summary of the replies will be published.
+
+For media queries, please contactWilliam Lelieveldt, tel.: +49 69 1344 7316
+
+Reproduction is permitted provided that the source is acknowledged.

@@ -1,0 +1,13 @@
+ECB publishes action plan to address recommendations after TARGET incidents in 2020 | N/A | European Central Bank | Press Release
+
+The European Central Bank (ECB) has today published anaction planto address the recommendations of an independent review mandated by the ECB’s Governing Council in November 2020, following the five major incidents that affected TARGET2 and TARGET2 Securities in 2020. The action plan also addresses recommendations issued by the Eurosystem oversight function and the Internal Audit Committee in relation to these incidents.
+
+In December 2020 the ECB appointed Deloitte to conduct anindependent reviewof the five major IT-related incidents (which were not cyber-related). In July 2021 the ECBpublishedthe results ofDeloitte’s reviewand theEurosystem’s response, in which the Eurosystem accepted the general conclusions and recommendations of the review and committed to addressing them as soon as possible.
+
+The action plan consists of six workstreams: Change and release management, Business continuity management, Fail-over and recovery tests, Communication protocols, Governance, and Data centre and IT operations. Measures addressing several recommendations have already been agreed or implemented in the course of 2021, while most of the remaining ones will be implemented by the end of 2022. The measures will benefit all TARGET services, including TARGET Instant Payment Settlement (TIPS). Market participants will be kept informed about their deployment.
+
+For media queries, please contactNicos Keranis, tel.: +49 69 1344 7806 and +49 172 758 7237.
+
+DisclaimerPlease note that related topic tags are currently available for selected content only.
+
+Reproduction is permitted provided that the source is acknowledged.

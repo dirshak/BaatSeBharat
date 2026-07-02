@@ -1,0 +1,44 @@
+project:
+  name: "Leadership Rhetoric Market Regime Prediction"
+  version: "1.0.0"
+  
+data:
+  mann_ki_baat:
+    source: "https://www.pmindia.gov.in/en/mann-ki-baat/"
+    num_episodes: 120
+    start_date: "2014-10-03"
+  
+  market:
+    source: "yahoo_finance"
+    sectors:
+      - symbol: "^NSEBANK"
+        name: "Banking"
+      - symbol: "^CNXIT"
+        name: "IT"
+      - symbol: "^NSEI"
+        name: "Broad Market"
+    start_date: "2014-10-03"
+  
+models:
+  topic_modeling:
+    n_topics: 20
+    lda_iterations: 50
+    nmf_iterations: 500
+  
+  counterfactual:
+    input_dim: 10
+    hidden_dim: 128
+    num_layers: 2
+    dropout: 0.2
+    learning_rate: 0.001
+    batch_size: 32
+    epochs: 100
+  
+thresholds:
+  stable_regime: 0.5
+  transition_regime: 1.5
+  volatile_regime: 2.5
+  
+  warning_green: 0.3
+  warning_yellow: 0.5
+  warning_orange: 0.7

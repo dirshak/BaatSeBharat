@@ -1,0 +1,15 @@
+Working group on euro risk-free rates issues recommendations to address accounting impact of euro risk-free rates transition | N/A | European Central Bank | Press Release
+
+The private sector working group on euro risk-free rates has published areportwith recommendations, from an accounting perspective, on the transition to new risk-free rates. The report focuses on the implications for International Financial Reporting Standards (IFRS) and International Accounting Standards (IAS) as the most widely used reporting frameworks in Europe.
+
+The report describes the overall consequences for financial accounting and potential issues that may arise, especially concerning hedge accounting. The report also sets out the challenges for non-hedge-related topics.
+
+The recommendations cover three areas: (i) the impact of the transition from the euro overnight index average (EONIA) to the euro short-term rate (the €STR) on the modification of contracts and hedge accounting, (ii) fallbacks for EURIBOR and hedge accounting, and (iii) general accounting and financial reporting. Among the recommendations it makes, the working group on euro risk-free rates suggests that preparers of financial statements should closely monitor the IAS Board’s project on interbank offered rate reforms and any amendments or clarifications to the standards that result from it.
+
+For media queries, please contactWilliam Lelieveldt, tel.: +49 69 1344 7316.
+
+The working group on euro risk-free rates, for which the European Central Bank (ECB) provides the secretariat, is an industry-led group established in 2018 by the ECB, the Financial Services and Markets Authority (FSMA), the European Securities and Markets Authority (ESMA) and the European Commission. Its main tasks are to identify and recommend alternative risk-free rates and transition paths.
+
+To ensure that its recommendations are adopted by all market participants, the working group has created a sub-group on financial accounting and risk management. The sub-group was tasked with analysing the impact on financial accounting and risk management of (i) the transition from EONIA to the €STR, and (ii) the inclusion of fallbacks for EURIBOR based on a €STR-based term structure methodology and the possible fallback triggers. The sub-group consists of representatives of European and international credit institutions, consulting and accounting firms, clearing houses, and investment management firms and associations. The ECB, the FSMA, the ESMA and the European Commission take an observing role within the sub-group.
+
+Reproduction is permitted provided that the source is acknowledged.

@@ -48,6 +48,13 @@ class CentralizedSpeechScraper:
                 UNIQUE(date, source, speaker, title)
             )
         ''')
+        # Defense-in-depth against the corrupted-legacy-file duplicate-ingestion
+        # bug documented in tests/test_speech_data_integrity.py -- rejects
+        # duplicate (source, date, title) inserts at the DB level, mirroring
+        # scripts/init_database.py.
+        cursor.execute(
+            'CREATE UNIQUE INDEX IF NOT EXISTS idx_speeches_source_date_title ON speeches(source, date, title)'
+        )
         
         # Migration: add doc_type column if it doesn't exist
         try:
@@ -104,7 +111,32 @@ class CentralizedSpeechScraper:
             cursor.execute("ALTER TABLE topic_distributions ADD COLUMN model_name TEXT")
         except Exception:
             pass  # Column already exists
-        
+
+        # Table: LLM (Groq) Company Signals — see scripts/init_database.py
+        # for the canonical definition; duplicated here so this scraper's
+        # DB bootstrap path stays self-contained like the other tables.
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS llm_company_signals (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                speech_id INTEGER NOT NULL,
+                ticker TEXT NOT NULL,
+                company_name TEXT NOT NULL,
+                topic_label TEXT,
+                strength TEXT,
+                sentiment TEXT,
+                strength_score REAL,
+                sentiment_score REAL,
+                confidence REAL,
+                rationale TEXT,
+                llm_model TEXT NOT NULL,
+                raw_response TEXT,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                FOREIGN KEY (speech_id) REFERENCES speeches(id),
+                UNIQUE(speech_id, ticker, llm_model)
+            )
+        ''')
+        cursor.execute('CREATE INDEX IF NOT EXISTS idx_llm_signals_ticker ON llm_company_signals(ticker)')
+
         conn.commit()
         conn.close()
 
@@ -150,7 +182,13 @@ class CentralizedSpeechScraper:
                 # For now, let's use the unique constraint in the DB if available, 
                 # but we'll also check explicitly to avoid INSERT OR IGNORE silently skipping without counting.
                 
-                cursor.execute("SELECT id FROM speeches WHERE title = ? AND date = ? AND source = ?", 
+                # `date IS ?` (not `date = ?`) matters here: SQL `=` is never
+                # true when comparing NULL to NULL, so speeches with an
+                # unparsed/missing date (e.g. ECB press releases whose date
+                # scrape failed) would bypass this dedup check entirely and
+                # get re-inserted as "new" on every run. `IS` treats NULL
+                # as equal to NULL, closing that gap.
+                cursor.execute("SELECT id FROM speeches WHERE title = ? AND date IS ? AND source = ?",
                                (speech.get('title'), speech.get('date'), speech.get('source')))
                 if cursor.fetchone():
                     continue
@@ -534,6 +572,76 @@ class CentralizedSpeechScraper:
         self._log_ingestion("Mann Ki Baat", count, expected_episodes, missing="None detected" if not missing_episodes else str(missing_episodes))
         
         return count
+
+    def load_local_transcripts(self, transcripts_dir, source, country, doc_type_default='Speech'):
+        """Load already-scraped speech .txt files from disk into the DB.
+
+        Mirrors scrape_mann_ki_baat()'s local-first pattern for sources
+        (ECB, Fed) whose transcripts were already fetched by a previous
+        scrape_ecb()/scrape_fed() run and saved to transcripts_dir --
+        re-scraping over the network would be redundant when the content is
+        already sitting on disk. Deliberately does NOT pass transcript_dir
+        to save_speeches(): these files already exist under their own
+        scrape-time filenames, and re-saving them would regenerate a
+        near-duplicate file under save_speeches()'s naming scheme (the same
+        mechanism that produced the corrupted-file pileup cleaned up
+        earlier in transcripts/mann_ki_baat/).
+        """
+        import glob
+        logger.info(f"Loading {source} transcripts from local files: {transcripts_dir}")
+        speeches = []
+
+        if not os.path.isdir(transcripts_dir):
+            logger.warning(f"Transcript directory not found: {transcripts_dir}")
+            return 0
+
+        files = glob.glob(os.path.join(transcripts_dir, '*.txt'))
+        logger.info(f"Found {len(files)} local {source} transcript files.")
+
+        for fpath in files:
+            try:
+                with open(fpath, 'r', encoding='utf-8', errors='replace') as f:
+                    content = f.read()
+
+                lines = content.split('\n')
+                header = lines[0].strip()   # "Title | YYYY-MM-DD | Speaker | DocType"
+                full_text = '\n'.join(lines[2:]).strip()
+
+                parts = [p.strip() for p in header.split('|')]
+                title = parts[0] if len(parts) > 0 and parts[0] else 'N/A'
+                date = parts[1] if len(parts) > 1 else None
+                speaker = parts[2] if len(parts) > 2 and parts[2] else 'N/A'
+                doc_type = parts[3] if len(parts) > 3 and parts[3] else doc_type_default
+
+                if not date or not re.fullmatch(r'\d{4}-\d{2}-\d{2}', date):
+                    date = None
+
+                if not full_text:
+                    logger.warning(f"Skipping {fpath}: empty body after header.")
+                    continue
+
+                speeches.append({
+                    'date': date,
+                    'source': source,
+                    'country': country,
+                    'speaker': speaker,
+                    'title': title,
+                    'full_text': full_text,
+                    'url': None,
+                    'doc_type': doc_type,
+                })
+            except Exception as e:
+                logger.error(f"Error loading {fpath}: {e}")
+
+        count = self.save_speeches(speeches, transcript_dir=None)
+        self._log_ingestion(f"{source} (local)", count, len(files))
+        return count
+
+    def load_ecb_from_local(self, transcripts_dir='./transcripts/ecb'):
+        return self.load_local_transcripts(transcripts_dir, source='ECB', country='Europe')
+
+    def load_fed_from_local(self, transcripts_dir='./transcripts/fed'):
+        return self.load_local_transcripts(transcripts_dir, source='Fed', country='USA')
 
     async def scrape_ecb_press_releases(self, days_back=3650):
         """Scrape ECB press releases"""

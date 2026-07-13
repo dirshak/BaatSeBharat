@@ -153,12 +153,41 @@ def create_database(db_path='./data/market_rhetoric.db'):
         )
     ''')
     
+    # Table 10: LLM (Groq) Company Signals — per speech x company topic
+    # classification (strength/sentiment), consumed by prediction_engine.py
+    # as a blended input alongside the NMF/FinBERT-derived baselines.
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS llm_company_signals (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            speech_id INTEGER NOT NULL,
+            ticker TEXT NOT NULL,
+            company_name TEXT NOT NULL,
+            topic_label TEXT,
+            strength TEXT,
+            sentiment TEXT,
+            strength_score REAL,
+            sentiment_score REAL,
+            confidence REAL,
+            rationale TEXT,
+            llm_model TEXT NOT NULL,
+            raw_response TEXT,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (speech_id) REFERENCES speeches(id),
+            UNIQUE(speech_id, ticker, llm_model)
+        )
+    ''')
+
     # Create indexes for performance
     cursor.execute('CREATE INDEX IF NOT EXISTS idx_speeches_date ON speeches(date)')
+    # Defense-in-depth against the corrupted-legacy-file duplicate-ingestion
+    # bug documented in tests/test_speech_data_integrity.py -- rejects
+    # duplicate (source, date, title) inserts at the DB level.
+    cursor.execute('CREATE UNIQUE INDEX IF NOT EXISTS idx_speeches_source_date_title ON speeches(source, date, title)')
     cursor.execute('CREATE INDEX IF NOT EXISTS idx_market_date ON market_data(date)')
     cursor.execute('CREATE INDEX IF NOT EXISTS idx_market_ticker ON market_data(ticker)')
     cursor.execute('CREATE INDEX IF NOT EXISTS idx_vix_date ON vix_data(date)')
     cursor.execute('CREATE INDEX IF NOT EXISTS idx_regime_date ON regime_classifications(date)')
+    cursor.execute('CREATE INDEX IF NOT EXISTS idx_llm_signals_ticker ON llm_company_signals(ticker)')
     
     conn.commit()
     conn.close()

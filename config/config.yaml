@@ -36,6 +36,24 @@ models:
     topic_weight: 0.5          # importance blend: topic-concentration share
     reaction_weight: 0.5       # importance blend: historical-market-reaction share
 
+  # Groq-hosted Llama classifier: maps each speech's dominant topic onto the
+  # tracked 15-company universe (prediction_engine.COMPANY_UNIVERSE) with a
+  # strength/sentiment judgment. blend_weight controls how much this signal
+  # moves the existing NMF/FinBERT-derived baseline in prediction_engine.py
+  # (0 = ignore LLM signal entirely, 1 = LLM signal only).
+  groq_classifier:
+    model: "llama-3.3-70b-versatile"
+    temperature: 0.1
+    max_output_tokens: 600
+    blend_weight: 0.4
+    strength_scores:
+      strong: 0.85
+      weak: 0.3
+    sentiment_scores:
+      positive: 0.7
+      negative: -0.7
+      neutral: 0.0
+
   counterfactual:
     input_dim: 10
     hidden_dim: 128

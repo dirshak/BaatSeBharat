@@ -534,6 +534,86 @@ def _resolve_company_topic_strength(ticker: str, fallback_topic: float = 0.5) ->
     weighted_impact = float(np.average(df['abnormal_return'], weights=df['weight']))
     return float(np.clip(0.5 + weighted_impact * 20, 0.1, 0.9))
 
+_GROQ_CFG_CACHE: Optional[Dict] = None
+
+
+def _groq_blend_weight() -> float:
+    """Weight given to the Groq-derived company signal (llm_company_signals)
+    vs. the existing NMF/FinBERT baseline. config/config.yaml ->
+    models.groq_classifier.blend_weight, default 0.4. Loaded lazily/cached
+    since this is read on every prediction call."""
+    global _GROQ_CFG_CACHE
+    if _GROQ_CFG_CACHE is None:
+        try:
+            import yaml
+            cfg_path = os.path.join(
+                os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'config', 'config.yaml'
+            )
+            with open(cfg_path, 'r', encoding='utf-8') as f:
+                cfg = yaml.safe_load(f)
+            _GROQ_CFG_CACHE = cfg.get('models', {}).get('groq_classifier', {}) or {}
+        except Exception as exc:
+            logger.debug("Failed to load groq_classifier config: %s", exc)
+            _GROQ_CFG_CACHE = {}
+    return float(_GROQ_CFG_CACHE.get('blend_weight', 0.4))
+
+
+def _load_ticker_llm_signals(ticker: str) -> pd.DataFrame:
+    """Per-speech Groq company classifications for `ticker`
+    (llm_company_signals), weighted the same time-decay + importance way as
+    _load_ticker_speech_signals (src/models/topic_weighting.py), with an
+    extra multiply by the LLM's own confidence so low-confidence
+    classifications contribute less. abnormal_return/max_topic_prob are
+    pulled in only to feed that shared weighting formula -- this table's own
+    signal is strength_score/sentiment_score, not those columns.
+    """
+    if not ticker:
+        return pd.DataFrame()
+    df = _query_db_cached(
+        """
+        SELECT lcs.speech_id, s.date, lcs.strength_score, lcs.sentiment_score, lcs.confidence,
+               i.abnormal_return,
+               (SELECT MAX(td.probability) FROM topic_distributions td
+                WHERE td.speech_id = lcs.speech_id AND td.model_name = 'Combined') as max_topic_prob
+        FROM llm_company_signals lcs
+        JOIN speeches s ON s.id = lcs.speech_id
+        LEFT JOIN speech_market_impact i ON i.speech_id = lcs.speech_id AND i.ticker = lcs.ticker
+        WHERE lcs.ticker = ?
+        """,
+        DB_PATH, (ticker,)
+    )
+    if df.empty:
+        return df
+    df['max_topic_prob'] = df['max_topic_prob'].fillna(0.5)
+
+    try:
+        from models.topic_weighting import compute_speech_weights
+    except ImportError:
+        from src.models.topic_weighting import compute_speech_weights
+    weighted = compute_speech_weights(df, n_topics=10)
+    weighted['weight'] = weighted['weight'] * weighted['confidence'].fillna(0.5)
+    return weighted
+
+
+def _resolve_company_llm_signal(ticker: str) -> Tuple[Optional[float], Optional[float]]:
+    """Time-decay + importance + confidence weighted average of this
+    ticker's Groq strength_score/sentiment_score.
+
+    Returns (strength, sentiment), or (None, None) if no Groq
+    classifications exist yet for this ticker. Callers must treat None as
+    "no signal, don't blend" rather than substituting a neutral default --
+    blending in a fabricated neutral value would silently shift every
+    company's score even before scripts/classify_speeches_groq.py has ever
+    been run.
+    """
+    df = _load_ticker_llm_signals(ticker)
+    if df.empty or df['weight'].sum() == 0:
+        return None, None
+    strength = float(np.clip(np.average(df['strength_score'], weights=df['weight']), 0.0, 1.0))
+    sentiment = float(np.clip(np.average(df['sentiment_score'], weights=df['weight']), -1.0, 1.0))
+    return strength, sentiment
+
+
 def _resolve_sector_historical_return(sector: str) -> Tuple[float, float]:
     csv_path = './content/cache/sector_avg.csv'
     if os.path.exists(csv_path):
@@ -774,6 +854,16 @@ def get_company_prediction(
     co_regime_base = _resolve_company_regime(ticker, "Neutral")
     co_hist_ret_base = _resolve_company_historical_return(ticker)
 
+    # Blend in Groq-derived company signal (content-aware topic->company
+    # mapping; src/models/llm_topic_classifier.py). llm_strength is None
+    # when no classifications exist yet for this ticker -- left as a
+    # genuine no-op rather than defaulting to a fabricated neutral value.
+    llm_strength, llm_sentiment = _resolve_company_llm_signal(ticker)
+    if llm_strength is not None:
+        blend_w = _groq_blend_weight()
+        co_topic_base = (1 - blend_w) * co_topic_base + blend_w * llm_strength
+        co_sent_base = (1 - blend_w) * co_sent_base + blend_w * llm_sentiment
+
     # Blend inputs with company baselines (user overrides act as relative offsets)
     actual_sentiment = np.clip(co_sent_base + (sentiment_score * 0.5), -1.0, 1.0)
     actual_topic = np.clip(co_topic_base + (topic_strength - 0.5), 0.0, 1.0)
@@ -821,6 +911,8 @@ def get_company_prediction(
             "regime": actual_regime,
             "momentum_5d_pct": round(m5 * 100, 2),
             "historical_return_pct": round(actual_hist_ret * 100, 2),
+            "llm_strength": round(llm_strength, 3) if llm_strength is not None else None,
+            "llm_sentiment": round(llm_sentiment, 3) if llm_sentiment is not None else None,
         }
     }
 
@@ -863,6 +955,24 @@ def get_sector_prediction(
     actual_regime = sec_regime_base if regime_label in ("Neutral", "Stable") else regime_label
     actual_ret5 = sec_ret5_base if historical_return_5d == 0.0 else (0.7 * sec_ret5_base + 0.3 * historical_return_5d)
     actual_ret10 = sec_ret10_base if historical_return_10d == 0.0 else (0.7 * sec_ret10_base + 0.3 * historical_return_10d)
+
+    # Blend in Groq-derived company signal, averaged across sector
+    # constituents that have at least one classification (see
+    # get_company_prediction for the same blend applied per-company). A
+    # no-op sector-wide until at least one constituent has been classified.
+    sec_llm_strengths, sec_llm_sentiments = [], []
+    for co_name in SECTOR_COMPANIES.get(sector, []):
+        co_ticker = COMPANY_UNIVERSE.get(co_name, "")
+        if not co_ticker:
+            continue
+        s, se = _resolve_company_llm_signal(co_ticker)
+        if s is not None:
+            sec_llm_strengths.append(s)
+            sec_llm_sentiments.append(se)
+    if sec_llm_strengths:
+        blend_w = _groq_blend_weight()
+        actual_topic = (1 - blend_w) * actual_topic + blend_w * float(np.mean(sec_llm_strengths))
+        actual_sentiment = (1 - blend_w) * actual_sentiment + blend_w * float(np.mean(sec_llm_sentiments))
 
     # Average momentum across sector companies
     all_m5, all_m10 = [], []
@@ -914,6 +1024,8 @@ def get_sector_prediction(
             "rhetoric_signal": round(actual_topic, 3),
             "regime": actual_regime,
             "momentum_5d_pct": round(avg_m5 * 100, 2),
+            "llm_strength": round(float(np.mean(sec_llm_strengths)), 3) if sec_llm_strengths else None,
+            "llm_sentiment": round(float(np.mean(sec_llm_sentiments)), 3) if sec_llm_sentiments else None,
         }
     }
 

@@ -60,6 +60,9 @@ hmmlearn>=0.3.0
 wbdata>=0.3.3
 moviepy==1.0.3
 
+# Groq — Llama-hosted topic/company classification
+groq>=0.11.0
+
 # TradingAgents — LLM agent pipeline (optional full-LLM mode)
 langchain-core>=0.3.0
 langgraph>=0.2.0

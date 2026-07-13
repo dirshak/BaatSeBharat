@@ -11,8 +11,11 @@ import pandas as pd
 import plotly.graph_objects as go
 import plotly.express as px
 import os
+import sqlite3
 import sys
 import numpy as np
+
+DB_PATH = "./data/market_rhetoric.db"
 
 # ── Path setup for integrated modules ─────────────────────
 _BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -41,6 +44,13 @@ except ImportError as _e:
     _GEO_DASHBOARD_OK = False
     _geo_error = str(_e)
 
+try:
+    from prediction_history import compute_prediction_vs_actual, summarize as summarize_prediction_history
+    _PREDICTION_HISTORY_OK = True
+except ImportError as _e:
+    _PREDICTION_HISTORY_OK = False
+    _pred_history_error = str(_e)
+
 # ==========================================================
 # PAGE CONFIG
 # ==========================================================
@@ -62,7 +72,6 @@ CACHE_DIR = os.path.join(DATA_DIR, "cache")
 TOPIC_DATASET = os.path.join(DATA_DIR, "topic_dataset.csv")
 FINAL_TOPICS  = os.path.join(DATA_DIR, "final_topics.csv")
 NMF_TOPICS    = os.path.join(DATA_DIR, "nmf_topics.csv")
-REPORT_PATH   = os.path.join(DATA_DIR, "final_influence_report.txt")
 
 # Pre-computed cache files
 C_SECTOR_WEEKLY    = os.path.join(CACHE_DIR, "sector_weekly.csv")
@@ -82,7 +91,7 @@ C_FORECAST_W       = os.path.join(CACHE_DIR, "forecast_weekly.csv")
 cache_files = [
     C_SECTOR_WEEKLY, C_SECTOR_QUARTERLY,
     C_REGIME_WEEKLY, C_REGIME_QUARTERLY,
-    C_SECTOR_AVG, C_TOPICS,
+    C_SECTOR_AVG,
     C_FORECAST_Q, C_FORECAST_W,
 ]
 
@@ -174,12 +183,16 @@ def load_sentiment_timeline():
 
 @st.cache_data
 def load_topics():
-    return pd.read_csv(C_TOPICS)
+    if os.path.exists(C_TOPICS):
+        return pd.read_csv(C_TOPICS)
+    return pd.DataFrame()
 
 
 @st.cache_data
 def load_nmf_topics():
-    return pd.read_csv(NMF_TOPICS)
+    if os.path.exists(NMF_TOPICS):
+        return pd.read_csv(NMF_TOPICS)
+    return pd.DataFrame()
 
 
 @st.cache_data
@@ -192,16 +205,81 @@ def load_forecast_weekly():
     return pd.read_csv(C_FORECAST_W)
 
 
-@st.cache_data
-def load_report():
-    if os.path.exists(REPORT_PATH):
-        for enc in ["utf-8", "utf-8-sig", "latin-1", "cp1252"]:
-            try:
-                with open(REPORT_PATH, "r", encoding=enc) as f:
-                    return f.read()
-            except (UnicodeDecodeError, UnicodeError):
-                continue
-    return ""
+@st.cache_data(ttl=1800)
+def load_overview_stats():
+    """Live DB summary for the Overview page: total speeches, per-source
+    breakdown, and date range. Small aggregate query, not the CSV cache
+    tier -- always reflects the current DB regardless of when
+    precompute_cache.py was last run."""
+    if not os.path.exists(DB_PATH):
+        return {"total": 0, "by_source": pd.DataFrame(), "min_date": None, "max_date": None}
+    conn = sqlite3.connect(DB_PATH)
+    try:
+        by_source = pd.read_sql_query(
+            "SELECT source, COUNT(*) as n FROM speeches GROUP BY source ORDER BY n DESC", conn
+        )
+        bounds = pd.read_sql_query(
+            "SELECT MIN(date) as min_date, MAX(date) as max_date FROM speeches "
+            "WHERE date IS NOT NULL AND date != 'N/A'", conn
+        )
+        return {
+            "total": int(by_source["n"].sum()) if not by_source.empty else 0,
+            "by_source": by_source,
+            "min_date": bounds["min_date"].iloc[0] if not bounds.empty else None,
+            "max_date": bounds["max_date"].iloc[0] if not bounds.empty else None,
+        }
+    finally:
+        conn.close()
+
+
+@st.cache_data(ttl=1800)
+def load_sentiment_by_source(n_days=None):
+    """Per-source sentiment timeline for the Overview chart -- one line per
+    speech source instead of a single blended line across sources with very
+    different publication cadences (MKB monthly, ECB/Fed near-daily)."""
+    if not os.path.exists(DB_PATH):
+        return pd.DataFrame()
+    conn = sqlite3.connect(DB_PATH)
+    try:
+        df = pd.read_sql_query('''
+            SELECT s.date, s.source, ss.compound
+            FROM speeches s
+            JOIN sentiment_scores ss ON ss.speech_id = s.id AND ss.segment_type = 'episode'
+            WHERE s.date IS NOT NULL AND s.date != 'N/A'
+        ''', conn)
+    finally:
+        conn.close()
+    if df.empty:
+        return df
+    df["date"] = pd.to_datetime(df["date"], errors="coerce")
+    df = df.dropna(subset=["date"])
+    return (
+        df.groupby(["source", pd.Grouper(key="date", freq="MS")])["compound"]
+        .mean()
+        .reset_index()
+        .sort_values("date")
+    )
+
+
+@st.cache_data(ttl=1800)
+def load_recent_speeches(n=6):
+    """Most recent speeches (any source) with sentiment, for the Overview
+    'Recent Speeches' cards -- replaces the old raw-text report dump."""
+    if not os.path.exists(DB_PATH):
+        return pd.DataFrame()
+    conn = sqlite3.connect(DB_PATH)
+    try:
+        df = pd.read_sql_query('''
+            SELECT s.date, s.source, s.title, ss.compound
+            FROM speeches s
+            LEFT JOIN sentiment_scores ss ON ss.speech_id = s.id AND ss.segment_type = 'episode'
+            WHERE s.date IS NOT NULL AND s.date != 'N/A'
+            ORDER BY s.date DESC
+            LIMIT ?
+        ''', conn, params=(n,))
+        return df
+    finally:
+        conn.close()
 
 
 # ==========================================================
@@ -218,7 +296,6 @@ df_topics     = load_topics()
 df_nmf        = load_nmf_topics()
 df_forecast_q = load_forecast_quarterly()
 df_forecast_w = load_forecast_weekly()
-report_text   = load_report()
 
 # --- Cached AI Predictions wrappers for high performance ---
 @st.cache_data(ttl=1800, show_spinner=False)
@@ -237,10 +314,14 @@ def _cached_company_predictions(sentiment: float, topic_str: float, regime: str,
 def _cached_sector_predictions(sentiment: float, topic_str: float, sector_avg_json: str, regime_df_json: str) -> list:
     if not _PREDICTION_ENGINE_OK:
         return []
+    import io
     import json
-    # Reconstruct inputs if JSON strings are passed to keep hashable types
-    sector_avg = pd.read_json(sector_avg_json) if sector_avg_json else None
-    regime_df = pd.read_json(regime_df_json) if regime_df_json else None
+    # Reconstruct inputs if JSON strings are passed to keep hashable types.
+    # io.StringIO(...) is required, not the raw string -- newer pandas
+    # (3.x) treats a bare str argument to read_json as a file path, not
+    # inline JSON content, and raises FileNotFoundError otherwise.
+    sector_avg = pd.read_json(io.StringIO(sector_avg_json)) if sector_avg_json else None
+    regime_df = pd.read_json(io.StringIO(regime_df_json)) if regime_df_json else None
     return get_all_sector_predictions(
         sentiment_score=sentiment,
         topic_strength=topic_str,
@@ -251,14 +332,6 @@ def _cached_sector_predictions(sentiment: float, topic_str: float, sector_avg_js
 # ==========================================================
 # HELPERS
 # ==========================================================
-
-def parse_report_sections(text):
-    return [
-        s.strip() for s in
-        text.split("------------------------------------------------")
-        if "EVENT" in s
-    ]
-
 
 def regime_label(ret):
     if ret > REGIME_THRESH * 100:
@@ -385,6 +458,7 @@ with st.sidebar:
             "🧠 TOPIC EXPLORER",
             "🤖 AI PREDICTIONS",
             "🌍 GLOBAL INFLUENCE MAP",
+            "🔮 GLOBAL PREVIEW",
         ]
     )
     st.markdown("---")
@@ -409,38 +483,109 @@ if page == "📊 OVERVIEW":
         unsafe_allow_html=True
     )
 
-    c1, c2, c3 = st.columns(3)
-    with c1:
-        st.metric("LDA Topics", len(df_topics))
-    with c2:
-        st.metric("NMF Topics", len(df_nmf))
-    with c3:
-        if not df_sentiment.empty:
-            avg_sent = round(df_sentiment["sentiment"].mean(), 3)
-            st.metric("Avg Sentiment", avg_sent)
+    SOURCE_COLORS = {
+        "Mann Ki Baat": "#38bdf8",
+        "ECB":          "#a78bfa",
+        "Fed":          "#fb923c",
+    }
 
+    ov_stats = load_overview_stats()
+    ov_sentiment_by_source = load_sentiment_by_source()
+
+    # ── Summary metrics ────────────────────────────────────
+    m1, m2, m3, m4 = st.columns(4)
+    with m1:
+        st.metric("Total Speeches", f"{ov_stats['total']:,}")
+    with m2:
+        st.metric("Sources Tracked", len(ov_stats["by_source"]) if not ov_stats["by_source"].empty else 0)
+    with m3:
+        st.metric("Topics Modeled", len(df_topics) if not df_topics.empty else "N/A")
+    with m4:
+        if not ov_sentiment_by_source.empty:
+            avg_sent = round(ov_sentiment_by_source["compound"].mean(), 3)
+            st.metric("Avg Sentiment", avg_sent)
+        else:
+            st.metric("Avg Sentiment", "N/A")
+
+    # ── Source coverage pills ──────────────────────────────
+    if not ov_stats["by_source"].empty:
+        pills = "".join(
+            f"<span style='background:{SOURCE_COLORS.get(row['source'], '#334155')}22;"
+            f"color:{SOURCE_COLORS.get(row['source'], '#94a3b8')};"
+            f"border:1px solid {SOURCE_COLORS.get(row['source'], '#334155')};"
+            f"border-radius:999px;padding:5px 14px;margin-right:8px;"
+            f"font-size:0.85rem;font-weight:600;display:inline-block;margin-bottom:8px'>"
+            f"{row['source']} · {row['n']:,}</span>"
+            for _, row in ov_stats["by_source"].iterrows()
+        )
+        date_range = ""
+        if ov_stats["min_date"] and ov_stats["max_date"]:
+            date_range = (
+                f"<span style='color:#64748b;font-size:0.85rem;margin-left:4px'>"
+                f"&nbsp;·&nbsp;{ov_stats['min_date']} → {ov_stats['max_date']}</span>"
+            )
+        st.markdown(f"<div style='margin:4px 0 20px'>{pills}{date_range}</div>", unsafe_allow_html=True)
+
+    # ── Sentiment timeline, one line per source ────────────
     st.markdown("### Sentiment Timeline")
-    if not df_sentiment.empty:
+    if not ov_sentiment_by_source.empty:
         fig = go.Figure()
-        fig.add_trace(go.Scatter(
-            x=df_sentiment["date"], y=df_sentiment["sentiment"],
-            mode="lines", name="Sentiment",
-            line=dict(color="#38bdf8", width=1.5)
-        ))
+        for source, sdf in ov_sentiment_by_source.groupby("source"):
+            fig.add_trace(go.Scatter(
+                x=sdf["date"], y=sdf["compound"],
+                mode="lines+markers", name=source,
+                line=dict(color=SOURCE_COLORS.get(source, "#94a3b8"), width=2),
+                marker=dict(size=4),
+            ))
+        fig.add_hline(y=0, line_color="#334155", line_width=1)
         fig.update_layout(
             template="plotly_dark", height=420,
             plot_bgcolor="#0f172a", paper_bgcolor="#0f172a",
-            margin=dict(t=20, b=40)
+            yaxis_title="Avg. Monthly Sentiment (FinBERT compound)",
+            legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="center", x=0.5),
+            margin=dict(t=40, b=40)
         )
         st.plotly_chart(fig, use_container_width=True)
+    else:
+        st.info("No sentiment data yet — run the preprocessing/sentiment pipeline to populate this chart.")
 
-    st.markdown("### Recent Analysis Feed")
-    if report_text:
-        for sec in parse_report_sections(report_text)[:5]:
-            st.markdown(
-                f'<div class="stCard"><pre>{sec}</pre></div>',
-                unsafe_allow_html=True
-            )
+    # ── Recent speeches, as cards ───────────────────────────
+    st.markdown("### 📰 Recent Speeches")
+    recent = load_recent_speeches(6)
+    if not recent.empty:
+        rcols = st.columns(3)
+        for i, (_, row) in enumerate(recent.iterrows()):
+            compound = row["compound"] if pd.notna(row["compound"]) else 0.0
+            if compound > 0.15:
+                tone_color, tone_label = "#34d399", "🟢 Positive"
+            elif compound < -0.15:
+                tone_color, tone_label = "#f87171", "🔴 Negative"
+            else:
+                tone_color, tone_label = "#94a3b8", "⚪ Neutral"
+            src_color = SOURCE_COLORS.get(row["source"], "#94a3b8")
+            with rcols[i % 3]:
+                st.markdown(
+                    f"""
+                    <div style='background:#1e293b;border-radius:12px;padding:16px;
+                                border:1px solid #334155;border-left:3px solid {src_color};
+                                margin-bottom:16px;min-height:150px'>
+                        <div style='color:{src_color};font-size:0.75rem;font-weight:700;
+                                    text-transform:uppercase;letter-spacing:0.05em'>
+                            {row['source']} &nbsp;·&nbsp; {row['date']}
+                        </div>
+                        <div style='color:#f1f5f9;font-weight:600;margin:8px 0;
+                                    font-size:0.95rem;line-height:1.35'>
+                            {row['title']}
+                        </div>
+                        <div style='color:{tone_color};font-size:0.85rem;font-weight:600'>
+                            {tone_label} ({compound:+.2f})
+                        </div>
+                    </div>
+                    """,
+                    unsafe_allow_html=True,
+                )
+    else:
+        st.info("No speeches available yet.")
 
 # ==========================================================
 # MARKET DYNAMICS
@@ -1286,3 +1431,103 @@ elif page == "🌍 GLOBAL INFLUENCE MAP":
             _company_preds_for_map = None
 
     render_global_influence_map(company_predictions=_company_preds_for_map)
+
+# ==========================================================
+# GLOBAL PREVIEW  (past speeches: predicted vs. actual)
+# ==========================================================
+
+elif page == "🔮 GLOBAL PREVIEW":
+
+    st.markdown(
+        '<h1 class="hero-title">Global Preview</h1>',
+        unsafe_allow_html=True
+    )
+    st.markdown(
+        '<p class="hero-subtitle">Past speeches: what the pipeline predicted vs. what actually happened.</p>',
+        unsafe_allow_html=True
+    )
+
+    if not _PREDICTION_HISTORY_OK:
+        st.error(f"Prediction history module unavailable: {_pred_history_error}")
+        st.stop()
+
+    gp_col1, gp_col2 = st.columns(2)
+    with gp_col1:
+        gp_source = st.selectbox(
+            "Source", ["All", "Mann Ki Baat", "ECB", "Fed"], index=0
+        )
+    with gp_col2:
+        gp_company = st.selectbox(
+            "Company", ["All"] + list(COMPANY_UNIVERSE.keys()), index=0
+        )
+
+    with st.spinner("Replaying past predictions against realized outcomes…"):
+        gp_df = compute_prediction_vs_actual(
+            source=None if gp_source == "All" else gp_source,
+            company=None if gp_company == "All" else gp_company,
+        )
+
+    if gp_df.empty:
+        st.info(
+            "Not enough data yet to build a Global Preview. This needs speeches with "
+            "computed market impact (speech_market_impact) for the selected filters — "
+            "run the prototype/impact pipeline first."
+        )
+        st.stop()
+
+    gp_summary = summarize_prediction_history(gp_df)
+
+    m1, m2, m3, m4 = st.columns(4)
+    with m1:
+        hr = gp_summary.get("overall_hit_rate")
+        st.metric("Directional Hit Rate (5d)", f"{hr*100:.1f}%" if hr is not None else "N/A")
+    with m2:
+        st.metric("Mean Abs. Error (1d)", f"{gp_summary.get('mean_abs_error_1d', 0):.2f}%")
+    with m3:
+        st.metric("Mean Abs. Error (5d)", f"{gp_summary.get('mean_abs_error_5d', 0):.2f}%")
+    with m4:
+        st.metric("Speeches Covered", gp_summary.get("n_events", 0))
+
+    st.markdown("### 📉 Predicted vs. Actual Return (5-Day)")
+    gp_plot_df = gp_df.dropna(subset=["hit"]).copy()
+    if not gp_plot_df.empty:
+        gp_plot_df["Result"] = gp_plot_df["hit"].map({True: "Hit", False: "Miss"})
+        fig_gp = px.scatter(
+            gp_plot_df,
+            x="predicted_return_5d", y="actual_return_5d",
+            color="Result", hover_data=["date", "source", "company"],
+            color_discrete_map={"Hit": "#34d399", "Miss": "#f87171"},
+        )
+        fig_gp.add_shape(
+            type="line", x0=gp_plot_df["predicted_return_5d"].min(), y0=gp_plot_df["predicted_return_5d"].min(),
+            x1=gp_plot_df["predicted_return_5d"].max(), y1=gp_plot_df["predicted_return_5d"].max(),
+            line=dict(color="#64748b", dash="dot")
+        )
+        fig_gp.update_layout(
+            template="plotly_dark", height=420,
+            plot_bgcolor="#0f172a", paper_bgcolor="#0f172a",
+            xaxis_title="Predicted 5d Return (%)", yaxis_title="Actual 5d Return (%)",
+            margin=dict(t=20, b=40)
+        )
+        st.plotly_chart(fig_gp, use_container_width=True)
+    else:
+        st.caption("No events with a non-zero actual return to plot yet.")
+
+    st.markdown("### 📋 Speech-Level Detail")
+    st.dataframe(
+        gp_df.sort_values("date", ascending=False)[[
+            "date", "source", "company", "predicted_signal",
+            "predicted_return_1d", "predicted_return_5d",
+            "actual_return_1d", "actual_return_5d", "hit"
+        ]],
+        use_container_width=True,
+        hide_index=True,
+    )
+
+    if gp_summary.get("per_company") is not None and not gp_summary["per_company"].empty:
+        st.markdown("### 🏢 Accuracy by Company")
+        st.dataframe(gp_summary["per_company"], use_container_width=True, hide_index=True)
+
+    if gp_summary.get("per_source") is not None and not gp_summary["per_source"].empty:
+        st.markdown("### 🗂️ Accuracy by Source")
+        st.dataframe(gp_summary["per_source"], use_container_width=True, hide_index=True)

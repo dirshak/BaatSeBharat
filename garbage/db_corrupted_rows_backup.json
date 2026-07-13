@@ -1,0 +1,926 @@
+{
+  "speeches": [
+    {
+      "id": 32,
+      "date": null,
+      "source": "Mann Ki Baat",
+      "country": "India",
+      "speaker": "PM Modi",
+      "title": "# dashboard.py",
+      "full_text": "# BAATSEBHARAT | LRDR-MRPRA DASHBOARD\n# LDA + NMF + FinBERT VERSION\n# ==========================================================\n\nimport streamlit as st\nimport pandas as pd\nimport plotly.graph_objects as go\nimport plotly.express as px\nimport os\nfrom datetime import datetime\n\n# ==========================================================\n# PAGE CONFIG\n# ==========================================================\n\nst.set_page_config(\n    page_title=\"BaatSeBharat | Analytics\",\n    page_icon=\"\ud83d\udcc8\",\n    layout=\"wide\"\n)\n\n# ==========================================================\n# PATHS\n# ==========================================================\n\nDATA_DIR = \"./data/processed\"\n\nTOPIC_DATASET = os.path.join(\n    DATA_DIR,\n    \"topic_dataset.csv\"\n)\n\nFINAL_TOPICS = os.path.join(\n    DATA_DIR,\n    \"final_topics.csv\"\n)\n\nNMF_TOPICS = os.path.join(\n    DATA_DIR,\n    \"nmf_topics.csv\"\n)\n\nIMPACT_CSV = os.path.join(\n    DATA_DIR,\n    \"speech_market_impact_full.csv\"\n)\n\nREPORT_PATH = os.path.join(\n    DATA_DIR,\n    \"final_influence_report.txt\"\n)\n\nHTML_CHART = (\n    \"./outputs/\"\n    \"topic_strength_vs_sector_returns.html\"\n)\n\n# ==========================================================\n# REQUIRED FILE CHECK\n# ==========================================================\n\nrequired_files = {\n    \"topic_dataset.csv\": TOPIC_DATASET,\n    \"final_topics.csv\": FINAL_TOPICS,\n    \"nmf_topics.csv\": NMF_TOPICS\n}\n\nmissing_files = []\n\nfor name, path in required_files.items():\n    if not os.path.exists(path):\n        missing_files.append(name)\n\nif missing_files:\n    st.error(\n        \"Missing required files:\\n\\n\"\n        + \"\\n\".join(\n            [f\"\u2022 {x}\" for x in missing_files]\n        )\n    )\n    st.stop()\n\n# ==========================================================\n# HIGH CONTRAST THEME\n# ==========================================================\n\nst.markdown(\"\"\"\n<style>\n\nhtml, body, [class*=\"css\"] {\n    background-color: #0f172a;\n    color: #f1f5f9;\n}\n\n.hero-title {\n    color: #38bdf8;\n    font-weight: 700;\n    font-size: 2.6rem;\n}\n\n.hero-subtitle {\n    color: #94a3b8;\n    font-size: 1.05rem;\n}\n\n.stCard {\n    background-color: #1e293b;\n    border: 1px solid #334155;\n    border-radius: 12px;\n    padding: 20px;\n    margin-bottom: 15px;\n}\n\nsection[data-testid=\"stSidebar\"] {\n    background-color: #1e293b;\n}\n\n</style>\n\"\"\", unsafe_allow_html=True)\n\n# ==========================================================\n# DATA LOADING\n# ==========================================================\n\n@st.cache_data\ndef load_topic_dataset():\n\n    df = pd.read_csv(\n        TOPIC_DATASET\n    )\n\n    df[\"date\"] = pd.to_datetime(\n        df[\"date\"],\n        errors=\"coerce\"\n    )\n\n    df[\"sentiment\"] = (\n        df[\"positive\"]\n        - df[\"negative\"]\n    )\n\n    df[\"title\"] = (\n        df[\"filename\"]\n        .str.replace(\".txt\", \"\")\n    )\n\n    return df.dropna(\n        subset=[\"date\"]\n    )\n\n\n@st.cache_data\ndef load_topics():\n\n    return pd.read_csv(\n        FINAL_TOPICS\n    )\n\n\n@st.cache_data\ndef load_nmf_topics():\n\n    return pd.read_csv(\n        NMF_TOPICS\n    )\n\n\n@st.cache_data\ndef load_impact_data():\n\n    if os.path.exists(\n        IMPACT_CSV\n    ):\n        return pd.read_csv(\n            IMPACT_CSV\n        )\n\n    return pd.DataFrame()\n\n\n@st.cache_data\ndef load_report():\n\n    if os.path.exists(\n        REPORT_PATH\n    ):\n        with open(\n            REPORT_PATH,\n            \"r\",\n            encoding=\"utf-8\"\n        ) as f:\n            return f.read()\n\n    return \"\"\n\n\n# ==========================================================\n# HELPERS\n# ==========================================================\n\ndef parse_report_sections(text):\n\n    sections = []\n\n    raw_sections = text.split(\n        \"------------------------------------------------\"\n    )\n\n    for sec in raw_sections:\n        if \"EVENT\" in sec:\n            sections.append(sec.strip())\n\n    return sections\n\n\n# ==========================================================\n# LOAD DATA\n# ==========================================================\n\ndf_speeches = (\n    load_topic_dataset()\n)\n\ndf_topics = (\n    load_topics()\n)\n\ndf_nmf_topics = (\n    load_nmf_topics()\n)\n\ndf_impact = (\n    load_impact_data()\n)\n\nreport_text = (\n    load_report()\n)\n\n# ==========================================================\n# SIDEBAR\n# ==========================================================\n\nwith st.sidebar:\n\n    st.image(\n        \"https://img.icons8.com/color/96/bullish.png\",\n        width=60\n    )\n\n    st.markdown(\n        \"## BaatSeBharat\"\n    )\n\n    st.markdown(\"---\")\n\n    page = st.radio(\n        \"SELECT VIEW\",\n        [\n            \"\ud83d\udcca OVERVIEW\",\n            \"\ud83d\udcc8 MARKET DYNAMICS\",\n            \"\ud83d\udd0e SPEECH AUDIT\",\n            \"\ud83e\udde0 TOPIC EXPLORER\"\n        ]\n    )\n\n    st.markdown(\"---\")\n\n    st.caption(\n        \"v2.0 | LDA + NMF\"\n    )\n\n# ==========================================================\n# OVERVIEW\n# ==========================================================\n\nif page == \"\ud83d\udcca OVERVIEW\":\n\n    st.markdown(\n        '<h1 class=\"hero-title\">'\n        'Market Influence Analytics'\n        '</h1>',\n        unsafe_allow_html=True\n    )\n\n    st.markdown(\n        '<p class=\"hero-subtitle\">'\n        'Leadership discourse vs market behaviour.'\n        '</p>',\n        unsafe_allow_html=True\n    )\n\n    c1, c2, c3 = st.columns(3)\n\n    with c1:\n        st.metric(\n            \"Total Corpus\",\n            len(df_speeches)\n        )\n\n    with c2:\n        st.metric(\n            \"Financial Topics\",\n            len(df_topics)\n        )\n\n    with c3:\n        st.metric(\n            \"Average Sentiment\",\n            round(\n                df_speeches[\n                    \"sentiment\"\n                ].mean(),\n                3\n            )\n        )\n\n    # Sentiment over time\n    st.markdown(\n        \"### Sentiment Timeline\"\n    )\n\n    timeline = (\n        df_speeches\n        .groupby(\"date\")\n        [\"sentiment\"]\n        .mean()\n        .reset_index()\n    )\n\n    fig = go.Figure()\n\n    fig.add_trace(\n        go.Scatter(\n            x=timeline[\"date\"],\n            y=timeline[\"sentiment\"],\n            mode=\"lines\",\n            name=\"Sentiment\"\n        )\n    )\n\n    fig.update_layout(\n        template=\"plotly_dark\",\n        height=450\n    )\n\n    st.plotly_chart(\n        fig,\n        use_container_width=True\n    )\n\n    # Report feed\n    st.markdown(\n        \"### Recent Analysis Feed\"\n    )\n\n    if report_text:\n\n        sections = (\n            parse_report_sections(\n                report_text\n            )\n        )\n\n        for sec in sections[:5]:\n\n            st.markdown(\n                f\"\"\"\n                <div class=\"stCard\">\n                <pre>{sec}</pre>\n                </div>\n                \"\"\",\n                unsafe_allow_html=True\n            )\n\n# ==========================================================\n# MARKET DYNAMICS\n# ==========================================================\n\nelif page == \"\ud83d\udcc8 MARKET DYNAMICS\":\n\n    st.markdown(\n        '<h1 class=\"hero-title\">'\n        'Market Dynamics'\n        '</h1>',\n        unsafe_allow_html=True\n    )\n\n    if (\n        not df_impact.empty\n    ):\n\n        sector_avg = (\n            df_impact\n            .groupby(\"sector\")\n            [\"return_5d\"]\n            .mean()\n            .reset_index()\n        )\n\n        fig = px.bar(\n            sector_avg,\n            x=\"sector\",\n            y=\"return_5d\",\n            title=(\n                \"Sector-wise \"\n                \"5D Return\"\n            )\n        )\n\n        fig.update_layout(\n            template=\"plotly_dark\"\n        )\n\n        st.plotly_chart(\n            fig,\n            use_container_width=True\n        )\n\n    else:\n        st.info(\n            \"Market impact data missing.\"\n        )\n\n    # external html\n    if os.path.exists(\n        HTML_CHART\n    ):\n\n        with open(\n            HTML_CHART,\n            \"r\",\n            encoding=\"utf-8\"\n        ) as f:\n\n            html = f.read()\n\n        st.components.v1.html(\n            html,\n            height=850,\n            scrolling=True\n        )\n\n# ==========================================================\n# SPEECH AUDIT\n# ==========================================================\n\nelif page == \"\ud83d\udd0e SPEECH AUDIT\":\n\n    st.markdown(\n        '<h1 class=\"hero-title\">'\n        'Speech Intelligence Explorer'\n        '</h1>',\n        unsafe_allow_html=True\n    )\n\n    search = st.text_input(\n        \"Filter by keyword\"\n    )\n\n    filtered = (\n        df_speeches.copy()\n    )\n\n    if search:\n\n        filtered = filtered[\n            filtered[\n                \"title\"\n            ]\n            .str.contains(\n                search,\n                case=False,\n                na=False\n            )\n        ]\n\n    st.dataframe(\n        filtered[\n            [\n                \"date\",\n                \"source\",\n                \"title\",\n                \"positive\",\n                \"negative\",\n                \"neutral\"\n            ]\n        ]\n        .sort_values(\n            \"date\",\n            ascending=False\n        ),\n        use_container_width=True,\n        hide_index=True\n    )\n\n    st.markdown(\"---\")\n\n    if not filtered.empty:\n\n        selected_title = (\n            st.selectbox(\n                \"Choose speech\",\n                filtered[\n                    \"title\"\n                ].unique()\n            )\n        )\n\n        speech = filtered[\n            filtered[\n                \"title\"\n            ]\n            ==\n            selected_title\n        ].iloc[0]\n\n        st.markdown(\n            \"### Speech Text\"\n        )\n\n        st.text_area(\n            \"Transcript\",\n            speech[\"text\"],\n            height=300\n        )\n\n        sentiment_fig = go.Figure(\n            data=[\n                go.Bar(\n                    x=[\n                        \"Positive\",\n                        \"Negative\",\n                        \"Neutral\"\n                    ],\n                    y=[\n                        speech[\n                            \"positive\"\n                        ],\n                        speech[\n                            \"negative\"\n                        ],\n                        speech[\n                            \"neutral\"\n                        ]\n                    ]\n                )\n            ]\n        )\n\n        sentiment_fig.update_layout(\n            title=\"FinBERT Sentiment\",\n            template=\"plotly_dark\"\n        )\n\n        st.plotly_chart(\n            sentiment_fig,\n            use_container_width=True\n        )\n\n# ==========================================================\n# TOPIC EXPLORER\n# ==========================================================\n\nelif page == \"\ud83e\udde0 TOPIC EXPLORER\":\n\n    st.markdown(\n        '<h1 class=\"hero-title\">'\n        'Financial Topic Intelligence'\n        '</h1>',\n        unsafe_allow_html=True\n    )\n\n    st.markdown(\n        \"### LDA Topics\"\n    )\n\n    st.dataframe(\n        df_topics,\n        use_container_width=True,\n        hide_index=True\n    )\n\n    st.markdown(\n        \"### NMF Topics\"\n    )\n\n    st.dataframe(\n        df_nmf_topics,\n        use_container_width=True,\n        hide_index=True\n    )\n\n    top_scores = (\n        df_topics\n        .sort_values(\n            \"score\",\n            ascending=False\n        )\n        .head(10)\n    )\n\n    fig = px.bar(\n        top_scores,\n        x=\"topic_id\",\n        y=\"score\",\n        hover_data=[\"keywords\"],\n        title=\"Top Financial Topics\"\n    )\n\n    fig.update_layout(\n        template=\"plotly_dark\"\n    )\n\n    st.plotly_chart(\n        fig,\n        use_container_width=True\n    )",
+      "processed_text": "baatsebharat lrdr mrpra dashboard lda nmf finbert version import streamlit import panda import graph_object import express import datetime import datetime page config set_page_config page_title baatsebharat analytic page_icon layout wide path datum process topic_dataset path join data_dir topic_dataset csv final_topics path join data_dir final_topics csv nmf_topics path join nmf_topic csv impact_csv path join speech_market_impact_full csv report_path path join data_dir final_influence_report txt html_chart output topic_strength_vs_sector_return html require file check required_file topic_dataset csv topic_dataset final_topics csv final_topics nmf_topics csv nmf_topics missing_files path required_file item path exist path missing_file append missing_files error miss require file join missing_files stop high contrast theme markdown style html body class css background color 0f172a color f1f5f9 hero title color font weight font size hero subtitle color 94a3b8 font size 05rem stcard background color border 1px solid border radius 12px padding 20px margin 15px section datum testid stsidebar background color style unsafe_allow_html true datum load cache_data def load_topic_dataset read_csv topic_dataset date to_datetime date error coerce sentiment positive negative title filename str replace txt return dropna subset date cache_data def load_topic return read_csv final_topics cache_data def load_nmf_topics return read_csv nmf_topics cache_data def load_impact_data path exist return read_csv impact_csv return dataframe cache_data def load_report path exist report_path open report_path encode utf return read return helper def parse_report_section text section raw_section text split sec raw_section event sec section append sec strip return section load datum df_speeche load_topic_dataset df_topic load_topic df_nmf_topics load_nmf_topics df_impact load_impact_data report_text load_report sidebar sidebar image width markdown baatsebharat markdown page radio select view overview market dynamic speech audit topic explorer markdown caption lda nmf overview page overview markdown class hero title market influence analytic unsafe_allow_html true markdown class hero subtitle leadership discourse market behaviour unsafe_allow_html true column metric total corpus len df_speeche metric financial topic len df_topic metric average sentiment round df_speeche sentiment mean sentiment markdown sentiment timeline timeline df_speeche groupby date sentiment mean reset_index fig figure fig add_trace scatter timeline date timeline sentiment mode line sentiment fig update_layout template plotly_dark height plotly_chart fig use_container_width true report feed markdown recent analysis feed report_text section parse_report_section report_text sec section markdown div class stcard pre sec pre div unsafe_allow_html true market dynamic elif page market dynamic markdown class hero title market dynamic unsafe_allow_html true df_impact df_impact groupby sector return_5d mean reset_index fig bar sector_avg sector return_5d title sector wise return fig update_layout template plotly_dark plotly_chart fig use_container_width true info market impact datum miss external html path exist html_chart open html_chart encode utf html read component html html height scroll true speech audit elif page speech audit markdown class hero title speech intelligence explorer unsafe_allow_html true search text_input filter keyword filter df_speeches copy search filter filter filter title str contain search case false false dataframe filter date source title positive negative neutral sort_value date ascend false use_container_width true hide_index true markdown filter selectbox choose speech filter title unique speech filter filter title iloc markdown speech text text_area transcript speech text height sentiment_fig figure datum bar positive negative neutral speech positive speech negative speech neutral update_layout title finbert sentiment template plotly_dark plotly_chart use_container_width true topic explorer elif page topic explorer markdown class hero title financial topic intelligence unsafe_allow_html true markdown lda topic dataframe df_topic use_container_width true hide_index true markdown nmf topic dataframe df_nmf_topics use_container_width true hide_index true df_topic sort_value score ascend false head fig bar topic_id score hover_data keyword title financial topic fig update_layout template plotly_dark plotly_chart fig use_container_width true",
+      "url": null,
+      "language": null,
+      "episode_number": null,
+      "created_at": "2026-07-06 14:16:43",
+      "updated_at": "2026-07-06 14:16:43",
+      "doc_type": "Speech"
+    },
+    {
+      "id": 71,
+      "date": null,
+      "source": "Mann Ki Baat",
+      "country": "India",
+      "speaker": "PM Modi",
+      "title": "# dashboard.py",
+      "full_text": "# BAATSEBHARAT | LRDR-MRPRA DASHBOARD\n# LDA + NMF + FinBERT VERSION\n# ==========================================================\n\nimport streamlit as st\nimport pandas as pd\nimport plotly.graph_objects as go\nimport plotly.express as px\nimport os\nfrom datetime import datetime\n\n# ==========================================================\n# PAGE CONFIG\n# ==========================================================\n\nst.set_page_config(\n    page_title=\"BaatSeBharat | Analytics\",\n    page_icon=\"\ud83d\udcc8\",\n    layout=\"wide\"\n)\n\n# ==========================================================\n# PATHS\n# ==========================================================\n\nDATA_DIR = \"./data/processed\"\n\nTOPIC_DATASET = os.path.join(\n    DATA_DIR,\n    \"topic_dataset.csv\"\n)\n\nFINAL_TOPICS = os.path.join(\n    DATA_DIR,\n    \"final_topics.csv\"\n)\n\nNMF_TOPICS = os.path.join(\n    DATA_DIR,\n    \"nmf_topics.csv\"\n)\n\nIMPACT_CSV = os.path.join(\n    DATA_DIR,\n    \"speech_market_impact_full.csv\"\n)\n\nREPORT_PATH = os.path.join(\n    DATA_DIR,\n    \"final_influence_report.txt\"\n)\n\nHTML_CHART = (\n    \"./outputs/\"\n    \"topic_strength_vs_sector_returns.html\"\n)\n\n# ==========================================================\n# REQUIRED FILE CHECK\n# ==========================================================\n\nrequired_files = {\n    \"topic_dataset.csv\": TOPIC_DATASET,\n    \"final_topics.csv\": FINAL_TOPICS,\n    \"nmf_topics.csv\": NMF_TOPICS\n}\n\nmissing_files = []\n\nfor name, path in required_files.items():\n    if not os.path.exists(path):\n        missing_files.append(name)\n\nif missing_files:\n    st.error(\n        \"Missing required files:\\n\\n\"\n        + \"\\n\".join(\n            [f\"\u2022 {x}\" for x in missing_files]\n        )\n    )\n    st.stop()\n\n# ==========================================================\n# HIGH CONTRAST THEME\n# ==========================================================\n\nst.markdown(\"\"\"\n<style>\n\nhtml, body, [class*=\"css\"] {\n    background-color: #0f172a;\n    color: #f1f5f9;\n}\n\n.hero-title {\n    color: #38bdf8;\n    font-weight: 700;\n    font-size: 2.6rem;\n}\n\n.hero-subtitle {\n    color: #94a3b8;\n    font-size: 1.05rem;\n}\n\n.stCard {\n    background-color: #1e293b;\n    border: 1px solid #334155;\n    border-radius: 12px;\n    padding: 20px;\n    margin-bottom: 15px;\n}\n\nsection[data-testid=\"stSidebar\"] {\n    background-color: #1e293b;\n}\n\n</style>\n\"\"\", unsafe_allow_html=True)\n\n# ==========================================================\n# DATA LOADING\n# ==========================================================\n\n@st.cache_data\ndef load_topic_dataset():\n\n    df = pd.read_csv(\n        TOPIC_DATASET\n    )\n\n    df[\"date\"] = pd.to_datetime(\n        df[\"date\"],\n        errors=\"coerce\"\n    )\n\n    df[\"sentiment\"] = (\n        df[\"positive\"]\n        - df[\"negative\"]\n    )\n\n    df[\"title\"] = (\n        df[\"filename\"]\n        .str.replace(\".txt\", \"\")\n    )\n\n    return df.dropna(\n        subset=[\"date\"]\n    )\n\n\n@st.cache_data\ndef load_topics():\n\n    return pd.read_csv(\n        FINAL_TOPICS\n    )\n\n\n@st.cache_data\ndef load_nmf_topics():\n\n    return pd.read_csv(\n        NMF_TOPICS\n    )\n\n\n@st.cache_data\ndef load_impact_data():\n\n    if os.path.exists(\n        IMPACT_CSV\n    ):\n        return pd.read_csv(\n            IMPACT_CSV\n        )\n\n    return pd.DataFrame()\n\n\n@st.cache_data\ndef load_report():\n\n    if os.path.exists(\n        REPORT_PATH\n    ):\n        with open(\n            REPORT_PATH,\n            \"r\",\n            encoding=\"utf-8\"\n        ) as f:\n            return f.read()\n\n    return \"\"\n\n\n# ==========================================================\n# HELPERS\n# ==========================================================\n\ndef parse_report_sections(text):\n\n    sections = []\n\n    raw_sections = text.split(\n        \"------------------------------------------------\"\n    )\n\n    for sec in raw_sections:\n        if \"EVENT\" in sec:\n            sections.append(sec.strip())\n\n    return sections\n\n\n# ==========================================================\n# LOAD DATA\n# ==========================================================\n\ndf_speeches = (\n    load_topic_dataset()\n)\n\ndf_topics = (\n    load_topics()\n)\n\ndf_nmf_topics = (\n    load_nmf_topics()\n)\n\ndf_impact = (\n    load_impact_data()\n)\n\nreport_text = (\n    load_report()\n)\n\n# ==========================================================\n# SIDEBAR\n# ==========================================================\n\nwith st.sidebar:\n\n    st.image(\n        \"https://img.icons8.com/color/96/bullish.png\",\n        width=60\n    )\n\n    st.markdown(\n        \"## BaatSeBharat\"\n    )\n\n    st.markdown(\"---\")\n\n    page = st.radio(\n        \"SELECT VIEW\",\n        [\n            \"\ud83d\udcca OVERVIEW\",\n            \"\ud83d\udcc8 MARKET DYNAMICS\",\n            \"\ud83d\udd0e SPEECH AUDIT\",\n            \"\ud83e\udde0 TOPIC EXPLORER\"\n        ]\n    )\n\n    st.markdown(\"---\")\n\n    st.caption(\n        \"v2.0 | LDA + NMF\"\n    )\n\n# ==========================================================\n# OVERVIEW\n# ==========================================================\n\nif page == \"\ud83d\udcca OVERVIEW\":\n\n    st.markdown(\n        '<h1 class=\"hero-title\">'\n        'Market Influence Analytics'\n        '</h1>',\n        unsafe_allow_html=True\n    )\n\n    st.markdown(\n        '<p class=\"hero-subtitle\">'\n        'Leadership discourse vs market behaviour.'\n        '</p>',\n        unsafe_allow_html=True\n    )\n\n    c1, c2, c3 = st.columns(3)\n\n    with c1:\n        st.metric(\n            \"Total Corpus\",\n            len(df_speeches)\n        )\n\n    with c2:\n        st.metric(\n            \"Financial Topics\",\n            len(df_topics)\n        )\n\n    with c3:\n        st.metric(\n            \"Average Sentiment\",\n            round(\n                df_speeches[\n                    \"sentiment\"\n                ].mean(),\n                3\n            )\n        )\n\n    # Sentiment over time\n    st.markdown(\n        \"### Sentiment Timeline\"\n    )\n\n    timeline = (\n        df_speeches\n        .groupby(\"date\")\n        [\"sentiment\"]\n        .mean()\n        .reset_index()\n    )\n\n    fig = go.Figure()\n\n    fig.add_trace(\n        go.Scatter(\n            x=timeline[\"date\"],\n            y=timeline[\"sentiment\"],\n            mode=\"lines\",\n            name=\"Sentiment\"\n        )\n    )\n\n    fig.update_layout(\n        template=\"plotly_dark\",\n        height=450\n    )\n\n    st.plotly_chart(\n        fig,\n        use_container_width=True\n    )\n\n    # Report feed\n    st.markdown(\n        \"### Recent Analysis Feed\"\n    )\n\n    if report_text:\n\n        sections = (\n            parse_report_sections(\n                report_text\n            )\n        )\n\n        for sec in sections[:5]:\n\n            st.markdown(\n                f\"\"\"\n                <div class=\"stCard\">\n                <pre>{sec}</pre>\n                </div>\n                \"\"\",\n                unsafe_allow_html=True\n            )\n\n# ==========================================================\n# MARKET DYNAMICS\n# ==========================================================\n\nelif page == \"\ud83d\udcc8 MARKET DYNAMICS\":\n\n    st.markdown(\n        '<h1 class=\"hero-title\">'\n        'Market Dynamics'\n        '</h1>',\n        unsafe_allow_html=True\n    )\n\n    if (\n        not df_impact.empty\n    ):\n\n        sector_avg = (\n            df_impact\n            .groupby(\"sector\")\n            [\"return_5d\"]\n            .mean()\n            .reset_index()\n        )\n\n        fig = px.bar(\n            sector_avg,\n            x=\"sector\",\n            y=\"return_5d\",\n            title=(\n                \"Sector-wise \"\n                \"5D Return\"\n            )\n        )\n\n        fig.update_layout(\n            template=\"plotly_dark\"\n        )\n\n        st.plotly_chart(\n            fig,\n            use_container_width=True\n        )\n\n    else:\n        st.info(\n            \"Market impact data missing.\"\n        )\n\n    # external html\n    if os.path.exists(\n        HTML_CHART\n    ):\n\n        with open(\n            HTML_CHART,\n            \"r\",\n            encoding=\"utf-8\"\n        ) as f:\n\n            html = f.read()\n\n        st.components.v1.html(\n            html,\n            height=850,\n            scrolling=True\n        )\n\n# ==========================================================\n# SPEECH AUDIT\n# ==========================================================\n\nelif page == \"\ud83d\udd0e SPEECH AUDIT\":\n\n    st.markdown(\n        '<h1 class=\"hero-title\">'\n        'Speech Intelligence Explorer'\n        '</h1>',\n        unsafe_allow_html=True\n    )\n\n    search = st.text_input(\n        \"Filter by keyword\"\n    )\n\n    filtered = (\n        df_speeches.copy()\n    )\n\n    if search:\n\n        filtered = filtered[\n            filtered[\n                \"title\"\n            ]\n            .str.contains(\n                search,\n                case=False,\n                na=False\n            )\n        ]\n\n    st.dataframe(\n        filtered[\n            [\n                \"date\",\n                \"source\",\n                \"title\",\n                \"positive\",\n                \"negative\",\n                \"neutral\"\n            ]\n        ]\n        .sort_values(\n            \"date\",\n            ascending=False\n        ),\n        use_container_width=True,\n        hide_index=True\n    )\n\n    st.markdown(\"---\")\n\n    if not filtered.empty:\n\n        selected_title = (\n            st.selectbox(\n                \"Choose speech\",\n                filtered[\n                    \"title\"\n                ].unique()\n            )\n        )\n\n        speech = filtered[\n            filtered[\n                \"title\"\n            ]\n            ==\n            selected_title\n        ].iloc[0]\n\n        st.markdown(\n            \"### Speech Text\"\n        )\n\n        st.text_area(\n            \"Transcript\",\n            speech[\"text\"],\n            height=300\n        )\n\n        sentiment_fig = go.Figure(\n            data=[\n                go.Bar(\n                    x=[\n                        \"Positive\",\n                        \"Negative\",\n                        \"Neutral\"\n                    ],\n                    y=[\n                        speech[\n                            \"positive\"\n                        ],\n                        speech[\n                            \"negative\"\n                        ],\n                        speech[\n                            \"neutral\"\n                        ]\n                    ]\n                )\n            ]\n        )\n\n        sentiment_fig.update_layout(\n            title=\"FinBERT Sentiment\",\n            template=\"plotly_dark\"\n        )\n\n        st.plotly_chart(\n            sentiment_fig,\n            use_container_width=True\n        )\n\n# ==========================================================\n# TOPIC EXPLORER\n# ==========================================================\n\nelif page == \"\ud83e\udde0 TOPIC EXPLORER\":\n\n    st.markdown(\n        '<h1 class=\"hero-title\">'\n        'Financial Topic Intelligence'\n        '</h1>',\n        unsafe_allow_html=True\n    )\n\n    st.markdown(\n        \"### LDA Topics\"\n    )\n\n    st.dataframe(\n        df_topics,\n        use_container_width=True,\n        hide_index=True\n    )\n\n    st.markdown(\n        \"### NMF Topics\"\n    )\n\n    st.dataframe(\n        df_nmf_topics,\n        use_container_width=True,\n        hide_index=True\n    )\n\n    top_scores = (\n        df_topics\n        .sort_values(\n            \"score\",\n            ascending=False\n        )\n        .head(10)\n    )\n\n    fig = px.bar(\n        top_scores,\n        x=\"topic_id\",\n        y=\"score\",\n        hover_data=[\"keywords\"],\n        title=\"Top Financial Topics\"\n    )\n\n    fig.update_layout(\n        template=\"plotly_dark\"\n    )\n\n    st.plotly_chart(\n        fig,\n        use_container_width=True\n    )",
+      "processed_text": "baatsebharat lrdr mrpra dashboard lda nmf finbert version import streamlit import panda import graph_object import express import datetime import datetime page config set_page_config page_title baatsebharat analytic page_icon layout wide path datum process topic_dataset path join data_dir topic_dataset csv final_topics path join data_dir final_topics csv nmf_topics path join nmf_topic csv impact_csv path join speech_market_impact_full csv report_path path join data_dir final_influence_report txt html_chart output topic_strength_vs_sector_return html require file check required_file topic_dataset csv topic_dataset final_topics csv final_topics nmf_topics csv nmf_topics missing_files path required_file item path exist path missing_file append missing_files error miss require file join missing_files stop high contrast theme markdown style html body class css background color 0f172a color f1f5f9 hero title color font weight font size hero subtitle color 94a3b8 font size 05rem stcard background color border 1px solid border radius 12px padding 20px margin 15px section datum testid stsidebar background color style unsafe_allow_html true datum load cache_data def load_topic_dataset read_csv topic_dataset date to_datetime date error coerce sentiment positive negative title filename str replace txt return dropna subset date cache_data def load_topic return read_csv final_topics cache_data def load_nmf_topics return read_csv nmf_topics cache_data def load_impact_data path exist return read_csv impact_csv return dataframe cache_data def load_report path exist report_path open report_path encode utf return read return helper def parse_report_section text section raw_section text split sec raw_section event sec section append sec strip return section load datum df_speeche load_topic_dataset df_topic load_topic df_nmf_topics load_nmf_topics df_impact load_impact_data report_text load_report sidebar sidebar image width markdown baatsebharat markdown page radio select view overview market dynamic speech audit topic explorer markdown caption lda nmf overview page overview markdown class hero title market influence analytic unsafe_allow_html true markdown class hero subtitle leadership discourse market behaviour unsafe_allow_html true column metric total corpus len df_speeche metric financial topic len df_topic metric average sentiment round df_speeche sentiment mean sentiment markdown sentiment timeline timeline df_speeche groupby date sentiment mean reset_index fig figure fig add_trace scatter timeline date timeline sentiment mode line sentiment fig update_layout template plotly_dark height plotly_chart fig use_container_width true report feed markdown recent analysis feed report_text section parse_report_section report_text sec section markdown div class stcard pre sec pre div unsafe_allow_html true market dynamic elif page market dynamic markdown class hero title market dynamic unsafe_allow_html true df_impact df_impact groupby sector return_5d mean reset_index fig bar sector_avg sector return_5d title sector wise return fig update_layout template plotly_dark plotly_chart fig use_container_width true info market impact datum miss external html path exist html_chart open html_chart encode utf html read component html html height scroll true speech audit elif page speech audit markdown class hero title speech intelligence explorer unsafe_allow_html true search text_input filter keyword filter df_speeches copy search filter filter filter title str contain search case false false dataframe filter date source title positive negative neutral sort_value date ascend false use_container_width true hide_index true markdown filter selectbox choose speech filter title unique speech filter filter title iloc markdown speech text text_area transcript speech text height sentiment_fig figure datum bar positive negative neutral speech positive speech negative speech neutral update_layout title finbert sentiment template plotly_dark plotly_chart use_container_width true topic explorer elif page topic explorer markdown class hero title financial topic intelligence unsafe_allow_html true markdown lda topic dataframe df_topic use_container_width true hide_index true markdown nmf topic dataframe df_nmf_topics use_container_width true hide_index true df_topic sort_value score ascend false head fig bar topic_id score hover_data keyword title financial topic fig update_layout template plotly_dark plotly_chart fig use_container_width true",
+      "url": null,
+      "language": null,
+      "episode_number": null,
+      "created_at": "2026-07-06 14:19:41",
+      "updated_at": "2026-07-06 14:19:41",
+      "doc_type": "Speech"
+    },
+    {
+      "id": 72,
+      "date": null,
+      "source": "Mann Ki Baat",
+      "country": "India",
+      "speaker": "PM Modi",
+      "title": "# dashboard.py",
+      "full_text": "# BAATSEBHARAT | LRDR-MRPRA DASHBOARD\n# LDA + NMF + FinBERT VERSION\n# ==========================================================\n\nimport streamlit as st\nimport pandas as pd\nimport plotly.graph_objects as go\nimport plotly.express as px\nimport os\nfrom datetime import datetime\n\n# ==========================================================\n# PAGE CONFIG\n# ==========================================================\n\nst.set_page_config(\n    page_title=\"BaatSeBharat | Analytics\",\n    page_icon=\"\ud83d\udcc8\",\n    layout=\"wide\"\n)\n\n# ==========================================================\n# PATHS\n# ==========================================================\n\nDATA_DIR = \"./data/processed\"\n\nTOPIC_DATASET = os.path.join(\n    DATA_DIR,\n    \"topic_dataset.csv\"\n)\n\nFINAL_TOPICS = os.path.join(\n    DATA_DIR,\n    \"final_topics.csv\"\n)\n\nNMF_TOPICS = os.path.join(\n    DATA_DIR,\n    \"nmf_topics.csv\"\n)\n\nIMPACT_CSV = os.path.join(\n    DATA_DIR,\n    \"speech_market_impact_full.csv\"\n)\n\nREPORT_PATH = os.path.join(\n    DATA_DIR,\n    \"final_influence_report.txt\"\n)\n\nHTML_CHART = (\n    \"./outputs/\"\n    \"topic_strength_vs_sector_returns.html\"\n)\n\n# ==========================================================\n# REQUIRED FILE CHECK\n# ==========================================================\n\nrequired_files = {\n    \"topic_dataset.csv\": TOPIC_DATASET,\n    \"final_topics.csv\": FINAL_TOPICS,\n    \"nmf_topics.csv\": NMF_TOPICS\n}\n\nmissing_files = []\n\nfor name, path in required_files.items():\n    if not os.path.exists(path):\n        missing_files.append(name)\n\nif missing_files:\n    st.error(\n        \"Missing required files:\\n\\n\"\n        + \"\\n\".join(\n            [f\"\u2022 {x}\" for x in missing_files]\n        )\n    )\n    st.stop()\n\n# ==========================================================\n# HIGH CONTRAST THEME\n# ==========================================================\n\nst.markdown(\"\"\"\n<style>\n\nhtml, body, [class*=\"css\"] {\n    background-color: #0f172a;\n    color: #f1f5f9;\n}\n\n.hero-title {\n    color: #38bdf8;\n    font-weight: 700;\n    font-size: 2.6rem;\n}\n\n.hero-subtitle {\n    color: #94a3b8;\n    font-size: 1.05rem;\n}\n\n.stCard {\n    background-color: #1e293b;\n    border: 1px solid #334155;\n    border-radius: 12px;\n    padding: 20px;\n    margin-bottom: 15px;\n}\n\nsection[data-testid=\"stSidebar\"] {\n    background-color: #1e293b;\n}\n\n</style>\n\"\"\", unsafe_allow_html=True)\n\n# ==========================================================\n# DATA LOADING\n# ==========================================================\n\n@st.cache_data\ndef load_topic_dataset():\n\n    df = pd.read_csv(\n        TOPIC_DATASET\n    )\n\n    df[\"date\"] = pd.to_datetime(\n        df[\"date\"],\n        errors=\"coerce\"\n    )\n\n    df[\"sentiment\"] = (\n        df[\"positive\"]\n        - df[\"negative\"]\n    )\n\n    df[\"title\"] = (\n        df[\"filename\"]\n        .str.replace(\".txt\", \"\")\n    )\n\n    return df.dropna(\n        subset=[\"date\"]\n    )\n\n\n@st.cache_data\ndef load_topics():\n\n    return pd.read_csv(\n        FINAL_TOPICS\n    )\n\n\n@st.cache_data\ndef load_nmf_topics():\n\n    return pd.read_csv(\n        NMF_TOPICS\n    )\n\n\n@st.cache_data\ndef load_impact_data():\n\n    if os.path.exists(\n        IMPACT_CSV\n    ):\n        return pd.read_csv(\n            IMPACT_CSV\n        )\n\n    return pd.DataFrame()\n\n\n@st.cache_data\ndef load_report():\n\n    if os.path.exists(\n        REPORT_PATH\n    ):\n        with open(\n            REPORT_PATH,\n            \"r\",\n            encoding=\"utf-8\"\n        ) as f:\n            return f.read()\n\n    return \"\"\n\n\n# ==========================================================\n# HELPERS\n# ==========================================================\n\ndef parse_report_sections(text):\n\n    sections = []\n\n    raw_sections = text.split(\n        \"------------------------------------------------\"\n    )\n\n    for sec in raw_sections:\n        if \"EVENT\" in sec:\n            sections.append(sec.strip())\n\n    return sections\n\n\n# ==========================================================\n# LOAD DATA\n# ==========================================================\n\ndf_speeches = (\n    load_topic_dataset()\n)\n\ndf_topics = (\n    load_topics()\n)\n\ndf_nmf_topics = (\n    load_nmf_topics()\n)\n\ndf_impact = (\n    load_impact_data()\n)\n\nreport_text = (\n    load_report()\n)\n\n# ==========================================================\n# SIDEBAR\n# ==========================================================\n\nwith st.sidebar:\n\n    st.image(\n        \"https://img.icons8.com/color/96/bullish.png\",\n        width=60\n    )\n\n    st.markdown(\n        \"## BaatSeBharat\"\n    )\n\n    st.markdown(\"---\")\n\n    page = st.radio(\n        \"SELECT VIEW\",\n        [\n            \"\ud83d\udcca OVERVIEW\",\n            \"\ud83d\udcc8 MARKET DYNAMICS\",\n            \"\ud83d\udd0e SPEECH AUDIT\",\n            \"\ud83e\udde0 TOPIC EXPLORER\"\n        ]\n    )\n\n    st.markdown(\"---\")\n\n    st.caption(\n        \"v2.0 | LDA + NMF\"\n    )\n\n# ==========================================================\n# OVERVIEW\n# ==========================================================\n\nif page == \"\ud83d\udcca OVERVIEW\":\n\n    st.markdown(\n        '<h1 class=\"hero-title\">'\n        'Market Influence Analytics'\n        '</h1>',\n        unsafe_allow_html=True\n    )\n\n    st.markdown(\n        '<p class=\"hero-subtitle\">'\n        'Leadership discourse vs market behaviour.'\n        '</p>',\n        unsafe_allow_html=True\n    )\n\n    c1, c2, c3 = st.columns(3)\n\n    with c1:\n        st.metric(\n            \"Total Corpus\",\n            len(df_speeches)\n        )\n\n    with c2:\n        st.metric(\n            \"Financial Topics\",\n            len(df_topics)\n        )\n\n    with c3:\n        st.metric(\n            \"Average Sentiment\",\n            round(\n                df_speeches[\n                    \"sentiment\"\n                ].mean(),\n                3\n            )\n        )\n\n    # Sentiment over time\n    st.markdown(\n        \"### Sentiment Timeline\"\n    )\n\n    timeline = (\n        df_speeches\n        .groupby(\"date\")\n        [\"sentiment\"]\n        .mean()\n        .reset_index()\n    )\n\n    fig = go.Figure()\n\n    fig.add_trace(\n        go.Scatter(\n            x=timeline[\"date\"],\n            y=timeline[\"sentiment\"],\n            mode=\"lines\",\n            name=\"Sentiment\"\n        )\n    )\n\n    fig.update_layout(\n        template=\"plotly_dark\",\n        height=450\n    )\n\n    st.plotly_chart(\n        fig,\n        use_container_width=True\n    )\n\n    # Report feed\n    st.markdown(\n        \"### Recent Analysis Feed\"\n    )\n\n    if report_text:\n\n        sections = (\n            parse_report_sections(\n                report_text\n            )\n        )\n\n        for sec in sections[:5]:\n\n            st.markdown(\n                f\"\"\"\n                <div class=\"stCard\">\n                <pre>{sec}</pre>\n                </div>\n                \"\"\",\n                unsafe_allow_html=True\n            )\n\n# ==========================================================\n# MARKET DYNAMICS\n# ==========================================================\n\nelif page == \"\ud83d\udcc8 MARKET DYNAMICS\":\n\n    st.markdown(\n        '<h1 class=\"hero-title\">'\n        'Market Dynamics'\n        '</h1>',\n        unsafe_allow_html=True\n    )\n\n    if (\n        not df_impact.empty\n    ):\n\n        sector_avg = (\n            df_impact\n            .groupby(\"sector\")\n            [\"return_5d\"]\n            .mean()\n            .reset_index()\n        )\n\n        fig = px.bar(\n            sector_avg,\n            x=\"sector\",\n            y=\"return_5d\",\n            title=(\n                \"Sector-wise \"\n                \"5D Return\"\n            )\n        )\n\n        fig.update_layout(\n            template=\"plotly_dark\"\n        )\n\n        st.plotly_chart(\n            fig,\n            use_container_width=True\n        )\n\n    else:\n        st.info(\n            \"Market impact data missing.\"\n        )\n\n    # external html\n    if os.path.exists(\n        HTML_CHART\n    ):\n\n        with open(\n            HTML_CHART,\n            \"r\",\n            encoding=\"utf-8\"\n        ) as f:\n\n            html = f.read()\n\n        st.components.v1.html(\n            html,\n            height=850,\n            scrolling=True\n        )\n\n# ==========================================================\n# SPEECH AUDIT\n# ==========================================================\n\nelif page == \"\ud83d\udd0e SPEECH AUDIT\":\n\n    st.markdown(\n        '<h1 class=\"hero-title\">'\n        'Speech Intelligence Explorer'\n        '</h1>',\n        unsafe_allow_html=True\n    )\n\n    search = st.text_input(\n        \"Filter by keyword\"\n    )\n\n    filtered = (\n        df_speeches.copy()\n    )\n\n    if search:\n\n        filtered = filtered[\n            filtered[\n                \"title\"\n            ]\n            .str.contains(\n                search,\n                case=False,\n                na=False\n            )\n        ]\n\n    st.dataframe(\n        filtered[\n            [\n                \"date\",\n                \"source\",\n                \"title\",\n                \"positive\",\n                \"negative\",\n                \"neutral\"\n            ]\n        ]\n        .sort_values(\n            \"date\",\n            ascending=False\n        ),\n        use_container_width=True,\n        hide_index=True\n    )\n\n    st.markdown(\"---\")\n\n    if not filtered.empty:\n\n        selected_title = (\n            st.selectbox(\n                \"Choose speech\",\n                filtered[\n                    \"title\"\n                ].unique()\n            )\n        )\n\n        speech = filtered[\n            filtered[\n                \"title\"\n            ]\n            ==\n            selected_title\n        ].iloc[0]\n\n        st.markdown(\n            \"### Speech Text\"\n        )\n\n        st.text_area(\n            \"Transcript\",\n            speech[\"text\"],\n            height=300\n        )\n\n        sentiment_fig = go.Figure(\n            data=[\n                go.Bar(\n                    x=[\n                        \"Positive\",\n                        \"Negative\",\n                        \"Neutral\"\n                    ],\n                    y=[\n                        speech[\n                            \"positive\"\n                        ],\n                        speech[\n                            \"negative\"\n                        ],\n                        speech[\n                            \"neutral\"\n                        ]\n                    ]\n                )\n            ]\n        )\n\n        sentiment_fig.update_layout(\n            title=\"FinBERT Sentiment\",\n            template=\"plotly_dark\"\n        )\n\n        st.plotly_chart(\n            sentiment_fig,\n            use_container_width=True\n        )\n\n# ==========================================================\n# TOPIC EXPLORER\n# ==========================================================\n\nelif page == \"\ud83e\udde0 TOPIC EXPLORER\":\n\n    st.markdown(\n        '<h1 class=\"hero-title\">'\n        'Financial Topic Intelligence'\n        '</h1>',\n        unsafe_allow_html=True\n    )\n\n    st.markdown(\n        \"### LDA Topics\"\n    )\n\n    st.dataframe(\n        df_topics,\n        use_container_width=True,\n        hide_index=True\n    )\n\n    st.markdown(\n        \"### NMF Topics\"\n    )\n\n    st.dataframe(\n        df_nmf_topics,\n        use_container_width=True,\n        hide_index=True\n    )\n\n    top_scores = (\n        df_topics\n        .sort_values(\n            \"score\",\n            ascending=False\n        )\n        .head(10)\n    )\n\n    fig = px.bar(\n        top_scores,\n        x=\"topic_id\",\n        y=\"score\",\n        hover_data=[\"keywords\"],\n        title=\"Top Financial Topics\"\n    )\n\n    fig.update_layout(\n        template=\"plotly_dark\"\n    )\n\n    st.plotly_chart(\n        fig,\n        use_container_width=True\n    )",
+      "processed_text": "baatsebharat lrdr mrpra dashboard lda nmf finbert version import streamlit import panda import graph_object import express import datetime import datetime page config set_page_config page_title baatsebharat analytic page_icon layout wide path datum process topic_dataset path join data_dir topic_dataset csv final_topics path join data_dir final_topics csv nmf_topics path join nmf_topic csv impact_csv path join speech_market_impact_full csv report_path path join data_dir final_influence_report txt html_chart output topic_strength_vs_sector_return html require file check required_file topic_dataset csv topic_dataset final_topics csv final_topics nmf_topics csv nmf_topics missing_files path required_file item path exist path missing_file append missing_files error miss require file join missing_files stop high contrast theme markdown style html body class css background color 0f172a color f1f5f9 hero title color font weight font size hero subtitle color 94a3b8 font size 05rem stcard background color border 1px solid border radius 12px padding 20px margin 15px section datum testid stsidebar background color style unsafe_allow_html true datum load cache_data def load_topic_dataset read_csv topic_dataset date to_datetime date error coerce sentiment positive negative title filename str replace txt return dropna subset date cache_data def load_topic return read_csv final_topics cache_data def load_nmf_topics return read_csv nmf_topics cache_data def load_impact_data path exist return read_csv impact_csv return dataframe cache_data def load_report path exist report_path open report_path encode utf return read return helper def parse_report_section text section raw_section text split sec raw_section event sec section append sec strip return section load datum df_speeche load_topic_dataset df_topic load_topic df_nmf_topics load_nmf_topics df_impact load_impact_data report_text load_report sidebar sidebar image width markdown baatsebharat markdown page radio select view overview market dynamic speech audit topic explorer markdown caption lda nmf overview page overview markdown class hero title market influence analytic unsafe_allow_html true markdown class hero subtitle leadership discourse market behaviour unsafe_allow_html true column metric total corpus len df_speeche metric financial topic len df_topic metric average sentiment round df_speeche sentiment mean sentiment markdown sentiment timeline timeline df_speeche groupby date sentiment mean reset_index fig figure fig add_trace scatter timeline date timeline sentiment mode line sentiment fig update_layout template plotly_dark height plotly_chart fig use_container_width true report feed markdown recent analysis feed report_text section parse_report_section report_text sec section markdown div class stcard pre sec pre div unsafe_allow_html true market dynamic elif page market dynamic markdown class hero title market dynamic unsafe_allow_html true df_impact df_impact groupby sector return_5d mean reset_index fig bar sector_avg sector return_5d title sector wise return fig update_layout template plotly_dark plotly_chart fig use_container_width true info market impact datum miss external html path exist html_chart open html_chart encode utf html read component html html height scroll true speech audit elif page speech audit markdown class hero title speech intelligence explorer unsafe_allow_html true search text_input filter keyword filter df_speeches copy search filter filter filter title str contain search case false false dataframe filter date source title positive negative neutral sort_value date ascend false use_container_width true hide_index true markdown filter selectbox choose speech filter title unique speech filter filter title iloc markdown speech text text_area transcript speech text height sentiment_fig figure datum bar positive negative neutral speech positive speech negative speech neutral update_layout title finbert sentiment template plotly_dark plotly_chart use_container_width true topic explorer elif page topic explorer markdown class hero title financial topic intelligence unsafe_allow_html true markdown lda topic dataframe df_topic use_container_width true hide_index true markdown nmf topic dataframe df_nmf_topics use_container_width true hide_index true df_topic sort_value score ascend false head fig bar topic_id score hover_data keyword title financial topic fig update_layout template plotly_dark plotly_chart fig use_container_width true",
+      "url": null,
+      "language": null,
+      "episode_number": null,
+      "created_at": "2026-07-07 13:19:55",
+      "updated_at": "2026-07-07 13:19:55",
+      "doc_type": "Speech"
+    },
+    {
+      "id": 73,
+      "date": null,
+      "source": "Mann Ki Baat",
+      "country": "India",
+      "speaker": "PM Modi",
+      "title": "# dashboard.py",
+      "full_text": "# BAATSEBHARAT | LRDR-MRPRA DASHBOARD\n# LDA + NMF + FinBERT VERSION\n# ==========================================================\n\nimport streamlit as st\nimport pandas as pd\nimport plotly.graph_objects as go\nimport plotly.express as px\nimport os\nfrom datetime import datetime\n\n# ==========================================================\n# PAGE CONFIG\n# ==========================================================\n\nst.set_page_config(\n    page_title=\"BaatSeBharat | Analytics\",\n    page_icon=\"\ud83d\udcc8\",\n    layout=\"wide\"\n)\n\n# ==========================================================\n# PATHS\n# ==========================================================\n\nDATA_DIR = \"./data/processed\"\n\nTOPIC_DATASET = os.path.join(\n    DATA_DIR,\n    \"topic_dataset.csv\"\n)\n\nFINAL_TOPICS = os.path.join(\n    DATA_DIR,\n    \"final_topics.csv\"\n)\n\nNMF_TOPICS = os.path.join(\n    DATA_DIR,\n    \"nmf_topics.csv\"\n)\n\nIMPACT_CSV = os.path.join(\n    DATA_DIR,\n    \"speech_market_impact_full.csv\"\n)\n\nREPORT_PATH = os.path.join(\n    DATA_DIR,\n    \"final_influence_report.txt\"\n)\n\nHTML_CHART = (\n    \"./outputs/\"\n    \"topic_strength_vs_sector_returns.html\"\n)\n\n# ==========================================================\n# REQUIRED FILE CHECK\n# ==========================================================\n\nrequired_files = {\n    \"topic_dataset.csv\": TOPIC_DATASET,\n    \"final_topics.csv\": FINAL_TOPICS,\n    \"nmf_topics.csv\": NMF_TOPICS\n}\n\nmissing_files = []\n\nfor name, path in required_files.items():\n    if not os.path.exists(path):\n        missing_files.append(name)\n\nif missing_files:\n    st.error(\n        \"Missing required files:\\n\\n\"\n        + \"\\n\".join(\n            [f\"\u2022 {x}\" for x in missing_files]\n        )\n    )\n    st.stop()\n\n# ==========================================================\n# HIGH CONTRAST THEME\n# ==========================================================\n\nst.markdown(\"\"\"\n<style>\n\nhtml, body, [class*=\"css\"] {\n    background-color: #0f172a;\n    color: #f1f5f9;\n}\n\n.hero-title {\n    color: #38bdf8;\n    font-weight: 700;\n    font-size: 2.6rem;\n}\n\n.hero-subtitle {\n    color: #94a3b8;\n    font-size: 1.05rem;\n}\n\n.stCard {\n    background-color: #1e293b;\n    border: 1px solid #334155;\n    border-radius: 12px;\n    padding: 20px;\n    margin-bottom: 15px;\n}\n\nsection[data-testid=\"stSidebar\"] {\n    background-color: #1e293b;\n}\n\n</style>\n\"\"\", unsafe_allow_html=True)\n\n# ==========================================================\n# DATA LOADING\n# ==========================================================\n\n@st.cache_data\ndef load_topic_dataset():\n\n    df = pd.read_csv(\n        TOPIC_DATASET\n    )\n\n    df[\"date\"] = pd.to_datetime(\n        df[\"date\"],\n        errors=\"coerce\"\n    )\n\n    df[\"sentiment\"] = (\n        df[\"positive\"]\n        - df[\"negative\"]\n    )\n\n    df[\"title\"] = (\n        df[\"filename\"]\n        .str.replace(\".txt\", \"\")\n    )\n\n    return df.dropna(\n        subset=[\"date\"]\n    )\n\n\n@st.cache_data\ndef load_topics():\n\n    return pd.read_csv(\n        FINAL_TOPICS\n    )\n\n\n@st.cache_data\ndef load_nmf_topics():\n\n    return pd.read_csv(\n        NMF_TOPICS\n    )\n\n\n@st.cache_data\ndef load_impact_data():\n\n    if os.path.exists(\n        IMPACT_CSV\n    ):\n        return pd.read_csv(\n            IMPACT_CSV\n        )\n\n    return pd.DataFrame()\n\n\n@st.cache_data\ndef load_report():\n\n    if os.path.exists(\n        REPORT_PATH\n    ):\n        with open(\n            REPORT_PATH,\n            \"r\",\n            encoding=\"utf-8\"\n        ) as f:\n            return f.read()\n\n    return \"\"\n\n\n# ==========================================================\n# HELPERS\n# ==========================================================\n\ndef parse_report_sections(text):\n\n    sections = []\n\n    raw_sections = text.split(\n        \"------------------------------------------------\"\n    )\n\n    for sec in raw_sections:\n        if \"EVENT\" in sec:\n            sections.append(sec.strip())\n\n    return sections\n\n\n# ==========================================================\n# LOAD DATA\n# ==========================================================\n\ndf_speeches = (\n    load_topic_dataset()\n)\n\ndf_topics = (\n    load_topics()\n)\n\ndf_nmf_topics = (\n    load_nmf_topics()\n)\n\ndf_impact = (\n    load_impact_data()\n)\n\nreport_text = (\n    load_report()\n)\n\n# ==========================================================\n# SIDEBAR\n# ==========================================================\n\nwith st.sidebar:\n\n    st.image(\n        \"https://img.icons8.com/color/96/bullish.png\",\n        width=60\n    )\n\n    st.markdown(\n        \"## BaatSeBharat\"\n    )\n\n    st.markdown(\"---\")\n\n    page = st.radio(\n        \"SELECT VIEW\",\n        [\n            \"\ud83d\udcca OVERVIEW\",\n            \"\ud83d\udcc8 MARKET DYNAMICS\",\n            \"\ud83d\udd0e SPEECH AUDIT\",\n            \"\ud83e\udde0 TOPIC EXPLORER\"\n        ]\n    )\n\n    st.markdown(\"---\")\n\n    st.caption(\n        \"v2.0 | LDA + NMF\"\n    )\n\n# ==========================================================\n# OVERVIEW\n# ==========================================================\n\nif page == \"\ud83d\udcca OVERVIEW\":\n\n    st.markdown(\n        '<h1 class=\"hero-title\">'\n        'Market Influence Analytics'\n        '</h1>',\n        unsafe_allow_html=True\n    )\n\n    st.markdown(\n        '<p class=\"hero-subtitle\">'\n        'Leadership discourse vs market behaviour.'\n        '</p>',\n        unsafe_allow_html=True\n    )\n\n    c1, c2, c3 = st.columns(3)\n\n    with c1:\n        st.metric(\n            \"Total Corpus\",\n            len(df_speeches)\n        )\n\n    with c2:\n        st.metric(\n            \"Financial Topics\",\n            len(df_topics)\n        )\n\n    with c3:\n        st.metric(\n            \"Average Sentiment\",\n            round(\n                df_speeches[\n                    \"sentiment\"\n                ].mean(),\n                3\n            )\n        )\n\n    # Sentiment over time\n    st.markdown(\n        \"### Sentiment Timeline\"\n    )\n\n    timeline = (\n        df_speeches\n        .groupby(\"date\")\n        [\"sentiment\"]\n        .mean()\n        .reset_index()\n    )\n\n    fig = go.Figure()\n\n    fig.add_trace(\n        go.Scatter(\n            x=timeline[\"date\"],\n            y=timeline[\"sentiment\"],\n            mode=\"lines\",\n            name=\"Sentiment\"\n        )\n    )\n\n    fig.update_layout(\n        template=\"plotly_dark\",\n        height=450\n    )\n\n    st.plotly_chart(\n        fig,\n        use_container_width=True\n    )\n\n    # Report feed\n    st.markdown(\n        \"### Recent Analysis Feed\"\n    )\n\n    if report_text:\n\n        sections = (\n            parse_report_sections(\n                report_text\n            )\n        )\n\n        for sec in sections[:5]:\n\n            st.markdown(\n                f\"\"\"\n                <div class=\"stCard\">\n                <pre>{sec}</pre>\n                </div>\n                \"\"\",\n                unsafe_allow_html=True\n            )\n\n# ==========================================================\n# MARKET DYNAMICS\n# ==========================================================\n\nelif page == \"\ud83d\udcc8 MARKET DYNAMICS\":\n\n    st.markdown(\n        '<h1 class=\"hero-title\">'\n        'Market Dynamics'\n        '</h1>',\n        unsafe_allow_html=True\n    )\n\n    if (\n        not df_impact.empty\n    ):\n\n        sector_avg = (\n            df_impact\n            .groupby(\"sector\")\n            [\"return_5d\"]\n            .mean()\n            .reset_index()\n        )\n\n        fig = px.bar(\n            sector_avg,\n            x=\"sector\",\n            y=\"return_5d\",\n            title=(\n                \"Sector-wise \"\n                \"5D Return\"\n            )\n        )\n\n        fig.update_layout(\n            template=\"plotly_dark\"\n        )\n\n        st.plotly_chart(\n            fig,\n            use_container_width=True\n        )\n\n    else:\n        st.info(\n            \"Market impact data missing.\"\n        )\n\n    # external html\n    if os.path.exists(\n        HTML_CHART\n    ):\n\n        with open(\n            HTML_CHART,\n            \"r\",\n            encoding=\"utf-8\"\n        ) as f:\n\n            html = f.read()\n\n        st.components.v1.html(\n            html,\n            height=850,\n            scrolling=True\n        )\n\n# ==========================================================\n# SPEECH AUDIT\n# ==========================================================\n\nelif page == \"\ud83d\udd0e SPEECH AUDIT\":\n\n    st.markdown(\n        '<h1 class=\"hero-title\">'\n        'Speech Intelligence Explorer'\n        '</h1>',\n        unsafe_allow_html=True\n    )\n\n    search = st.text_input(\n        \"Filter by keyword\"\n    )\n\n    filtered = (\n        df_speeches.copy()\n    )\n\n    if search:\n\n        filtered = filtered[\n            filtered[\n                \"title\"\n            ]\n            .str.contains(\n                search,\n                case=False,\n                na=False\n            )\n        ]\n\n    st.dataframe(\n        filtered[\n            [\n                \"date\",\n                \"source\",\n                \"title\",\n                \"positive\",\n                \"negative\",\n                \"neutral\"\n            ]\n        ]\n        .sort_values(\n            \"date\",\n            ascending=False\n        ),\n        use_container_width=True,\n        hide_index=True\n    )\n\n    st.markdown(\"---\")\n\n    if not filtered.empty:\n\n        selected_title = (\n            st.selectbox(\n                \"Choose speech\",\n                filtered[\n                    \"title\"\n                ].unique()\n            )\n        )\n\n        speech = filtered[\n            filtered[\n                \"title\"\n            ]\n            ==\n            selected_title\n        ].iloc[0]\n\n        st.markdown(\n            \"### Speech Text\"\n        )\n\n        st.text_area(\n            \"Transcript\",\n            speech[\"text\"],\n            height=300\n        )\n\n        sentiment_fig = go.Figure(\n            data=[\n                go.Bar(\n                    x=[\n                        \"Positive\",\n                        \"Negative\",\n                        \"Neutral\"\n                    ],\n                    y=[\n                        speech[\n                            \"positive\"\n                        ],\n                        speech[\n                            \"negative\"\n                        ],\n                        speech[\n                            \"neutral\"\n                        ]\n                    ]\n                )\n            ]\n        )\n\n        sentiment_fig.update_layout(\n            title=\"FinBERT Sentiment\",\n            template=\"plotly_dark\"\n        )\n\n        st.plotly_chart(\n            sentiment_fig,\n            use_container_width=True\n        )\n\n# ==========================================================\n# TOPIC EXPLORER\n# ==========================================================\n\nelif page == \"\ud83e\udde0 TOPIC EXPLORER\":\n\n    st.markdown(\n        '<h1 class=\"hero-title\">'\n        'Financial Topic Intelligence'\n        '</h1>',\n        unsafe_allow_html=True\n    )\n\n    st.markdown(\n        \"### LDA Topics\"\n    )\n\n    st.dataframe(\n        df_topics,\n        use_container_width=True,\n        hide_index=True\n    )\n\n    st.markdown(\n        \"### NMF Topics\"\n    )\n\n    st.dataframe(\n        df_nmf_topics,\n        use_container_width=True,\n        hide_index=True\n    )\n\n    top_scores = (\n        df_topics\n        .sort_values(\n            \"score\",\n            ascending=False\n        )\n        .head(10)\n    )\n\n    fig = px.bar(\n        top_scores,\n        x=\"topic_id\",\n        y=\"score\",\n        hover_data=[\"keywords\"],\n        title=\"Top Financial Topics\"\n    )\n\n    fig.update_layout(\n        template=\"plotly_dark\"\n    )\n\n    st.plotly_chart(\n        fig,\n        use_container_width=True\n    )",
+      "processed_text": "baatsebharat lrdr mrpra dashboard lda nmf finbert version import streamlit import panda import graph_object import express import datetime import datetime page config set_page_config page_title baatsebharat analytic page_icon layout wide path datum process topic_dataset path join data_dir topic_dataset csv final_topics path join data_dir final_topics csv nmf_topics path join nmf_topic csv impact_csv path join speech_market_impact_full csv report_path path join data_dir final_influence_report txt html_chart output topic_strength_vs_sector_return html require file check required_file topic_dataset csv topic_dataset final_topics csv final_topics nmf_topics csv nmf_topics missing_files path required_file item path exist path missing_file append missing_files error miss require file join missing_files stop high contrast theme markdown style html body class css background color 0f172a color f1f5f9 hero title color font weight font size hero subtitle color 94a3b8 font size 05rem stcard background color border 1px solid border radius 12px padding 20px margin 15px section datum testid stsidebar background color style unsafe_allow_html true datum load cache_data def load_topic_dataset read_csv topic_dataset date to_datetime date error coerce sentiment positive negative title filename str replace txt return dropna subset date cache_data def load_topic return read_csv final_topics cache_data def load_nmf_topics return read_csv nmf_topics cache_data def load_impact_data path exist return read_csv impact_csv return dataframe cache_data def load_report path exist report_path open report_path encode utf return read return helper def parse_report_section text section raw_section text split sec raw_section event sec section append sec strip return section load datum df_speeche load_topic_dataset df_topic load_topic df_nmf_topics load_nmf_topics df_impact load_impact_data report_text load_report sidebar sidebar image width markdown baatsebharat markdown page radio select view overview market dynamic speech audit topic explorer markdown caption lda nmf overview page overview markdown class hero title market influence analytic unsafe_allow_html true markdown class hero subtitle leadership discourse market behaviour unsafe_allow_html true column metric total corpus len df_speeche metric financial topic len df_topic metric average sentiment round df_speeche sentiment mean sentiment markdown sentiment timeline timeline df_speeche groupby date sentiment mean reset_index fig figure fig add_trace scatter timeline date timeline sentiment mode line sentiment fig update_layout template plotly_dark height plotly_chart fig use_container_width true report feed markdown recent analysis feed report_text section parse_report_section report_text sec section markdown div class stcard pre sec pre div unsafe_allow_html true market dynamic elif page market dynamic markdown class hero title market dynamic unsafe_allow_html true df_impact df_impact groupby sector return_5d mean reset_index fig bar sector_avg sector return_5d title sector wise return fig update_layout template plotly_dark plotly_chart fig use_container_width true info market impact datum miss external html path exist html_chart open html_chart encode utf html read component html html height scroll true speech audit elif page speech audit markdown class hero title speech intelligence explorer unsafe_allow_html true search text_input filter keyword filter df_speeches copy search filter filter filter title str contain search case false false dataframe filter date source title positive negative neutral sort_value date ascend false use_container_width true hide_index true markdown filter selectbox choose speech filter title unique speech filter filter title iloc markdown speech text text_area transcript speech text height sentiment_fig figure datum bar positive negative neutral speech positive speech negative speech neutral update_layout title finbert sentiment template plotly_dark plotly_chart use_container_width true topic explorer elif page topic explorer markdown class hero title financial topic intelligence unsafe_allow_html true markdown lda topic dataframe df_topic use_container_width true hide_index true markdown nmf topic dataframe df_nmf_topics use_container_width true hide_index true df_topic sort_value score ascend false head fig bar topic_id score hover_data keyword title financial topic fig update_layout template plotly_dark plotly_chart fig use_container_width true",
+      "url": null,
+      "language": null,
+      "episode_number": null,
+      "created_at": "2026-07-07 13:58:48",
+      "updated_at": "2026-07-07 13:58:48",
+      "doc_type": "Speech"
+    }
+  ],
+  "topic_distributions": [
+    {
+      "id": 3171,
+      "speech_id": 32,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 0,
+      "probability": 0.0,
+      "model_name": "Combined",
+      "created_at": "2026-07-07 13:59:24"
+    },
+    {
+      "id": 3901,
+      "speech_id": 32,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 0,
+      "probability": 0.0,
+      "model_name": "Mann Ki Baat",
+      "created_at": "2026-07-07 13:59:25"
+    },
+    {
+      "id": 3172,
+      "speech_id": 32,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 1,
+      "probability": 1.0,
+      "model_name": "Combined",
+      "created_at": "2026-07-07 13:59:24"
+    },
+    {
+      "id": 3902,
+      "speech_id": 32,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 1,
+      "probability": 1.0,
+      "model_name": "Mann Ki Baat",
+      "created_at": "2026-07-07 13:59:25"
+    },
+    {
+      "id": 3173,
+      "speech_id": 32,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 2,
+      "probability": 0.0,
+      "model_name": "Combined",
+      "created_at": "2026-07-07 13:59:24"
+    },
+    {
+      "id": 3903,
+      "speech_id": 32,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 2,
+      "probability": 0.0,
+      "model_name": "Mann Ki Baat",
+      "created_at": "2026-07-07 13:59:25"
+    },
+    {
+      "id": 3174,
+      "speech_id": 32,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 3,
+      "probability": 0.0,
+      "model_name": "Combined",
+      "created_at": "2026-07-07 13:59:24"
+    },
+    {
+      "id": 3904,
+      "speech_id": 32,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 3,
+      "probability": 0.0,
+      "model_name": "Mann Ki Baat",
+      "created_at": "2026-07-07 13:59:25"
+    },
+    {
+      "id": 3175,
+      "speech_id": 32,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 4,
+      "probability": 0.0,
+      "model_name": "Combined",
+      "created_at": "2026-07-07 13:59:24"
+    },
+    {
+      "id": 3905,
+      "speech_id": 32,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 4,
+      "probability": 0.0,
+      "model_name": "Mann Ki Baat",
+      "created_at": "2026-07-07 13:59:25"
+    },
+    {
+      "id": 3176,
+      "speech_id": 32,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 5,
+      "probability": 0.0,
+      "model_name": "Combined",
+      "created_at": "2026-07-07 13:59:24"
+    },
+    {
+      "id": 3906,
+      "speech_id": 32,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 5,
+      "probability": 0.0,
+      "model_name": "Mann Ki Baat",
+      "created_at": "2026-07-07 13:59:25"
+    },
+    {
+      "id": 3177,
+      "speech_id": 32,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 6,
+      "probability": 0.0,
+      "model_name": "Combined",
+      "created_at": "2026-07-07 13:59:24"
+    },
+    {
+      "id": 3907,
+      "speech_id": 32,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 6,
+      "probability": 0.0,
+      "model_name": "Mann Ki Baat",
+      "created_at": "2026-07-07 13:59:25"
+    },
+    {
+      "id": 3178,
+      "speech_id": 32,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 7,
+      "probability": 0.0,
+      "model_name": "Combined",
+      "created_at": "2026-07-07 13:59:24"
+    },
+    {
+      "id": 3908,
+      "speech_id": 32,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 7,
+      "probability": 0.0,
+      "model_name": "Mann Ki Baat",
+      "created_at": "2026-07-07 13:59:25"
+    },
+    {
+      "id": 3179,
+      "speech_id": 32,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 8,
+      "probability": 0.0,
+      "model_name": "Combined",
+      "created_at": "2026-07-07 13:59:24"
+    },
+    {
+      "id": 3909,
+      "speech_id": 32,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 8,
+      "probability": 0.0,
+      "model_name": "Mann Ki Baat",
+      "created_at": "2026-07-07 13:59:25"
+    },
+    {
+      "id": 3180,
+      "speech_id": 32,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 9,
+      "probability": 0.0,
+      "model_name": "Combined",
+      "created_at": "2026-07-07 13:59:24"
+    },
+    {
+      "id": 3910,
+      "speech_id": 32,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 9,
+      "probability": 0.0,
+      "model_name": "Mann Ki Baat",
+      "created_at": "2026-07-07 13:59:25"
+    },
+    {
+      "id": 3561,
+      "speech_id": 71,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 0,
+      "probability": 0.0,
+      "model_name": "Combined",
+      "created_at": "2026-07-07 13:59:24"
+    },
+    {
+      "id": 4291,
+      "speech_id": 71,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 0,
+      "probability": 0.0,
+      "model_name": "Mann Ki Baat",
+      "created_at": "2026-07-07 13:59:25"
+    },
+    {
+      "id": 3562,
+      "speech_id": 71,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 1,
+      "probability": 1.0,
+      "model_name": "Combined",
+      "created_at": "2026-07-07 13:59:24"
+    },
+    {
+      "id": 4292,
+      "speech_id": 71,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 1,
+      "probability": 1.0,
+      "model_name": "Mann Ki Baat",
+      "created_at": "2026-07-07 13:59:25"
+    },
+    {
+      "id": 3563,
+      "speech_id": 71,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 2,
+      "probability": 0.0,
+      "model_name": "Combined",
+      "created_at": "2026-07-07 13:59:24"
+    },
+    {
+      "id": 4293,
+      "speech_id": 71,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 2,
+      "probability": 0.0,
+      "model_name": "Mann Ki Baat",
+      "created_at": "2026-07-07 13:59:25"
+    },
+    {
+      "id": 3564,
+      "speech_id": 71,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 3,
+      "probability": 0.0,
+      "model_name": "Combined",
+      "created_at": "2026-07-07 13:59:24"
+    },
+    {
+      "id": 4294,
+      "speech_id": 71,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 3,
+      "probability": 0.0,
+      "model_name": "Mann Ki Baat",
+      "created_at": "2026-07-07 13:59:25"
+    },
+    {
+      "id": 3565,
+      "speech_id": 71,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 4,
+      "probability": 0.0,
+      "model_name": "Combined",
+      "created_at": "2026-07-07 13:59:24"
+    },
+    {
+      "id": 4295,
+      "speech_id": 71,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 4,
+      "probability": 0.0,
+      "model_name": "Mann Ki Baat",
+      "created_at": "2026-07-07 13:59:25"
+    },
+    {
+      "id": 3566,
+      "speech_id": 71,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 5,
+      "probability": 0.0,
+      "model_name": "Combined",
+      "created_at": "2026-07-07 13:59:24"
+    },
+    {
+      "id": 4296,
+      "speech_id": 71,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 5,
+      "probability": 0.0,
+      "model_name": "Mann Ki Baat",
+      "created_at": "2026-07-07 13:59:25"
+    },
+    {
+      "id": 3567,
+      "speech_id": 71,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 6,
+      "probability": 0.0,
+      "model_name": "Combined",
+      "created_at": "2026-07-07 13:59:24"
+    },
+    {
+      "id": 4297,
+      "speech_id": 71,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 6,
+      "probability": 0.0,
+      "model_name": "Mann Ki Baat",
+      "created_at": "2026-07-07 13:59:25"
+    },
+    {
+      "id": 3568,
+      "speech_id": 71,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 7,
+      "probability": 0.0,
+      "model_name": "Combined",
+      "created_at": "2026-07-07 13:59:24"
+    },
+    {
+      "id": 4298,
+      "speech_id": 71,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 7,
+      "probability": 0.0,
+      "model_name": "Mann Ki Baat",
+      "created_at": "2026-07-07 13:59:25"
+    },
+    {
+      "id": 3569,
+      "speech_id": 71,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 8,
+      "probability": 0.0,
+      "model_name": "Combined",
+      "created_at": "2026-07-07 13:59:24"
+    },
+    {
+      "id": 4299,
+      "speech_id": 71,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 8,
+      "probability": 0.0,
+      "model_name": "Mann Ki Baat",
+      "created_at": "2026-07-07 13:59:25"
+    },
+    {
+      "id": 3570,
+      "speech_id": 71,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 9,
+      "probability": 0.0,
+      "model_name": "Combined",
+      "created_at": "2026-07-07 13:59:24"
+    },
+    {
+      "id": 4300,
+      "speech_id": 71,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 9,
+      "probability": 0.0,
+      "model_name": "Mann Ki Baat",
+      "created_at": "2026-07-07 13:59:25"
+    },
+    {
+      "id": 3571,
+      "speech_id": 72,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 0,
+      "probability": 0.0,
+      "model_name": "Combined",
+      "created_at": "2026-07-07 13:59:24"
+    },
+    {
+      "id": 4301,
+      "speech_id": 72,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 0,
+      "probability": 0.0,
+      "model_name": "Mann Ki Baat",
+      "created_at": "2026-07-07 13:59:25"
+    },
+    {
+      "id": 3572,
+      "speech_id": 72,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 1,
+      "probability": 1.0,
+      "model_name": "Combined",
+      "created_at": "2026-07-07 13:59:24"
+    },
+    {
+      "id": 4302,
+      "speech_id": 72,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 1,
+      "probability": 1.0,
+      "model_name": "Mann Ki Baat",
+      "created_at": "2026-07-07 13:59:25"
+    },
+    {
+      "id": 3573,
+      "speech_id": 72,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 2,
+      "probability": 0.0,
+      "model_name": "Combined",
+      "created_at": "2026-07-07 13:59:24"
+    },
+    {
+      "id": 4303,
+      "speech_id": 72,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 2,
+      "probability": 0.0,
+      "model_name": "Mann Ki Baat",
+      "created_at": "2026-07-07 13:59:25"
+    },
+    {
+      "id": 3574,
+      "speech_id": 72,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 3,
+      "probability": 0.0,
+      "model_name": "Combined",
+      "created_at": "2026-07-07 13:59:24"
+    },
+    {
+      "id": 4304,
+      "speech_id": 72,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 3,
+      "probability": 0.0,
+      "model_name": "Mann Ki Baat",
+      "created_at": "2026-07-07 13:59:25"
+    },
+    {
+      "id": 3575,
+      "speech_id": 72,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 4,
+      "probability": 0.0,
+      "model_name": "Combined",
+      "created_at": "2026-07-07 13:59:24"
+    },
+    {
+      "id": 4305,
+      "speech_id": 72,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 4,
+      "probability": 0.0,
+      "model_name": "Mann Ki Baat",
+      "created_at": "2026-07-07 13:59:25"
+    },
+    {
+      "id": 3576,
+      "speech_id": 72,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 5,
+      "probability": 0.0,
+      "model_name": "Combined",
+      "created_at": "2026-07-07 13:59:24"
+    },
+    {
+      "id": 4306,
+      "speech_id": 72,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 5,
+      "probability": 0.0,
+      "model_name": "Mann Ki Baat",
+      "created_at": "2026-07-07 13:59:25"
+    },
+    {
+      "id": 3577,
+      "speech_id": 72,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 6,
+      "probability": 0.0,
+      "model_name": "Combined",
+      "created_at": "2026-07-07 13:59:24"
+    },
+    {
+      "id": 4307,
+      "speech_id": 72,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 6,
+      "probability": 0.0,
+      "model_name": "Mann Ki Baat",
+      "created_at": "2026-07-07 13:59:25"
+    },
+    {
+      "id": 3578,
+      "speech_id": 72,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 7,
+      "probability": 0.0,
+      "model_name": "Combined",
+      "created_at": "2026-07-07 13:59:24"
+    },
+    {
+      "id": 4308,
+      "speech_id": 72,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 7,
+      "probability": 0.0,
+      "model_name": "Mann Ki Baat",
+      "created_at": "2026-07-07 13:59:25"
+    },
+    {
+      "id": 3579,
+      "speech_id": 72,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 8,
+      "probability": 0.0,
+      "model_name": "Combined",
+      "created_at": "2026-07-07 13:59:24"
+    },
+    {
+      "id": 4309,
+      "speech_id": 72,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 8,
+      "probability": 0.0,
+      "model_name": "Mann Ki Baat",
+      "created_at": "2026-07-07 13:59:25"
+    },
+    {
+      "id": 3580,
+      "speech_id": 72,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 9,
+      "probability": 0.0,
+      "model_name": "Combined",
+      "created_at": "2026-07-07 13:59:24"
+    },
+    {
+      "id": 4310,
+      "speech_id": 72,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 9,
+      "probability": 0.0,
+      "model_name": "Mann Ki Baat",
+      "created_at": "2026-07-07 13:59:25"
+    },
+    {
+      "id": 3581,
+      "speech_id": 73,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 0,
+      "probability": 0.0,
+      "model_name": "Combined",
+      "created_at": "2026-07-07 13:59:24"
+    },
+    {
+      "id": 4311,
+      "speech_id": 73,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 0,
+      "probability": 0.0,
+      "model_name": "Mann Ki Baat",
+      "created_at": "2026-07-07 13:59:25"
+    },
+    {
+      "id": 3582,
+      "speech_id": 73,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 1,
+      "probability": 1.0,
+      "model_name": "Combined",
+      "created_at": "2026-07-07 13:59:24"
+    },
+    {
+      "id": 4312,
+      "speech_id": 73,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 1,
+      "probability": 1.0,
+      "model_name": "Mann Ki Baat",
+      "created_at": "2026-07-07 13:59:25"
+    },
+    {
+      "id": 3583,
+      "speech_id": 73,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 2,
+      "probability": 0.0,
+      "model_name": "Combined",
+      "created_at": "2026-07-07 13:59:24"
+    },
+    {
+      "id": 4313,
+      "speech_id": 73,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 2,
+      "probability": 0.0,
+      "model_name": "Mann Ki Baat",
+      "created_at": "2026-07-07 13:59:25"
+    },
+    {
+      "id": 3584,
+      "speech_id": 73,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 3,
+      "probability": 0.0,
+      "model_name": "Combined",
+      "created_at": "2026-07-07 13:59:24"
+    },
+    {
+      "id": 4314,
+      "speech_id": 73,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 3,
+      "probability": 0.0,
+      "model_name": "Mann Ki Baat",
+      "created_at": "2026-07-07 13:59:25"
+    },
+    {
+      "id": 3585,
+      "speech_id": 73,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 4,
+      "probability": 0.0,
+      "model_name": "Combined",
+      "created_at": "2026-07-07 13:59:24"
+    },
+    {
+      "id": 4315,
+      "speech_id": 73,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 4,
+      "probability": 0.0,
+      "model_name": "Mann Ki Baat",
+      "created_at": "2026-07-07 13:59:25"
+    },
+    {
+      "id": 3586,
+      "speech_id": 73,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 5,
+      "probability": 0.0,
+      "model_name": "Combined",
+      "created_at": "2026-07-07 13:59:24"
+    },
+    {
+      "id": 4316,
+      "speech_id": 73,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 5,
+      "probability": 0.0,
+      "model_name": "Mann Ki Baat",
+      "created_at": "2026-07-07 13:59:25"
+    },
+    {
+      "id": 3587,
+      "speech_id": 73,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 6,
+      "probability": 0.0,
+      "model_name": "Combined",
+      "created_at": "2026-07-07 13:59:24"
+    },
+    {
+      "id": 4317,
+      "speech_id": 73,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 6,
+      "probability": 0.0,
+      "model_name": "Mann Ki Baat",
+      "created_at": "2026-07-07 13:59:25"
+    },
+    {
+      "id": 3588,
+      "speech_id": 73,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 7,
+      "probability": 0.0,
+      "model_name": "Combined",
+      "created_at": "2026-07-07 13:59:24"
+    },
+    {
+      "id": 4318,
+      "speech_id": 73,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 7,
+      "probability": 0.0,
+      "model_name": "Mann Ki Baat",
+      "created_at": "2026-07-07 13:59:25"
+    },
+    {
+      "id": 3589,
+      "speech_id": 73,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 8,
+      "probability": 0.0,
+      "model_name": "Combined",
+      "created_at": "2026-07-07 13:59:24"
+    },
+    {
+      "id": 4319,
+      "speech_id": 73,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 8,
+      "probability": 0.0,
+      "model_name": "Mann Ki Baat",
+      "created_at": "2026-07-07 13:59:25"
+    },
+    {
+      "id": 3590,
+      "speech_id": 73,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 9,
+      "probability": 0.0,
+      "model_name": "Combined",
+      "created_at": "2026-07-07 13:59:24"
+    },
+    {
+      "id": 4320,
+      "speech_id": 73,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "topic_id": 9,
+      "probability": 0.0,
+      "model_name": "Mann Ki Baat",
+      "created_at": "2026-07-07 13:59:25"
+    }
+  ],
+  "sentiment_scores": [
+    {
+      "id": 32,
+      "speech_id": 32,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "optimism_intensity": 0.028651798143982887,
+      "risk_awareness": 0.0569230280816555,
+      "positive": 0.028651798143982887,
+      "negative": 0.0569230280816555,
+      "neutral": 0.9144251346588135,
+      "compound": -0.015345268316309335,
+      "created_at": "2026-07-06 14:21:04"
+    },
+    {
+      "id": 71,
+      "speech_id": 71,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "optimism_intensity": 0.028651798143982887,
+      "risk_awareness": 0.0569230280816555,
+      "positive": 0.028651798143982887,
+      "negative": 0.0569230280816555,
+      "neutral": 0.9144251346588135,
+      "compound": -0.015345268316309335,
+      "created_at": "2026-07-06 14:27:27"
+    },
+    {
+      "id": 72,
+      "speech_id": 72,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "optimism_intensity": 0.028651798143982887,
+      "risk_awareness": 0.0569230280816555,
+      "positive": 0.028651798143982887,
+      "negative": 0.0569230280816555,
+      "neutral": 0.9144251346588135,
+      "compound": -0.015345268316309335,
+      "created_at": "2026-07-07 13:20:56"
+    },
+    {
+      "id": 73,
+      "speech_id": 73,
+      "segment_type": "episode",
+      "segment_index": 0,
+      "optimism_intensity": 0.028651798143982887,
+      "risk_awareness": 0.0569230280816555,
+      "positive": 0.028651798143982887,
+      "negative": 0.0569230280816555,
+      "neutral": 0.9144251346588135,
+      "compound": -0.015345268316309335,
+      "created_at": "2026-07-07 13:59:22"
+    }
+  ],
+  "speech_market_impact": [],
+  "llm_company_signals": []
+}

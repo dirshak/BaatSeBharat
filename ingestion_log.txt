@@ -6,3 +6,12 @@
 [2026-06-20 16:05:18] Source: Fed | Episodes scraped: 6/6
 [2026-06-20 16:05:21] Source: Fed PRs | Episodes scraped: 0/0
 [2026-07-02 20:08:54] Source: Mann Ki Baat | Episodes scraped: 70/120 | Missing: None detected
+[2026-07-06 19:46:43] Source: Mann Ki Baat | Episodes scraped: 70/120 | Missing: None detected
+[2026-07-06 19:49:41] Source: Mann Ki Baat | Episodes scraped: 1/120 | Missing: None detected
+[2026-07-07 18:49:55] Source: Mann Ki Baat | Episodes scraped: 1/120 | Missing: None detected
+[2026-07-07 19:28:48] Source: Mann Ki Baat | Episodes scraped: 1/120 | Missing: None detected
+[2026-07-13 10:39:53] Source: Mann Ki Baat | Episodes scraped: 1/120 | Missing: None detected
+[2026-07-13 10:53:41] Source: ECB (local) | Episodes scraped: 661/852
+[2026-07-13 10:53:42] Source: Fed (local) | Episodes scraped: 746/1464
+[2026-07-13 10:56:42] Source: ECB (local) | Episodes scraped: 0/852
+[2026-07-13 10:56:42] Source: Fed (local) | Episodes scraped: 0/1464

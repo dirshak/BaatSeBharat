@@ -16,6 +16,7 @@ data/processed/*
 
 # Models
 models/trained/*
+!models/trained/.gitkeep
 models/checkpoints/*
 
 # Outputs

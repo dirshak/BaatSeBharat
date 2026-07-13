@@ -54,6 +54,14 @@ _WB_COUNTRY_ALIASES = {
     "Venezuela": "Venezuela, RB",
 }
 
+# Design-system palette (mirrors App_v2.py's COLORS/DIVERGING_SCALE/
+# SEQUENTIAL_SCALE -- duplicated here rather than imported to keep this
+# module independent of App_v2.py, which imports it).
+_RUST, _SURFACE2, _GREEN, _SAFFRON = "#A6503A", "#0F1727", "#2F6F4E", "#C97A2B"
+DIVERGING_SCALE = [[0.0, _RUST], [0.5, _SURFACE2], [1.0, _GREEN]]
+SEQUENTIAL_SCALE = [[0.0, _SURFACE2], [0.5, "#5A4A2E"], [1.0, _SAFFRON]]
+SHOCK_SCALE = [[0.0, _SURFACE2], [0.5, _SAFFRON], [1.0, _RUST]]
+
 # ──────────────────────────────────────────────────────────────────
 # World Bank Indicator Codes
 # ──────────────────────────────────────────────────────────────────
@@ -226,11 +234,11 @@ def compute_country_risk_scores() -> pd.DataFrame:
             infl = row.get("Inflation (CPI %)", 3)     or 3
             score = gdp - max(0, infl - 5) * 0.5
             if score > 2.0:
-                return score, "Bull",    "#34d399"
+                return score, "Bull",    "#2F6F4E"
             elif score < -1.0:
-                return score, "Bear",    "#f87171"
+                return score, "Bear",    "#A6503A"
             else:
-                return score, "Neutral", "#94a3b8"
+                return score, "Neutral", "#9AA3B5"
 
         records = []
         for _, row in merged.iterrows():
@@ -260,11 +268,11 @@ def _fallback_risk_df() -> pd.DataFrame:
         infl = abs(np.random.normal(4.0, 2.0))
         score = gdp - max(0, infl - 5) * 0.5
         if score > 2.0:
-            state, color = "Bull",    "#34d399"
+            state, color = "Bull",    "#2F6F4E"
         elif score < -1.0:
-            state, color = "Bear",    "#f87171"
+            state, color = "Bear",    "#A6503A"
         else:
-            state, color = "Neutral", "#94a3b8"
+            state, color = "Neutral", "#9AA3B5"
         records.append({
             "Country": country, "score": round(score, 2),
             "state": state, "color": color,
@@ -359,7 +367,7 @@ def _make_choropleth(
     df: pd.DataFrame,
     color_col: str,
     title: str,
-    color_scale: str = "RdYlGn",
+    color_scale=DIVERGING_SCALE,
     hover_data: Optional[list] = None,
 ) -> go.Figure:
     fig = px.choropleth(
@@ -378,18 +386,20 @@ def _make_choropleth(
         showcoastlines=True,
         showcountries=True,
         showframe=False,
-        bgcolor="#0f172a",
+        bgcolor="#0B1220",
     )
     fig.update_layout(
         height=480,
-        paper_bgcolor="#0f172a",
-        plot_bgcolor="#0f172a",
+        paper_bgcolor="#0B1220",
+        plot_bgcolor="#0B1220",
+        font=dict(family="IBM Plex Sans, sans-serif", color="#E8E4D9"),
+        title_font=dict(family="Fraunces, serif", color="#E8E4D9", size=18),
         margin=dict(l=0, r=0, t=50, b=0),
         coloraxis_colorbar=dict(
-            title=dict(text=color_col, font=dict(color="#94a3b8")),
-            tickfont=dict(color="#94a3b8"),
+            title=dict(text=color_col, font=dict(color="#9AA3B5")),
+            tickfont=dict(color="#9AA3B5"),
         ),
-        geo=dict(bgcolor="#0f172a", lakecolor="#0f172a", landcolor="#1e293b"),
+        geo=dict(bgcolor="#0B1220", lakecolor="#0B1220", landcolor="#131B2C"),
     )
     return fig
 
@@ -405,7 +415,7 @@ def _make_state_choropleth(risk_df: pd.DataFrame) -> go.Figure:
         locations="Country",
         locationmode="country names",
         color="state_val",
-        color_continuous_scale=["#f87171", "#94a3b8", "#34d399"],
+        color_continuous_scale=["#A6503A", "#9AA3B5", "#2F6F4E"],
         range_color=[-1, 1],
         title="Country Market State — Bull / Neutral / Bear",
         hover_name="Country",
@@ -416,20 +426,22 @@ def _make_state_choropleth(risk_df: pd.DataFrame) -> go.Figure:
         projection_type="natural earth",
         showcoastlines=True,
         showcountries=True,
-        bgcolor="#0f172a",
+        bgcolor="#0B1220",
     )
     fig.update_layout(
         height=480,
-        paper_bgcolor="#0f172a",
-        plot_bgcolor="#0f172a",
+        paper_bgcolor="#0B1220",
+        plot_bgcolor="#0B1220",
+        font=dict(family="IBM Plex Sans, sans-serif", color="#E8E4D9"),
+        title_font=dict(family="Fraunces, serif", color="#E8E4D9", size=18),
         margin=dict(l=0, r=0, t=50, b=0),
         coloraxis_colorbar=dict(
-            title=dict(text="Market State", font=dict(color="#94a3b8")),
+            title=dict(text="Market State", font=dict(color="#9AA3B5")),
             tickvals=[-1, 0, 1],
             ticktext=["🔴 Bear", "⚪ Neutral", "🟢 Bull"],
-            tickfont=dict(color="#94a3b8"),
+            tickfont=dict(color="#9AA3B5"),
         ),
-        geo=dict(bgcolor="#0f172a", lakecolor="#0f172a", landcolor="#1e293b"),
+        geo=dict(bgcolor="#0B1220", lakecolor="#0B1220", landcolor="#131B2C"),
     )
     return fig
 
@@ -446,7 +458,7 @@ def _make_shock_heatmap(shock_df: pd.DataFrame, shock_type: str) -> go.Figure:
         shock_df,
         color_col=shock_type,
         title=titles.get(shock_type, shock_type),
-        color_scale="YlOrRd",
+        color_scale=SHOCK_SCALE,
         hover_data=[shock_type],
     )
     return fig
@@ -493,7 +505,7 @@ def _make_company_map(company_predictions: Optional[list] = None) -> go.Figure:
                     confidence = pred.get("confidence", 50.0)
                     break
 
-        color_map = {"Bullish": "#34d399", "Bearish": "#f87171", "Neutral": "#94a3b8"}
+        color_map = {"Bullish": "#2F6F4E", "Bearish": "#A6503A", "Neutral": "#9AA3B5"}
         rows.append({
             "company":    company,
             "country":    loc["country"],
@@ -503,13 +515,13 @@ def _make_company_map(company_predictions: Optional[list] = None) -> go.Figure:
             "signal":     signal,
             "emoji":      emoji,
             "confidence": round(confidence, 1),
-            "color":      color_map.get(signal, "#94a3b8"),
+            "color":      color_map.get(signal, "#9AA3B5"),
         })
 
     df = pd.DataFrame(rows)
 
     fig = go.Figure()
-    for signal_type, color in [("Bullish", "#34d399"), ("Bearish", "#f87171"), ("Neutral", "#94a3b8")]:
+    for signal_type, color in [("Bullish", "#2F6F4E"), ("Bearish", "#A6503A"), ("Neutral", "#9AA3B5")]:
         sdf = df[df["signal"] == signal_type]
         if sdf.empty:
             continue
@@ -539,23 +551,25 @@ def _make_company_map(company_predictions: Optional[list] = None) -> go.Figure:
         projection_type="natural earth",
         showcoastlines=True,
         showcountries=True,
-        countrycolor="#334155",
-        coastlinecolor="#334155",
-        bgcolor="#0f172a",
-        landcolor="#1e293b",
-        lakecolor="#0f172a",
+        countrycolor="#26324A",
+        coastlinecolor="#26324A",
+        bgcolor="#0B1220",
+        landcolor="#131B2C",
+        lakecolor="#0B1220",
         center=dict(lat=20, lon=78),  # Center on India
         projection_scale=3.5,
     )
     fig.update_layout(
         title="Company Signal Map — India Focus",
         height=420,
-        paper_bgcolor="#0f172a",
-        plot_bgcolor="#0f172a",
+        paper_bgcolor="#0B1220",
+        plot_bgcolor="#0B1220",
+        font=dict(family="IBM Plex Sans, sans-serif", color="#E8E4D9"),
+        title_font=dict(family="Fraunces, serif", color="#E8E4D9", size=18),
         legend=dict(
             orientation="h", yanchor="bottom", y=1.02,
             xanchor="center", x=0.5,
-            font=dict(color="#94a3b8"),
+            font=dict(family="IBM Plex Sans, sans-serif", color="#9AA3B5"),
         ),
         margin=dict(l=0, r=0, t=50, b=0),
     )
@@ -577,12 +591,10 @@ def render_global_influence_map(company_predictions: Optional[list] = None) -> N
         Output from prediction_engine.get_all_company_predictions(),
         used to colour the company scatter markers.
     """
+    st.markdown('<div class="stage-eyebrow">Stage 07</div>', unsafe_allow_html=True)
+    st.title("Global Influence Map")
     st.markdown(
-        '<h1 class="hero-title">🌍 Global Influence Map</h1>',
-        unsafe_allow_html=True
-    )
-    st.markdown(
-        '<p class="hero-subtitle">Country-level market state, macro shocks, and company geo-intelligence.</p>',
+        '<p style="color:#9AA3B5;margin-top:-0.6rem">Country-level market state, macro shocks, and company geo-intelligence.</p>',
         unsafe_allow_html=True
     )
 
@@ -704,20 +716,21 @@ def render_global_influence_map(company_predictions: Optional[list] = None) -> N
                 locationmode="country names",
                 color=indicator_name,
                 animation_frame=wb_df["Year"].astype(str),
-                color_continuous_scale="Viridis",
+                color_continuous_scale=SEQUENTIAL_SCALE,
                 title=f"{indicator_name} (2018–2023)",
-                template="plotly_dark",
             )
             fig_wb.update_geos(
                 projection_type="natural earth",
                 showcoastlines=True,
                 showcountries=True,
-                bgcolor="#0f172a",
+                bgcolor="#0B1220",
             )
             fig_wb.update_layout(
                 height=500,
-                paper_bgcolor="#0f172a",
-                geo=dict(bgcolor="#0f172a", landcolor="#1e293b"),
+                font=dict(family="IBM Plex Sans, sans-serif", color="#E8E4D9"),
+                title_font=dict(family="Fraunces, serif", color="#E8E4D9", size=18),
+                paper_bgcolor="#0B1220",
+                geo=dict(bgcolor="#0B1220", landcolor="#131B2C"),
             )
             st.plotly_chart(fig_wb, use_container_width=True)
 

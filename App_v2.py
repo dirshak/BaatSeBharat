@@ -45,21 +45,297 @@ except Exception as _geo_err:
     _GEO_OK = False
     _geo_err_msg = str(_geo_err)
 
+from pathlib import Path
+
+_LOGO_PATH = Path(__file__).parent / "logo.png"
+
+_LOGO_EXISTS = _LOGO_PATH.exists()
 st.set_page_config(
-    page_title="Rhetoric & Markets Intelligence",
-    page_icon="🧠",
+    page_title="Leadership Rhetoric Driven Market Intelligence",
+    page_icon=str(_LOGO_PATH) if _LOGO_EXISTS else "🧠",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="collapsed",
+)
+if not _LOGO_EXISTS:
+    # Flag missing logo rather than silently falling back to the emoji
+    # favicon -- st.set_page_config() must run first (it's the very first
+    # Streamlit call), so this warning has to come after it.
+    st.warning(f"⚠️ logo.png not found at `{_LOGO_PATH}` — using a fallback emoji favicon instead.")
+
+# ===========================================================================
+# DESIGN SYSTEM — palette, type, and component overrides
+# ===========================================================================
+# Color roles (see design plan): Ink Navy (bg), Ledger (surface), Parchment
+# (text), Signal Saffron (rhetoric/accent), Market Green (positive),
+# Rust Alert (negative). Exposed as CSS vars so every stage's chart code can
+# reference the same palette via COLORS/PLOTLY_TEMPLATE below.
+COLORS = {
+    "bg":        "#0B1220",
+    "surface":   "#131B2C",
+    "surface2":  "#0F1727",
+    "ink":       "#E8E4D9",
+    "ink_dim":   "#9AA3B5",
+    "line":      "#26324A",
+    "saffron":   "#C97A2B",
+    "saffron_dim": "#8A5A24",
+    "green":     "#2F6F4E",
+    "green_dim": "#1F4A34",
+    "rust":      "#A6503A",
+    "navy":      "#1B2A4A",
+}
+
+# Shared Plotly chart chrome so every figure across all 7 stages reads as
+# the same product instead of default Plotly styling with swapped colors.
+PLOTLY_TEMPLATE = dict(
+    paper_bgcolor=COLORS["surface"],
+    plot_bgcolor=COLORS["surface"],
+    font=dict(family="IBM Plex Sans, sans-serif", color=COLORS["ink"], size=12),
+    title_font=dict(family="Fraunces, serif", color=COLORS["ink"], size=18),
+    xaxis=dict(gridcolor=COLORS["line"], zerolinecolor=COLORS["line"], linecolor=COLORS["line"],
+                tickfont=dict(family="IBM Plex Mono, monospace", color=COLORS["ink_dim"], size=11)),
+    yaxis=dict(gridcolor=COLORS["line"], zerolinecolor=COLORS["line"], linecolor=COLORS["line"],
+                tickfont=dict(family="IBM Plex Mono, monospace", color=COLORS["ink_dim"], size=11)),
+    legend=dict(font=dict(family="IBM Plex Sans, sans-serif", color=COLORS["ink_dim"], size=11),
+                bgcolor="rgba(0,0,0,0)"),
+    margin=dict(t=60, l=10, r=10, b=10),
 )
 
-# --- Theme & CSS ---
-st.markdown("""
+# Categorical sequence for multi-source charts (pie/bar by source, etc.)
+# derived from the same three logo hues instead of default Plotly colors.
+CATEGORY_SEQUENCE = [COLORS["saffron"], COLORS["green"], COLORS["navy"], COLORS["rust"], "#5A7A9A", "#7A5A3A"]
+
+# Sequential scale for heatmaps/intensity: surface (low) -> saffron (high),
+# replacing Plotly's default "Blues" so heatmaps read as this product's
+# palette instead of generic Plotly output.
+SEQUENTIAL_SCALE = [[0.0, COLORS["surface2"]], [0.5, "#5A4A2E"], [1.0, COLORS["saffron"]]]
+# Diverging scale for signed values (returns, correlation): rust (neg) ->
+# surface (~0) -> green (pos).
+DIVERGING_SCALE = [[0.0, COLORS["rust"]], [0.5, COLORS["surface2"]], [1.0, COLORS["green"]]]
+
+def apply_chart_theme(fig, height=None):
+    """Apply the shared design-system chrome to a Plotly figure in place."""
+    fig.update_layout(**PLOTLY_TEMPLATE)
+    if height:
+        fig.update_layout(height=height)
+    return fig
+
+def metric_row(items):
+    """Render a horizontal 'ledger row' of stat cells — replaces boxed
+    st.metric() cards with a hairline-separated strip (label above,
+    Plex Mono number below), consistent with the design plan.
+    items: list of (label, value, sublabel_or_None) or
+           (label, value, sublabel_or_None, tooltip_or_None) tuples.
+    """
+    # NOTE: this HTML must stay on a single line per cell -- st.markdown runs
+    # unsafe_allow_html content through a CommonMark parser first, and any
+    # line indented 4+ spaces is treated as an indented code block (which
+    # silently rendered the 2nd-4th cells as literal escaped text the first
+    # time this was written with pretty-printed multi-line f-strings).
+    cells = []
+    for item in items:
+        label, value, sub = item[0], item[1], item[2]
+        tooltip = item[3] if len(item) > 3 else None
+        title_attr = f' title="{tooltip}"' if tooltip else ""
+        sub_html = f'<div class="ledger-sub">{sub}</div>' if sub else ""
+        cells.append(
+            f'<div class="ledger-cell"{title_attr}><div class="ledger-label">{label}</div>'
+            f'<div class="ledger-value">{value}</div>{sub_html}</div>'
+        )
+    st.markdown(f'<div class="ledger-row">{"".join(cells)}</div>', unsafe_allow_html=True)
+
+def stage_header(number, title, subtitle=None):
+    """Consistent stage header: small-caps mono eyebrow (STAGE NN) + a
+    Fraunces headline, replacing ad hoc st.title("<emoji> Stage N: ...")
+    calls with one shared, on-system pattern across all 7 stages."""
+    st.markdown(f'<div class="stage-eyebrow">Stage {number}</div>', unsafe_allow_html=True)
+    st.title(title)
+    if subtitle:
+        st.markdown(f'<p style="color:{COLORS["ink_dim"]};margin-top:-0.6rem">{subtitle}</p>', unsafe_allow_html=True)
+
+st.markdown(f"""
     <style>
-    .main { background-color: #0e1117; }
-    .stMetric { background-color: #161b22; padding: 15px; border-radius: 10px; border: 1px solid #30363d; }
-    .stTabs [data-baseweb="tab-list"] { gap: 20px; }
-    .stTabs [data-baseweb="tab"] { height: 50px; background-color: #161b22; border-radius: 5px 5px 0px 0px; color: white; }
-    .stTabs [aria-selected="true"] { background-color: #1f6feb !important; }
+    @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+    /* ── Hide native Streamlit chrome so this reads as a standalone app ──
+       Selectors verified against the actual rendered DOM for the installed
+       Streamlit version (1.55) rather than assumed from older docs: this
+       version uses data-testid="stHeader"/"stToolbar", not the classic
+       bare <header>/#MainMenu/<footer> alone (those still exist as aliases
+       but stToolbar/stHeader are what's actually populated with content
+       here). The sidebar no longer has any content rendered into it (see
+       the top nav below), but its expand/collapse controls are hidden too
+       in case an empty <section> still gets a toggle affordance. */
+    header[data-testid="stHeader"], #MainMenu, footer,
+    [data-testid="stToolbar"], [data-testid="stDecoration"],
+    [data-testid="stStatusWidget"] {{
+        visibility: hidden; height: 0; display: none;
+    }}
+    section[data-testid="stSidebar"],
+    [data-testid="stSidebarCollapseButton"],
+    [data-testid="stExpandSidebarButton"] {{
+        display: none !important;
+    }}
+
+    :root {{
+        --bg: {COLORS["bg"]}; --surface: {COLORS["surface"]}; --surface2: {COLORS["surface2"]};
+        --ink: {COLORS["ink"]}; --ink-dim: {COLORS["ink_dim"]}; --line: {COLORS["line"]};
+        --saffron: {COLORS["saffron"]}; --green: {COLORS["green"]}; --rust: {COLORS["rust"]}; --navy: {COLORS["navy"]};
+    }}
+
+    html, body, [class*="css"] {{ font-family: 'IBM Plex Sans', sans-serif; }}
+    .stApp {{ background-color: var(--bg); color: var(--ink); }}
+    .main .block-container {{ padding-top: 2rem; max-width: 1200px; }}
+
+    h1, h2, h3 {{ font-family: 'Fraunces', serif; font-weight: 500; color: var(--ink); letter-spacing: -0.01em; }}
+    h1 {{ font-size: 2.1rem; }}
+    h2 {{ font-size: 1.5rem; }}
+    h3 {{ font-size: 1.15rem; }}
+    p, li, span, label, div {{ color: var(--ink); }}
+
+    /* Stage eyebrow label — small-caps letter-spaced tag above headline */
+    .stage-eyebrow {{
+        font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; letter-spacing: 0.14em;
+        text-transform: uppercase; color: var(--saffron); margin-bottom: 0.2rem;
+    }}
+
+    /* Numbers everywhere use the mono face */
+    .stMetric [data-testid="stMetricValue"], code, .ledger-value {{ font-family: 'IBM Plex Mono', monospace; }}
+
+    /* ── Ledger metric row (replaces boxed st.metric cards) ────────────── */
+    .ledger-row {{
+        display: flex; flex-wrap: wrap; gap: 0; border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line); margin: 0.5rem 0 1.25rem 0;
+    }}
+    .ledger-cell {{
+        flex: 1 1 160px; padding: 0.85rem 1.1rem; border-right: 1px solid var(--line);
+    }}
+    .ledger-cell:last-child {{ border-right: none; }}
+    .ledger-label {{
+        font-family: 'IBM Plex Sans', sans-serif; font-size: 0.68rem; letter-spacing: 0.1em;
+        text-transform: uppercase; color: var(--ink-dim); margin-bottom: 0.3rem;
+    }}
+    .ledger-value {{ font-size: 1.6rem; font-weight: 500; color: var(--ink); line-height: 1.1; }}
+    .ledger-sub {{ font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; color: var(--ink-dim); margin-top: 0.2rem; }}
+
+    /* ── Top header row: brand mark + Run Pipeline button ──────────────── */
+    .topbar-brand {{ display: flex; align-items: center; gap: 0.6rem; }}
+    .topbar-brand img {{ width: 34px; height: 34px; border-radius: 50%; }}
+    .topbar-brand-name {{ font-family: 'Fraunces', serif; font-size: 1.15rem; color: var(--ink); line-height: 1.1; }}
+    .topbar-brand-sub {{ font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; letter-spacing: 0.12em;
+                          color: var(--ink-dim); text-transform: uppercase; }}
+    .st-key-runpipeline button {{ float: right; }}
+
+    /* ── Horizontal stage nav (replaces the old sidebar stepper) ───────
+       Row of content-sized buttons inside st.container(key="topnav",
+       horizontal=True) -- a real flexbox row (verified against the
+       rendered DOM), not stretched st.columns().
+
+       position:sticky does NOT hold here despite computing correctly
+       (verified with getBoundingClientRect before/after a programmatic
+       scroll, and even with an inline !important override) -- Streamlit's
+       block containers carry a `data-test-scroll-behavior` attribute and
+       evidently run their own JS layout/scroll management on
+       stHorizontalBlock/stVerticalBlock elements that fights native
+       sticky. A plain injected <div> at the same DOM depth stuck
+       correctly, isolating this to Streamlit's own container elements,
+       not a CSS mistake. position:fixed (full viewport width, edge to
+       edge -- common for app chrome even when content below is
+       constrained to --content-max-width) works reliably instead; see the
+       .topnav-spacer element right after this container in the Python
+       code, which reserves the vertical space fixed positioning removes
+       from the normal document flow.
+
+       overflow-x:auto is the graceful-degradation path on viewports too
+       narrow to fit all 8 short labels; nowrap keeps it a single
+       scrollable row instead of Streamlit's default wrap (which would
+       stack pills unevenly). */
+    .st-key-topnav {{
+        position: fixed !important; top: 0; left: 0; right: 0; width: 100%; z-index: 999;
+        background-color: var(--surface2); border-bottom: 1px solid var(--line);
+        padding: 0.4rem 1.5rem;
+        overflow-x: auto; flex-wrap: nowrap !important; gap: 0.3rem !important;
+    }}
+    .topnav-spacer {{ height: 52px; }}
+    /* Each pill's wrapper must not shrink below its content width, or
+       Streamlit's default flex-shrink lets buttons compress and collide
+       instead of the row scrolling -- confirmed by screenshot at 800px
+       viewport width where labels ran together with no gap. Direct flex
+       children of the horizontal container are stLayoutWrapper divs (each
+       wrapping one st.container(key=f"nav_{{i}}")), verified against the
+       rendered DOM rather than assumed. */
+    .st-key-topnav > div[data-testid="stLayoutWrapper"] {{
+        flex-shrink: 0 !important;
+    }}
+    .st-key-topnav div[data-testid="stButton"] button {{
+        white-space: nowrap; background-color: transparent; border: none;
+        border-bottom: 2px solid transparent; border-radius: 0;
+        padding: 0.45rem 0.75rem; margin: 0;
+        font-family: 'IBM Plex Sans', sans-serif; font-size: 0.84rem; font-weight: 400;
+        color: var(--ink-dim); transition: background-color 0.15s, color 0.15s, border-color 0.15s;
+    }}
+    .st-key-topnav div[data-testid="stButton"] button:hover {{
+        background-color: rgba(201,122,43,0.08); color: var(--ink);
+    }}
+    .st-key-topnav div[data-testid="stButton"] button:focus-visible {{
+        outline: 2px solid var(--saffron); outline-offset: -2px;
+    }}
+    /* Active stage: primary-typed button gets a solid underline, standing
+       in for the old sidebar's colored-dot progress signal. */
+    .st-key-topnav div[data-testid="stButton"] button[kind="primary"],
+    .st-key-topnav div[data-testid="stButton"] button[kind="primaryFormSubmit"] {{
+        background-color: rgba(201,122,43,0.14) !important; color: var(--ink) !important;
+        border-bottom-color: var(--saffron) !important; font-weight: 500 !important;
+        box-shadow: none !important;
+    }}
+    /* Per-pill accent sequencing saffron -> navy -> green across the 8
+       stages (each button carries its own stable st.button(key=...)
+       class, so this doesn't rely on sibling position/nth-of-type). */
+    .st-key-nav_0 div[data-testid="stButton"] button {{ border-bottom-color: rgba(201,122,43,0.35); }}
+    .st-key-nav_1 div[data-testid="stButton"] button {{ border-bottom-color: rgba(176,106,46,0.35); }}
+    .st-key-nav_2 div[data-testid="stButton"] button {{ border-bottom-color: rgba(150,97,64,0.35); }}
+    .st-key-nav_3 div[data-testid="stButton"] button {{ border-bottom-color: rgba(27,42,74,0.5); }}
+    .st-key-nav_4 div[data-testid="stButton"] button {{ border-bottom-color: rgba(35,74,69,0.5); }}
+    .st-key-nav_5 div[data-testid="stButton"] button {{ border-bottom-color: rgba(40,90,70,0.5); }}
+    .st-key-nav_6 div[data-testid="stButton"] button {{ border-bottom-color: rgba(47,111,78,0.5); }}
+    .st-key-nav_7 div[data-testid="stButton"] button {{ border-bottom-color: rgba(47,111,78,0.5); }}
+
+    /* Generic buttons elsewhere (Run Pipeline, etc.) */
+    .stButton button, .main div[data-testid="stButton"] button {{
+        background-color: var(--surface); border: 1px solid var(--line); color: var(--ink);
+        border-radius: 4px; font-family: 'IBM Plex Sans', sans-serif;
+    }}
+    .main div[data-testid="stButton"] button:hover {{ border-color: var(--saffron); color: var(--saffron); }}
+    .st-key-topnav div[data-testid="stButton"] button:hover {{ border-color: transparent; border-bottom-color: var(--saffron); }}
+
+    /* Status strip (relocated from the old sidebar footer) */
+    .status-strip {{ font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; color: var(--ink-dim); text-align: right; }}
+    .status-strip .dot {{ display: inline-block; width: 6px; height: 6px; border-radius: 50%; margin-right: 0.4rem; }}
+    .status-strip .sep {{ margin: 0 0.7rem; color: var(--line); }}
+
+    /* ── Tabs ────────────────────────────────────────────────────────── */
+    .stTabs [data-baseweb="tab-list"] {{ gap: 4px; border-bottom: 1px solid var(--line); }}
+    .stTabs [data-baseweb="tab"] {{
+        height: 42px; background-color: transparent; border-radius: 0; color: var(--ink-dim);
+        font-family: 'IBM Plex Sans', sans-serif; font-size: 0.9rem;
+    }}
+    .stTabs [aria-selected="true"] {{
+        background-color: transparent !important; color: var(--saffron) !important;
+        border-bottom: 2px solid var(--saffron) !important;
+    }}
+
+    /* ── Misc components ────────────────────────────────────────────── */
+    div[data-testid="stExpander"] {{ background-color: var(--surface); border: 1px solid var(--line); border-radius: 4px; }}
+    div[data-testid="stDataFrame"] {{ border: 1px solid var(--line); border-radius: 4px; }}
+    .stAlert {{ border-radius: 4px; font-family: 'IBM Plex Sans', sans-serif; }}
+    div[data-testid="stAlertContainer"] {{ border: 1px solid var(--line); background-color: var(--surface) !important; }}
+    div[data-testid="stAlertContainer"]:has(div[data-testid="stAlertContentInfo"]) {{ border-left: 3px solid var(--saffron); }}
+    div[data-testid="stAlertContainer"]:has(div[data-testid="stAlertContentSuccess"]) {{ border-left: 3px solid var(--green); }}
+    div[data-testid="stAlertContainer"]:has(div[data-testid="stAlertContentWarning"]) {{ border-left: 3px solid var(--saffron); }}
+    div[data-testid="stAlertContainer"]:has(div[data-testid="stAlertContentError"]) {{ border-left: 3px solid var(--rust); }}
+    div[data-testid="stAlertContainer"] p, div[data-testid="stAlertContainer"] li {{ color: var(--ink) !important; }}
+    hr {{ border-color: var(--line); }}
+    ::selection {{ background-color: rgba(201,122,43,0.35); }}
+    a {{ color: var(--saffron); }}
     </style>
     """, unsafe_allow_html=True)
 
@@ -67,9 +343,9 @@ st.markdown("""
 DB_PATH = './data/market_rhetoric.db'
 
 SOURCE_COLORS = {
-    'Mann Ki Baat': '#f0883e',   # Orange
-    'ECB':          '#388bfd',   # Blue
-    'Fed':          '#3fb950',   # Green
+    'Mann Ki Baat': COLORS["saffron"],
+    'ECB':          "#5A7A9A",   # muted slate-blue — legible against the navy surface, unlike --navy itself
+    'Fed':          COLORS["green"],
 }
 
 REQUIRED_FILES = [
@@ -104,52 +380,115 @@ def load_source_breakdown():
     except Exception:
         return pd.DataFrame()
 
-# --- Sidebar ---
-st.sidebar.title("💎 Strategy Engine")
-st.sidebar.markdown("---")
-stage = st.sidebar.radio(
-    "Pipeline Stage",
-    [
-        "Executive Summary",
-        "1. Data Ingestion",
-        "2. NLP Intelligence",
-        "3. Market Impact",
-        "4. Regime Intelligence",
-        "5. Company Analytics",
-        "6. AI Predictions",
-        "7. Global Influence Map",
-    ]
-)
+# --- Top bar: brand mark + Run Pipeline button ------------------------------
+import base64
 
-st.sidebar.markdown("---")
+@st.cache_data
+def _logo_b64(path="logo.png"):
+    if os.path.exists(path):
+        return base64.b64encode(open(path, "rb").read()).decode()
+    return ""
+
+_logo64 = _logo_b64()
+_logo_img = f'<img src="data:image/png;base64,{_logo64}" />' if _logo64 else ""
+
+_hdr_col1, _hdr_col2 = st.columns([5, 1])
+with _hdr_col1:
+    st.markdown(
+        f"""<div class="topbar-brand">{_logo_img}
+            <div><div class="topbar-brand-name">BaatSeBharat</div>
+            <div class="topbar-brand-sub">Rhetoric &amp; Markets Intel.</div></div>
+            </div>""",
+        unsafe_allow_html=True,
+    )
+
 # Check if models exist and get timestamp
 model_path = "./data/processed/topic_distributions_combined.npy"
 models_exist = os.path.exists(model_path)
-btn_label = "🚀 Run Pipeline Again" if models_exist else "🚀 Run Pipeline"
+btn_label = "Run Pipeline Again" if models_exist else "Run Pipeline"
 
-if st.sidebar.button(btn_label):
-    with st.spinner("Executing End-to-End Prototype (MKB + ECB + Fed)..."):
-        result = subprocess.run([sys.executable, "scripts/run_prototype.py"], capture_output=True, text=True)
-        if result.returncode == 0:
-            st.sidebar.success("Pipeline Executed Successfully!")
-            st.rerun()
-        else:
-            st.sidebar.error("Execution failed. Check data consistency.")
-            with open("logs/pipeline_error.log", "w") as f:
-                f.write(result.stderr)
+with _hdr_col2:
+    with st.container(key="runpipeline"):
+        if st.button(btn_label, use_container_width=True):
+            with st.spinner("Executing End-to-End Prototype (MKB + ECB + Fed)..."):
+                result = subprocess.run([sys.executable, "scripts/run_prototype.py"], capture_output=True, text=True)
+                if result.returncode == 0:
+                    st.success("Pipeline executed successfully.")
+                    st.rerun()
+                else:
+                    st.error("Execution failed. Check data consistency.")
+                    with open("logs/pipeline_error.log", "w") as f:
+                        f.write(result.stderr)
 
+STAGES = [
+    "Executive Summary",
+    "1. Data Ingestion",
+    "2. NLP Intelligence",
+    "3. Market Impact",
+    "4. Regime Intelligence",
+    "5. Company Analytics",
+    "6. AI Predictions",
+    "7. Global Influence Map",
+]
+# Short labels for the horizontal nav pills only -- STAGES itself (the
+# values every `elif stage == "..."` block below matches on) is unchanged,
+# so this is purely a display-layer relabeling, not a routing change.
+NAV_LABELS = [
+    "Overview",
+    "01 Ingestion",
+    "02 NLP",
+    "03 Impact",
+    "04 Regime",
+    "05 Company",
+    "06 Predictions",
+    "07 Global",
+]
+if "active_stage" not in st.session_state:
+    st.session_state.active_stage = STAGES[0]
+
+# Horizontal top nav: a sticky flexbox row (st.container(horizontal=True))
+# of content-sized buttons tracked via session_state, replacing the old
+# vertical sidebar stepper. Each button keeps a stable per-index CSS hook
+# (.st-key-nav_0 .. nav_7) for the saffron -> navy -> green accent
+# sequence, and the active pill gets a solid underline (the horizontal
+# equivalent of the old stepper's colored-dot progress marker).
+with st.container(key="topnav", horizontal=True):
+    for _i, (_label, _s) in enumerate(zip(NAV_LABELS, STAGES)):
+        is_active = st.session_state.active_stage == _s
+        with st.container(key=f"nav_{_i}"):
+            if st.button(_label, key=f"navbtn_{_i}",
+                         type="primary" if is_active else "secondary"):
+                st.session_state.active_stage = _s
+                st.rerun()
+# position:fixed takes .st-key-topnav out of normal document flow, so this
+# spacer reserves the vertical space it would otherwise occupy (see the
+# .st-key-topnav CSS comment for why position:fixed is used instead of
+# sticky here).
+st.markdown('<div class="topnav-spacer"></div>', unsafe_allow_html=True)
+stage = st.session_state.active_stage
+
+# Status strip (relocated from the old sidebar footer) -- right-aligned,
+# always visible rather than tucked behind an icon, matching the same
+# "stay discoverable" treatment as the Run Pipeline button above.
+_status_parts = []
 if models_exist:
     mtime = os.path.getmtime(model_path)
     last_update = datetime.fromtimestamp(mtime).strftime('%Y-%m-%d %H:%M')
-    st.sidebar.caption(f"Last Intelligence Update: {last_update}")
+    _status_parts.append(f'<span class="dot" style="background:{COLORS["green"]}"></span>Updated {last_update}')
+else:
+    _status_parts.append(f'<span class="dot" style="background:{COLORS["rust"]}"></span>Pipeline not yet run')
 
 if _PRED_OK and _llm_mode_available():
-    st.sidebar.success("🤖 LLM Mode Active")
+    _status_parts.append(f'<span class="dot" style="background:{COLORS["green"]}"></span>LLM mode active')
 elif _PRED_OK:
-    st.sidebar.info("🤖 AI: Rule-Based Mode")
+    _status_parts.append(f'<span class="dot" style="background:{COLORS["saffron"]}"></span>AI: rule-based mode')
 else:
-    st.sidebar.warning("⚠️ Prediction engine offline")
-st.sidebar.info("System Status: **Active (V3.0 — Integrated)**")
+    _status_parts.append(f'<span class="dot" style="background:{COLORS["rust"]}"></span>Prediction engine offline')
+
+st.markdown(
+    '<div class="status-strip">' + '<span class="sep">|</span>'.join(_status_parts) + "</div>",
+    unsafe_allow_html=True,
+)
 
 # ===========================================================================
 # CACHED DATA LOADERS for AI Predictions (Stage 6)
@@ -278,8 +617,9 @@ def _cached_sector_predictions(
 # --- Page Logic ---
 
 if stage == "Executive Summary":
-    st.title("🧠 Leadership Rhetoric Driven Market Intelligence")
-    st.markdown("### Quantifying the impact of leadership narrative on market volatility.")
+    st.markdown('<div class="stage-eyebrow">BaatSeBharat · Research Console</div>', unsafe_allow_html=True)
+    st.title("Leadership Rhetoric Driven Market Intelligence")
+    st.markdown("Quantifying the impact of leadership narrative on market volatility.")
 
     s_count, m_count = load_db_stats()
 
@@ -307,30 +647,29 @@ if stage == "Executive Summary":
         except Exception:
             return {}
 
-    col1, col2, col3, col4 = st.columns(4)
-    with col1:
-        st.metric("Processed Speeches", s_count)
-    with col2:
-        st.metric("Market Data Points", m_count)
-    with col3:
-        st.metric("Active Topics", _active_topic_count() or "—")
-    with col4:
-        _bt = _directional_backtest()
-        if _bt:
-            hit_pct = _bt['hit_rate'] * 100
-            st.metric(
-                "Directional Hit Rate (OOS)",
-                f"{hit_pct:.1f}%",
-                f"{hit_pct - 50:+.1f}pp vs. random",
-                help=(
-                    f"Out-of-sample backtest: topic->return bias learned on speeches "
-                    f"before {_bt['cutoff_date']}, tested on {_bt['n_events']} events after. "
-                    "50% = no better than a coin flip; this is reported honestly, not "
-                    "adjusted to look better."
-                ),
-            )
-        else:
-            st.metric("Directional Hit Rate (OOS)", "—")
+    _bt = _directional_backtest()
+    if _bt:
+        hit_pct = _bt['hit_rate'] * 100
+        _delta = hit_pct - 50
+        _delta_color = COLORS["green"] if _delta > 0 else (COLORS["rust"] if _delta < 0 else COLORS["ink_dim"])
+        hit_value, hit_sub, hit_tip = (
+            f"{hit_pct:.1f}%",
+            f'<span style="color:{_delta_color}">{_delta:+.1f}pp vs. random</span>',
+            (
+                f"Out-of-sample backtest: topic-to-return bias learned on speeches "
+                f"before {_bt['cutoff_date']}, tested on {_bt['n_events']} events after. "
+                "50% = no better than a coin flip -- reported honestly, not adjusted to look better."
+            ),
+        )
+    else:
+        hit_value, hit_sub, hit_tip = "—", None, None
+
+    metric_row([
+        ("Processed Speeches", f"{s_count:,}", None),
+        ("Market Data Points", f"{m_count:,}", None),
+        ("Active Topics", _active_topic_count() or "—", None),
+        ("Directional Hit Rate (OOS)", hit_value, hit_sub, hit_tip),
+    ])
 
     st.markdown("---")
 
@@ -341,7 +680,7 @@ if stage == "Executive Summary":
         with col_a:
             st.subheader("Speech Sources")
             for _, r in breakdown.iterrows():
-                color = SOURCE_COLORS.get(r['source'], '#8b949e')
+                color = SOURCE_COLORS.get(r['source'], '#9AA3B5')
                 st.markdown(
                     f"<span style='color:{color}'>●</span> **{r['source']}**: {r['count']} speeches",
                     unsafe_allow_html=True
@@ -352,8 +691,10 @@ if stage == "Executive Summary":
                 title="Speech Distribution by Source",
                 color='source',
                 color_discrete_map=SOURCE_COLORS,
-                template="plotly_dark"
+                hole=0.55,
             )
+            fig_pie.update_traces(textfont=dict(family="IBM Plex Mono", size=12), marker=dict(line=dict(color=COLORS["surface"], width=2)))
+            apply_chart_theme(fig_pie, height=340)
             st.plotly_chart(fig_pie, use_container_width=True)
 
     st.markdown("---")
@@ -369,7 +710,7 @@ if stage == "Executive Summary":
         st.warning("No data found. Please click '🚀 Run Prototype Pipeline' from the sidebar.")
 
 elif stage == "1. Data Ingestion":
-    st.title("📥 Stage 1: Data Ingestion & Storage")
+    stage_header("01", "Data Ingestion & Storage")
 
     tab1, tab2 = st.tabs(["Speeches (Text)", "Market (Numerical)"])
 
@@ -438,14 +779,16 @@ elif stage == "1. Data Ingestion":
             df_m['date'] = pd.to_datetime(df_m['date'])
             fig = px.line(
                 df_m, x='date', y='close', color='ticker',
-                title="Index Performance", template="plotly_dark"
+                title="Index Performance",
+                color_discrete_sequence=CATEGORY_SEQUENCE,
             )
+            apply_chart_theme(fig, height=420)
             st.plotly_chart(fig, use_container_width=True)
         else:
             st.info("No market data. Run the pipeline first.")
 
 elif stage == "2. NLP Intelligence":
-    st.title("🔍 Stage 2: NLP & Topic Modeling")
+    stage_header("02", "NLP & Topic Modeling")
 
     st.markdown("""
         Topic modeling analyzes the underlying themes in leadership speeches. 
@@ -489,9 +832,10 @@ elif stage == "2. NLP Intelligence":
             y=topics[0],
             labels={'x': 'Topic', 'y': 'Probability'},
             title=f"Dominant Rhetoric Components ({selected_model_name})",
-            template="plotly_dark"
         )
+        fig.update_traces(marker_color=COLORS["saffron"])
         fig.update_layout(xaxis_tickangle=-30)
+        apply_chart_theme(fig, height=420)
         st.plotly_chart(fig, use_container_width=True)
 
         # Heatmap: topic distributions per speech (first 30)
@@ -505,11 +849,11 @@ elif stage == "2. NLP Intelligence":
             fig_heat = px.imshow(
                 heat_df.T,
                 aspect="auto",
-                color_continuous_scale="Blues",
+                color_continuous_scale=SEQUENTIAL_SCALE,
                 title="Topic Probability Heatmap",
-                template="plotly_dark",
                 labels={'y': 'Topic'},
             )
+            apply_chart_theme(fig_heat, height=420)
             st.plotly_chart(fig_heat, use_container_width=True)
 
         col1, col2 = st.columns(2)
@@ -532,7 +876,7 @@ elif stage == "2. NLP Intelligence":
         st.warning("No topic distributions found. Run the pipeline first.")
 
 elif stage == "3. Market Impact":
-    st.title("📈 Stage 3: Speech Impact on Markets")
+    stage_header("03", "Speech Impact on Markets")
 
     @st.cache_data(ttl=1800, show_spinner=False)
     def _load_stage3_data(db_path):
@@ -575,19 +919,19 @@ elif stage == "3. Market Impact":
         # --- Overall market signal metric at the top ---
         overall_avg = ticker_impact['return_t5'].mean() if not ticker_impact.empty else 0.0
         if overall_avg > 0.002:
-            ov_signal, ov_emoji, ov_color = "Bullish", "🟢", "#34d399"
+            ov_signal, ov_emoji, ov_color = "Bullish", "🟢", "#2F6F4E"
         elif overall_avg < -0.002:
-            ov_signal, ov_emoji, ov_color = "Bearish", "🔴", "#f87171"
+            ov_signal, ov_emoji, ov_color = "Bearish", "🔴", "#A6503A"
         else:
-            ov_signal, ov_emoji, ov_color = "Neutral", "⚪", "#8b949e"
+            ov_signal, ov_emoji, ov_color = "Neutral", "⚪", "#9AA3B5"
 
         sig_c1, sig_c2, sig_c3 = st.columns(3)
         with sig_c1:
             st.markdown(
                 f"""
-                <div style='background:#161b22;border-radius:10px;padding:14px 18px;
+                <div style='background:#131B2C;border-radius:10px;padding:14px 18px;
                             border:1px solid {ov_color};text-align:center'>
-                  <div style='color:#8b949e;font-size:0.80rem'>Overall Market Signal</div>
+                  <div style='color:#9AA3B5;font-size:0.80rem'>Overall Market Signal</div>
                   <div style='font-size:1.6rem;font-weight:700;color:{ov_color}'>
                     {ov_emoji} {ov_signal}
                   </div>
@@ -602,13 +946,13 @@ elif stage == "3. Market Impact":
             n_neutral = len(ticker_impact) - n_bullish - n_bearish
             st.markdown(
                 f"""
-                <div style='background:#161b22;border-radius:10px;padding:14px 18px;
-                            border:1px solid #30363d;text-align:center'>
-                  <div style='color:#8b949e;font-size:0.80rem'>Signal Breakdown</div>
+                <div style='background:#131B2C;border-radius:10px;padding:14px 18px;
+                            border:1px solid #26324A;text-align:center'>
+                  <div style='color:#9AA3B5;font-size:0.80rem'>Signal Breakdown</div>
                   <div style='font-size:0.92rem;margin-top:4px'>
-                    <span style='color:#34d399'>🟢 {n_bullish} Bull</span>&nbsp;
-                    <span style='color:#8b949e'>⚪ {n_neutral} Neutral</span>&nbsp;
-                    <span style='color:#f87171'>🔴 {n_bearish} Bear</span>
+                    <span style='color:#2F6F4E'>🟢 {n_bullish} Bull</span>&nbsp;
+                    <span style='color:#9AA3B5'>⚪ {n_neutral} Neutral</span>&nbsp;
+                    <span style='color:#A6503A'>🔴 {n_bearish} Bear</span>
                   </div>
                   <div style='font-size:0.72rem;color:#475569'>Across {len(ticker_impact)} events</div>
                 </div>
@@ -620,9 +964,9 @@ elif stage == "3. Market Impact":
             conf_disp = min(100, max(30, avg_conf))
             st.markdown(
                 f"""
-                <div style='background:#161b22;border-radius:10px;padding:14px 18px;
-                            border:1px solid #30363d;text-align:center'>
-                  <div style='color:#8b949e;font-size:0.80rem'>Signal Confidence</div>
+                <div style='background:#131B2C;border-radius:10px;padding:14px 18px;
+                            border:1px solid #26324A;text-align:center'>
+                  <div style='color:#9AA3B5;font-size:0.80rem'>Signal Confidence</div>
                   <div style='font-size:1.4rem;font-weight:700;color:{ov_color}'>{conf_disp:.0f}%</div>
                   <div style='font-size:0.72rem;color:#475569'>Avg Abnormal: {overall_avg*100:+.3f}%</div>
                 </div>
@@ -635,7 +979,7 @@ elif stage == "3. Market Impact":
         fig.add_trace(go.Scatter(
             x=ticker_market['date'], y=ticker_market['close'],
             name=sel_ticker, mode='lines',
-            line=dict(color='#8b949e', width=1.5)
+            line=dict(color=COLORS["ink"], width=1.8)
         ))
 
         # Add vertical markers per source. Speech events can number in the
@@ -657,7 +1001,7 @@ elif stage == "3. Market Impact":
                 fig.add_trace(go.Scatter(
                     x=line_x, y=line_y, mode='lines',
                     line=dict(color=color, width=1, dash='dot'),
-                    opacity=0.5, showlegend=False, hoverinfo='skip',
+                    opacity=0.22, showlegend=False, hoverinfo='skip',
                 ))
             # Invisible scatter just for legend
             if len(src_dates):
@@ -677,8 +1021,8 @@ elif stage == "3. Market Impact":
                     )
                 ))
 
+        apply_chart_theme(fig, height=450)
         fig.update_layout(
-            template="plotly_dark", height=450,
             title=f"{sel_ticker} Price with Speech Events",
             legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1)
         )
@@ -740,11 +1084,11 @@ elif stage == "3. Market Impact":
             avg_df, x='Source', y='Avg Abnormal 5D Return',
             color='Source', color_discrete_map=SOURCE_COLORS,
             title=f"Average 5-Day Abnormal Return by Source ({sel_ticker})",
-            template="plotly_dark",
             text='Signal'
         )
         fig_bar.update_traces(textposition='outside')
-        fig_bar.add_hline(y=0, line_dash="dash", line_color="gray")
+        fig_bar.add_hline(y=0, line_dash="dash", line_color=COLORS["line"])
+        apply_chart_theme(fig_bar, height=380)
         st.plotly_chart(fig_bar, use_container_width=True)
 
         st.info(
@@ -820,19 +1164,21 @@ elif stage == "3. Market Impact":
                 lambda v: '🟢 Bullish' if v > 0 else ('🔴 Bearish' if v < 0 else '⚪ Neutral')
             )
             fig_topic = px.bar(
-                topic_impact_df, 
-                x='topic_label', 
+                topic_impact_df,
+                x='topic_label',
                 y='avg_abnormal',
                 color='avg_abnormal',
-                color_continuous_scale='RdYlGn',
+                color_continuous_scale=DIVERGING_SCALE,
+                color_continuous_midpoint=0,
                 title=f"Avg 5D Abnormal Return by Dominant Topic ({sel_ticker})",
                 labels={'avg_abnormal': 'Avg Abnormal Return (5D)', 'topic_label': 'Topic'},
-                template="plotly_dark",
                 hover_data=['speech_count', 'topic_signal'],
                 text='topic_signal'
             )
             fig_topic.update_traces(textposition='outside')
-            fig_topic.add_hline(y=0, line_dash="dash", line_color="gray")
+            fig_topic.add_hline(y=0, line_dash="dash", line_color=COLORS["line"])
+            fig_topic.update_layout(xaxis_tickangle=-30)
+            apply_chart_theme(fig_topic, height=440)
             st.plotly_chart(fig_topic, use_container_width=True)
             
             best_topic = topic_impact_df.iloc[0]
@@ -846,8 +1192,7 @@ elif stage == "3. Market Impact":
             st.warning("No topic-alignment data available. Run the pipeline first.")
 
 elif stage == "4. Regime Intelligence":
-    st.title("🛡️ Stage 4: Market Regime Intelligence (HMM)")
-    st.markdown("### Quantifying structural market shifts using Hidden Markov Models.")
+    stage_header("04", "Market Regime Intelligence (HMM)", "Quantifying structural market shifts using Hidden Markov Models.")
 
     @st.cache_data(ttl=1800, show_spinner=False)
     def _load_regime_and_market(db_path):
@@ -876,9 +1221,9 @@ elif stage == "4. Regime Intelligence":
         t_regimes = regimes[regimes['sector'] == sel_ticker].sort_values('date')
 
         fig = go.Figure()
-        fig.add_trace(go.Scatter(x=t_market['date'], y=t_market['close'], name="Price", line=dict(color='white')))
+        fig.add_trace(go.Scatter(x=t_market['date'], y=t_market['close'], name="Price", line=dict(color=COLORS["ink"], width=1.5)))
 
-        colors = {'Stable': 'rgba(63, 185, 80, 0.2)', 'Transitional': 'rgba(240, 136, 62, 0.2)', 'Volatile': 'rgba(248, 81, 73, 0.2)'}
+        colors = {'Stable': 'rgba(47, 111, 78, 0.28)', 'Transitional': 'rgba(201, 122, 43, 0.24)', 'Volatile': 'rgba(166, 80, 58, 0.30)'}
 
         if not t_regimes.empty:
             # Vectorized run-length encoding of consecutive same-regime
@@ -907,7 +1252,8 @@ elif stage == "4. Regime Intelligence":
             ]
             fig.update_layout(shapes=shapes)
 
-        fig.update_layout(title=f"{sel_ticker} Regime Timeline (Green=Stable, Yellow=Transitional, Red=Volatile)", template="plotly_dark", height=600)
+        apply_chart_theme(fig, height=550)
+        fig.update_layout(title=f"{sel_ticker} Regime Timeline (Green=Stable, Saffron=Transitional, Rust=Volatile)")
         st.plotly_chart(fig, use_container_width=True)
 
         if t_regimes.empty:
@@ -919,8 +1265,7 @@ elif stage == "4. Regime Intelligence":
             )
 
 elif stage == "5. Company Analytics":
-    st.title("🏢 Stage 5: Company Specific Returns vs. Rhetoric")
-    st.markdown("### Analyzing how leadership topics impact individual company performance.")
+    stage_header("05", "Company Specific Returns vs. Rhetoric", "Analyzing how leadership topics impact individual company performance.")
 
     # Map each company to its NSE ticker so the heatmap is scoped to that
     # company's own speech-market-impact events, not the entire corpus.
@@ -990,17 +1335,16 @@ elif stage == "5. Company Analytics":
             z=pivot_topics.values.T,
             x=pivot_topics.index,
             y=topic_names,
-            colorscale='RdYlGn',
+            colorscale=DIVERGING_SCALE,
             zmid=0, zmin=-zmax, zmax=zmax,
-            colorbar=dict(title="Avg 5D Fwd<br>Return × Topic<br>Probability"),
+            colorbar=dict(title="Avg 5D Fwd<br>Return × Topic<br>Probability", tickfont=dict(family="IBM Plex Mono")),
             hovertemplate="%{y}<br>%{x|%Y-%m}<br>Impact: %{z:.4f}<extra></extra>",
         ))
+        apply_chart_theme(fig_heat, height=450)
         fig_heat.update_layout(
             title=f"Leadership Topic Impact Over Time vs {company} (Monthly, 5D Fwd Return-Weighted)",
-            template="plotly_dark",
             xaxis_title="Month",
             yaxis_title="Topic",
-            height=450,
         )
         st.plotly_chart(fig_heat, use_container_width=True)
 
@@ -1011,10 +1355,7 @@ elif stage == "5. Company Analytics":
         )
 
 elif stage == "6. AI Predictions":
-    st.title("🤖 Stage 6: AI Market Predictions")
-    st.markdown(
-        "### Company & Sector forecasts driven by BaatSeBharat NLP signals."
-    )
+    stage_header("06", "AI Market Predictions", "Company & sector forecasts driven by BaatSeBharat NLP signals.")
 
     if not _PRED_OK:
         st.error(f"Prediction engine could not load: `{_pred_err_msg}`")
@@ -1109,24 +1450,18 @@ elif stage == "6. AI Predictions":
             )
 
         # Signal banner
-        sig_col = {"Bullish": "#34d399", "Bearish": "#f87171", "Neutral": "#64748b"}[
+        sig_col = {"Bullish": "#2F6F4E", "Bearish": "#A6503A", "Neutral": "#9AA3B5"}[
             co_pred["signal"]
         ]
         st.markdown(
-            f"""
-            <div style='background:#161b22;border-radius:10px;padding:18px 22px;
-                        border:1px solid {sig_col};margin-bottom:14px'>
-              <span style='font-size:1.9rem;font-weight:700;color:{sig_col}'>
-                {co_pred['emoji']} {co_pred['signal'].upper()}
-              </span>
-              <span style='color:#8b949e;font-size:0.9rem;margin-left:16px'>
-                {sel_co} &nbsp;·&nbsp; {co_pred.get('ticker','N/A')}
-                &nbsp;·&nbsp; Confidence:&nbsp;
-                <b style='color:{sig_col}'>{co_pred['confidence']:.0f}%</b>
-                &nbsp;·&nbsp; Mode: {co_pred['mode'].upper()}
-              </span>
-            </div>
-            """,
+            f'<div style="background:#131B2C;border-radius:6px;padding:18px 22px;border:1px solid {sig_col};border-left:3px solid {sig_col};margin-bottom:14px">'
+            f'<span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:{sig_col};margin-right:10px"></span>'
+            f'<span style="font-family:\'Fraunces\',serif;font-size:1.7rem;font-weight:500;color:{sig_col}">{co_pred["signal"].upper()}</span>'
+            f'<span style="color:#9AA3B5;font-size:0.85rem;margin-left:18px;font-family:\'IBM Plex Sans\',sans-serif">'
+            f'{sel_co} &middot; <span style="font-family:\'IBM Plex Mono\',monospace">{co_pred.get("ticker","N/A")}</span>'
+            f' &middot; Confidence: <b style="color:{sig_col};font-family:\'IBM Plex Mono\',monospace">{co_pred["confidence"]:.0f}%</b>'
+            f' &middot; Mode: {co_pred["mode"].upper()}</span>'
+            f'</div>',
             unsafe_allow_html=True,
         )
 
@@ -1145,7 +1480,7 @@ elif stage == "6. AI Predictions":
             ret = fc.get("return_pct", 0.0)
             rlo = fc.get("return_low",  0.0)
             rhi = fc.get("return_high", 0.0)
-            rc  = "#34d399" if ret > 0 else ("#f87171" if ret < 0 else "#64748b")
+            rc  = "#2F6F4E" if ret > 0 else ("#A6503A" if ret < 0 else "#9AA3B5")
             pm  = fc.get("price_mid")
             pl  = fc.get("price_low")
             ph  = fc.get("price_high")
@@ -1156,9 +1491,9 @@ elif stage == "6. AI Predictions":
             with col_widget:
                 st.markdown(
                     f"""
-                    <div style='background:#161b22;border-radius:10px;padding:14px;
-                                border:1px solid #30363d;text-align:center'>
-                      <div style='color:#8b949e;font-size:0.82rem'>{fc.get('label','')}</div>
+                    <div style='background:#131B2C;border-radius:10px;padding:14px;
+                                border:1px solid #26324A;text-align:center'>
+                      <div style='color:#9AA3B5;font-size:0.82rem'>{fc.get('label','')}</div>
                       <div style='font-size:1.55rem;font-weight:700;color:{rc}'>{ret:+.2f}%</div>
                       <div style='font-size:0.72rem;color:#475569'>
                         Range: {rlo:+.1f}% → {rhi:+.1f}%
@@ -1226,23 +1561,22 @@ elif stage == "6. AI Predictions":
                     "10D %":        p["predictions"].get(10, {}).get("return_pct", 0),
                 })
             pr_df = pd.DataFrame(pr).sort_values("Score", ascending=False)
-            sig_clr = {"Bullish": "#34d399", "Neutral": "#8b949e", "Bearish": "#f87171"}
+            sig_clr = {"Bullish": "#2F6F4E", "Neutral": "#9AA3B5", "Bearish": "#A6503A"}
 
             fig_bar = go.Figure(go.Bar(
                 x=pr_df["Company"],
                 y=pr_df["5D %"],
-                marker_color=[sig_clr.get(s, "#8b949e") for s in pr_df["Signal"]],
+                marker_color=[sig_clr.get(s, "#9AA3B5") for s in pr_df["Signal"]],
                 text=[f"{v:+.2f}%" for v in pr_df["5D %"]],
                 textposition="outside",
                 hovertemplate="<b>%{x}</b><br>5D: %{y:+.2f}%<extra></extra>",
             ))
-            fig_bar.add_hline(y=0, line_dash="dot", line_color="#30363d")
+            fig_bar.add_hline(y=0, line_dash="dot", line_color=COLORS["line"])
+            apply_chart_theme(fig_bar, height=370)
             fig_bar.update_layout(
                 title="All Companies — 5-Day Return Forecast",
-                template="plotly_dark", height=370,
                 xaxis_tickangle=-35,
                 yaxis_title="Forecast Return (%)",
-                plot_bgcolor="#0e1117", paper_bgcolor="#0e1117",
             )
             st.plotly_chart(fig_bar, use_container_width=True)
 
@@ -1252,11 +1586,8 @@ elif stage == "6. AI Predictions":
                 hover_name="Company",
                 color_discrete_map=sig_clr,
                 title="Signal Score vs Prediction Confidence",
-                template="plotly_dark",
             )
-            fig_sc.update_layout(
-                plot_bgcolor="#0e1117", paper_bgcolor="#0e1117", height=330
-            )
+            apply_chart_theme(fig_sc, height=330)
             st.plotly_chart(fig_sc, use_container_width=True)
 
             with st.expander("📋 Full Table"):
@@ -1305,23 +1636,24 @@ elif stage == "6. AI Predictions":
                     ret5 = getattr(row, '_7', 0)   # 5D %
                     ret1 = getattr(row, '_6', 0)   # 1D %
                     ret10= getattr(row, '_8', 0)   # 10D %
-                    sc   = {"Bullish":"#34d399","Bearish":"#f87171","Neutral":"#64748b"}[row.Signal]
-                    rc   = "#34d399" if ret5 > 0 else ("#f87171" if ret5 < 0 else "#64748b")
+                    sc   = {"Bullish":"#2F6F4E","Bearish":"#A6503A","Neutral":"#9AA3B5"}[row.Signal]
+                    rc   = "#2F6F4E" if ret5 > 0 else ("#A6503A" if ret5 < 0 else "#9AA3B5")
                     with cols[j]:
                         st.markdown(
                             f"""
-                            <div style='background:#161b22;border-radius:10px;padding:16px;
-                                        border:1px solid {sc};margin-bottom:10px'>
-                              <b style='color:{sc}'>{row.Emoji} {row.Sector}</b>
-                              <div style='color:#8b949e;font-size:0.78rem'>
-                                Confidence: {row.Conf:.0f}% &nbsp;·&nbsp; Regime: {user_regime}
+                            <div style='background:#131B2C;border-radius:6px;padding:16px;
+                                        border:1px solid {sc};border-left:3px solid {sc};margin-bottom:10px'>
+                              <b style='color:{sc};font-family:"Fraunces",serif;font-weight:500'>
+                                <span style='display:inline-block;width:8px;height:8px;border-radius:50%;background:{sc};margin-right:6px'></span>{row.Sector}</b>
+                              <div style='color:#9AA3B5;font-size:0.78rem;font-family:"IBM Plex Sans",sans-serif'>
+                                Confidence: <span style="font-family:'IBM Plex Mono',monospace">{row.Conf:.0f}%</span> &nbsp;·&nbsp; Regime: {user_regime}
                               </div>
-                              <table style='width:100%;margin-top:8px;font-size:0.83rem'>
-                                <tr><td style='color:#64748b'>1D</td>
+                              <table style='width:100%;margin-top:8px;font-size:0.83rem;font-family:"IBM Plex Mono",monospace'>
+                                <tr><td style='color:#9AA3B5'>1D</td>
                                     <td style='color:{rc};text-align:right'>{ret1:+.2f}%</td></tr>
-                                <tr><td style='color:#64748b'>1W</td>
+                                <tr><td style='color:#9AA3B5'>1W</td>
                                     <td style='color:{rc};text-align:right'>{ret5:+.2f}%</td></tr>
-                                <tr><td style='color:#64748b'>10D</td>
+                                <tr><td style='color:#9AA3B5'>10D</td>
                                     <td style='color:{rc};text-align:right'>{ret10:+.2f}%</td></tr>
                               </table>
                             </div>
@@ -1331,18 +1663,21 @@ elif stage == "6. AI Predictions":
 
             # Multi-horizon bar chart
             fig_sec = go.Figure()
-            for col_name, label in [("1D %","1-Day"),("5D %","1-Week"),("10D %","10-Day")]:
+            for (col_name, label), bar_color in zip(
+                [("1D %", "1-Day"), ("5D %", "1-Week"), ("10D %", "10-Day")], CATEGORY_SEQUENCE
+            ):
                 fig_sec.add_trace(go.Bar(
                     name=label, x=sd["Sector"], y=sd[col_name],
                     text=[f"{v:+.2f}%" for v in sd[col_name]],
                     textposition="outside",
+                    marker_color=bar_color,
                 ))
-            fig_sec.add_hline(y=0, line_dash="dot", line_color="#30363d")
+            fig_sec.add_hline(y=0, line_dash="dot", line_color=COLORS["line"])
+            apply_chart_theme(fig_sec, height=370)
             fig_sec.update_layout(
                 title="Sector Return Forecasts — 1D / 1W / 10D",
-                barmode="group", template="plotly_dark", height=370,
+                barmode="group",
                 yaxis_title="Forecast Return (%)",
-                plot_bgcolor="#0e1117", paper_bgcolor="#0e1117",
                 legend=dict(orientation="h", yanchor="bottom", y=1.02,
                             xanchor="right", x=1),
             )

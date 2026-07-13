@@ -1,0 +1,172 @@
+{
+  "Topic_0": {
+    "model": "LDA",
+    "keywords": [
+      "corporation",
+      "aid",
+      "extensive",
+      "chirping",
+      "hail",
+      "pattern",
+      "pain",
+      "fabric",
+      "sell",
+      "cure"
+    ],
+    "zero_shot_domain": "Culture",
+    "zero_shot_score": 0.24088358879089355
+  },
+  "Topic_1": {
+    "model": "LDA",
+    "keywords": [
+      "game",
+      "sector",
+      "child",
+      "society",
+      "local",
+      "festival",
+      "reach",
+      "play",
+      "culture",
+      "strength"
+    ],
+    "zero_shot_domain": "Culture",
+    "zero_shot_score": 0.9338904619216919
+  },
+  "Topic_2": {
+    "model": "LDA",
+    "keywords": [
+      "youth",
+      "woman",
+      "young",
+      "programme",
+      "school",
+      "mission",
+      "decade",
+      "age",
+      "story",
+      "student"
+    ],
+    "zero_shot_domain": "Education",
+    "zero_shot_score": 0.6489575505256653
+  },
+  "Topic_3": {
+    "model": "LDA",
+    "keywords": [
+      "corporation",
+      "aid",
+      "extensive",
+      "chirping",
+      "hail",
+      "pattern",
+      "pain",
+      "fabric",
+      "sell",
+      "cure"
+    ],
+    "zero_shot_domain": "Culture",
+    "zero_shot_score": 0.24088358879089355
+  },
+  "Topic_4": {
+    "model": "LDA",
+    "keywords": [
+      "sir",
+      "modi",
+      "minister",
+      "prime",
+      "fit",
+      "tell",
+      "ncc",
+      "river",
+      "language",
+      "school"
+    ],
+    "zero_shot_domain": "Culture",
+    "zero_shot_score": 0.3876790404319763
+  },
+  "Topic_5": {
+    "model": "LDA",
+    "keywords": [
+      "corona",
+      "doctor",
+      "yoga",
+      "home",
+      "scheme",
+      "face",
+      "bharat",
+      "treatment",
+      "fight",
+      "save"
+    ],
+    "zero_shot_domain": "Healthcare",
+    "zero_shot_score": 0.5462083220481873
+  },
+  "Topic_6": {
+    "model": "LDA",
+    "keywords": [
+      "corporation",
+      "aid",
+      "extensive",
+      "chirping",
+      "hail",
+      "pattern",
+      "pain",
+      "fabric",
+      "sell",
+      "cure"
+    ],
+    "zero_shot_domain": "Culture",
+    "zero_shot_score": 0.24088358879089355
+  },
+  "Topic_7": {
+    "model": "LDA",
+    "keywords": [
+      "corporation",
+      "aid",
+      "extensive",
+      "chirping",
+      "hail",
+      "pattern",
+      "pain",
+      "fabric",
+      "sell",
+      "cure"
+    ],
+    "zero_shot_domain": "Culture",
+    "zero_shot_score": 0.24088358879089355
+  },
+  "Topic_8": {
+    "model": "LDA",
+    "keywords": [
+      "unity",
+      "run",
+      "guru",
+      "local",
+      "festival",
+      "statue",
+      "state",
+      "daughter",
+      "visit",
+      "follow"
+    ],
+    "zero_shot_domain": "Culture",
+    "zero_shot_score": 0.5805134177207947
+  },
+  "Topic_9": {
+    "model": "LDA",
+    "keywords": [
+      "corporation",
+      "aid",
+      "extensive",
+      "chirping",
+      "hail",
+      "pattern",
+      "pain",
+      "fabric",
+      "sell",
+      "cure"
+    ],
+    "zero_shot_domain": "Culture",
+    "zero_shot_score": 0.24088358879089355
+  }
+}

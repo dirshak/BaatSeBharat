@@ -45,6 +45,13 @@ except Exception as _geo_err:
     _GEO_OK = False
     _geo_err_msg = str(_geo_err)
 
+try:
+    from prediction_history import compute_prediction_vs_actual, summarize as summarize_prediction_history
+    _PREDHIST_OK = True
+except Exception as _predhist_err:
+    _PREDHIST_OK = False
+    _predhist_err_msg = str(_predhist_err)
+
 from pathlib import Path
 
 _LOGO_PATH = Path(__file__).parent / "logo.png"
@@ -298,6 +305,7 @@ st.markdown(f"""
     .st-key-nav_5 div[data-testid="stButton"] button {{ border-bottom-color: rgba(40,90,70,0.5); }}
     .st-key-nav_6 div[data-testid="stButton"] button {{ border-bottom-color: rgba(47,111,78,0.5); }}
     .st-key-nav_7 div[data-testid="stButton"] button {{ border-bottom-color: rgba(47,111,78,0.5); }}
+    .st-key-nav_8 div[data-testid="stButton"] button {{ border-bottom-color: rgba(47,111,78,0.5); }}
 
     /* Generic buttons elsewhere (Run Pipeline, etc.) */
     .stButton button, .main div[data-testid="stButton"] button {{
@@ -429,6 +437,7 @@ STAGES = [
     "5. Company Analytics",
     "6. AI Predictions",
     "7. Global Influence Map",
+    "8. Global Preview",
 ]
 # Short labels for the horizontal nav pills only -- STAGES itself (the
 # values every `elif stage == "..."` block below matches on) is unchanged,
@@ -442,6 +451,7 @@ NAV_LABELS = [
     "05 Company",
     "06 Predictions",
     "07 Global",
+    "08 Preview",
 ]
 if "active_stage" not in st.session_state:
     st.session_state.active_stage = STAGES[0]
@@ -449,7 +459,7 @@ if "active_stage" not in st.session_state:
 # Horizontal top nav: a sticky flexbox row (st.container(horizontal=True))
 # of content-sized buttons tracked via session_state, replacing the old
 # vertical sidebar stepper. Each button keeps a stable per-index CSS hook
-# (.st-key-nav_0 .. nav_7) for the saffron -> navy -> green accent
+# (.st-key-nav_0 .. nav_8) for the saffron -> navy -> green accent
 # sequence, and the active pill gets a solid underline (the horizontal
 # equivalent of the old stepper's colored-dot progress marker).
 with st.container(key="topnav", horizontal=True):
@@ -1507,12 +1517,16 @@ elif stage == "6. AI Predictions":
         # Input signals expander
         with st.expander("🔍 Signal Inputs Used", expanded=False):
             inp = co_pred.get("inputs", {})
+            _llm_strength = inp.get("llm_strength")
+            _llm_sentiment = inp.get("llm_sentiment")
             st.table(pd.DataFrame([
                 {"Signal": "FinBERT Sentiment",    "Value": f"{inp.get('sentiment', 0):+.4f}"},
                 {"Signal": "Rhetoric Signal",      "Value": f"{inp.get('rhetoric_signal', inp.get('topic_strength', 0)):.4f}"},
                 {"Signal": "Market Regime",        "Value": inp.get('regime', 'N/A')},
                 {"Signal": "5-Day Price Momentum", "Value": f"{inp.get('momentum_5d_pct', 0):+.2f}%"},
                 {"Signal": "Hist. Avg Return (5D)","Value": f"{inp.get('historical_return_pct', 0):+.4f}%"},
+                {"Signal": "Groq Topic Strength",  "Value": f"{_llm_strength:.4f}" if _llm_strength is not None else "N/A — not yet classified"},
+                {"Signal": "Groq Sentiment",       "Value": f"{_llm_sentiment:+.4f}" if _llm_sentiment is not None else "N/A — not yet classified"},
             ]))
 
         if use_llm and co_pred.get("llm_decision"):
@@ -1712,3 +1726,93 @@ elif stage == "7. Global Influence Map":
             _map_preds = None
 
     render_global_influence_map(company_predictions=_map_preds)
+
+# ===========================================================================
+# ── STAGE 8: GLOBAL PREVIEW ─────────────────────────────────────────────────
+# ===========================================================================
+
+elif stage == "8. Global Preview":
+    stage_header("08", "Global Preview", "Past speeches: what the pipeline predicted vs. what actually happened.")
+
+    if not _PREDHIST_OK:
+        st.error(f"Prediction history module failed to load: `{_predhist_err_msg}`")
+        st.info("Ensure `src/prediction_history.py` is present.")
+        st.stop()
+
+    gp_c1, gp_c2 = st.columns(2)
+    with gp_c1:
+        gp_source = st.selectbox(
+            "Source", ["All", "Mann Ki Baat", "ECB", "Fed"], index=0, key="gp_source"
+        )
+    with gp_c2:
+        gp_company = st.selectbox(
+            "Company", ["All"] + list(COMPANY_UNIVERSE.keys()), index=0, key="gp_company"
+        )
+
+    with st.spinner("Replaying past predictions against realized outcomes…"):
+        gp_df = compute_prediction_vs_actual(
+            source=None if gp_source == "All" else gp_source,
+            company=None if gp_company == "All" else gp_company,
+        )
+
+    if gp_df.empty:
+        st.info(
+            "Not enough data yet to build a Global Preview for this filter — "
+            "needs speeches with computed market impact (speech_market_impact)."
+        )
+        st.stop()
+
+    gp_summary = summarize_prediction_history(gp_df)
+
+    hr = gp_summary.get("overall_hit_rate")
+    metric_row([
+        ("Directional Hit Rate (5D)", f"{hr*100:.1f}%" if hr is not None else "N/A", "sign(predicted) == sign(actual)"),
+        ("Mean Abs. Error (1D)", f"{gp_summary.get('mean_abs_error_1d', 0):.2f}%", None),
+        ("Mean Abs. Error (5D)", f"{gp_summary.get('mean_abs_error_5d', 0):.2f}%", None),
+        ("Speeches Covered", f"{gp_summary.get('n_events', 0):,}", None),
+    ])
+
+    st.markdown("#### Predicted vs. Actual Return (5-Day)")
+    gp_plot_df = gp_df.dropna(subset=["hit"]).copy()
+    if not gp_plot_df.empty:
+        gp_plot_df["Result"] = gp_plot_df["hit"].map({True: "Hit", False: "Miss"})
+        fig_gp = px.scatter(
+            gp_plot_df,
+            x="predicted_return_5d", y="actual_return_5d",
+            color="Result", hover_data=["date", "source", "company"],
+            color_discrete_map={"Hit": COLORS["green"], "Miss": COLORS["rust"]},
+        )
+        _lo = gp_plot_df["predicted_return_5d"].min()
+        _hi = gp_plot_df["predicted_return_5d"].max()
+        fig_gp.add_shape(
+            type="line", x0=_lo, y0=_lo, x1=_hi, y1=_hi,
+            line=dict(color=COLORS["ink_dim"], dash="dot")
+        )
+        apply_chart_theme(fig_gp, height=420)
+        fig_gp.update_layout(
+            xaxis_title="Predicted 5D Return (%)", yaxis_title="Actual 5D Return (%)",
+        )
+        st.plotly_chart(fig_gp, use_container_width=True)
+    else:
+        st.caption("No events with a non-zero actual return to plot yet.")
+
+    st.markdown("#### Speech-Level Detail")
+    st.dataframe(
+        gp_df.sort_values("date", ascending=False)[[
+            "date", "source", "company", "predicted_signal",
+            "predicted_return_1d", "predicted_return_5d",
+            "actual_return_1d", "actual_return_5d", "hit"
+        ]],
+        use_container_width=True,
+        hide_index=True,
+    )
+
+    _pc1, _pc2 = st.columns(2)
+    with _pc1:
+        if gp_summary.get("per_company") is not None and not gp_summary["per_company"].empty:
+            st.markdown("#### Accuracy by Company")
+            st.dataframe(gp_summary["per_company"], use_container_width=True, hide_index=True)
+    with _pc2:
+        if gp_summary.get("per_source") is not None and not gp_summary["per_source"].empty:
+            st.markdown("#### Accuracy by Source")
+            st.dataframe(gp_summary["per_source"], use_container_width=True, hide_index=True)

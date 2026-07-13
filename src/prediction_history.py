@@ -214,7 +214,7 @@ def compute_prediction_vs_actual(source: Optional[str] = None,
             'predicted_return_5d': pred_5d,
             'actual_return_1d': actual_1d,
             'actual_return_5d': actual_5d,
-            'hit': (np.sign(pred_5d) == np.sign(actual_5d)) if actual_5d != 0 else None,
+            'hit': bool(np.sign(pred_5d) == np.sign(actual_5d)) if actual_5d != 0 else None,
         })
 
         # Only extend history AFTER using it, so this event's own outcome
@@ -229,8 +229,13 @@ def summarize(df: pd.DataFrame) -> Dict:
     if df is None or df.empty:
         return {}
 
+    # 'hit' holds a mix of bool and None (no realized move to score against),
+    # which pandas stores as object dtype -- object-dtype .mean() over
+    # numpy.bool_ values silently returns garbage (seen: ~0.0002 instead of
+    # ~0.52) rather than raising, so cast to float explicitly rather than
+    # relying on pandas' automatic numeric coercion.
     hit_df = df.dropna(subset=['hit'])
-    overall_hit_rate = float(hit_df['hit'].mean()) if not hit_df.empty else None
+    overall_hit_rate = float(hit_df['hit'].astype(float).mean()) if not hit_df.empty else None
     mae_1d = float((df['predicted_return_1d'] - df['actual_return_1d']).abs().mean())
     mae_5d = float((df['predicted_return_5d'] - df['actual_return_5d']).abs().mean())
 
@@ -238,7 +243,7 @@ def summarize(df: pd.DataFrame) -> Dict:
         g_hits = g['hit'].dropna()
         return pd.Series({
             'n': len(g),
-            'hit_rate': float(g_hits.mean()) if not g_hits.empty else None,
+            'hit_rate': float(g_hits.astype(float).mean()) if not g_hits.empty else None,
             'mae_5d': float((g['predicted_return_5d'] - g['actual_return_5d']).abs().mean()),
         })
 

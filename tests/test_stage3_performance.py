@@ -23,6 +23,8 @@ import pytest
 pytest.importorskip("streamlit.testing.v1")
 from streamlit.testing.v1 import AppTest
 
+from conftest import goto_stage
+
 # Generous vs. the old failure mode (180s timeout) but tight enough to catch
 # a regression back to O(n^2) chart-building.
 MAX_STAGE3_SECONDS = 30
@@ -33,9 +35,8 @@ def test_stage3_market_impact_loads_quickly():
     at.run()
     assert not at.exception, f"Executive Summary raised: {list(at.exception)}"
 
-    at.sidebar.radio[0].set_value('3. Market Impact')
     start = time.time()
-    at.run()
+    goto_stage(at, '3. Market Impact')
     elapsed = time.time() - start
 
     assert not at.exception, f"Stage 3 raised: {list(at.exception)}"

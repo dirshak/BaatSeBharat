@@ -24,6 +24,8 @@ import pytest
 pytest.importorskip("streamlit.testing.v1")
 from streamlit.testing.v1 import AppTest
 
+from conftest import goto_stage
+
 MAX_FIRST_LOAD_SECONDS = 5
 MAX_CACHED_RERUN_SECONDS = 2
 
@@ -31,10 +33,9 @@ MAX_CACHED_RERUN_SECONDS = 2
 def test_stage4_regime_intelligence_loads_quickly():
     at = AppTest.from_file('App_v2.py', default_timeout=60)
     at.run()
-    at.sidebar.radio[0].set_value('4. Regime Intelligence')
 
     start = time.time()
-    at.run()
+    goto_stage(at, '4. Regime Intelligence')
     first_load = time.time() - start
     assert not at.exception, f"Stage 4 raised: {list(at.exception)}"
     assert first_load < MAX_FIRST_LOAD_SECONDS, (

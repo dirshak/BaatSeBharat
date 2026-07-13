@@ -27,6 +27,8 @@ import pytest
 pytest.importorskip("streamlit.testing.v1")
 from streamlit.testing.v1 import AppTest
 
+from conftest import goto_stage
+
 STAGES = [
     "Executive Summary",
     "1. Data Ingestion",
@@ -49,15 +51,13 @@ def test_every_stage_loads_without_exceptions_and_is_fast_when_warm():
     # First pass: visit every stage once (may include legitimate one-time
     # network I/O for Stage 6/7 -- not bounded here).
     for stage in STAGES[1:]:
-        at.sidebar.radio[0].set_value(stage)
-        at.run()
+        goto_stage(at, stage)
         assert not at.exception, f"{stage} raised on first visit: {list(at.exception)}"
 
     # Second pass: everything should now be cache-warm.
     for stage in STAGES:
-        at.sidebar.radio[0].set_value(stage)
         start = time.time()
-        at.run()
+        goto_stage(at, stage)
         elapsed = time.time() - start
         assert not at.exception, f"{stage} raised on warm revisit: {list(at.exception)}"
         assert elapsed < MAX_WARM_SECONDS, (

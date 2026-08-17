@@ -51,3 +51,7 @@ outputs/*
 logs/*
 *.log
 ingestion_log.txt
+
+# Diagnostic fixture from scripts/verify_prediction_math.mjs -- never
+# meant to ship as part of the static data export
+frontend/public/data/_verify_fixture.json

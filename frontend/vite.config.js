@@ -1,13 +1,12 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
+// The frontend fetches only static JSON under public/data/ (see
+// src/dataClient.js) -- no dev-server proxy to a live backend needed.
+// `npm run dev` reads directly from frontend/public/data/, regenerated
+// locally via `python scripts/export_static_data.py`.
 export default defineConfig({
   plugins: [react()],
-  server: {
-    proxy: {
-      '/api': 'http://127.0.0.1:8000',
-    },
-  },
   build: {
     outDir: 'dist',
   },

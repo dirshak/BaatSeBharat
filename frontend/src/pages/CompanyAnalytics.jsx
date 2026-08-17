@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { api } from '../api.js'
+import { dataClient } from '../dataClient.js'
 import StageHeader from '../components/StageHeader.jsx'
 import PlotlyChart from '../components/PlotlyChart.jsx'
 import Alert from '../components/Alert.jsx'
@@ -10,16 +10,16 @@ export default function CompanyAnalytics() {
   const [data, setData] = useState(null)
 
   useEffect(() => {
-    api.companyAnalyticsCompanies().then((d) => {
-      setCompanies(d.companies)
-      if (d.companies.length > 0) setCompany(d.companies[0])
+    dataClient.companyAnalyticsCompanies().then((cs) => {
+      setCompanies(cs)
+      if (cs.length > 0) setCompany(cs[0])
     })
   }, [])
 
   useEffect(() => {
     if (!company) return
     setData(null)
-    api.companyAnalytics(company).then(setData)
+    dataClient.companyAnalytics(company).then(setData)
   }, [company])
 
   return (
@@ -42,7 +42,7 @@ export default function CompanyAnalytics() {
       {!data ? (
         <p className="spinner-note">Loading…</p>
       ) : data.empty ? (
-        <Alert type="warning">No topic-impact data found for {company}. Run the pipeline first.</Alert>
+        <Alert type="warning">No topic-impact data found for {company}. Waiting on the next scheduled pipeline run.</Alert>
       ) : (
         <>
           <h3>{data.company} Topic Impact Heatmap</h3>

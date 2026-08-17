@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react'
-import { api } from '../api.js'
+import { useEffect, useMemo, useState } from 'react'
+import { dataClient } from '../dataClient.js'
+import { buildIndicatorChoroplethFig } from '../chartBuilders.js'
 import Tabs from '../components/Tabs.jsx'
 import PlotlyChart from '../components/PlotlyChart.jsx'
 import DataTable from '../components/DataTable.jsx'
@@ -10,7 +11,7 @@ function CountryRiskTab() {
   const [showTable, setShowTable] = useState(false)
 
   useEffect(() => {
-    api.geoCountryRisk().then((d) => setData(d.geoOk ? d : null))
+    dataClient.geoCountryRisk().then(setData)
   }, [])
 
   if (!data) return <p className="spinner-note">Loading country risk data…</p>
@@ -58,9 +59,10 @@ function ShocksTab() {
   const [showTable, setShowTable] = useState(false)
 
   useEffect(() => {
-    setData(null)
-    api.geoShocks(shockType).then((d) => setData(d.geoOk ? d : null))
-  }, [shockType])
+    // shocks.json already contains all 4 shock-type figures -- the
+    // selector below just picks which one to show, no re-fetch needed.
+    dataClient.geoShocks().then(setData)
+  }, [])
 
   return (
     <div>
@@ -79,10 +81,10 @@ function ShocksTab() {
       </div>
 
       {!data ? (
-        <p className="spinner-note">Computing shock matrix…</p>
+        <p className="spinner-note">Loading shock matrix…</p>
       ) : (
         <>
-          <PlotlyChart fig={data.selectedFig} height={480} />
+          <PlotlyChart fig={data.allFigs[shockType]} height={480} />
 
           <h3 style={{ marginTop: '1rem' }}>Shock Comparison — All Types</h3>
           <div className="grid-2">
@@ -110,7 +112,7 @@ function CompanyLocationsTab() {
   const [data, setData] = useState(null)
 
   useEffect(() => {
-    api.geoCompanyMap().then((d) => setData(d.geoOk ? d : null))
+    dataClient.geoCompanyMap().then(setData)
   }, [])
 
   return (
@@ -126,34 +128,53 @@ function CompanyLocationsTab() {
 
 function MacroIndicatorsTab() {
   const [indicators, setIndicators] = useState([])
+  const [keyCountries, setKeyCountries] = useState([])
   const [indicator, setIndicator] = useState(null)
-  const [data, setData] = useState(null)
+  const [table, setTable] = useState(null) // { indicator, simulated, rows }
   const [selectedCountries, setSelectedCountries] = useState([])
   const [showTrend, setShowTrend] = useState(false)
   const [showRaw, setShowRaw] = useState(false)
 
   useEffect(() => {
-    api.geoIndicators().then((d) => {
-      if (d.geoOk) {
-        setIndicators(d.indicators)
-        if (d.indicators.length > 0) setIndicator(d.indicators[0])
-      }
+    dataClient.geoIndicatorsList().then((d) => {
+      setIndicators(d.indicators)
+      setKeyCountries(d.keyCountries)
+      if (d.indicators.length > 0) setIndicator(d.indicators[0])
     })
   }, [])
 
   useEffect(() => {
     if (!indicator) return
-    setData(null)
-    api.geoIndicator(indicator).then((d) => {
-      setData(d)
-      if (d.selectedCountries) setSelectedCountries(d.selectedCountries)
+    setTable(null)
+    dataClient.geoIndicator(indicator).then((d) => {
+      setTable(d)
+      const allCountries = [...new Set(d.rows.map((r) => r.Country))]
+      setSelectedCountries(keyCountries.filter((c) => allCountries.includes(c)))
     })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [indicator])
 
-  useEffect(() => {
-    if (!indicator || selectedCountries.length === 0) return
-    api.geoIndicator(indicator, selectedCountries.join(',')).then(setData)
-  }, [selectedCountries])
+  const allCountries = useMemo(() => (table ? [...new Set(table.rows.map((r) => r.Country))].sort() : []), [table])
+
+  const fig = useMemo(
+    () => (table && selectedCountries.length > 0 ? buildIndicatorChoroplethFig(table.rows, indicator, selectedCountries) : null),
+    [table, indicator, selectedCountries]
+  )
+
+  const filteredRows = useMemo(
+    () => (table ? table.rows.filter((r) => selectedCountries.includes(r.Country)) : []),
+    [table, selectedCountries]
+  )
+
+  const trendRows = useMemo(() => {
+    if (selectedCountries.length === 0 || selectedCountries.length > 15) return null
+    const byYear = {}
+    for (const r of filteredRows) {
+      byYear[r.Year] ??= { Year: r.Year }
+      byYear[r.Year][r.Country] = r[indicator]
+    }
+    return Object.values(byYear).sort((a, b) => a.Year - b.Year)
+  }, [filteredRows, selectedCountries, indicator])
 
   return (
     <div>
@@ -169,13 +190,13 @@ function MacroIndicatorsTab() {
         </select>
       </div>
 
-      {!data ? (
-        <p className="spinner-note">Fetching from World Bank…</p>
-      ) : data.empty ? (
+      {!table ? (
+        <p className="spinner-note">Loading…</p>
+      ) : table.rows.length === 0 ? (
         <Alert type="warning">No data available for {indicator}.</Alert>
       ) : (
         <>
-          {data.simulated ? (
+          {table.simulated ? (
             <Alert type="warning">
               ⚠️ Showing simulated data — live World Bank fetch unavailable. These values are synthetic placeholders,
               not real economic data.
@@ -190,19 +211,19 @@ function MacroIndicatorsTab() {
               onChange={(e) => setSelectedCountries(Array.from(e.target.selectedOptions, (o) => o.value))}
               style={{ height: 140 }}
             >
-              {data.allCountries.map((c) => (
+              {allCountries.map((c) => (
                 <option key={c}>{c}</option>
               ))}
             </select>
           </div>
 
-          <PlotlyChart fig={data.fig} height={500} />
+          {fig ? <PlotlyChart fig={fig} height={500} /> : <Alert type="info">Select at least one country.</Alert>}
 
           <div style={{ marginTop: '0.5rem' }}>
             <button onClick={() => setShowTrend((v) => !v)}>📈 Trend Lines</button>
             {showTrend ? (
-              data.trend ? (
-                <DataTable rows={data.trend} />
+              trendRows ? (
+                <DataTable rows={trendRows} />
               ) : (
                 <Alert type="info">Select ≤15 countries to view trend lines.</Alert>
               )
@@ -210,7 +231,7 @@ function MacroIndicatorsTab() {
           </div>
           <div style={{ marginTop: '0.5rem' }}>
             <button onClick={() => setShowRaw((v) => !v)}>Show Raw Data</button>
-            {showRaw ? <DataTable rows={data.rawData} /> : null}
+            {showRaw ? <DataTable rows={filteredRows} /> : null}
           </div>
         </>
       )}
@@ -223,11 +244,14 @@ export default function GlobalInfluenceMap() {
   const [err, setErr] = useState(null)
 
   useEffect(() => {
-    api.geoCountryRisk().then((d) => {
+    dataClient.geoCountryRisk().then((d) => {
       if (!d.geoOk) {
         setGeoOk(false)
         setErr(d.error)
       }
+    }).catch((e) => {
+      setGeoOk(false)
+      setErr(String(e))
     })
   }, [])
 
@@ -236,8 +260,7 @@ export default function GlobalInfluenceMap() {
       <div>
         <div className="stage-eyebrow">Stage 07</div>
         <h1>Global Influence Map</h1>
-        <Alert type="error">GeoDashboard module failed to load: <code>{err}</code></Alert>
-        <Alert type="info">Ensure `src/geo_dashboard.py` exists and `wbdata` is installed.</Alert>
+        <Alert type="error">GeoDashboard data failed to load: <code>{err}</code></Alert>
       </div>
     )
   }

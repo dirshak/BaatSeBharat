@@ -1,6 +1,6 @@
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState } from 'react'
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom'
-import { api } from './api.js'
+import { dataClient } from './dataClient.js'
 
 import Overview from './pages/Overview.jsx'
 import Ingestion from './pages/Ingestion.jsx'
@@ -26,49 +26,23 @@ const NAV = [
 
 export default function App() {
   const [status, setStatus] = useState(null)
-  const [running, setRunning] = useState(false)
   const navigate = useNavigate()
   const location = useLocation()
 
-  const loadStatus = useCallback(() => {
-    api.status().then(setStatus).catch(() => setStatus(null))
-  }, [])
-
   useEffect(() => {
-    loadStatus()
-  }, [loadStatus])
-
-  const handleRunPipeline = async () => {
-    setRunning(true)
-    try {
-      const res = await api.runPipeline()
-      if (res.success) {
-        await loadStatus()
-      } else {
-        alert('Pipeline execution failed. Check logs/pipeline_error.log')
-      }
-    } catch (e) {
-      alert('Pipeline execution failed: ' + e.message)
-    } finally {
-      setRunning(false)
-    }
-  }
+    dataClient.status().then(setStatus).catch(() => setStatus(null))
+  }, [])
 
   return (
     <div className="app-shell">
       <div className="topbar">
         <div className="topbar-brand">
-          {status?.logoBase64 ? (
-            <img src={`data:image/png;base64,${status.logoBase64}`} alt="" />
-          ) : null}
+          <img src="/logo.png" alt="" />
           <div>
             <div className="topbar-brand-name">BaatSeBharat</div>
             <div className="topbar-brand-sub">Rhetoric &amp; Markets Intel.</div>
           </div>
         </div>
-        <button onClick={handleRunPipeline} disabled={running}>
-          {running ? 'Running…' : status?.modelsExist ? 'Run Pipeline Again' : 'Run Pipeline'}
-        </button>
       </div>
 
       <nav className="stage-nav">
@@ -88,8 +62,7 @@ export default function App() {
       {status && status.missingFiles && status.missingFiles.length > 0 ? (
         <div className="main-content">
           <div className="alert alert-error">
-            <strong>❌ CRITICAL: Missing Required Pipeline Files</strong>
-            <p>The following files are missing. Click "Run Pipeline" above to generate them.</p>
+            <strong>❌ Missing pipeline output files as of the last scheduled run</strong>
             <ul>
               {status.missingFiles.map((f) => (
                 <li key={f}><code>{f}</code></li>
@@ -118,28 +91,12 @@ export default function App() {
 
 function StatusStrip({ status }) {
   if (!status) return null
-  const parts = []
-  if (status.modelsExist) {
-    parts.push({ color: 'var(--green)', text: `Updated ${status.lastUpdate}` })
-  } else {
-    parts.push({ color: 'var(--rust)', text: 'Pipeline not yet run' })
-  }
-  if (status.predOk && status.llmModeActive) {
-    parts.push({ color: 'var(--green)', text: 'LLM mode active' })
-  } else if (status.predOk) {
-    parts.push({ color: 'var(--saffron)', text: 'AI: rule-based mode' })
-  } else {
-    parts.push({ color: 'var(--rust)', text: 'Prediction engine offline' })
-  }
+  const color = status.modelsExist ? 'var(--green)' : 'var(--rust)'
+  const text = status.modelsExist ? `Data updated ${status.lastUpdate}` : 'No pipeline data yet'
   return (
     <div className="status-strip">
-      {parts.map((p, i) => (
-        <span key={i}>
-          {i > 0 ? <span className="sep">|</span> : null}
-          <span className="dot" style={{ background: p.color }}></span>
-          {p.text}
-        </span>
-      ))}
+      <span className="dot" style={{ background: color }}></span>
+      {text}
     </div>
   )
 }

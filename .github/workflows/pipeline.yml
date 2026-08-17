@@ -1,0 +1,89 @@
+name: Refresh pipeline data
+
+# This is the ONLY place the heavy compute (FinBERT sentiment, NMF topic
+# modeling, HMM regime detection, Granger causality, optional Groq LLM
+# classification) runs. It never runs on a live user request path -- the
+# old in-app "Run Pipeline" button is gone; this schedule/manual dispatch
+# is its replacement.
+#
+# Runs scripts/run_prototype.py (the model pipeline, unchanged) then
+# scripts/export_static_data.py (snapshots every stage as static JSON),
+# then commits the updated frontend/public/data/ back to main so Cloudflare
+# Pages picks up fresh data on its next deploy.
+
+on:
+  schedule:
+    # Weekly, Monday 03:00 UTC. Ask before changing this cadence.
+    - cron: '0 3 * * 1'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pipeline-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    env:
+      GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Build pipeline image
+        run: docker build -t bsb-pipeline -f Dockerfile .
+
+      - name: Run data pipeline (scrape -> FinBERT -> NMF -> HMM -> Granger causality)
+        run: |
+          docker run --rm \
+            -e PYTHONUNBUFFERED=1 \
+            -v "${{ github.workspace }}:/app" \
+            -w /app \
+            bsb-pipeline \
+            python scripts/run_prototype.py
+
+      - name: Classify speeches via Groq (optional -- skipped if GROQ_API_KEY is not set)
+        if: ${{ env.GROQ_API_KEY != '' }}
+        run: |
+          docker run --rm \
+            -e PYTHONUNBUFFERED=1 \
+            -e GROQ_API_KEY \
+            -v "${{ github.workspace }}:/app" \
+            -w /app \
+            bsb-pipeline \
+            python scripts/classify_speeches_groq.py
+
+      - name: Export static JSON for the frontend
+        run: |
+          docker run --rm \
+            -e PYTHONUNBUFFERED=1 \
+            -v "${{ github.workspace }}:/app" \
+            -w /app \
+            bsb-pipeline \
+            python scripts/export_static_data.py
+
+      - name: Verify no secret leaked into exported static data
+        run: |
+          if [ -n "$GROQ_API_KEY" ] && grep -R --fixed-strings -l "$GROQ_API_KEY" frontend/public/data/ ; then
+            echo "::error::GROQ_API_KEY value found inside frontend/public/data/ -- aborting before commit."
+            exit 1
+          fi
+          echo "No secret leakage detected in frontend/public/data/."
+
+      - name: Commit updated static data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add frontend/public/data/
+          if git diff --cached --quiet; then
+            echo "No data changes to commit."
+          else
+            git commit -m "chore: refresh pipeline data ($(date -u +%Y-%m-%dT%H:%M:%SZ))"
+            git push
+          fi

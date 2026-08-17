@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { api } from '../api.js'
+import { dataClient } from '../dataClient.js'
 import StageHeader from '../components/StageHeader.jsx'
 import Tabs from '../components/Tabs.jsx'
 import PlotlyChart from '../components/PlotlyChart.jsx'
@@ -7,44 +7,52 @@ import Alert from '../components/Alert.jsx'
 
 function SpeechesTab() {
   const [sourceFilter, setSourceFilter] = useState('All')
-  const [data, setData] = useState(null)
+  const [index, setIndex] = useState(null)
   const [selectedId, setSelectedId] = useState(null)
   const [text, setText] = useState('')
 
   useEffect(() => {
-    api.ingestionSpeeches(sourceFilter).then((d) => {
-      setData(d)
+    dataClient.ingestionIndex().then((d) => {
+      setIndex(d)
       if (d.speeches.length > 0) setSelectedId(d.speeches[0].id)
     })
-  }, [sourceFilter])
+  }, [])
 
   useEffect(() => {
     if (selectedId != null) {
-      api.ingestionSpeechText(selectedId).then((d) => setText(d.fullText || '(no text)'))
+      dataClient.ingestionSpeechText(selectedId).then((d) => setText(d.fullText || '(no text)'))
     }
   }, [selectedId])
 
-  if (!data) return <p className="spinner-note">Loading…</p>
-  if (data.speeches.length === 0) return <Alert type="info">Database empty. Run the pipeline first.</Alert>
+  if (!index) return <p className="spinner-note">Loading…</p>
+  if (index.speeches.length === 0) return <Alert type="info">Database empty. Waiting on the next scheduled pipeline run.</Alert>
 
-  const selected = data.speeches.find((s) => s.id === selectedId)
+  const speeches = sourceFilter === 'All' ? index.speeches : index.speeches.filter((s) => s.source === sourceFilter)
+  const selected = speeches.find((s) => s.id === selectedId) ?? speeches[0]
 
   return (
     <div>
       <div className="field-row">
         <div className="field">
           <label>Filter by Source</label>
-          <select value={sourceFilter} onChange={(e) => setSourceFilter(e.target.value)}>
+          <select
+            value={sourceFilter}
+            onChange={(e) => {
+              setSourceFilter(e.target.value)
+              const next = e.target.value === 'All' ? index.speeches : index.speeches.filter((s) => s.source === e.target.value)
+              if (next.length > 0) setSelectedId(next[0].id)
+            }}
+          >
             <option>All</option>
-            {data.sources.map((s) => (
+            {index.sources.map((s) => (
               <option key={s}>{s}</option>
             ))}
           </select>
         </div>
         <div className="field" style={{ flex: '2 1 400px' }}>
           <label>Select Speech to Preview</label>
-          <select value={selectedId ?? ''} onChange={(e) => setSelectedId(Number(e.target.value))}>
-            {data.speeches.map((s) => (
+          <select value={selected?.id ?? ''} onChange={(e) => setSelectedId(Number(e.target.value))}>
+            {speeches.map((s) => (
               <option key={s.id} value={s.id}>
                 [{s.id}] {s.source} | {s.date || 'N/A'} | {s.title || 'Untitled'}
               </option>
@@ -79,11 +87,11 @@ function MarketTab() {
   const [fig, setFig] = useState(undefined)
 
   useEffect(() => {
-    api.ingestionMarket().then((d) => setFig(d.fig))
+    dataClient.ingestionMarket().then((d) => setFig(d.fig))
   }, [])
 
   if (fig === undefined) return <p className="spinner-note">Loading…</p>
-  if (fig === null) return <Alert type="info">No market data. Run the pipeline first.</Alert>
+  if (fig === null) return <Alert type="info">No market data. Waiting on the next scheduled pipeline run.</Alert>
   return <PlotlyChart fig={fig} height={420} />
 }
 

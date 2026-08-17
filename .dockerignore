@@ -1,0 +1,16 @@
+.git
+venv/
+.venv/
+__pycache__/
+*.pyc
+node_modules/
+# This image is for the Python pipeline only (scripts/run_prototype.py,
+# scripts/classify_speeches_groq.py, scripts/export_static_data.py) --
+# it writes INTO frontend/public/data/ via a mounted volume, it doesn't
+# need the frontend source/build tree as build context.
+frontend/
+.pytest_cache/
+htmlcov/
+.coverage
+logs/
+*.log

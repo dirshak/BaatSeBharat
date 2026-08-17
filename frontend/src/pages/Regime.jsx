@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { api } from '../api.js'
+import { dataClient } from '../dataClient.js'
 import StageHeader from '../components/StageHeader.jsx'
 import PlotlyChart from '../components/PlotlyChart.jsx'
 import Alert from '../components/Alert.jsx'
@@ -10,16 +10,16 @@ export default function Regime() {
   const [data, setData] = useState(null)
 
   useEffect(() => {
-    api.regimeTickers().then((d) => {
-      setTickers(d.tickers)
-      if (d.tickers.length > 0) setTicker(d.tickers[0])
+    dataClient.regimeTickers().then((ts) => {
+      setTickers(ts)
+      if (ts.length > 0) setTicker(ts[0])
     })
   }, [])
 
   useEffect(() => {
     if (!ticker) return
     setData(null)
-    api.regime(ticker).then(setData)
+    dataClient.regime(ticker).then(setData)
   }, [ticker])
 
   return (
@@ -33,7 +33,7 @@ export default function Regime() {
       {!data ? (
         <p className="spinner-note">Loading…</p>
       ) : data.empty ? (
-        <Alert type="warning">No regime data found. Run the pipeline first.</Alert>
+        <Alert type="warning">No regime data found. Waiting on the next scheduled pipeline run.</Alert>
       ) : (
         <>
           <div className="field">

@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react'
-import { api } from '../api.js'
+import { useEffect, useMemo, useState } from 'react'
+import { dataClient } from '../dataClient.js'
+import { buildPredVsActualScatterFig, summarizePreview } from '../chartBuilders.js'
 import StageHeader from '../components/StageHeader.jsx'
 import LedgerRow from '../components/LedgerRow.jsx'
 import PlotlyChart from '../components/PlotlyChart.jsx'
@@ -7,36 +8,45 @@ import DataTable from '../components/DataTable.jsx'
 import Alert from '../components/Alert.jsx'
 
 export default function GlobalPreview() {
-  const [companies, setCompanies] = useState([])
   const [source, setSource] = useState('All')
   const [company, setCompany] = useState('All')
-  const [data, setData] = useState(undefined)
+  const [full, setFull] = useState(undefined) // full unfiltered detail.json
   const [notOk, setNotOk] = useState(null)
 
   useEffect(() => {
-    api.previewCompanies().then((d) => {
-      if (d.predHistOk) setCompanies(d.companies)
-      else setNotOk(d.error)
-    })
-  }, [])
-
-  useEffect(() => {
-    setData(undefined)
-    api.preview(source, company).then((d) => {
+    dataClient.previewDetail().then((d) => {
       if (!d.predHistOk) {
         setNotOk(d.error)
         return
       }
-      setData(d)
+      setFull(d)
     })
-  }, [source, company])
+  }, [])
+
+  const companies = useMemo(() => {
+    if (!full || full.empty) return []
+    return [...new Set(full.detail.map((r) => r.company))].sort()
+  }, [full])
+
+  // detail.json was exported unfiltered; the Source/Company dropdowns
+  // filter it (and recompute the summary stats over the filtered subset,
+  // matching the original server-side behavior where filters were applied
+  // before summarize() ran) client-side instead of re-fetching.
+  const filteredRows = useMemo(() => {
+    if (!full || full.empty) return []
+    return full.detail.filter(
+      (r) => (source === 'All' || r.source === source) && (company === 'All' || r.company === company)
+    )
+  }, [full, source, company])
+
+  const summary = useMemo(() => summarizePreview(filteredRows), [filteredRows])
+  const scatterFig = useMemo(() => buildPredVsActualScatterFig(filteredRows), [filteredRows])
 
   if (notOk) {
     return (
       <div>
         <StageHeader number="08" title="Global Preview" subtitle="Past speeches: what the pipeline predicted vs. what actually happened." />
-        <Alert type="error">Prediction history module failed to load: <code>{notOk}</code></Alert>
-        <Alert type="info">Ensure `src/prediction_history.py` is present.</Alert>
+        <Alert type="error">Prediction history data failed to load: <code>{notOk}</code></Alert>
       </div>
     )
   }
@@ -66,45 +76,44 @@ export default function GlobalPreview() {
         </div>
       </div>
 
-      {data === undefined ? (
-        <p className="spinner-note">Replaying past predictions against realized outcomes…</p>
-      ) : data.empty ? (
+      {full === undefined ? (
+        <p className="spinner-note">Loading…</p>
+      ) : full.empty || filteredRows.length === 0 ? (
         <Alert type="info">
-          Not enough data yet to build a Global Preview for this filter — needs speeches with computed market impact
-          (speech_market_impact).
+          Not enough data for this filter — needs speeches with computed market impact (speech_market_impact).
         </Alert>
       ) : (
         <>
           <LedgerRow
             items={[
-              { label: 'Directional Hit Rate (5D)', value: data.summary.overallHitRatePct != null ? `${data.summary.overallHitRatePct.toFixed(1)}%` : 'N/A', sub: 'sign(predicted) == sign(actual)' },
-              { label: 'Mean Abs. Error (1D)', value: `${data.summary.meanAbsError1d.toFixed(2)}%` },
-              { label: 'Mean Abs. Error (5D)', value: `${data.summary.meanAbsError5d.toFixed(2)}%` },
-              { label: 'Speeches Covered', value: data.summary.nEvents.toLocaleString() },
+              { label: 'Directional Hit Rate (5D)', value: summary.overallHitRatePct != null ? `${summary.overallHitRatePct.toFixed(1)}%` : 'N/A', sub: 'sign(predicted) == sign(actual)' },
+              { label: 'Mean Abs. Error (1D)', value: `${summary.meanAbsError1d.toFixed(2)}%` },
+              { label: 'Mean Abs. Error (5D)', value: `${summary.meanAbsError5d.toFixed(2)}%` },
+              { label: 'Speeches Covered', value: summary.nEvents.toLocaleString() },
             ]}
           />
 
           <h3>Predicted vs. Actual Return (5-Day)</h3>
-          {data.scatterFig ? (
-            <PlotlyChart fig={data.scatterFig} height={420} />
+          {scatterFig ? (
+            <PlotlyChart fig={scatterFig} height={420} />
           ) : (
             <p className="caption">No events with a non-zero actual return to plot yet.</p>
           )}
 
           <h3>Speech-Level Detail</h3>
-          <DataTable rows={data.detail} />
+          <DataTable rows={filteredRows} />
 
           <div className="grid-2" style={{ marginTop: '1rem' }}>
-            {data.perCompany.length > 0 ? (
+            {summary.perCompany.length > 0 ? (
               <div>
                 <h3>Accuracy by Company</h3>
-                <DataTable rows={data.perCompany} />
+                <DataTable rows={summary.perCompany} />
               </div>
             ) : null}
-            {data.perSource.length > 0 ? (
+            {summary.perSource.length > 0 ? (
               <div>
                 <h3>Accuracy by Source</h3>
-                <DataTable rows={data.perSource} />
+                <DataTable rows={summary.perSource} />
               </div>
             ) : null}
           </div>

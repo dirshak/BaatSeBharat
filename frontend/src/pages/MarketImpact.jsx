@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
-import { api } from '../api.js'
+import { useEffect, useMemo, useState } from 'react'
+import { dataClient } from '../dataClient.js'
 import StageHeader from '../components/StageHeader.jsx'
 import PlotlyChart from '../components/PlotlyChart.jsx'
 import DataTable from '../components/DataTable.jsx'
@@ -8,31 +8,31 @@ import Alert from '../components/Alert.jsx'
 export default function MarketImpact() {
   const [tickers, setTickers] = useState([])
   const [ticker, setTicker] = useState(null)
-  const [sourceColors, setSourceColors] = useState({})
   const [sourceFilter, setSourceFilter] = useState([])
   const [data, setData] = useState(null)
 
   useEffect(() => {
-    api.marketImpactTickers().then((d) => {
-      setTickers(d.tickers)
-      if (d.tickers.length > 0) setTicker(d.tickers[0])
+    dataClient.marketImpactTickers().then((ts) => {
+      setTickers(ts)
+      if (ts.length > 0) setTicker(ts[0])
     })
   }, [])
 
   useEffect(() => {
     if (!ticker) return
-    api.marketImpact(ticker, sourceFilter.length ? sourceFilter.join(',') : undefined).then((d) => {
+    setData(null)
+    dataClient.marketImpact(ticker).then((d) => {
       setData(d)
-      if (d.sourceColors && sourceFilter.length === 0) {
-        setSourceFilter(Object.keys(d.sourceColors))
-      }
+      if (d.sourceColors) setSourceFilter(Object.keys(d.sourceColors))
     })
   }, [ticker])
 
-  useEffect(() => {
-    if (!ticker || sourceFilter.length === 0) return
-    api.marketImpact(ticker, sourceFilter.join(',')).then(setData)
-  }, [sourceFilter])
+  // eventTable was exported unfiltered (all sources); the checkboxes below
+  // filter it client-side instead of re-fetching from the server.
+  const filteredEventTable = useMemo(() => {
+    if (!data || data.empty) return []
+    return data.eventTable.filter((row) => sourceFilter.includes(row.source))
+  }, [data, sourceFilter])
 
   return (
     <div>
@@ -41,7 +41,7 @@ export default function MarketImpact() {
       {!data ? (
         <p className="spinner-note">Loading…</p>
       ) : data.empty ? (
-        <Alert type="warning">No impact data yet. Click "Run Pipeline" above to populate the database.</Alert>
+        <Alert type="warning">No impact data yet. Waiting on the next scheduled pipeline run.</Alert>
       ) : (
         <>
           <h3>Market Performance with Speech Events</h3>
@@ -102,7 +102,7 @@ export default function MarketImpact() {
               ))}
             </div>
           </div>
-          <DataTable rows={data.eventTable} />
+          <DataTable rows={filteredEventTable} />
 
           <h3 style={{ marginTop: '1.5rem' }}>Average 5-Day Abnormal Return by Source</h3>
           <PlotlyChart fig={data.avgBySourceFig} height={380} />
@@ -129,7 +129,7 @@ export default function MarketImpact() {
               ) : null}
             </>
           ) : (
-            <Alert type="warning">No topic-alignment data available. Run the pipeline first.</Alert>
+            <Alert type="warning">No topic-alignment data available. Waiting on the next scheduled pipeline run.</Alert>
           )}
         </>
       )}

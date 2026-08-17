@@ -1,0 +1,17 @@
+# Cloudflare Pages project config for the BaatSeBharat frontend.
+#
+# Primary deploy path: connect this repo in the Cloudflare dashboard
+# (Workers & Pages -> Create -> Pages -> Connect to Git) with:
+#   Root directory:      frontend
+#   Build command:       npm run build
+#   Build output dir:    dist   (this file's pages_build_output_dir)
+# Once connected, Cloudflare rebuilds and redeploys automatically on every
+# push to main -- including the commits .github/workflows/pipeline.yml
+# makes after each scheduled/manual pipeline run. No extra CI step needed.
+#
+# This file also lets you deploy manually/locally without re-typing those
+# flags: `npx wrangler pages deploy` from inside frontend/ (after
+# `npm run build`), or `npx wrangler pages dev` to preview locally.
+name = "baatsebharat"
+pages_build_output_dir = "dist"
+compatibility_date = "2026-08-17"

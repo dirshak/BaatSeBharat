@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { api } from '../api.js'
+import { dataClient } from '../dataClient.js'
 import StageHeader from '../components/StageHeader.jsx'
 import PlotlyChart from '../components/PlotlyChart.jsx'
 import Alert from '../components/Alert.jsx'
@@ -10,12 +10,12 @@ export default function Nlp() {
   const [data, setData] = useState(null)
 
   useEffect(() => {
-    api.nlpModels().then((d) => setModels(d.models))
+    dataClient.nlpModelList().then(setModels)
   }, [])
 
   useEffect(() => {
     setData(null)
-    api.nlpTopics(model).then(setData)
+    dataClient.nlpTopics(model).then(setData)
   }, [model])
 
   return (
@@ -40,7 +40,7 @@ export default function Nlp() {
       ) : data.error ? (
         <>
           <Alert type="warning">{data.error}</Alert>
-          <Alert type="info">💡 Use the "Run Pipeline" button above to generate results.</Alert>
+          <Alert type="info">💡 Results will appear after the next scheduled pipeline run.</Alert>
         </>
       ) : (
         <>

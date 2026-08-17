@@ -49,6 +49,7 @@ tqdm==4.66.1
 python-dotenv==1.0.0
 requests==2.31.0
 beautifulsoup4==4.12.2
+playwright>=1.40.0
 
 # Configuration
 PyYAML==6.0.1
@@ -60,7 +61,6 @@ hmmlearn>=0.3.0
 
 # GeoDashboard — World Bank choropleth maps
 wbdata>=0.3.3
-moviepy==1.0.3
 
 # Groq — Llama-hosted topic/company classification
 groq>=0.11.0

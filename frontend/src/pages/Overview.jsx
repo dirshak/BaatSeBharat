@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { api } from '../api.js'
+import { dataClient } from '../dataClient.js'
 import LedgerRow from '../components/LedgerRow.jsx'
 import PlotlyChart from '../components/PlotlyChart.jsx'
 import DataTable from '../components/DataTable.jsx'
@@ -11,7 +11,7 @@ export default function Overview() {
   const [data, setData] = useState(null)
 
   useEffect(() => {
-    api.overview().then(setData).catch(() => setData(null))
+    dataClient.overview().then(setData).catch(() => setData(null))
   }, [])
 
   if (!data) return <p className="spinner-note">Loading…</p>
@@ -69,7 +69,7 @@ export default function Overview() {
       {data.speechCount > 0 ? (
         <DataTable rows={data.recentSpeeches} columns={['date', 'source', 'speaker', 'title']} />
       ) : (
-        <Alert type="warning">No data found. Please click "Run Pipeline" above.</Alert>
+        <Alert type="warning">No data found. Waiting on the next scheduled pipeline run.</Alert>
       )}
     </div>
   )

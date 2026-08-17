@@ -36,6 +36,11 @@ RUN pip install --no-cache-dir --upgrade pip \
         --extra-index-url https://download.pytorch.org/whl/cpu \
         -r requirements.txt
 
+# spaCy's English model is a separate download, not bundled with the
+# spacy package itself -- src/features/text_preprocessing.py loads
+# en_core_web_sm by name and fails at runtime (OSError: [E050]) without it.
+RUN python -m spacy download en_core_web_sm
+
 # src/data/centralized_scraper.py drives a headless Chromium via Playwright
 # to scrape speech transcripts -- `playwright install` pulls the browser
 # binary itself (not on PyPI), --with-deps adds the OS-level libraries

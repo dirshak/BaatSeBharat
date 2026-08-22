@@ -23,7 +23,11 @@ import pytest
 pytest.importorskip("streamlit.testing.v1")
 from streamlit.testing.v1 import AppTest
 
-from conftest import APP_PATH, goto_stage
+from conftest import APP_PATH, STREAMLIT_APP_AVAILABLE, SKIP_NO_STREAMLIT, goto_stage
+
+pytestmark = pytest.mark.skipif(
+    not STREAMLIT_APP_AVAILABLE, reason=SKIP_NO_STREAMLIT
+)
 
 # Generous vs. the old failure mode (180s timeout) but tight enough to catch
 # a regression back to O(n^2) chart-building.

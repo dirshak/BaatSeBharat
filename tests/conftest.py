@@ -23,11 +23,40 @@ APP_PATH = os.path.join(
 )
 
 
+def _is_streamlit_app(path):
+    """True only if APP_PATH is still a Streamlit script.
+
+    Upstream replaced the Streamlit App.py with a 58-line launcher that
+    builds the React frontend and starts FastAPI. AppTest-based tests then
+    fail with a confusing '[WinError 2] file not found' from the launcher's
+    `npm install` subprocess -- which looks like a broken test rather than
+    a removed feature. Detect the architecture explicitly instead.
+    """
+    if not os.path.isfile(path):
+        return False
+    try:
+        with open(path, encoding='utf-8') as f:
+            head = f.read(4000)
+    except OSError:
+        return False
+    return 'import streamlit' in head or 'streamlit as st' in head
+
+
+STREAMLIT_APP_AVAILABLE = _is_streamlit_app(APP_PATH)
+
+SKIP_NO_STREAMLIT = (
+    "App.py is no longer a Streamlit script -- the UI moved to React + "
+    "FastAPI (backend/routers/). These stage-render performance guards "
+    "need reimplementing against the backend endpoints; see "
+    "backend/routers/status.py for the equivalent surface."
+)
+
+
 def test_app_entrypoint_exists():
     """Guard: fail loudly here if the app is renamed, rather than letting
     every AppTest-based test degrade into a confusing 'File not found'."""
     assert os.path.isfile(APP_PATH), (
-        f"Streamlit entrypoint not found at {APP_PATH}. If the app was "
+        f"App entrypoint not found at {APP_PATH}. If the app was "
         "renamed, update APP_PATH in tests/conftest.py."
     )
 

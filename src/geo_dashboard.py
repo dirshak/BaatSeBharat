@@ -615,7 +615,7 @@ def render_global_influence_map(company_predictions: Optional[list] = None) -> N
         with st.spinner("Loading country risk data…"):
             risk_df = compute_country_risk_scores()
 
-        st.plotly_chart(_make_state_choropleth(risk_df), use_container_width=True)
+        st.plotly_chart(_make_state_choropleth(risk_df), width='stretch')
 
         # Summary cards
         bull_n    = len(risk_df[risk_df["state"] == "Bull"])
@@ -635,7 +635,7 @@ def render_global_influence_map(company_predictions: Optional[list] = None) -> N
             disp = disp.rename(columns={
                 "gdp": "GDP Growth (%)", "inflation": "Inflation (%)", "score": "Score"
             })[["Country", "Market State", "GDP Growth (%)", "Inflation (%)", "Score"]]
-            st.dataframe(disp, use_container_width=True, hide_index=True)
+            st.dataframe(disp, width='stretch', hide_index=True)
 
     with tab2:
         st.markdown("### ⚡ Market Shock Layer")
@@ -656,23 +656,23 @@ def render_global_influence_map(company_predictions: Optional[list] = None) -> N
                 "Geopolitical": "⚡ Geopolitical Risk",
             }[x]
         )
-        st.plotly_chart(_make_shock_heatmap(shock_df, shock_type), use_container_width=True)
+        st.plotly_chart(_make_shock_heatmap(shock_df, shock_type), width='stretch')
 
         # All 4 shocks side-by-side summary
         st.markdown("#### Shock Comparison — All Types")
         sc1, sc2 = st.columns(2)
         with sc1:
-            st.plotly_chart(_make_shock_heatmap(shock_df, "Inflation"),    use_container_width=True, key="sh_inf")
-            st.plotly_chart(_make_shock_heatmap(shock_df, "Banking"),      use_container_width=True, key="sh_bank")
+            st.plotly_chart(_make_shock_heatmap(shock_df, "Inflation"),    width='stretch', key="sh_inf")
+            st.plotly_chart(_make_shock_heatmap(shock_df, "Banking"),      width='stretch', key="sh_bank")
         with sc2:
-            st.plotly_chart(_make_shock_heatmap(shock_df, "Policy"),       use_container_width=True, key="sh_pol")
-            st.plotly_chart(_make_shock_heatmap(shock_df, "Geopolitical"), use_container_width=True, key="sh_geo")
+            st.plotly_chart(_make_shock_heatmap(shock_df, "Policy"),       width='stretch', key="sh_pol")
+            st.plotly_chart(_make_shock_heatmap(shock_df, "Geopolitical"), width='stretch', key="sh_geo")
 
         with st.expander("📋 Shock Data Table"):
             sdisplay = shock_df.set_index("Country").style.background_gradient(
                 cmap="YlOrRd", axis=None, vmin=0, vmax=10
             )
-            st.dataframe(sdisplay, use_container_width=True)
+            st.dataframe(sdisplay, width='stretch')
 
     with tab3:
         st.markdown("### 📍 Company Geo-Intelligence Map")
@@ -680,7 +680,7 @@ def render_global_influence_map(company_predictions: Optional[list] = None) -> N
             "Company headquarters plotted on the map with signal overlays. "
             "Marker size ∝ prediction confidence."
         )
-        st.plotly_chart(_make_company_map(company_predictions), use_container_width=True)
+        st.plotly_chart(_make_company_map(company_predictions), width='stretch')
 
     with tab4:
         st.markdown("### 📊 World Bank Macro Indicator Explorer")
@@ -732,16 +732,16 @@ def render_global_influence_map(company_predictions: Optional[list] = None) -> N
                 paper_bgcolor="#0B1220",
                 geo=dict(bgcolor="#0B1220", landcolor="#131B2C"),
             )
-            st.plotly_chart(fig_wb, use_container_width=True)
+            st.plotly_chart(fig_wb, width='stretch')
 
             with st.expander("📈 Trend Lines"):
                 if len(wb_df["Country"].unique()) <= 15:
                     trend_df = wb_df.pivot(index="Year", columns="Country", values=indicator_name)
-                    st.line_chart(trend_df, use_container_width=True)
+                    st.line_chart(trend_df, width='stretch')
                 else:
                     st.info("Select ≤15 countries to view trend lines.")
 
             with st.expander("Show Raw Data"):
-                st.dataframe(wb_df, use_container_width=True)
+                st.dataframe(wb_df, width='stretch')
         else:
             st.warning(f"No data available for {indicator_name}.")

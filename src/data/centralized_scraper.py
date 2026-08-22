@@ -140,17 +140,31 @@ class CentralizedSpeechScraper:
         conn.commit()
         conn.close()
 
-    def _generate_hash(self, title, text):
-        """Generate SHA-256 hash of title + first 100 chars of text"""
-        prefix = text[:100] if text else ""
-        content = f"{title}{prefix}".encode('utf-8')
-        return hashlib.sha256(content).hexdigest()
+    @staticmethod
+    def _format_missing(missing):
+        """Collapse a sorted list of missing episode numbers into compact
+        ranges, e.g. [22..75, 102] -> '22-75, 102'. Returns None when
+        nothing is missing so callers can distinguish "verified complete"
+        from "never checked" -- the previous code passed the literal string
+        "None detected" unconditionally, which reported a clean corpus even
+        when 55 episodes were absent."""
+        if not missing:
+            return None
+        ranges, start, prev = [], missing[0], missing[0]
+        for n in missing[1:]:
+            if n == prev + 1:
+                prev = n
+                continue
+            ranges.append(f"{start}-{prev}" if start != prev else f"{start}")
+            start = prev = n
+        ranges.append(f"{start}-{prev}" if start != prev else f"{start}")
+        return ", ".join(ranges)
 
     def _log_ingestion(self, source, count, expected, missing=None):
         """Log ingestion results to ingestion_log.txt"""
         log_path = './ingestion_log.txt'
         timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        missing_str = f" | Missing: {missing}" if missing else ""
+        missing_str = f" | Missing: {missing}" if missing else " | Missing: none"
         log_entry = f"[{timestamp}] Source: {source} | Episodes scraped: {count}/{expected}{missing_str}\n"
         
         with open(log_path, 'a', encoding='utf-8') as f:
@@ -174,14 +188,12 @@ class CentralizedSpeechScraper:
         for speech in speeches:
             try:
                 # 1. Deduplication Check
-                title = speech.get('title', 'N/A')
-                text = speech.get('full_text', '')
-                doc_hash = self._generate_hash(title, text)
-                
-                # Check if hash already exists (using a metadata field or just unique constraint)
-                # For now, let's use the unique constraint in the DB if available, 
-                # but we'll also check explicitly to avoid INSERT OR IGNORE silently skipping without counting.
-                
+                # Done with an explicit SELECT rather than relying on
+                # INSERT OR IGNORE, so that skipped rows aren't counted as
+                # saved. (A content hash via _generate_hash() was computed
+                # here previously and never used -- dedup has always been by
+                # (title, date, source), so the dead call is dropped.)
+                #
                 # `date IS ?` (not `date = ?`) matters here: SQL `=` is never
                 # true when comparing NULL to NULL, so speeches with an
                 # unparsed/missing date (e.g. ECB press releases whose date
@@ -495,11 +507,16 @@ class CentralizedSpeechScraper:
     def scrape_mann_ki_baat(self, transcripts_dir='./transcripts/mann_ki_baat'):
         """
         Load Mann Ki Baat transcripts from already-scraped local .txt files.
-        Falls back to web scraping for any missing episodes.
         File format: first line = "Episode N (DD Mon, YYYY)", rest = transcript.
+
+        Note: this is a local-only loader. It does NOT fall back to web
+        scraping for missing episodes (the docstring claimed it did, but no
+        such path was ever implemented) -- gaps are reported to
+        ingestion_log.txt so they can be backfilled deliberately.
         """
         logger.info(f"Loading Mann Ki Baat transcripts from: {transcripts_dir}")
         speeches = []
+        episode_numbers = []
 
         if not os.path.isdir(transcripts_dir):
             logger.warning(f"Transcript directory not found: {transcripts_dir}")
@@ -559,19 +576,53 @@ class CentralizedSpeechScraper:
                     'url': f"https://www.pmindia.gov.in/en/news_updates/pms-address-in-the-{self._ordinal(ep_num)}-episode-of-mann-ki-baat/" if ep_num else None
                 })
                 logger.info(f"Loaded MKB Episode {ep_num} ({parsed_date})")
+                if ep_num is not None:
+                    episode_numbers.append(ep_num)
 
             except Exception as e:
                 logger.error(f"Error loading {fpath}: {e}")
 
         logger.info(f"Mann Ki Baat: loaded {len(speeches)} episodes from local files.")
-        count = self.save_speeches(speeches, transcript_dir=transcripts_dir, file_prefix='mann_ki_baat')
-        
-        # Log ingestion
-        expected_episodes = 120 # Example expected count
-        missing_episodes = [] # Logic to find missing episodes could be added here
-        self._log_ingestion("Mann Ki Baat", count, expected_episodes, missing="None detected" if not missing_episodes else str(missing_episodes))
-        
-        return count
+
+        # Deliberately passes transcript_dir=None. These .txt files are the
+        # SOURCE of this loader -- handing the same directory back to
+        # save_speeches() makes it rewrite each episode under its own naming
+        # scheme ("mann_ki_baat_<date>_<title>.txt"), which does not match
+        # the canonical "mann_ki_baat_<n>.txt" glob above. Those rewrites
+        # then accumulate as unreadable junk and, when re-ingested, nest
+        # their own header line as a title that grows on every round trip.
+        # That is precisely the corrupted-file pileup the glob filter above
+        # was added to work around; this is the cause, not the symptom. It
+        # stayed dormant only because the dedup check in save_speeches()
+        # skips already-known episodes before reaching the file write, so it
+        # would have re-triggered the moment the DB was rebuilt.
+        saved = self.save_speeches(speeches, transcript_dir=None)
+
+        # Report real coverage instead of a hardcoded placeholder. `saved`
+        # counts NEW DB rows, which is 0 on any re-run of an unchanged
+        # corpus -- logging that alone as "episodes scraped" made a healthy
+        # run look like a total failure. Log what was actually loaded, and
+        # derive the expected range from the highest episode present rather
+        # than a magic constant.
+        loaded = len(speeches)
+        expected_episodes = max(episode_numbers) if episode_numbers else loaded
+        present = set(episode_numbers)
+        missing_episodes = [n for n in range(1, expected_episodes + 1) if n not in present]
+
+        self._log_ingestion(
+            "Mann Ki Baat",
+            loaded,
+            expected_episodes,
+            missing=self._format_missing(missing_episodes),
+        )
+        if missing_episodes:
+            logger.warning(
+                f"Mann Ki Baat: {len(missing_episodes)} episode(s) missing from "
+                f"1..{expected_episodes}: {self._format_missing(missing_episodes)}"
+            )
+        logger.info(f"Mann Ki Baat: {saved} new episode(s) written to DB.")
+
+        return saved
 
     def load_local_transcripts(self, transcripts_dir, source, country, doc_type_default='Speech'):
         """Load already-scraped speech .txt files from disk into the DB.

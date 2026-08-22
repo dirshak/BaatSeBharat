@@ -21,6 +21,17 @@ def test_speech_sources_exist(db_connection):
     assert counts['ECB'] > 0, "ECB speech count is zero"
     assert counts['Fed'] > 0, "Fed speech count is zero"
 
+# Fixed floor rather than a rolling "now - 10 years" window. The corpus is
+# historical and starts in 2016, so a rolling cutoff silently converted this
+# from a data-integrity check into a countdown: it passed for years, then
+# began failing in 2026 purely because the calendar advanced, with the
+# corpus unchanged. The real intent is to catch parse corruption (epoch-0
+# dates, year 19xx from a bad strptime), so anchor to a date that predates
+# any legitimate speech in the corpus. Mann Ki Baat began Oct 2014; ECB/Fed
+# archives are pulled from 2016 onward.
+EARLIEST_PLAUSIBLE_SPEECH = pd.Timestamp('2014-01-01')
+
+
 def test_speech_dates(db_connection):
     """Test that speech dates are valid and within range"""
     df = pd.read_sql_query(
@@ -32,10 +43,17 @@ def test_speech_dates(db_connection):
         df = df.dropna(subset=['date'])
         if df.empty:
             return
-        # Check date range (last 10 years)
-        cutoff = pd.Timestamp.now() - pd.Timedelta(days=3650)
-        assert (df['date'] >= cutoff).all(), "Some speeches are older than 10 years"
-        assert (df['date'] <= pd.Timestamp.now()).all(), "Future dates found"
+        too_old = df[df['date'] < EARLIEST_PLAUSIBLE_SPEECH]
+        assert too_old.empty, (
+            f"{len(too_old)} speech(es) predate {EARLIEST_PLAUSIBLE_SPEECH.date()}, "
+            f"which indicates a date-parsing bug. Sample: "
+            f"{too_old[['date', 'source']].head().to_dict('records')}"
+        )
+        future = df[df['date'] > pd.Timestamp.now()]
+        assert future.empty, (
+            f"{len(future)} speech(es) have future dates. Sample: "
+            f"{future[['date', 'source']].head().to_dict('records')}"
+        )
 
 def test_market_data_completeness(db_connection):
     """Test market data completeness"""

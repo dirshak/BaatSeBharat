@@ -24,14 +24,14 @@ import pytest
 pytest.importorskip("streamlit.testing.v1")
 from streamlit.testing.v1 import AppTest
 
-from conftest import goto_stage
+from conftest import APP_PATH, goto_stage
 
 MAX_FIRST_LOAD_SECONDS = 5
 MAX_CACHED_RERUN_SECONDS = 2
 
 
 def test_stage4_regime_intelligence_loads_quickly():
-    at = AppTest.from_file('App_v2.py', default_timeout=60)
+    at = AppTest.from_file(APP_PATH, default_timeout=60)
     at.run()
 
     start = time.time()

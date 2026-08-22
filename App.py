@@ -417,7 +417,7 @@ btn_label = "Run Pipeline Again" if models_exist else "Run Pipeline"
 
 with _hdr_col2:
     with st.container(key="runpipeline"):
-        if st.button(btn_label, use_container_width=True):
+        if st.button(btn_label, width='stretch'):
             with st.spinner("Executing End-to-End Prototype (MKB + ECB + Fed)..."):
                 result = subprocess.run([sys.executable, "scripts/run_prototype.py"], capture_output=True, text=True)
                 if result.returncode == 0:
@@ -660,15 +660,27 @@ if stage == "Executive Summary":
     _bt = _directional_backtest()
     if _bt:
         hit_pct = _bt['hit_rate'] * 100
-        _delta = hit_pct - 50
+        # Compare against the always-guess-the-majority-direction baseline,
+        # not 50%. Equity drift means a constant "up" call already beats a
+        # coin flip, so measuring against 50% credits the model with market
+        # drift it never predicted.
+        _base_pct = _bt['baseline_hit_rate'] * 100
+        _delta = hit_pct - _base_pct
         _delta_color = COLORS["green"] if _delta > 0 else (COLORS["rust"] if _delta < 0 else COLORS["ink_dim"])
+        _se_pp = _bt.get('se_clustered')
+        _se_txt = ""
+        if _se_pp and _se_pp == _se_pp:  # not NaN
+            _se_txt = f" +/- {_se_pp * 100:.1f}pp (clustered by speech)"
         hit_value, hit_sub, hit_tip = (
             f"{hit_pct:.1f}%",
-            f'<span style="color:{_delta_color}">{_delta:+.1f}pp vs. random</span>',
+            f'<span style="color:{_delta_color}">{_delta:+.1f}pp vs. baseline</span>',
             (
                 f"Out-of-sample backtest: topic-to-return bias learned on speeches "
-                f"before {_bt['cutoff_date']}, tested on {_bt['n_events']} events after. "
-                "50% = no better than a coin flip -- reported honestly, not adjusted to look better."
+                f"before {_bt['cutoff_date']}, tested on {_bt['n_events']} events "
+                f"({_bt.get('n_speeches', '?')} independent speeches) after."
+                f"{_se_txt}. Baseline = {_base_pct:.1f}%, what always calling the "
+                "majority direction scores on the same window -- that, not 50%, is "
+                "the bar for skill. Reported honestly, not adjusted to look better."
             ),
         )
     else:
@@ -705,7 +717,7 @@ if stage == "Executive Summary":
             )
             fig_pie.update_traces(textfont=dict(family="IBM Plex Mono", size=12), marker=dict(line=dict(color=COLORS["surface"], width=2)))
             apply_chart_theme(fig_pie, height=340)
-            st.plotly_chart(fig_pie, use_container_width=True)
+            st.plotly_chart(fig_pie, width='stretch')
 
     st.markdown("---")
     st.subheader("Live Pipeline Feed")
@@ -714,7 +726,7 @@ if stage == "Executive Summary":
         recent = pd.read_sql_query(
             "SELECT date, source, speaker, title FROM speeches ORDER BY date DESC LIMIT 10", conn
         )
-        st.dataframe(recent, use_container_width=True)
+        st.dataframe(recent, width='stretch')
         conn.close()
     else:
         st.warning("No data found. Please click '🚀 Run Prototype Pipeline' from the sidebar.")
@@ -793,7 +805,7 @@ elif stage == "1. Data Ingestion":
                 color_discrete_sequence=CATEGORY_SEQUENCE,
             )
             apply_chart_theme(fig, height=420)
-            st.plotly_chart(fig, use_container_width=True)
+            st.plotly_chart(fig, width='stretch')
         else:
             st.info("No market data. Run the pipeline first.")
 
@@ -846,7 +858,7 @@ elif stage == "2. NLP Intelligence":
         fig.update_traces(marker_color=COLORS["saffron"])
         fig.update_layout(xaxis_tickangle=-30)
         apply_chart_theme(fig, height=420)
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width='stretch')
 
         # Heatmap: topic distributions per speech (first 30)
         if topics.shape[0] > 1:
@@ -864,7 +876,7 @@ elif stage == "2. NLP Intelligence":
                 labels={'y': 'Topic'},
             )
             apply_chart_theme(fig_heat, height=420)
-            st.plotly_chart(fig_heat, use_container_width=True)
+            st.plotly_chart(fig_heat, width='stretch')
 
         col1, col2 = st.columns(2)
         with col1:
@@ -1036,7 +1048,7 @@ elif stage == "3. Market Impact":
             title=f"{sel_ticker} Price with Speech Events",
             legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1)
         )
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width='stretch')
 
         # --- Impact summary table with Signal column ---
         st.subheader("Speech Event Forward Returns")
@@ -1076,7 +1088,7 @@ elif stage == "3. Market Impact":
                       '1-Day Fwd Ret', '5-Day Fwd Ret', '10-Day Fwd Ret', 'Abnormal Ret']
         disp_df = disp_df[[c for c in cols_order if c in disp_df.columns]]
 
-        st.dataframe(disp_df, use_container_width=True)
+        st.dataframe(disp_df, width='stretch')
 
         # --- Average abnormal returns by source ---
         st.subheader("Average 5-Day Abnormal Return by Source")
@@ -1099,7 +1111,7 @@ elif stage == "3. Market Impact":
         fig_bar.update_traces(textposition='outside')
         fig_bar.add_hline(y=0, line_dash="dash", line_color=COLORS["line"])
         apply_chart_theme(fig_bar, height=380)
-        st.plotly_chart(fig_bar, use_container_width=True)
+        st.plotly_chart(fig_bar, width='stretch')
 
         st.info(
             "💡 **Interpretation:** A positive abnormal return means speeches from this source "
@@ -1189,7 +1201,7 @@ elif stage == "3. Market Impact":
             fig_topic.add_hline(y=0, line_dash="dash", line_color=COLORS["line"])
             fig_topic.update_layout(xaxis_tickangle=-30)
             apply_chart_theme(fig_topic, height=440)
-            st.plotly_chart(fig_topic, use_container_width=True)
+            st.plotly_chart(fig_topic, width='stretch')
             
             best_topic = topic_impact_df.iloc[0]
             best_signal = best_topic['topic_signal']
@@ -1264,7 +1276,7 @@ elif stage == "4. Regime Intelligence":
 
         apply_chart_theme(fig, height=550)
         fig.update_layout(title=f"{sel_ticker} Regime Timeline (Green=Stable, Saffron=Transitional, Rust=Volatile)")
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width='stretch')
 
         if t_regimes.empty:
             st.info(
@@ -1356,7 +1368,7 @@ elif stage == "5. Company Analytics":
             xaxis_title="Month",
             yaxis_title="Topic",
         )
-        st.plotly_chart(fig_heat, use_container_width=True)
+        st.plotly_chart(fig_heat, width='stretch')
 
         st.info(
             f"💡 Each cell is the average of (topic probability × {company}'s 5-day forward return) "
@@ -1592,7 +1604,7 @@ elif stage == "6. AI Predictions":
                 xaxis_tickangle=-35,
                 yaxis_title="Forecast Return (%)",
             )
-            st.plotly_chart(fig_bar, use_container_width=True)
+            st.plotly_chart(fig_bar, width='stretch')
 
             fig_sc = px.scatter(
                 pr_df, x="Score", y="Confidence",
@@ -1602,7 +1614,7 @@ elif stage == "6. AI Predictions":
                 title="Signal Score vs Prediction Confidence",
             )
             apply_chart_theme(fig_sc, height=330)
-            st.plotly_chart(fig_sc, use_container_width=True)
+            st.plotly_chart(fig_sc, width='stretch')
 
             with st.expander("📋 Full Table"):
                 tbl = pr_df.copy()
@@ -1612,7 +1624,7 @@ elif stage == "6. AI Predictions":
                 for c in ["1D %", "5D %", "10D %"]:
                     tbl[c] = tbl[c].map(lambda v: f"{v:+.2f}%")
                 tbl["Confidence"] = tbl["Confidence"].map(lambda v: f"{v:.0f}%")
-                st.dataframe(tbl, use_container_width=True, hide_index=True)
+                st.dataframe(tbl, width='stretch', hide_index=True)
 
     # ────────────────── SECTOR TAB ─────────────────────────────────────────
     with tab_sec:
@@ -1695,7 +1707,7 @@ elif stage == "6. AI Predictions":
                 legend=dict(orientation="h", yanchor="bottom", y=1.02,
                             xanchor="right", x=1),
             )
-            st.plotly_chart(fig_sec, use_container_width=True)
+            st.plotly_chart(fig_sec, width='stretch')
 
     st.info(
         "💡 **Caching:** Predictions refresh every 30 minutes, or immediately "
@@ -1792,7 +1804,7 @@ elif stage == "8. Global Preview":
         fig_gp.update_layout(
             xaxis_title="Predicted 5D Return (%)", yaxis_title="Actual 5D Return (%)",
         )
-        st.plotly_chart(fig_gp, use_container_width=True)
+        st.plotly_chart(fig_gp, width='stretch')
     else:
         st.caption("No events with a non-zero actual return to plot yet.")
 
@@ -1803,7 +1815,7 @@ elif stage == "8. Global Preview":
             "predicted_return_1d", "predicted_return_5d",
             "actual_return_1d", "actual_return_5d", "hit"
         ]],
-        use_container_width=True,
+        width='stretch',
         hide_index=True,
     )
 
@@ -1811,8 +1823,8 @@ elif stage == "8. Global Preview":
     with _pc1:
         if gp_summary.get("per_company") is not None and not gp_summary["per_company"].empty:
             st.markdown("#### Accuracy by Company")
-            st.dataframe(gp_summary["per_company"], use_container_width=True, hide_index=True)
+            st.dataframe(gp_summary["per_company"], width='stretch', hide_index=True)
     with _pc2:
         if gp_summary.get("per_source") is not None and not gp_summary["per_source"].empty:
             st.markdown("#### Accuracy by Source")
-            st.dataframe(gp_summary["per_source"], use_container_width=True, hide_index=True)
+            st.dataframe(gp_summary["per_source"], width='stretch', hide_index=True)

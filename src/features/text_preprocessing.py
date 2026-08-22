@@ -64,25 +64,79 @@ class TextPreprocessor:
         """
         # Clean text
         text = self.clean_text(text)
-        
-        # Process with spaCy
-        doc = self.nlp_en(text)
-        
+
+        # Process with spaCy (NER skipped -- see _UNUSED_PIPES)
+        doc = self.nlp_en(text, disable=self._UNUSED_PIPES)
+
         # POS filtering and lemmatization
-        filtered_tokens = []
-        
-        for token in doc:
-            # Filter conditions
+        return self._tokens_to_string(doc)
+    
+    # Components the English path never reads. preprocess_english() only
+    # uses token.pos_, token.lemma_, token.is_stop, token.is_punct and
+    # token.text -- all produced by tok2vec/tagger/attribute_ruler/
+    # lemmatizer. 'ner' is pure overhead here and disabling it is verified
+    # output-identical (measured: 30/30 documents byte-identical, ~2x
+    # faster). 'parser' is NOT disabled: it is unused by this filter but
+    # dropping it shifted one POS tag in roughly half of documents (~1 token
+    # in 2000), and segment_sentences() needs doc.sents.
+    _UNUSED_PIPES = ['ner']
+
+    def _tokens_to_string(self, doc):
+        """Shared POS/lemma filter so the single and batch paths cannot
+        drift apart."""
+        return ' '.join(
+            token.lemma_ for token in doc
             if (token.pos_ in ['NOUN', 'VERB', 'ADJ', 'PROPN'] and
                 not token.is_stop and
                 not token.is_punct and
                 len(token.text) > 2 and
-                token.lemma_ not in self.custom_stopwords):
-                
-                filtered_tokens.append(token.lemma_)
-        
-        return ' '.join(filtered_tokens)
-    
+                token.lemma_ not in self.custom_stopwords)
+        )
+
+    def preprocess_english_batch(self, texts, batch_size=16):
+        """Vectorised counterpart to preprocess_english().
+
+        Feeding spaCy one document per call re-pays the pipeline setup cost
+        every time; nlp.pipe() batches instead. Combined with skipping the
+        unused NER component this runs ~2x faster than a per-document loop
+        for identical output, which matters because the corpus pass covers
+        ~1000 speeches averaging ~15k characters each.
+        """
+        cleaned = [self.clean_text(t) for t in texts]
+        return [
+            self._tokens_to_string(doc)
+            for doc in self.nlp_en.pipe(
+                cleaned, batch_size=batch_size, disable=self._UNUSED_PIPES
+            )
+        ]
+
+    def preprocess_batch(self, texts, batch_size=16):
+        """Language-aware batch preprocessing.
+
+        English documents go through nlp.pipe() together; Hindi ones fall
+        back to the per-document path (indic-nlp has no batch API). Order of
+        the returned list matches the input.
+        """
+        results = [None] * len(texts)
+        english_idx, english_texts = [], []
+
+        for i, text in enumerate(texts):
+            if not text:
+                results[i] = ""
+            elif self.detect_language(text) == 'hindi':
+                results[i] = self.preprocess_hindi(text)
+            else:
+                english_idx.append(i)
+                english_texts.append(text)
+
+        if english_texts:
+            for i, processed in zip(
+                english_idx, self.preprocess_english_batch(english_texts, batch_size)
+            ):
+                results[i] = processed
+
+        return results
+
     def preprocess_hindi(self, text):
         """
         Preprocess Hindi text

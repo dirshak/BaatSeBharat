@@ -2,7 +2,7 @@
 Regression test for "Stage 3 isn't loading".
 
 Root cause (reproduced with streamlit.testing.v1.AppTest, which timed out
-at 180s): App_v2.py's Stage 3 ("Market Impact") called fig.add_vline() once
+at 180s): App.py's Stage 3 ("Market Impact") called fig.add_vline() once
 per speech-market-impact event to draw a vertical marker line -- for a
 heavily-covered ticker that's ~1000+ individual add_vline() calls. Plotly
 recomputes the whole figure layout on every add_vline/add_shape call, which
@@ -23,7 +23,7 @@ import pytest
 pytest.importorskip("streamlit.testing.v1")
 from streamlit.testing.v1 import AppTest
 
-from conftest import goto_stage
+from conftest import APP_PATH, goto_stage
 
 # Generous vs. the old failure mode (180s timeout) but tight enough to catch
 # a regression back to O(n^2) chart-building.
@@ -31,7 +31,7 @@ MAX_STAGE3_SECONDS = 30
 
 
 def test_stage3_market_impact_loads_quickly():
-    at = AppTest.from_file('App_v2.py', default_timeout=120)
+    at = AppTest.from_file(APP_PATH, default_timeout=120)
     at.run()
     assert not at.exception, f"Executive Summary raised: {list(at.exception)}"
 

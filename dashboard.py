@@ -545,7 +545,7 @@ if page == "📊 OVERVIEW":
             legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="center", x=0.5),
             margin=dict(t=40, b=40)
         )
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width='stretch')
     else:
         st.info("No sentiment data yet — run the preprocessing/sentiment pipeline to populate this chart.")
 
@@ -648,7 +648,7 @@ elif page == "📈 MARKET DYNAMICS":
             sdf = df_agg[df_agg["sector"] == sec].sort_values(period_col)
             st.plotly_chart(
                 build_sector_fig(sdf, sec, period_col, rcol_pct_col, period_label),
-                use_container_width=True,
+                width='stretch',
                 key=f"left_{sec}_{granularity}_{return_horizon}"
             )
 
@@ -657,7 +657,7 @@ elif page == "📈 MARKET DYNAMICS":
             sdf = df_agg[df_agg["sector"] == sec].sort_values(period_col)
             st.plotly_chart(
                 build_sector_fig(sdf, sec, period_col, rcol_pct_col, period_label),
-                use_container_width=True,
+                width='stretch',
                 key=f"right_{sec}_{granularity}_{return_horizon}"
             )
 
@@ -684,7 +684,7 @@ elif page == "📈 MARKET DYNAMICS":
         "Latest Return (%)", "Avg Return (%)",
         "🟢 Bull %", "🔴 Bear %", "⚪ Neutral %"
     ]]
-    st.dataframe(regime_display, use_container_width=True, hide_index=True)
+    st.dataframe(regime_display, width='stretch', hide_index=True)
 
     # ── ✨ FUTURE REGIME FORECAST ──────────────────────────
     st.markdown("---")
@@ -826,14 +826,14 @@ elif page == "📈 MARKET DYNAMICS":
         for sec in fc_left:
             st.plotly_chart(
                 build_forecast_fig(sec),
-                use_container_width=True,
+                width='stretch',
                 key=f"fc_left_{sec}_{granularity}"
             )
     with fc_col_right:
         for sec in fc_right:
             st.plotly_chart(
                 build_forecast_fig(sec),
-                use_container_width=True,
+                width='stretch',
                 key=f"fc_right_{sec}_{granularity}"
             )
 
@@ -855,7 +855,7 @@ elif page == "📈 MARKET DYNAMICS":
     })[["Sector", period_label, "Predicted Regime",
         "🟢 Bull %", "🔴 Bear %", "⚪ Neutral %",
         "Forecast Return (%)", "Lower 95%", "Upper 95%"]]
-    st.dataframe(fc_summary, use_container_width=True, hide_index=True)
+    st.dataframe(fc_summary, width='stretch', hide_index=True)
 
     # ── Topic strength vs sector overlay ──────────────────
     st.markdown("---")
@@ -914,7 +914,7 @@ elif page == "📈 MARKET DYNAMICS":
         plot_bgcolor="#0f172a", paper_bgcolor="#0f172a",
         margin=dict(t=55, b=130, l=55, r=90)
     )
-    st.plotly_chart(fig_ts, use_container_width=True)
+    st.plotly_chart(fig_ts, width='stretch')
 
 # ==========================================================
 # SPEECH AUDIT
@@ -952,7 +952,7 @@ elif page == "🔎 SPEECH AUDIT":
     st.dataframe(
         filtered[["date", "source", "title", "positive", "negative", "neutral"]]
         .sort_values("date", ascending=False),
-        use_container_width=True, hide_index=True
+        width='stretch', hide_index=True
     )
 
     st.markdown("---")
@@ -972,7 +972,7 @@ elif page == "🔎 SPEECH AUDIT":
             title="FinBERT Sentiment", template="plotly_dark",
             plot_bgcolor="#0f172a", paper_bgcolor="#0f172a"
         )
-        st.plotly_chart(fig_s, use_container_width=True)
+        st.plotly_chart(fig_s, width='stretch')
 
 # ==========================================================
 # TOPIC EXPLORER
@@ -986,10 +986,10 @@ elif page == "🧠 TOPIC EXPLORER":
     )
 
     st.markdown("### LDA Topics")
-    st.dataframe(df_topics, use_container_width=True, hide_index=True)
+    st.dataframe(df_topics, width='stretch', hide_index=True)
 
     st.markdown("### NMF Topics")
-    st.dataframe(df_nmf, use_container_width=True, hide_index=True)
+    st.dataframe(df_nmf, width='stretch', hide_index=True)
 
     top_scores = (
         df_topics.sort_values("score", ascending=False).head(10).copy()
@@ -1018,7 +1018,7 @@ elif page == "🧠 TOPIC EXPLORER":
         plot_bgcolor="#0f172a", paper_bgcolor="#0f172a",
         margin=dict(t=55, b=120, l=55, r=20)
     )
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width='stretch')
 
 # ==========================================================
 # AI PREDICTIONS  (Phase 2 — TradingAgents Integration)
@@ -1196,7 +1196,7 @@ elif page == "🤖 AI PREDICTIONS":
                 {"Signal": "5-Day Price Momentum",    "Value": f"{inputs.get('momentum_5d_pct', 0):+.2f}%"},
                 {"Signal": "Historical Avg Return",   "Value": f"{inputs.get('historical_return_pct', 0):+.2f}%"},
             ])
-            st.dataframe(si_df, use_container_width=True, hide_index=True)
+            st.dataframe(si_df, width='stretch', hide_index=True)
 
         if use_llm and pred.get("llm_decision"):
             with st.expander("🤖 LLM Decision Reasoning"):
@@ -1257,7 +1257,7 @@ elif page == "🤖 AI PREDICTIONS":
             plot_bgcolor="#0f172a",
             paper_bgcolor="#0f172a",
         )
-        st.plotly_chart(fig_companies, use_container_width=True)
+        st.plotly_chart(fig_companies, width='stretch')
 
         # Confidence scatter
         fig_conf = px.scatter(
@@ -1274,7 +1274,7 @@ elif page == "🤖 AI PREDICTIONS":
         fig_conf.update_layout(
             plot_bgcolor="#0f172a", paper_bgcolor="#0f172a", height=350
         )
-        st.plotly_chart(fig_conf, use_container_width=True)
+        st.plotly_chart(fig_conf, width='stretch')
 
         with st.expander("📋 Full Predictions Table"):
             disp_pred = pred_df.copy()
@@ -1284,7 +1284,7 @@ elif page == "🤖 AI PREDICTIONS":
             for col in ["1D Forecast", "5D Forecast", "10D Forecast"]:
                 disp_pred[col] = disp_pred[col].map(lambda x: f"{x:+.2f}%")
             disp_pred["Confidence"] = disp_pred["Confidence"].map(lambda x: f"{x:.0f}%")
-            st.dataframe(disp_pred, use_container_width=True, hide_index=True)
+            st.dataframe(disp_pred, width='stretch', hide_index=True)
 
     with pred_tab2:
         st.markdown("### 📦 Sector-Level Predictions")
@@ -1391,7 +1391,7 @@ elif page == "🤖 AI PREDICTIONS":
             paper_bgcolor="#0f172a",
             legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
         )
-        st.plotly_chart(fig_sec, use_container_width=True)
+        st.plotly_chart(fig_sec, width='stretch')
 
         st.info(
             "💡 **Note:** Predictions are derived from BaatSeBharat NLP signals "
@@ -1509,7 +1509,7 @@ elif page == "🔮 GLOBAL PREVIEW":
             xaxis_title="Predicted 5d Return (%)", yaxis_title="Actual 5d Return (%)",
             margin=dict(t=20, b=40)
         )
-        st.plotly_chart(fig_gp, use_container_width=True)
+        st.plotly_chart(fig_gp, width='stretch')
     else:
         st.caption("No events with a non-zero actual return to plot yet.")
 
@@ -1520,14 +1520,14 @@ elif page == "🔮 GLOBAL PREVIEW":
             "predicted_return_1d", "predicted_return_5d",
             "actual_return_1d", "actual_return_5d", "hit"
         ]],
-        use_container_width=True,
+        width='stretch',
         hide_index=True,
     )
 
     if gp_summary.get("per_company") is not None and not gp_summary["per_company"].empty:
         st.markdown("### 🏢 Accuracy by Company")
-        st.dataframe(gp_summary["per_company"], use_container_width=True, hide_index=True)
+        st.dataframe(gp_summary["per_company"], width='stretch', hide_index=True)
 
     if gp_summary.get("per_source") is not None and not gp_summary["per_source"].empty:
         st.markdown("### 🗂️ Accuracy by Source")
-        st.dataframe(gp_summary["per_source"], use_container_width=True, hide_index=True)
+        st.dataframe(gp_summary["per_source"], width='stretch', hide_index=True)

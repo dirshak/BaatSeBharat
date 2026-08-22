@@ -93,6 +93,8 @@ def run(limit=None, source=None, sleep_between=0.5):
     logger.info(f"Classifying {len(pending)} speeches with model '{classifier.model}'...")
 
     total_signals = 0
+    succeeded = 0
+    failed = 0
     for _, row in tqdm(pending.iterrows(), total=len(pending)):
         topic_info = topic_labels.get(str(row['topic_id']), {})
         topic_label = topic_info.get('label')
@@ -105,13 +107,33 @@ def run(limit=None, source=None, sleep_between=0.5):
             )
             conn.commit()
             total_signals += n
+            # A call that returns zero signals is not a success. The
+            # classifier swallows API errors after its retry budget and
+            # returns nothing, so counting attempts as "classified" made a
+            # total outage look like a completed run -- which is exactly how
+            # a decommissioned model (HTTP 404 on every single call) left
+            # llm_company_signals empty without anyone noticing.
+            if n > 0:
+                succeeded += 1
+            else:
+                failed += 1
         except Exception as exc:
+            failed += 1
             logger.error(f"Failed to classify speech {row['id']} ({row['title']}): {exc}")
 
         time.sleep(sleep_between)
 
     conn.close()
-    logger.info(f"Done. Classified {len(pending)} speeches -> {total_signals} company signals stored.")
+    logger.info(
+        f"Done. {succeeded}/{len(pending)} speeches classified successfully "
+        f"-> {total_signals} company signals stored."
+    )
+    if failed:
+        logger.warning(
+            f"{failed}/{len(pending)} speeches produced NO signals. If this is "
+            f"all of them, check that model '{classifier.model}' is still "
+            "available on your key (client.models.list())."
+        )
     return total_signals
 
 

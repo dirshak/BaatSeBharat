@@ -1,0 +1,441 @@
+\documentclass[11pt]{article}
+
+% --- Page Layout & Spacing ---
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\singlespacing  % <--- CHANGE THIS FROM \onehalfspacing
+
+% --- Encoding & Fonts ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[english]{babel}
+\usepackage{caption}
+
+% --- Mathematics & Algorithms ---
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+
+% --- Graphics, Color, & Tables ---
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{float}
+
+% --- Hyperlinks & References ---
+\usepackage[colorlinks=true, linkcolor=blue, citecolor=blue, urlcolor=blue]{hyperref}
+\usepackage{url}
+\usepackage{enumitem}
+
+% --- Compact Lists for Research Paper Format ---
+\setlist{nosep, leftmargin=*, itemsep=0pt, topsep=4pt, partopsep=0pt}
+
+% --- Tighten Section Spacing ---
+\usepackage{titlesec}
+\titlespacing\section{0pt}{8pt plus 2pt minus 2pt}{4pt plus 2pt minus 2pt}
+\titlespacing\subsection{0pt}{6pt plus 2pt minus 2pt}{2pt plus 2pt minus 2pt}
+\titlespacing\subsubsection{0pt}{4pt plus 2pt minus 2pt}{0pt plus 2pt minus 2pt}
+
+% --- Reduce Paragraph Spacing ---
+\setlength{\parskip}{0pt}
+\setlength{\parindent}{1.5em}
+
+% --- Reduce Float/Figure/Table Spacing ---
+\setlength{\intextsep}{6pt plus 2pt minus 2pt}
+\setlength{\textfloatsep}{6pt plus 2pt minus 2pt}
+
+% --- Title, Authors, and Abstract ---
+\title{\textbf{Leadership Records Driven Market Regime Prediction and Risk Assessment for Indian Financial Markets} \\ \large Integrating Political Communication, NLP, and Numerical Intelligence for Regime-Aware Financial Forecasting}
+
+\author{
+\begin{minipage}[t]{0.45\textwidth}
+\centering
+\textbf{Dirshak Deepak Patro}\\[2pt]
+\textit{Department of Information Technology}\\
+\textit{Somaiya Vidyavihar University,}\\
+\textit{Mumbai, India}\\
+\textit{Email: dirshak.p@somaiya.edu}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.45\textwidth}
+\centering
+\textbf{Disha Kataria}\\[2pt]
+\textit{Department of Information Technology}\\
+\textit{Somaiya Vidyavihar University,}\\
+\textit{Mumbai, India}\\
+\textit{Email: disha.kataria@somaiya.edu}
+\end{minipage}
+}
+
+\begin{document}
+\maketitle
+
+% --- Abstract ---
+\begin{abstract}
+The influence of political leadership communication on financial market behavior represents one of the most underexplored dimensions in quantitative finance. While existing literature has extensively examined the role of earnings releases, macroeconomic announcements, and social media sentiment, the systematic extraction and integration of leadership discourse-spanning domestic policy communication such as Mann ki Baat and official Indian government releases, as well as international monetary policy communication from entities such as the U.S. Federal Reserve and the European Central Bank (ECB)-into a predictive framework for Indian equities remains nascent. This paper proposes a multi-modal, regime-aware forecasting architecture titled \textit{Leadership Records Driven Market Regime Prediction and Risk Assessment (LRDR-MRPRA)}. The framework combines a Textual Intelligence Branch-employing POS filtering, lemmatization, IndicBERT and Sentence-BERT (SBERT) embeddings, and a contextualized topic modeling ensemble (LDA + NMF hybrid)-with a Numerical Intelligence Branch that performs Asset-Specific Baseline Normalization (ASBN), Counterfactual Price Trajectory Learning (CPTL), and multi-scale regime identification. A Multimodal Fusion Layer then synthesizes time-aligned topic intensity vectors, Weighted Moment and Shock Modeling (WMS), and a Trade-Weighted Leadership Impact Index (TWLII) to generate early warning signals, market regime classifications (stable, transitional, volatile), and sector-wise impact assessments. Validation is conducted through Granger causality tests and false-positive checks via causal-ablation studies. The framework is designed for deployment through an interactive Streamlit dashboard. Empirical motivation is drawn from documented market reactions to the Pulwama–Balakot crisis and subsequent policy communications, demonstrating that Indian equity indices exhibited statistically significant abnormal returns correlated with leadership speech events. This work addresses a critical gap in the existing literature by bridging NLP-based political communication analysis with quantitative financial regime modeling, offering both academic and practitioner contributions.
+
+\vspace{5mm}
+\noindent\textbf{Keywords:} Indian stock market, market regime prediction, political communication, NLP, FinBERT, IndicBERT, topic modeling, LDA, NMF, Granger causality, SENSEX, Nifty 50, Federal Reserve, ECB, regime shift detection, early warning signals.
+\end{abstract}
+
+% --- 1. Introduction ---
+\section{Introduction}
+Financial markets are perpetually forward-looking systems that encode the collective expectations of participants regarding future economic states. While classical financial theory posits that asset prices reflect all publicly available information \cite{fama1970}, the empirical literature has increasingly documented systematic deviations from this ideal, particularly around episodes of political and policy uncertainty. Leadership communication-formal speeches, press conferences, parliamentary records, and broadcast communications such as \textit{Mann ki Baat}-constitutes a high-density information channel that directly shapes market expectations, sector rotation, and risk appetite.
+
+The Indian equity market, represented primarily by the BSE SENSEX and NSE Nifty 50 indices, operates within a dual-influence environment: domestic policy communication from the Government of India, and international monetary signals from the U.S. Federal Reserve and the ECB, whose decisions propagate to emerging markets through capital flow and currency transmission channels. Despite this duality, no unified, end-to-end computational framework has been proposed that systematically ingests both streams, extracts topically resolved sentiment, aligns it temporally with market data, and generates actionable regime classifications.
+
+Existing approaches suffer from several limitations. First, single-model architectures (LSTM, GRU, CNN) capture price dynamics but neglect the causal textual dimension \cite{bhandari2025, nazari2025}. Second, sentiment-only models (FinBERT-based) lack the topical resolution necessary to distinguish, for example, a defense policy statement from an infrastructure announcement, both of which may carry distinct market implications \cite{paul2024, seng2023}. Third, event study frameworks capture abnormal returns around identified events but are retrospective, relying on pre-specified event windows and OLS-based market models that cannot identify novel or emergent political themes \cite{srivastava2019, kumar2024}. Fourth, prior topic modeling applications to finance, while promising \cite{buehlmaier2018, bao2019, manna2022}, either lack temporal alignment, rely on predefined label sets, or fail to integrate market microstructure data.
+
+This paper addresses these gaps through the following primary contributions:
+\begin{enumerate}[leftmargin=*, itemsep=0pt, topsep=4pt]
+    \item \textbf{A novel multi-modal architecture (LRDR-MRPRA):} This framework jointly models political text and financial time series for Indian market regime prediction, moving beyond price-only or sentiment-only models.
+    \item \textbf{A Contextualized Topic Modeling ensemble:} It combines LDA, NMF, and CTM for model-agnostic, temporally stable topic extraction from Hindi and English political discourse, overcoming the sparsity and language limitations of previous work.
+    \item \textbf{Asset-Specific Baseline Normalization (ASBN) and Counterfactual Price Trajectory Learning (CPTL):} These novel numerical modules disentangle shock-driven price movements from secular trends, providing a clearer signal for regime identification.
+    \item \textbf{A Trade-Weighted Leadership Impact Index (TWLII):} This index modulates topic intensity by bilateral trade importance, providing a principled mechanism for weighting foreign policy signals that directly affect Indian capital flows.
+    \item \textbf{Causal validation framework:} Systematic Granger tests and causal ablation studies ensure predictive lift is attributable to the textual signal, not to data snooping or market noise, directly addressing a major pitfall in deep learning for finance.
+    \item \textbf{An interactive Streamlit dashboard:} This provides real-time coherence scoring, early warning signals, and sector-wise impact visualizations, translating complex model outputs into actionable analyst tools.
+\end{enumerate}
+
+The remainder of this paper is organized as follows: Section 2 provides a detailed review of the relevant literature across three domains. Section 3 elaborates on the proposed methodology with full mathematical formalization. Section 4 discusses empirical motivation and expected results, and Section 5 concludes with a discussion of limitations and future work.
+
+% --- 2. Literature Review ---
+\section{Literature Review}
+\label{sec:litreview}
+
+The literature relevant to this work spans three intersecting domains: (i) deep learning for stock market prediction, (ii) NLP and sentiment analysis in finance, and (iii) topic modeling and event-driven market analysis. This section provides a comprehensive review of sixteen foundational works, detailing their methodologies, key insights, and the specific limitations that motivate the LRDR-MRPRA framework.
+
+\subsection{Deep Learning and Price-Based Forecasting}
+
+A significant body of work has focused on applying recurrent neural networks to financial time series. Bhandari et al. \cite{bhandari2025} developed a dual-branch architecture combining a GRU for price data with FinBERT and BERTopic for news sentiment. Their model achieved an impressive $R^2$ of 0.9866, demonstrating that topic-resolved sentiment substantially improves prediction accuracy over raw price features. However, the study was constrained to static datasets and a limited set of news outlets, raising concerns about generalizability. Our framework addresses this by aggregating topics from LDA, NMF, and CTM into a model-agnostic ensemble, ensuring broad coverage of thematic content and reduced sensitivity to data sparsity.
+
+A crucial methodological critique was provided by Nazari et al. \cite{nazari2025}, who evaluated deep learning models on the Tehran Stock Exchange. Their study warned that day-to-day price prediction models frequently generate false positives due to lagging effects, and often fail to outperform a simple buy-and-hold strategy. This finding strongly motivates the core validation component of our work, where we employ Granger causality and systematic causal ablation studies to rigorously verify that any predictive lift is genuinely attributable to leadership communication signals, not artifacts of the model architecture.
+
+Further developments in sequence modeling have been explored. Rahul et al. \cite{rahul2025} proposed a Bi-directional GRU (Bi-GRU) optimized using the Ebola Optimization Search Algorithm (EOSA), demonstrating that bidirectional temporal modeling captures complex dependencies more effectively than unidirectional models. Our framework simplifies this complexity for the analyst by incorporating weight-based filtering, reducing data noise in the neural outputs. At the single-asset level, Khadke et al. \cite{khadke2023} compared CNN and LSTM architectures using TensorFlow, finding that CNN outperformed LSTM in volatile market conditions with an $R^2$ of 0.922 versus 0.88. While their work emphasized the essential role of technical indicators, it ignored sentiment. Our multi-modal approach integrates real-time social media and leadership sentiment streams to provide context that purely technical models lack. The comparative study by Kumar et al. \cite{kumar2024} on ICICI Bank data confirmed that LSTM achieves the lowest error rate (2.36\%) among HMM, RNN, and LSTM variants due to its superior long-term dependency management. This finding validates our use of LSTM-based components and motivates the inclusion of Probability-Weighted Moments (PWM) to quantify extreme shock tail impacts that standard LSTMs may miss.
+
+A graph-based perspective was introduced by Chen et al. \cite{chen2024} with their Relational Temporal Graph Neural Network (RTGNN). Their model captures asymmetric lead-lag relationships and momentum between stocks better than sequential models. However, it is fundamentally limited to technical market data, ignoring the external shock of political context. Our work bridges this gap by integrating political communication analysis as a complementary relational signal, effectively adding a high-level causal layer to the predictive graph.
+
+\subsection{NLP, Sentiment Analysis, and Transformer Models}
+
+The advent of transformer-based models has revolutionized financial sentiment analysis. Paul et al. \cite{paul2024} developed FinBERT, a domain-specific model that achieved 89.6\% accuracy on financial texts, outperforming general-purpose BERT and DistilBERT. FinBERT’s ability to capture subtle financial terminology and context is powerful, but its high computational cost and the challenge of cross-domain generalization remain barriers, particularly for multilingual environments. Our framework addresses this through a hybrid engine combining IndicBERT-pre-trained specifically on 12 Indian language corpora-with SBERT and CTM, enhancing scalability and providing native multilingual coverage essential for processing Hindi \textit{Mann ki Baat} transcripts.
+
+The integration of social media metadata has also been shown to be critical. Ruz et al. \cite{ruz2024} demonstrated that tweet volume and author diffusion metrics are key predictors of volatility, with a CNN-LSTM model achieving the lowest MAE and RMSE scores when integrating Twitter metadata. Our framework optimizes for similar multi-source data fusion by employing efficient attention mechanisms and lightweight Transformer architectures to manage the computational overhead without losing predictive fidelity. The work of Rambola et al. \cite{rambola2021} applied BERT to classify public figure remarks and linked sentiment to stock abnormal returns. They confirmed that statements produce strong, immediate, sector-specific impacts that diminish over time. Our framework advances this by implementing a Temporal Topic Alignment engine with Hungarian Matching to track the evolution of such impacts across administrative quarters, enabling a longitudinal analysis rather than one limited to isolated event windows.
+
+On the technical front, Jain et al. \cite{jain2023} integrated LSTM with word-level embeddings and news data, achieving over 74\% accuracy. A key limitation of their work was a reliance on headlines only, leading to context loss. Our framework mitigates this through multi-granularity modeling at the sentence, paragraph, and episode levels. Lastly, the MCDM-based Grey Relational Analysis conducted by Biswal et al. \cite{biswal2022} achieved 87\% accuracy in predicting stock movements for firms like Infosys by tagging news headlines. Their methodology, while effective, lacked real-time scalability. We directly address this with our interactive Streamlit dashboard that provides real-time coherence scoring and alerts.
+
+\subsection{Topic Modeling and Event-Driven Analysis}
+
+Topic modeling provides a crucial bridge from unstructured text to structured market signals. Seng and Lim \cite{seng2023} demonstrated that BERTopic, which combines BERT with UMAP and HDBSCAN, yields more informative features for LSTM, CNN, and GAN architectures than sentence-level sentiment alone, improving both RMSE and $R^2$. However, BERTopic is sensitive to high-dimensional noise. Our framework counters this with advanced regularization and noise-reduction layers to maintain predictive stability.
+
+Mishev et al. \cite{mishev2022} proposed a multi-label BERT classifier trained on 3,044 financial announcements that could disentangle co-occurring topics like Earnings and Guidance. While effective, its reliance on predefined labels limits generalization to novel events. We extend this capability through the zero-shot learning potential of the CTM component in our ensemble, enabling the identification of emergent financial events without retraining.
+
+The temporal dimension of text, often ignored, is central to our work. The foundational study by Buehlmaier and Whited \cite{buehlmaier2018} applied LDA to 70,000 8-K regulatory filings and found that earnings, business strategy, and mergers were the most market-reactive topics. A critical gap they identified was that LDA ignores the temporal evolution of topics. Our Temporal Topic Alignment engine with Hungarian Matching is designed precisely to fill this gap, tracking thematic shifts over multi-year spans. Similarly, Bao and Datta \cite{bao2019} applied LDA to 5,204 machine learning in finance articles, confirming a research shift from pure modeling to data-driven forecasting. Our work advances this by modeling the causal link between data (leadership text) and markets in real-time.
+
+An advanced methodology was proposed by Manna et al. \cite{manna2022} with TopicVec-Reg, a variational Bayesian approach that jointly learns topic embeddings and regression coefficients. This outperforms post-processing pipelines but suffers from sparsity issues with one-hot representations. We adopt Sentence-BERT and IndicBERT embeddings to create context-aware, low-dimensional representations that solve this sparsity problem natively.
+
+Finally, the direct link between political events and Indian markets was validated by Srivastava and Mitra \cite{srivastava2019}. Their event study, using an OLS-based Sharpe Market Model, confirmed that national security events like the Pulwama-Balakot crisis triggered positive SENSEX and Nifty 50 reactions lasting approximately 11 days. While this provides a strong empirical motivation, their methodology ignores the linguistic nuances of policy signals. Our framework’s combined NMF/LDA approach with POS filtering is built to isolate these specific policy signals from rhetorical noise, automating the identification of market-relevant event types.
+
+% --- 3. Methodology ---
+\section{Methodology}
+\label{sec:methodology}
+
+\begin{figure}[htbp!]
+    \centering
+    \includegraphics[width=0.95\textwidth]{methodology.drawio.pdf}
+    \captionsetup{width=0.85\textwidth}
+    \caption{Framework Architecture: A schematic overview of the six functional modules showing data flow from ingestion through textual and numerical intelligence branches, multimodal fusion, output generation, and validation.}
+    \label{fig:methodology}
+\end{figure}
+
+The LRDR-MRPRA framework is structured into six functional modules: Data Ingestion, Textual Intelligence Branch, Numerical Intelligence Branch, Multimodal Fusion, Output Generation, and Validation. Each module is formalized below, constructing a complete analytical pipeline from raw data to a validated signal.
+
+\subsection{Data Ingestion}
+The framework ingests two parallel, time-indexed data streams: unstructured text from leadership communications and structured financial time series.
+
+\subsubsection{Text Data Sources}
+\begin{itemize}[leftmargin=*, itemsep=0pt, topsep=4pt]
+    \item \textbf{Domestic Leadership Communication:} This stream includes monthly \textit{Mann ki Baat} transcripts (2014–present), official Ministry of Finance and Ministry of External Affairs press releases, and records of Parliamentary debates (Lok Sabha, Rajya Sabha). This captures the full spectrum of domestic policy sentiment.
+    \item \textbf{International Monetary Policy Communication:} This stream consists of U.S. Federal Reserve FOMC minutes and press conference transcripts, ECB Governing Council statements and presidential speeches, and G20 communiqués. These sources are the primary vectors for international monetary policy signals.
+\end{itemize}
+Each document $d_i$ is associated with a precise timestamp $t_i$. To address the context loss issue identified in \cite{jain2023}, each document is segmented into a hierarchy of granular units: sentences, paragraphs, and logical episodes. The full text corpus is defined as $\mathcal{D} = \{(d_i, t_i)\}_{i=1}^{N}$.
+
+\subsubsection{Financial Data Sources}
+The financial data stream captures price, sectoral, and risk dynamics:
+\begin{itemize}[leftmargin=*, itemsep=0pt, topsep=4pt]
+    \item \textbf{Market Prices:} Daily closing prices for headline indices (BSE SENSEX, NSE Nifty 50) and key sectoral indices (NIFTY Bank, NIFTY IT, NIFTY Pharma, NIFTY Defence, NIFTY FMCG).
+    \item \textbf{Volume and Volatility:} Daily trading volume, realized volatility (annualized standard deviation of 5-minute log-returns), and the India VIX (IVIX) index to capture forward-looking implied volatility.
+\end{itemize}
+
+\subsection{Textual Intelligence Branch}
+This branch answers the question: \textit{What are leaders saying, and how does it relate to the market?} It processes the ingested text into a time-series of topic-resolved sentiment vectors through a five-stage NLP pipeline.
+
+\subsubsection{Text Preprocessing}
+Raw text undergoes rigorous preprocessing to extract policy-relevant tokens. A Part-of-Speech (POS) filter retains only nouns (NN), verbs (VB), and adjectives (JJ), stripping articles, prepositions, and other non-informative parts of speech. The filtered tokens are then lemmatized to their root forms. For Hindi text from \textit{Mann ki Baat}, IndicBERT's native tokenizer handles subword segmentation directly. The resulting filtered and lemmatized vocabulary $\mathcal{V}_{\text{filtered}}$ is:
+\begin{equation}
+\mathcal{V}_{\text{filtered}} = \{w \in \mathcal{V}_{\text{lem}} : \text{POS}(w) \in \{\text{NN, VB, JJ}\}\}
+\label{eq:pos_filter}
+\end{equation}
+
+\subsubsection{Text Embeddings}
+To create semantically rich, context-aware representations, documents are encoded using a weighted combination of two complementary models \cite{paul2024, manna2022}:
+\begin{enumerate}[leftmargin=*, itemsep=0pt, topsep=4pt]
+    \item \textbf{IndicBERT}: A multilingual BERT variant pre-trained on 12 major Indian languages. It is crucial for accurately capturing the semantic nuances of Hindi political speech, including code-switching with English.
+    \item \textbf{Sentence-BERT (SBERT)}: A siamese BERT network fine-tuned for semantic similarity, producing high-quality, low-dimensional document embeddings $\mathbf{e}_d \in \mathbb{R}^{768}$.
+\end{enumerate}
+The final document embedding $\mathbf{e}_i$ is a convex combination weighted by a language-proportionality parameter $\alpha$:
+\begin{equation}
+\mathbf{e}_i = \alpha \cdot \text{IndicBERT}(d_i) + (1 - \alpha) \cdot \text{SBERT}(d_i), \quad \alpha \in [0, 1]
+\label{eq:combined_embedding}
+\end{equation}
+The parameter $\alpha$ is tuned on a validation set, typically set to 0.7 for Hindi-dominant documents and 0.3 for English-dominant ones.
+
+\subsubsection{Contextualized Topic Modeling Ensemble}
+To overcome the limitations of any single topic model, we deploy a model-agnostic ensemble of three algorithms \cite{bhandari2025, seng2023, mishev2022}:
+\begin{enumerate}[leftmargin=*, itemsep=0pt, topsep=4pt]
+    \item \textbf{Latent Dirichlet Allocation (LDA)} \cite{bao2019}: A generative probabilistic model. For $K$ latent topics, each document $d_i$ has a distribution $\boldsymbol{\theta}_i \in \Delta^K$, and each topic $k$ has a word distribution $\boldsymbol{\phi}_k \in \Delta^V$.
+    \item \textbf{Non-negative Matrix Factorization (NMF)}: Factorizes the term-document matrix $\mathbf{M} \in \mathbb{R}^{V \times N}$ into two non-negative matrices, $\mathbf{W} \in \mathbb{R}^{V \times K}$ (topic-word) and $\mathbf{H} \in \mathbb{R}^{K \times N}$ (document-topic), such that $\mathbf{M} \approx \mathbf{WH}$.
+    \item \textbf{Contextualized Topic Model (CTM)}: A neural model combining SBERT embeddings with neural variational inference, enabling zero-shot identification of novel topic categories not seen during training.
+\end{enumerate}
+The consensus topic vector for document $d_i$ is a weighted average:
+\begin{equation}
+\boldsymbol{\tau}_i = w_{\text{LDA}} \boldsymbol{\tau}_i^{\text{LDA}} + w_{\text{NMF}} \boldsymbol{\tau}_i^{\text{NMF}} + w_{\text{CTM}} \boldsymbol{\tau}_i^{\text{CTM}}
+\label{eq:ensemble_topic}
+\end{equation}
+The weights are dynamically determined by each model's normalized coherence score $C_v$ on a held-out validation corpus. The $C_v$ score measures the pairwise semantic similarity of a topic’s top words $W_k$:
+\begin{equation}
+C_v = \frac{1}{K} \sum_{k=1}^{K} \frac{1}{|W_k|(|W_k|-1)} \sum_{w_i, w_j \in W_k} \log \frac{P(w_i, w_j) + \varepsilon}{P(w_j)}
+\label{eq:coherence}
+\end{equation}
+
+\subsubsection{Sentiment Extraction}
+FinBERT \cite{paul2024} analyzes each document segment to extract a sentiment polarity $s_i \in \{\text{positive, neutral, negative}\}$ and a confidence score $c_i \in [0, 1]$. The final sentiment-weighted topic vector modulates the topic distribution by its sentiment polarity and confidence:
+\begin{equation}
+\boldsymbol{\tau}_i^s = c_i \cdot \text{sign}(s_i) \cdot \boldsymbol{\tau}_i
+\label{eq:sentiment_weighted}
+\end{equation}
+where $\text{sign}(\text{positive}) = +1$, $\text{sign}(\text{neutral}) = 0$, and $\text{sign}(\text{negative}) = -1$. A confident negative statement on defense policy would thus produce a strong negative signal on the defense topic.
+
+\subsubsection{Time-Aligned Topic Intensity Vectors}
+To answer the \textit{When} and \textit{How Strong} questions, we aggregate all document vectors into a market-day signal using an exponentially decaying memory window. The time-aligned topic intensity vector for a trading day $t$ is:
+\begin{equation}
+\mathbf{T}_t = \sum_{i: t_i \leq t} \exp(-\lambda(t - t_i)) \cdot \boldsymbol{\tau}_i^s
+\label{eq:time_aligned}
+\end{equation}
+The temporal decay parameter $\lambda$ controls the half-life of a communication's market impact and is calibrated via cross-validation against actual market reactions, as documented in \cite{srivastava2019}.
+
+\subsection{Numerical Intelligence Branch}
+This branch answers the question: \textit{How is the market behaving?} It processes financial time series to establish a shock-aware baseline and identify market states.
+
+\subsubsection{Stable Regime Identification}
+A 3-state Hidden Markov Model (HMM) classifies market periods into \textit{stable}, \textit{transitional}, and \textit{volatile} regimes \cite{kumar2024}. The model infers the hidden regime $R_t$ at time $t$ based on the sequence of log-returns $r_{1:t}$:
+\begin{equation}
+R_t = \arg\max_k P(R_t = k \mid r_{1:t})
+\label{eq:hmm_regime}
+\end{equation}
+The HMM's transition and emission parameters are estimated using the Baum-Welch algorithm.
+
+\subsubsection{Asset-Specific Baseline Normalization (ASBN)}
+To compare shock sensitivity across assets with different price scales (e.g., a defense stock vs. an IT stock), we apply ASBN. Each price series is normalized to its own time-varying baseline, expressed as a Z-score:
+\begin{equation}
+P_t^{\text{norm}} = \frac{P_t - \mu_{\text{asset}}(t)}{\sigma_{\text{asset}}^{\text{rolling}}(t)}
+\label{eq:asbn}
+\end{equation}
+Here, $\mu_{\text{asset}}(t)$ is the rolling 252-day mean and $\sigma_{\text{asset}}^{\text{rolling}}(t)$ is the rolling 252-day standard deviation. This transformation allows for direct, cross-sectional comparison of behavioral sensitivity.
+
+\subsubsection{Counterfactual Price Trajectory Learning (CPTL)}
+A core contribution, CPTL directly addresses the false positive problem raised by Nazari et al. \cite{nazari2025}. We train a predictive model (e.g., an LSTM autoencoder) exclusively on data from non-shock, stable-regime periods. Applying this model to a shock-affected window generates a counterfactual trajectory $P_t^{\text{CF}}$: what the price \textit{would have done} in the absence of the shock. The shock-specific deviation is:
+\begin{equation}
+\delta_t = P_t^{\text{actual}} - P_t^{\text{CF}}
+\label{eq:cptl}
+\end{equation}
+This deviation is measured at multi-scale horizons: short (5-day), medium (21-day), and long (63-day), to capture effects ranging from immediate algorithmic reactions to sustained policy reassessments.
+
+\subsubsection{Trajectory Comparison and Market State Vectors}
+The distinction between a transient volatile shock and a genuine regime shift is operationalized by comparing the trajectory of price with that of volume and volatility:
+\begin{itemize}[leftmargin=*, itemsep=0pt, topsep=4pt]
+    \item \textbf{Volatile Shock:} A scenario where $\delta_t \neq 0$, but volume and volatility patterns remain unchanged. This suggests a noisy, non-structural event.
+    \item \textbf{Regime Shift:} A scenario where the shapes of the price, volume, and volatility trajectories all co-change, indicating a fundamental market repricing.
+\end{itemize}
+These inputs are summarized in the Market State Vector (MSV):
+\begin{equation}
+\text{MSV}_t = [\delta_t, \text{trend\_direction}_t, \text{instability}_t, P(\text{regime\_shift})_t]
+\label{eq:msv}
+\end{equation}
+where $\text{instability}_t$ is the 21-day rolling variance of $\delta_t$, and $P(\text{regime\_shift})_t$ is the HMM’s posterior probability of a regime transition.
+
+\subsection{Multimodal Fusion Layer}
+This layer answers the central question: \textit{What was the effect of leadership communication on the market?} It formally synthesizes the textual and numerical signals.
+
+\subsubsection{Weighted Moment and Shock Modeling (WMS)}
+To quantify the impact of tail events identified by CPTL, we use Probability-Weighted Moments (PWM), which are more robust to outliers than conventional moments \cite{kumar2024}:
+\begin{equation}
+M_{p,r,s} = \int x^p [F(x)]^r [1 - F(x)]^s \, dF(x)
+\label{eq:pwm}
+\end{equation}
+where $F(x)$ is the cumulative distribution function of returns. The shock impact score for an event $e$ at time $t_e$ is the change in the first-order moment over a symmetric window $w$:
+\begin{equation}
+S_e = M_{1,0,0}(t_e + w) - M_{1,0,0}(t_e - w)
+\label{eq:shock_score}
+\end{equation}
+
+\subsubsection{Trade-Weighted Leadership Impact Index (TWLII)}
+The market impact of a foreign leader's statement (e.g., the Fed Chair) is not uniform; it is proportional to the economic relationship. TWLII weights the topic intensity vector $\mathbf{T}_t^c$ from country $c$ by its bilateral trade significance with India, $w_c^{\text{trade}}$:
+\begin{equation}
+\text{TWLII}_t = \sum_{c \in \{\text{USA, EU, China, UAE...}\}} w_c^{\text{trade}} \cdot \mathbf{T}_t^c
+\label{eq:twlii}
+\end{equation}
+The trade weight is $w_c^{\text{trade}} = \frac{\text{Trade\_Volume}(\text{India}, c)}{\sum_{c'} \text{Trade\_Volume}(\text{India}, c')}$. A hawkish statement from the Fed, a top trading partner, would carry high weight; one from a minor partner would be correspondingly discounted.
+
+\subsubsection{Early Warning and Expectation Modulation}
+A key deliverable is the Early Warning signal $W_t$. It is designed to fire \textit{before} a crash, when the model detects a high probability of regime shift coinciding with impactful leadership communication. It is a binary signal:
+\begin{equation}
+W_t = \mathbf{1}\left[P(\text{regime\_shift})_t > \theta_w \quad \text{AND} \quad \text{TWLII}_t \cdot \delta_t > \theta_\delta\right]
+\label{eq:early_warning}
+\end{equation}
+The thresholds $\theta_w$ and $\theta_\delta$ are calibrated by backtesting on historical episodes like the Pulwama-Balakot crisis and the COVID-19 crash.
+
+\subsubsection{Temporal Topic Alignment with Hungarian Matching}
+To track policy evolution over years, we align topics between consecutive administrative quarters $q$ and $q+1$ using the Hungarian algorithm. This solves an optimal assignment problem, finding the permutation $\pi$ that minimizes the sum of L2 distances between matched topic vectors \cite{buehlmaier2018}:
+\begin{equation}
+\text{Match}(\boldsymbol{\tau}^{q}, \boldsymbol{\tau}^{q+1}) = \arg\min_{\pi} \sum_k \|\boldsymbol{\tau}_k^q - \boldsymbol{\tau}_{\pi(k)}^{q+1}\|_2^2
+\label{eq:hungarian}
+\end{equation}
+This enables the tracking of a thematic thread, e.g., "infrastructure policy," even if its constituent keywords change over a decade.
+
+\subsubsection{Final Fusion Signal}
+All processed signals are concatenated into a single vector and passed through a learned logistic layer to produce the final regime probability $F_t$:
+\begin{equation}
+F_t = \sigma\left(\mathbf{W}_f \cdot [\text{MSV}_t \,\|\, \mathbf{T}_t \,\|\, \text{TWLII}_t \,\|\, S_e(t)] + \mathbf{b}_f\right)
+\label{eq:fusion_signal}
+\end{equation}
+where $\|$ is the concatenation operator, $S_e(t)$ is the shock score of the most recent proximate event, and $\sigma$ is the sigmoid function. The continuous probability $F_t \in [0, 1]$ is then discretized to generate a market regime classification: \textbf{Stable} ($F_t < 0.33$), \textbf{Transitional} ($0.33 \leq F_t < 0.67$), or \textbf{Volatile} ($F_t \geq 0.67$).
+
+\subsection{Output Generation}
+The framework translates its analytics into four actionable outputs:
+\begin{enumerate}[leftmargin=*, itemsep=0pt, topsep=4pt]
+    \item \textbf{Market Regime Classification:} A daily state label enabling dynamic risk management.
+    \item \textbf{Early Warning Signals:} A flag raised 3–7 days ahead of predicted volatility spikes.
+    \item \textbf{Sector-wise Impact Assessment:} A heatmap linking topic clusters (e.g., defense, trade) to sectoral index movements (e.g., NIFTY Defence, NIFTY IT).
+    \item \textbf{Interactive Streamlit Dashboard:} A real-time application for analysts, visualizing topic coherence, regime timelines, and alert logs \cite{biswal2022}.
+\end{enumerate}
+
+\subsection{Validation Framework}
+A rigorous validation protocol is implemented to mitigate the risk of false discoveries.
+
+\subsubsection{Granger Causality Testing}
+For each top political topic $k$, we test if its time series of intensity $\tau_k(t)$ Granger-causes market returns $r(t)$. The bivariate VAR model is:
+\begin{equation}
+r_t = \sum_{j=1}^{p} \alpha_j r_{t-j} + \sum_{j=1}^{p} \beta_j \tau_k(t-j) + \varepsilon_t
+\label{eq:granger}
+\end{equation}
+Rejecting the null hypothesis $H_0: \beta_1 = \cdots = \beta_p = 0$ at the 5\% significance level provides statistical evidence that the leadership topic causally influences market returns.
+
+\subsubsection{False Positive Mitigation via Causal Ablation}
+To ensure the framework's components provide genuine predictive lift, we conduct systematic causal ablation studies. The full model's performance is compared against three ablated variants: one without the textual branch, one without the TWLII, and one without the temporal alignment. The statistical significance of any performance difference is assessed using the Diebold-Mariano test on out-of-sample forecasts. This directly answers the challenge posed by \cite{nazari2025} regarding the real-world utility of such models.
+
+% --- 4. Empirical Motivation and Expected Results ---
+\section{Empirical Motivation and Expected Results}
+\label{sec:results}
+
+While the full-scale empirical backtesting and model training constitute ongoing work, this section outlines the empirical grounding of our approach and the performance benchmarks we expect based on the performance of component architectures in the literature \cite{bhandari2025, rahul2025, paul2024, seng2023}.
+
+\subsection{Empirical Motivation: The Indian Context}
+The relevance of this framework is anchored in documented market behavior. Srivastava and Mitra \cite{srivastava2019} provided direct quantitative evidence of the link between political events and Indian equities. Their event study of the Pulwama-Balakot crisis (Feb 2019) found positive, statistically significant abnormal returns (AAR/CAAR) on both SENSEX and Nifty 50 that persisted for 11 days. This counterintuitive market reaction to a national security crisis was attributed to investor expectations of government stimulus and defense sector profitability. Similarly, the unmodelled transmission channels from U.S. Fed rate decisions (carry trade on INR) and ECB policy (impact on IT exports via EUR/INR) represent a critical, quantifiable gap in current Indian market prediction models that our TWLII component is designed to fill.
+
+\subsection{Expected Model Performance}
+Based on a synthesis of the component models' individual performance, we project the following benchmarks for the integrated LRDR-MRPRA framework:
+\begin{itemize}[leftmargin=*, itemsep=4pt, topsep=4pt]
+    \item \textbf{Regime Classification Accuracy:} We project $>80\%$ accuracy on held-out test periods. Calibration events include historically identified regime transitions: demonetization (Nov 2016), the IL\&FS crisis (Sep 2018), the COVID-19 market crash (Mar 2020), and the Adani-Hindenburg report (Jan 2023).
+    \item \textbf{Early Warning Lead Time:} A lead time of 3–7 trading days before an observable volatility spike, stemming from the optimal calibration of the temporal decay parameter $\lambda$.
+    \item \textbf{Granger Causality:} We expect to find statistically significant ($p < 0.05$) Granger causality for at least 3 of the top 10 dominant political topics, with the strongest signals expected for Defense, Infrastructure, and Monetary Policy.
+    \item \textbf{TWLII Contribution:} An ablation study is expected to show an 8–15\% absolute improvement in regime classification accuracy when TWLII is included versus excluded, directly validating the importance of trade-weighted foreign communication.
+    \item \textbf{Sector-wise Impact:} A clear, differential impact is expected. The NIFTY Defence index should show the highest positive correlation with \textit{Mann ki Baat} defense-related topic intensity, while the NIFTY IT index should show a dominant correlation with Fed and ECB communication sentiment.
+\end{itemize}
+
+\subsection{Benchmark Comparisons}
+The full LRDR-MRPRA architecture will be benchmarked in a horserace against three established method types from the literature:
+\begin{enumerate}[leftmargin=*, itemsep=0pt, topsep=4pt]
+    \item \textbf{Baseline LSTM (Price-Only):} A univariate LSTM model on price data, representative of \cite{kumar2024}.
+    \item \textbf{Sentiment-Augmented LSTM:} A FinBERT sentiment score + LSTM hybrid, representative of \cite{bhandari2025}.
+    \item \textbf{Event Study OLS Model:} An event-study methodology using OLS market models and CAAR analysis, as in \cite{srivastava2019}.
+\end{enumerate}
+Evaluation will be based on a multi-faceted metric suite including regime classification accuracy, F1-score per regime class, early warning precision and recall, Diebold-Mariano forecast comparison statistics, and out-of-sample $R^2$ for volatility prediction.
+
+% --- 5. Conclusion and Future Work ---
+\section{Conclusion and Future Work}
+\label{sec:conclusion}
+
+\subsection{Conclusion}
+This paper has introduced LRDR-MRPRA, a novel, end-to-end, multi-modal framework designed for regime-aware forecasting in the Indian financial markets. It systematically addresses a critical, unmodeled risk factor-leadership communication-by constructing a pipeline that ingests, processes, and fuses political text with market microstructure data. The framework directly addresses six critical gaps in the literature: (i) the absence of political communication as a quantitative input in Indian market models \cite{srivastava2019, kumar2024}; (ii) the lack of multilingual NLP pipelines capable of handling Hindi political discourse \cite{paul2024}; (iii) the neglect of international monetary policy transmission channels from the Fed and ECB \cite{ruz2024}; (iv) the historical failure to track the temporal evolution of policy topics \cite{buehlmaier2018}; (v) the methodological pitfall of insufficient causal validation in deep learning models \cite{nazari2025}; and (vi) the lack of an interactive, real-time dashboard for practitioner use \cite{biswal2022}. Through the integration of IndicBERT/SBERT embeddings, an LDA+NMF+CTM topic ensemble, ASBN, CPTL, PWM, and the novel TWLII, the framework offers a theoretically grounded and empirically motivated tool for risk-aware financial intelligence.
+
+\subsection{Future Work}
+Several extensions will enhance the framework's robustness, generalizability, and actionability:
+\begin{enumerate}[leftmargin=*, itemsep=0pt, topsep=4pt]
+    \item \textbf{Cross-Market Generalization:} The architecture is inherently modular. Extending it to other emerging markets with strong political-economic links, such as Brazil, Indonesia, and South Africa, will test for universal versus India-specific patterns of political market impact.
+    \item \textbf{Real-Time API Integration:} Moving from a backtesting framework to a live system requires connecting to real-time data APIs from Bloomberg, Reuters, and government RSS feeds, and implementing a streaming pipeline.
+    \item \textbf{Graph Neural Network Extension:} Incorporating the RTGNN approach from Chen et al. \cite{chen2024} will allow the model to endogenously learn cross-sectoral lead-lag relationships alongside the exogenous political signals, creating a more holistic market representation.
+    \item \textbf{Adversarial Robustness:} As the system gains importance, it will become a target. Testing its stability against adversarial inputs-like deliberate misinformation campaigns-is critical for real-world reliability.
+    \item \textbf{Options Market Integration:} Extending the early warning system to fuse data from the options market, such as the implied volatility surface and put-call ratios, would capture the forward-looking expectations of sophisticated institutional investors.
+    \item \textbf{Explainability Layer:} To build trust with end-users, we will implement SHAP (Shapley Additive Explanations) to decompose each regime change prediction, attributing the contribution of specific leadership statements and market conditions in an analyst-interpretable format.
+\end{enumerate}
+
+% --- References ---
+\bibliographystyle{ieeetr}
+\begin{thebibliography}{18}
+
+\bibitem{fama1970}
+E.~F.~Fama, ``Efficient capital markets: A review of theory and empirical work,'' \textit{The Journal of Finance}, vol.~25, no.~2, pp.~383--417, 1970.
+
+\bibitem{bhandari2025}
+H.~Bhandari \textit{et al.}, ``Deep learning-based stock market prediction using historical price and topic-distributed news sentiment,'' \textit{Procedia Computer Science}, Elsevier, 2025.
+
+\bibitem{nazari2025}
+M.~Nazari \textit{et al.}, ``Stock market trend prediction using deep neural network via chart analysis: a practical method or a myth?'' \textit{Humanities \& Social Sciences Communications}, Nature, 2025.
+
+\bibitem{rahul2025}
+A.~Rahul \textit{et al.}, ``Stock Market Price Prediction using Ebola Optimization Search Algorithm with Bi-Directional Gated Recurrent Unit,'' in \textit{Proc. ICDCECE}, 2025.
+
+\bibitem{ruz2024}
+G.~A.~Ruz \textit{et al.}, ``Forecasting stock market volatility using social media sentiment analysis,'' \textit{Neural Computing and Applications}, Springer, 2024.
+
+\bibitem{paul2024}
+S.~Paul \textit{et al.}, ``Advanced Financial Sentiment Analysis using FinBERT to Explore Sentiment Dynamics,'' IEEE, 2024.
+
+\bibitem{chen2024}
+X.~Chen \textit{et al.}, ``Graph-Driven Insights: Enhancing Stock Market Prediction with Relational Temporal Dynamics,'' Tongji University, 2024.
+
+\bibitem{khadke2023}
+S.~Khadke \textit{et al.}, ``Decoding The Market Trends: Precision Forecasting of stock prices using CNN Based Approach,'' MIT Academy of Engineering, 2023.
+
+\bibitem{seng2023}
+J.~L.~Seng and A.~Lim, ``BERTopic-Driven Stock Market Predictions: Unraveling Sentiment Insights,'' University of Macau, 2023.
+
+\bibitem{jain2023}
+A.~Jain \textit{et al.}, ``Early Prediction of Stock Market Movements Using News Analytics and Deep Learning,'' IEEE, 2023.
+
+\bibitem{mishev2022}
+K.~Mishev \textit{et al.}, ``Multi-Label Topic Model for Financial Textual Data,'' Ludwig-Maximilians-Universit\"{a}t M\"{u}nchen, 2022.
+
+\bibitem{manna2022}
+S.~Manna \textit{et al.}, ``Topic Embedding Regression Model and its Application to Financial Texts,'' Hiroshima University, 2022.
+
+\bibitem{biswal2022}
+B.~Biswal \textit{et al.}, ``Sentiment Analysis of Stock Prices and News Headlines Using the MCDM Framework,'' Delhi Technological University, 2022.
+
+\bibitem{rambola2021}
+R.~Rambola \textit{et al.}, ``Deep learning-based techniques for predicting the impact of public figures' social media statements,'' Beijing No.4 Middle School, 2021.
+
+\bibitem{bao2019}
+Y.~Bao and A.~Datta, ``Machine learning in finance: A topic modeling approach,'' Rennes School of Business, \textit{SSRN}, 2019.
+
+\bibitem{srivastava2019}
+P.~Srivastava and A.~Mitra, ``An Event Study Analysis on Stock Market Reaction amid Geo-Political Crisis in India,'' Chitkara Business School, 2019.
+
+\bibitem{kumar2024}
+V.~Kumar \textit{et al.}, ``Enhancing Stock Price Predictions Through LSTM-based Recurrent Neural Networks,'' IEEE, 2024.
+
+\bibitem{buehlmaier2018}
+M.~Buehlmaier and T.~Whited, ``Investor reaction to financial disclosures across topics: An application of latent Dirichlet allocation,'' ETH Zurich / University of Freiburg, 2018.
+
+\end{thebibliography}
+
+\end{document}

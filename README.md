@@ -35,31 +35,41 @@ pip install -r requirements.txt
 python -m spacy download en_core_web_sm
 ```
 
+4. **Install the Playwright browsers** (required for ECB/Fed scraping — without
+   this, ingestion aborts with "Executable doesn't exist"):
+```bash
+python -m playwright install chromium
+```
+
 ## 📁 Data Setup
 
-1. Create a folder named `mann_ki_baat_transcripts` in the project directory
-2. Add your transcript files with the naming pattern: `mann_ki_baat_*.txt`
+1. Transcripts live in `transcripts/mann_ki_baat/` (ECB and Fed archives sit
+   alongside in `transcripts/ecb/` and `transcripts/fed/`)
+2. Mann Ki Baat files must be named `mann_ki_baat_<episode_number>.txt` —
+   e.g. `mann_ki_baat_80.txt`. Files not matching this exact pattern are
+   skipped by the loader as legacy/corrupted
 3. Each file should contain:
-   - Episode number and date in format: `Episode X (Date)`
-   - Full transcript text
+   - First line: episode number and date, format `Episode X (DD Mon, YYYY)`
+   - A blank line, then the full transcript text
 
 Example file structure:
 ```
 BaatSeBharat/
-├── Analysis.py
+├── App.py
 ├── requirements.txt
 ├── README.md
-└── mann_ki_baat_transcripts/
-    ├── mann_ki_baat_001.txt
-    ├── mann_ki_baat_002.txt
-    └── ...
+└── transcripts/
+    └── mann_ki_baat/
+        ├── mann_ki_baat_1.txt
+        ├── mann_ki_baat_2.txt
+        └── ...
 ```
 
 ## 🎮 Usage
 
 1. **Start the application**:
 ```bash
-streamlit run Analysis.py
+streamlit run App.py
 ```
 
 2. **Configure the model** (in the sidebar):
@@ -149,8 +159,11 @@ The Export tab generates two CSV files:
 ## 🐛 Troubleshooting
 
 **Error: "No transcripts found"**
-- Check that transcript files are in `mann_ki_baat_transcripts` folder
-- Verify files match the pattern `mann_ki_baat_*.txt`
+- Check that transcript files are in the `transcripts/mann_ki_baat/` folder
+- Verify files match the pattern `mann_ki_baat_<n>.txt` exactly (e.g.
+  `mann_ki_baat_80.txt`); other names are skipped as legacy/corrupted
+- Check `ingestion_log.txt` — it reports loaded/expected counts and the exact
+  missing episode ranges
 
 **Error: "Array full of zeros"**
 - Try reducing max_df or increasing min_df

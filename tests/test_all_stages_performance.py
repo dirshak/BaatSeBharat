@@ -27,7 +27,7 @@ import pytest
 pytest.importorskip("streamlit.testing.v1")
 from streamlit.testing.v1 import AppTest
 
-from conftest import goto_stage
+from conftest import APP_PATH, goto_stage
 
 STAGES = [
     "Executive Summary",
@@ -44,7 +44,7 @@ MAX_WARM_SECONDS = 3.0
 
 
 def test_every_stage_loads_without_exceptions_and_is_fast_when_warm():
-    at = AppTest.from_file('App_v2.py', default_timeout=120)
+    at = AppTest.from_file(APP_PATH, default_timeout=120)
     at.run()
     assert not at.exception, f"Initial load raised: {list(at.exception)}"
 

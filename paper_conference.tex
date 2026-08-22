@@ -1,0 +1,335 @@
+%=========================================================================
+%  Conference-format manuscript (IEEEtran, two-column).
+%
+%  Compiles as-is on Overleaf: IEEEtran.cls ships with every TeX Live /
+%  Overleaf install, and the two figures are produced by
+%  scripts/reproduce_results.py into ./figs/.
+%
+%  Every numeric claim in this file is emitted by that script. Do not edit
+%  a number here by hand -- change the analysis and re-run, so the paper
+%  and the code cannot drift apart.
+%=========================================================================
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+\begin{document}
+
+\title{Does Political Communication Predict Indian Equity Returns?\\
+\large A Null Result, and How Evaluation Design Manufactures Accuracy}
+
+\author{
+\IEEEauthorblockN{Dirshak Deepak Patro}
+\IEEEauthorblockA{\textit{Department of Information Technology} \\
+\textit{Somaiya Vidyavihar University}\\
+Mumbai, India \\
+dirshak.p@somaiya.edu}
+\and
+\IEEEauthorblockN{Disha Kataria}
+\IEEEauthorblockA{\textit{Department of Information Technology} \\
+\textit{Somaiya Vidyavihar University}\\
+Mumbai, India \\
+disha.kataria@somaiya.edu}
+}
+
+\maketitle
+
+\begin{abstract}
+Political leadership communication is widely assumed to move financial markets, and a growing literature reports directional accuracies of 74--87\% from NLP pipelines built on such text. We construct one of these pipelines end to end and test the assumption directly. Our corpus comprises 1{,}287 leadership communications spanning May 2016 to June 2026 --- Mann ki Baat broadcasts, European Central Bank speeches, and U.S. Federal Reserve communications --- aligned to daily prices for 16 Indian and global instruments, yielding 17{,}104 event observations. We extract NMF topic distributions, FinBERT sentiment, three-state Hidden Markov regime labels, and asset-normalized shock measures, and evaluate under a cross-sectional design whose baseline is pinned at exactly 50\% by construction, with expanding-window walk-forward refits and standard errors clustered by event date. The best specification reaches 51.32\% ($z=+1.98$), but a feature-group ablation localizes that margin entirely to price-momentum controls: rhetoric features alone score 49.91\% ($z=-1.22$). Under the absolute-direction framing, fitted models underperform a naive always-up rule by 4.34 percentage points ($z=-4.36$). Granger tests across ten topics yield zero discoveries surviving Benjamini--Hochberg correction, against a procedure whose null expectation is 2.26 nominal hits. We then show that four routine evaluation choices manufacture 71.8--100\% accuracy on this same data with no added skill, that counting each speech once per instrument inflates effective sample size 7.2$\times$, and that a selectively-reported tail figure swings from 78.4\% to 47.1\% under a change of target alone. We release the pipeline and evaluation harness.
+\end{abstract}
+
+\begin{IEEEkeywords}
+market efficiency, political communication, null result, topic modeling, FinBERT, Granger causality, false discovery rate, backtest overfitting, walk-forward validation, Indian equity markets
+\end{IEEEkeywords}
+
+%=========================================================================
+\section{Introduction}
+%=========================================================================
+Classical theory holds that asset prices reflect all publicly available information \cite{fama1970}, yet an extensive empirical literature documents apparent deviations around political and policy events. Leadership communication --- speeches, press conferences, and broadcast addresses such as \textit{Mann ki Baat} --- is a natural candidate for a high-density information channel shaping expectations, sector rotation, and risk appetite. The Indian equity market is a particularly attractive setting, subject both to domestic policy communication and to monetary signals from the Federal Reserve and ECB that propagate through capital-flow and currency channels.
+
+A reasonable hypothesis follows: a pipeline that ingests this communication, resolves its topical content, scores its sentiment, and aligns it to market data should extract measurable directional predictability. We built that pipeline and tested that hypothesis. It does not survive.
+
+We report the null as the primary finding for three reasons. First, it is established under a design whose baseline is exactly 50\%, so it cannot be attributed to equity drift. Second, the accuracies commonly reported in this area --- 74\% \cite{jain2023}, 87\% \cite{biswal2022}, $R^2=0.9866$ \cite{bhandari2025} --- are difficult to reconcile with market efficiency, and we reproduce figures in exactly that band on our own data using choices that add no predictive content whatsoever. Third, a null accompanied by a reproducible harness is more useful than an unreplicable positive.
+
+The distinction we press throughout is between \textit{accuracy} and \textit{skill}. An accuracy figure is uninterpretable without three companions: the baseline a trivial rule achieves on the same test window, the coverage over which the figure is computed, and the clustering used for inference. Omit any one and a null becomes indistinguishable from a strong result. We demonstrate this quantitatively rather than asserting it.
+
+\textbf{Contributions.}
+\begin{enumerate}
+\item A reproducible multi-source pipeline over 1{,}287 documents and 16 instruments (2016--2026), producing topic, sentiment, regime, and shock features in a queryable store.
+\item A null result under two targets and three model classes, with an ablation localizing the only marginal effect to price momentum rather than to rhetoric.
+\item A quantified account of how four routine evaluation choices manufacture 71.8--100\% accuracy on this data, including a tail statistic whose \textit{sign} is specification-dependent.
+\item Multiple-testing-corrected causal validation yielding zero surviving discoveries.
+\end{enumerate}
+
+%=========================================================================
+\section{Related Work}
+%=========================================================================
+\textbf{Price-based deep learning.} Bhandari et al.\ \cite{bhandari2025} combine a GRU over prices with FinBERT and BERTopic news features, reporting $R^2=0.9866$ --- a level more consistent with a highly autocorrelated target (price level) than with directional skill. Khadke et al.\ \cite{khadke2023} report $R^2$ of 0.922 for CNN versus 0.88 for LSTM, and Kumar et al.\ \cite{kumar2024} report 2.36\% error for LSTM across HMM/RNN/LSTM variants. These establish architectural baselines but do not report what a persistence or always-up rule achieves on the same series. Nazari et al.\ \cite{nazari2025} provide the essential counterweight, warning that such models frequently fail to beat buy-and-hold; our results corroborate this quantitatively. Chen et al.\ \cite{chen2024} model asymmetric lead-lag structure across stocks, motivating our instrument-identity and cross-sectional relative features.
+
+\textbf{Financial NLP.} Araci \cite{araci2019} introduced FinBERT by further-pretraining on financial corpora; Paul et al.\ \cite{paul2024} report 89.6\% classification accuracy. Loughran and McDonald \cite{loughran2011} established that general-purpose sentiment dictionaries systematically misclassify financial language. Rambola et al.\ \cite{rambola2021} link public-figure sentiment to abnormal returns; Jain et al.\ \cite{jain2023} report 74\% from headline embeddings; Biswal et al.\ \cite{biswal2022} report 87\% via Grey Relational Analysis. The recurrence of the 74--87\% band across heterogeneous methods and markets is itself the observation that motivates Section~\ref{sec:inflate}.
+
+\textbf{Topic models and event studies.} Seng and Lim \cite{seng2023} show BERTopic features improve downstream error metrics; Buehlmaier and Whited \cite{buehlmaier2018} apply LDA to 70{,}000 8-K filings; Mishev et al.\ \cite{mishev2022} disentangle co-occurring announcement topics. For the Indian setting, Srivastava and Mitra \cite{srivastava2019} find significant abnormal returns around the Pulwama--Balakot crisis persisting roughly 11 days. We stress that a discrete unanticipated geopolitical shock and a decade of scheduled monthly broadcasts are different objects; our results suggest the latter does not inherit the predictability of the former.
+
+\textbf{Multiple testing and overfitting.} White \cite{white2000} introduced the reality-check bootstrap for data snooping. Harvey et al.\ \cite{harvey2016} argue most published cross-sectional predictors are false discoveries under proper multiplicity accounting. Bailey et al.\ \cite{bailey2014} formalize backtest overfitting, showing sufficient strategy search yields impressive in-sample performance from pure noise. Benjamini and Hochberg \cite{benjamini1995} supply the FDR procedure we apply. Gu et al.\ \cite{gu2020} provide the evaluation template we follow. This toolkit is standard in asset pricing and comparatively underused in the political-communication literature; applying it is a substantial part of our contribution.
+
+%=========================================================================
+\section{Data and Pipeline}
+%=========================================================================
+\subsection{Corpus}
+Table~\ref{tab:corpus} summarizes the assembled data. Of 1{,}287 documents, 1{,}070 carry a parseable date and enter the event study; after joining sentiment and topic features, 1{,}069 speeches yield 17{,}104 (document, instrument) observations across 810 distinct event dates.
+
+\begin{table}[t]
+\caption{Assembled corpus and derived records.}
+\label{tab:corpus}
+\centering
+\small
+\begin{tabular}{lr}
+\toprule
+\textbf{Quantity} & \textbf{Count} \\
+\midrule
+Documents, total & 1{,}287 \\
+\quad U.S. Federal Reserve & 745 \\
+\quad European Central Bank & 472 \\
+\quad Mann ki Baat & 70 \\
+\quad with parseable date & 1{,}070 \\
+Date span & 2016-05-19 -- 2026-06-06 \\
+Market instruments & 16 \\
+Daily observations (with returns) & 46{,}840 \\
+Event observations (doc $\times$ instrument) & 17{,}120 \\
+\quad entering analysis & 17{,}104 \\
+Sentiment scores & 1{,}286 \\
+Topic assignments (pooled model) & 12{,}860 \\
+HMM regime classifications & 3{,}078 \\
+India VIX observations & 2{,}984 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Mann ki Baat coverage is 70 of 125 numbered episodes; episodes 22--75 and 102 are absent from our source and are reported as missing rather than imputed. The pooled corpus is consequently dominated by central-bank sources (94.6\%), which we treat as a limitation rather than a design choice.
+
+\subsection{Text Processing}
+Documents are lowercased and stripped of URLs and non-alphanumeric content, then processed with spaCy. A part-of-speech filter retains nouns, proper nouns, verbs, and adjectives, which are lemmatized; tokens under three characters, stopwords, and a domain stopword list of rhetorical formulae are removed. A Devanagari detector routes Hindi-dominant documents to an indic-nlp path; in the assembled corpus all Mann ki Baat transcripts are English, so this path is exercised only incidentally.
+
+Topics are extracted by TF-IDF followed by Non-negative Matrix Factorization with $K=10$, factorizing the term-document matrix $\mathbf{M}$ into non-negative $\mathbf{W},\mathbf{H}$ with $\mathbf{M}\approx\mathbf{WH}$. We initially implemented an LDA/NMF/BERTopic ensemble with coherence-weighted averaging and removed it: on a corpus of order $10^3$ documents the UMAP--HDBSCAN stage produced unstable clusters with large noise assignments, and ensemble coherence did not exceed NMF alone. We record this negative architectural result because it runs against the prevailing assumption that ensembling helps.
+
+FinBERT assigns each document probabilities over \{positive, negative, neutral\}; we retain all three plus a compound score. FinBERT's 512-token limit truncates each document, and the severity is easy to understate. Measured with the model's own tokenizer over 40 documents per source, the median Mann ki Baat transcript is 4{,}804 tokens, so FinBERT observes \textbf{10.7\%} of it; the corresponding figures are 17.6\% for ECB and 13.8\% for Fed. Our sentiment features therefore describe each document's opening passage, not the document. We treat this as a material limitation (Section~\ref{sec:limits}), not an implementation detail.
+
+\subsection{Market Features}
+A three-state Gaussian HMM fitted to index log-returns by Baum--Welch assigns each trading day a latent regime. Asset-specific baseline normalization expresses price as a trailing 252-day $z$-score, $Z_t=(P_t-\mu^{252}_t)/\sigma^{252}_t$. For each (document, instrument) pair we compute forward cumulative returns $r^{(n)}=\prod_{k=1}^{n}(1+r_{t+k})-1$ for $n\in\{1,5,10\}$.
+
+We target raw $r^{(5)}$ rather than the pipeline's abnormal-return field, which subtracts a \textit{full-sample} mean and therefore embeds post-event information. The magnitude effect is modest, but the analysis of interest is a sign test and the subtraction flips the sign of 4.6\% of events --- a caution that generalizes to event-study pipelines: a constant per-instrument offset is harmless for ranking and consequential for direction.
+
+%=========================================================================
+\section{Evaluation Protocol}
+\label{sec:protocol}
+%=========================================================================
+This section is the core of the paper and we specify it fully.
+
+\textbf{Targets.} The \textit{absolute} target is $y=\mathbf{1}[r^{(5)}>0]$; its baseline is the majority class, which exceeds 50\% because equity returns drift upward. The \textit{cross-sectional} target is
+\begin{equation}
+y_{ij}=\mathbf{1}\!\left[r^{(5)}_{ij}>\operatorname{median}_j\left(r^{(5)}_{ij}\right)\right],
+\label{eq:xs}
+\end{equation}
+asking whether instrument $j$ outperforms the median instrument following document $i$. Ties at the median are dropped. This baseline is \textit{exactly} 50\% by construction, removing drift as a confound; our central claim rests on this design.
+
+\textbf{Features (196).} All are computed strictly from pre-$t_i$ information: 5 sentiment, 10 topic probabilities, 160 topic$\times$instrument interactions, 16 instrument indicators, and 5 market controls (relative momentum over 5/10/20/60 observations and relative 20-day realized volatility). Market controls are demeaned within each event, as a relative target requires. The interactions encode the hypothesis under test --- that topical content maps to differential instrument response.
+
+\textbf{Validation.} Expanding-window walk-forward with five folds: the model is fitted on all observations up to a fold boundary and predicts only the subsequent block, so no test observation informs any fit that predicts it.
+
+\textbf{Inference.} Each document contributes one observation per instrument, and these are not independent. Hit indicators are averaged within event date and standard errors computed across the 490 resulting cluster means.
+
+%=========================================================================
+\section{Results}
+%=========================================================================
+\subsection{Directional Predictability}
+Table~\ref{tab:main} reports the central result. The best specification, $\ell_2$-regularized logistic regression at $C=0.05$, reaches 51.32\% against a 50\% baseline with $z=+1.98$ --- marginally at the nominal 5\% threshold, across three specifications tested.
+
+The ablation settles its interpretation. Restricting to rhetoric features alone --- sentiment and topic probabilities, the quantities this paper is about --- yields 49.91\% ($z=-1.22$), indistinguishable from chance. Market controls alone yield 50.64\%. The full model's marginal edge is therefore attributable to price momentum, not to leadership communication. On the hypothesis actually under test, the result is a clean null.
+
+\begin{table}[t]
+\caption{Out-of-sample accuracy, cross-sectional target. Baseline exactly 50.0\%. $n=10{,}262$ predictions across 490 event-date clusters; SEs clustered by date.}
+\label{tab:main}
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Specification} & \textbf{Hit} & \textbf{SE} & \textbf{$z$} \\
+\midrule
+\multicolumn{4}{l}{\textit{Full feature set (196)}} \\
+\quad Logistic ($C=0.05$) & 51.32\% & 0.67pp & $+1.98$ \\
+\quad Logistic ($C=1$) & 51.27\% & 0.67pp & $+1.92$ \\
+\quad Gradient boosting & 50.53\% & 0.62pp & $+0.86$ \\
+\midrule
+\multicolumn{4}{l}{\textit{Feature-group ablation (logistic, $C=1$)}} \\
+\quad Rhetoric only (sentiment + topics) & 49.91\% & --- & $-1.22$ \\
+\quad Topic $\times$ instrument only & 50.11\% & --- & $+0.16$ \\
+\quad Market controls only & 50.64\% & --- & $+0.96$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Under the absolute-direction target the picture is worse. An always-up rule achieves 55.53\% on the test window; gradient boosting achieves 51.18\%, an edge of $-4.34$ percentage points ($z=-4.36$ against the baseline). The fitted model is significantly worse than ignoring the data. This is the concrete realization of the warning in \cite{nazari2025}.
+
+\subsection{Granger Causality with FDR Control}
+Table~\ref{tab:granger} tests whether topic intensity Granger-causes market returns, taking the minimum F-test $p$-value over lags 1--5.
+
+\begin{table}[t]
+\caption{Granger causality, topic intensity $\rightarrow$ returns. Raw $p$ is the minimum over lags 1--5; $q$ is the Benjamini--Hochberg adjustment across ten topics.}
+\label{tab:granger}
+\centering
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Topic} & \textbf{Raw $p$} & \textbf{BH $q$} \\
+\midrule
+Respondent, Quintile, Growth Expectation & 0.0100 & 0.100 \\
+Financial Stability \& Markets & 0.0530 & 0.181 \\
+Labor, Inflation, Percent & 0.0542 & 0.181 \\
+ECB, European, Medium Query & 0.1616 & 0.404 \\
+Payment, Digital, Stablecoin & 0.3072 & 0.514 \\
+Term Condition, Net, Survey Round & 0.3086 & 0.514 \\
+Village, Life, Youth & 0.3976 & 0.568 \\
+Monetary Policy \& Inflation & 0.4554 & 0.569 \\
+National Unity \& Commemoration & 0.6257 & 0.695 \\
+Euro Area, Euro, ECB & 0.7507 & 0.751 \\
+\midrule
+\multicolumn{3}{l}{\textbf{Discoveries at $q<0.05$: 0 of 10}} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Two observations. First, no topic survives correction. Second, and more instructive: taking a minimum across five lags is itself a selection procedure. Under the null, $P(\min_{1..5}p<0.05)=1-0.95^5=0.226$, so across ten topics the expected number of nominal hits is 2.26. We observe one. The raw count is \textit{below} chance expectation, and an uncorrected reading --- which would report one significant topic --- inverts the actual inference. We further note the sole nominal hit loads on \textit{respondent}, \textit{quintile}, and \textit{growth expectation}: vocabulary from the ECB Survey of Professional Forecasters, describing survey instrumentation rather than economic rhetoric.
+
+\subsection{How Evaluation Design Manufactures Accuracy}
+\label{sec:inflate}
+Table~\ref{tab:inflate} applies four routine choices to this same data. Each yields a figure in the band this literature commonly reports; none adds predictive skill.
+
+\begin{table}[t]
+\caption{Accuracy obtainable on this dataset without predictive skill.}
+\label{tab:inflate}
+\centering
+\small
+\begin{tabular}{p{3.1cm}cp{3.3cm}}
+\toprule
+\textbf{Choice} & \textbf{Reported} & \textbf{What it is} \\
+\midrule
+Horizon $\rightarrow$ 252 days & 71.8\% & Always-up baseline is \textit{also} 71.8\% \\
+Random forest, no train/test split & 100.0\% & Memorization of 17{,}104 rows \\
+Post-event variable among features & 72.9\% & Target algebraically inside features \\
+Top 1\% most-confident only & 78.4\% \textit{or} 47.1\% & $n=51$; sign flips with target \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The horizon effect deserves emphasis as the least obviously improper. Fig.~\ref{fig:baserate} shows always-up accuracy rising monotonically with horizon purely from equity drift. An author reporting 71.8\% directional accuracy at a one-year horizon has reported the equity risk premium.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figs/fig_baserate.pdf}
+\caption{Accuracy of a constant ``always up'' prediction by forecast horizon. No model is involved; the entire curve is equity drift. Reporting a headline accuracy without this baseline is uninformative.}
+\label{fig:baserate}
+\end{figure}
+
+The selective-reporting case is subtler, since restricting to high-confidence predictions is defensible as selective prediction. The defense fails here on two grounds. First, the coverage curve (Fig.~\ref{fig:coverage}) is non-monotonic --- 51.3\%, 50.8\%, 48.3\%, 50.4\%, 52.8\%, 52.5\% as coverage falls from 100\% to 2\% --- whereas genuine confidence calibration produces a monotone increase. Second, and decisively, the same top-1\% procedure applied with identical features and split yields 78.4\% under the absolute target and 47.1\% under the cross-sectional target. A statistic whose sign depends on the target definition at $n=51$ is noise, not an edge.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figs/fig_coverage.pdf}
+\caption{Hit rate against retained coverage, with 95\% intervals from date-clustered standard errors. Calibrated confidence would produce a monotone rise as coverage falls; this curve wanders within its intervals.}
+\label{fig:coverage}
+\end{figure}
+
+\subsection{Pseudo-Replication}
+Each document generates one record per instrument, and the instruments co-move strongly: mean pairwise correlation of event-window returns is $\rho=0.413$ across $k=16$ instruments. The design effect is
+\begin{equation}
+\mathrm{deff}=1+(k-1)\rho=1+15(0.413)=7.2,
+\label{eq:deff}
+\end{equation}
+so an apparent 5{,}120 records carry the information of roughly 712, and unclustered standard errors are understated by $\sqrt{7.2}=2.68\times$. A nominal $z$ of $-6.6$ computed on unclustered records corresponds to roughly $-2.5$ once clustering is respected. Reported significance that does not state its clustering scheme is uninterpretable in this setting.
+
+%=========================================================================
+\section{Discussion}
+%=========================================================================
+The most economical explanation of the null is the standard one. Mann ki Baat is a pre-announced, nationally broadcast monthly address; ECB and Fed communications are scheduled and intensely scrutinized. Any information content reaches all participants simultaneously at zero cost, and weak-form efficiency \cite{fama1970} predicts incorporation faster than a daily-resolution pipeline can act on. Our ablation sharpens this: the rhetoric features are at chance while momentum controls carry the entire marginal effect.
+
+This does not establish that leadership communication is irrelevant to markets. It establishes something narrower: at daily resolution, over a decade of routine communications, using topic distributions and document-level sentiment, there is no directional edge to extract. The event-study finding of \cite{srivastava2019} around a discrete geopolitical shock is not contradicted.
+
+Our second contribution follows from the first. Having found no signal, we could ask what it would take to \textit{appear} to find one, and the answer is: very little. Four ordinary choices, each defensible in isolation and none involving fabrication, produce 71.8--100\%. When a study reports 74\% \cite{jain2023} or 87\% \cite{biswal2022} without stating the baseline a constant rule achieves on the same window, the coverage, and the clustering, a reader cannot distinguish a genuine edge from any of these mechanisms. This is not an accusation about any particular paper; it is a statement about what the reported quantity identifies. The remedy is inexpensive: report baseline, coverage, and clustering alongside every accuracy figure. Our findings align with \cite{harvey2016} and \cite{bailey2014} on multiplicity and backtest overfitting; our Granger analysis is a small instance of exactly that, where the uncorrected reading yields a publishable sentence and the corrected reading yields zero discoveries.
+
+%=========================================================================
+\section{Limitations}
+\label{sec:limits}
+%=========================================================================
+\textbf{Corpus composition.} Mann ki Baat coverage is 70 of 125 episodes with a contiguous gap (22--75), and the pooled corpus is 94.6\% central-bank text. The domestic-communication channel is measured on thin data.
+\textbf{Sentiment truncation.} FinBERT observes only 10.7\% of a median Mann ki Baat transcript (17.6\% ECB, 13.8\% Fed). This is the limitation we regard as most likely to matter: our sentiment features characterize opening passages rather than whole documents, and a chunk-and-aggregate scheme --- roughly 9$\times$ the compute at these lengths --- was not run. We cannot exclude that full-document sentiment carries signal this measure misses, and we would prioritize this over any other extension.
+\textbf{Daily resolution.} Intraday incorporation is invisible to this design.
+\textbf{Single regime era.} The 2016--2026 sample includes COVID-19 and an extended bull phase; regime-conditional predictability would be diluted.
+\textbf{Topic granularity.} Ten topics over a mixed-institution corpus is coarse.
+\textbf{Unevaluated component.} An LLM-based company-attribution module is implemented and produces validated output, but reached only 49 of 1{,}287 documents before we froze the analysis; it is excluded from all results here and is the most semantically direct feature remaining untested.
+
+%=========================================================================
+\section{Conclusion}
+%=========================================================================
+We built an end-to-end pipeline linking political and central-bank communication to Indian equity markets and used it to test whether such communication carries exploitable directional signal. Across 1{,}287 documents, 16 instruments, and a decade of daily data, under two targets and three model classes with walk-forward validation and date-clustered inference, it does not. The best specification reaches 51.32\% ($z=+1.98$) against a 50\% baseline, but rhetoric features alone score 49.91\% and the margin localizes to price momentum; under the absolute target, fitted models underperform a naive rule by 4.34 points. Granger tests yield zero discoveries surviving FDR correction against a null expectation of 2.26 nominal hits.
+
+We additionally quantify how readily this conclusion could have been reversed by evaluation choices rather than evidence: horizon extension, in-sample fitting, one post-event variable, and selective coverage each yield 71.8--100\% on the same data, unclustered inference overstates significance 2.68$\times$, and a tail statistic reverses sign under a change of target. We conclude that accuracy figures in this literature require an accompanying baseline, coverage, and clustering scheme to be interpretable, and we release the pipeline and harness so these checks are cheap to apply.
+
+Future work should target volatility rather than direction --- communication events plausibly affect second moments more than first --- complete the LLM attribution evaluation, and replicate the harness on other emerging markets to test whether the null is India-specific or general to scheduled political communication.
+
+%=========================================================================
+\begin{thebibliography}{00}
+
+\bibitem{fama1970} E.~F. Fama, ``Efficient capital markets: A review of theory and empirical work,'' \emph{J. Finance}, vol.~25, no.~2, pp.~383--417, 1970.
+
+\bibitem{bhandari2025} H.~Bhandari \emph{et al.}, ``Deep learning-based stock market prediction using historical price and topic-distributed news sentiment,'' \emph{Procedia Comput. Sci.}, 2025.
+
+\bibitem{nazari2025} M.~Nazari \emph{et al.}, ``Stock market trend prediction using deep neural network via chart analysis: a practical method or a myth?'' \emph{Humanit. Soc. Sci. Commun.}, 2025.
+
+\bibitem{chen2024} X.~Chen \emph{et al.}, ``Graph-driven insights: Enhancing stock market prediction with relational temporal dynamics,'' Tongji Univ., 2024.
+
+\bibitem{khadke2023} S.~Khadke \emph{et al.}, ``Decoding the market trends: Precision forecasting of stock prices using a CNN-based approach,'' MIT Acad. Eng., 2023.
+
+\bibitem{kumar2024} V.~Kumar \emph{et al.}, ``Enhancing stock price predictions through LSTM-based recurrent neural networks,'' IEEE, 2024.
+
+\bibitem{araci2019} D.~Araci, ``FinBERT: Financial sentiment analysis with pre-trained language models,'' \emph{arXiv:1908.10063}, 2019.
+
+\bibitem{paul2024} S.~Paul \emph{et al.}, ``Advanced financial sentiment analysis using FinBERT to explore sentiment dynamics,'' IEEE, 2024.
+
+\bibitem{loughran2011} T.~Loughran and B.~McDonald, ``When is a liability not a liability? Textual analysis, dictionaries, and 10-Ks,'' \emph{J. Finance}, vol.~66, no.~1, pp.~35--65, 2011.
+
+\bibitem{rambola2021} R.~Rambola \emph{et al.}, ``Deep learning-based techniques for predicting the impact of public figures' social media statements,'' 2021.
+
+\bibitem{jain2023} A.~Jain \emph{et al.}, ``Early prediction of stock market movements using news analytics and deep learning,'' IEEE, 2023.
+
+\bibitem{biswal2022} B.~Biswal \emph{et al.}, ``Sentiment analysis of stock prices and news headlines using the MCDM framework,'' Delhi Technol. Univ., 2022.
+
+\bibitem{seng2023} J.~L. Seng and A.~Lim, ``BERTopic-driven stock market predictions: Unraveling sentiment insights,'' Univ. of Macau, 2023.
+
+\bibitem{mishev2022} K.~Mishev \emph{et al.}, ``Multi-label topic model for financial textual data,'' LMU M\"unchen, 2022.
+
+\bibitem{buehlmaier2018} M.~Buehlmaier and T.~Whited, ``Investor reaction to financial disclosures across topics: An application of latent Dirichlet allocation,'' ETH Zurich, 2018.
+
+\bibitem{srivastava2019} P.~Srivastava and A.~Mitra, ``An event study analysis on stock market reaction amid geo-political crisis in India,'' Chitkara Bus. Sch., 2019.
+
+\bibitem{benjamini1995} Y.~Benjamini and Y.~Hochberg, ``Controlling the false discovery rate: A practical and powerful approach to multiple testing,'' \emph{J. R. Stat. Soc. B}, vol.~57, no.~1, pp.~289--300, 1995.
+
+\bibitem{harvey2016} C.~R. Harvey, Y.~Liu, and H.~Zhu, ``$\ldots$ and the cross-section of expected returns,'' \emph{Rev. Financ. Stud.}, vol.~29, no.~1, pp.~5--68, 2016.
+
+\bibitem{bailey2014} D.~H. Bailey, J.~M. Borwein, M.~L\'opez de Prado, and Q.~J. Zhu, ``Pseudo-mathematics and financial charlatanism: The effects of backtest overfitting on out-of-sample performance,'' \emph{Notices AMS}, vol.~61, no.~5, pp.~458--471, 2014.
+
+\bibitem{white2000} H.~White, ``A reality check for data snooping,'' \emph{Econometrica}, vol.~68, no.~5, pp.~1097--1126, 2000.
+
+\bibitem{gu2020} S.~Gu, B.~Kelly, and D.~Xiu, ``Empirical asset pricing via machine learning,'' \emph{Rev. Financ. Stud.}, vol.~33, no.~5, pp.~2223--2273, 2020.
+
+\end{thebibliography}
+
+\end{document}

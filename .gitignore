@@ -55,3 +55,7 @@ ingestion_log.txt
 # Diagnostic fixture from scripts/verify_prediction_math.mjs -- never
 # meant to ship as part of the static data export
 frontend/public/data/_verify_fixture.json
+
+# Overleaf build artifacts (regenerate with scripts/build_overleaf_bundle.py)
+overleaf_bundle/
+overleaf_bundle.zip

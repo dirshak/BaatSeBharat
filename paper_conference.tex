@@ -101,8 +101,39 @@ The distinction we press throughout is between \textit{accuracy} and \textit{ski
 %=========================================================================
 \section{Data and Pipeline}
 %=========================================================================
+\subsection{Terminology}
+Three terms recur and are not interchangeable, so we fix them here.
+\textit{Leadership communication} is the umbrella: any scheduled public
+address by an office-holder. \textit{Central-bank communication} means the
+ECB and Federal Reserve speeches and press releases that constitute 94.6\%
+of our corpus. \textit{Domestic political communication} means the Mann ki
+Baat broadcasts, 70 documents or 5.4\%. Where a result concerns the corpus
+as a whole we say leadership communication; where the distinction matters
+for interpretation --- as it does for every conclusion in this paper --- we
+name the component explicitly.
+
 \subsection{Corpus}
-Table~\ref{tab:corpus} summarizes the data. Of 1{,}288 documents, 1{,}071 carry a parseable date; after joining sentiment and topic features and requiring complete trailing market windows, 1{,}052 documents yield 16{,}832 (document, instrument) observations across 798 event dates.
+Table~\ref{tab:corpus} summarizes the data. The attrition from raw documents
+to the unit of inference proceeds in five steps, each of which we state
+because the effective sample is much smaller than the row count suggests:
+
+\begin{enumerate}
+\item \textbf{1{,}288} documents ingested (746 Fed, 472 ECB, 70 Mann ki Baat).
+\item \textbf{1{,}071} carry a parseable date and can be aligned to markets;
+      217 are dropped for missing or unparseable dates.
+\item \textbf{1{,}052} survive joining sentiment and topic features and
+      requiring a complete trailing market window at every horizon.
+\item \textbf{16{,}832} (document, instrument) observations follow, since
+      each document is paired with each of the 16 instruments, spanning
+      798 distinct event dates.
+\item \textbf{10{,}099} of those fall in walk-forward test blocks and are
+      actually scored; they collapse to \textbf{484} event-date clusters,
+      which is the unit all standard errors are computed over.
+\end{enumerate}
+
+The last step is the one that matters for inference. The nominal 10{,}099
+predictions are not 10{,}099 independent observations, for the reason given
+in Section~\ref{sec:protocol}.
 
 \begin{table}[t]
 \caption{Assembled corpus and derived records.}
@@ -160,7 +191,9 @@ asking whether instrument $j$ outperforms the median instrument following docume
 
 \textbf{Validation.} Expanding-window walk-forward with five folds: fitted on all observations up to a fold boundary, predicting only the subsequent block, so no test observation informs any fit that predicts it.
 
-\textbf{Inference.} Each document contributes one observation per instrument and these are not independent. Hit indicators are averaged within event date and standard errors computed across the 484 resulting cluster means.
+\textbf{Inference.} Each document contributes one observation per instrument, and those 16 rows share a single text and a single date. They are therefore not independent draws, and two distinct dependencies are at work: the instruments co-move (mean pairwise correlation of event-window returns $\rho=0.414$), and they share whatever idiosyncratic content that particular speech carried.
+
+We cluster at the \textit{event date} rather than the document or the instrument. Clustering by instrument would be wrong in direction --- it treats the 16 co-moving series as the repeated unit when the shared shock is temporal. Clustering by document is nearly equivalent here, since documents rarely share a date, but event date additionally absorbs the case where two institutions speak on the same day and both events see the same market. Concretely, hit indicators are averaged within event date and the standard error is computed across the 484 resulting cluster means, so a date contributes once regardless of how many rows it generated. Section~\ref{sec:results} quantifies what ignoring this would cost: a design effect of 7.2, and standard errors understated by $2.68\times$.
 
 %=========================================================================
 \section{Results}

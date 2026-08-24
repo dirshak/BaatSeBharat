@@ -202,8 +202,11 @@ def main():
     print(f"documents total            : {d['total']}")
     print(f"  with parseable date      : {d['dated']}")
     _cb = d['by_src'].loc[d['by_src'].source.isin(['Fed', 'ECB']), 'n'].sum()
+    _mkb = d['total'] - _cb
     print(f"  central-bank documents   : {_cb}")
     print(f"  central-bank share       : {_cb / d['total'] * 100:.1f}%")
+    print(f"  domestic-political share : {_mkb / d['total'] * 100:.1f}%")
+    print(f"  dropped, unparseable date: {d['total'] - d['dated']}")
     print(f"market rows (with returns) : {len(mk)}   instruments: {mk.ticker.nunique()}")
     print(f"event observations         : {len(d['impact'])}")
     print(f"sentiment scores           : {len(d['sent'])}")

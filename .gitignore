@@ -59,3 +59,4 @@ frontend/public/data/_verify_fixture.json
 # Overleaf build artifacts (regenerate with scripts/build_overleaf_bundle.py)
 overleaf_bundle/
 overleaf_bundle.zip
+figs/_verify_cache.txt

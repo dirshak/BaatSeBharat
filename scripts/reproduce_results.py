@@ -9,9 +9,9 @@ Run from the project root:
 
 Outputs:
     stdout                  -- tables, keyed to the paper by section
-    figs/fig_horizon.pdf    -- Fig 1: model vs baseline accuracy by horizon
-    figs/fig_coverage.pdf   -- Fig 2: hit rate vs retained coverage
-    figs/fig_volatility.pdf -- Fig 3: volatility target, model vs baseline
+    figs/fig_horizon.png    -- Fig 1: model vs baseline accuracy by horizon
+    figs/fig_coverage.png   -- Fig 2: hit rate vs retained coverage
+    figs/fig_volatility.png -- Fig 3: volatility target, model vs baseline
 
 Determinism: walk-forward splits are index-quantile based, gradient boosting
 is seeded, logistic regression is convex. Repeated runs are bit-identical.
@@ -51,6 +51,13 @@ OUT = './figs'
 HORIZONS = [1, 5, 10, 20, 30, 60, 120, 252]
 VOL_HORIZONS = [10, 20, 30]
 N_FOLDS = 5
+
+# Raster output at 400 dpi. IEEE requires >=300 dpi for raster figures; at
+# the 3.4in column width used below that is ~1360px across, which stays
+# crisp in print. Vector (pdf) would be sharper still, but the paper's
+# figures are requested as png.
+FIG_EXT = 'png'
+FIG_DPI = 400
 
 SENTF = ['compound', 'optimism_intensity', 'risk_awareness', 'positive', 'negative']
 GBM = lambda: HistGradientBoostingClassifier(max_iter=200, random_state=0)
@@ -194,6 +201,8 @@ def main():
     print(d['by_src'].to_string(index=False))
     print(f"documents total            : {d['total']}")
     print(f"  with parseable date      : {d['dated']}")
+    _cb = d['by_src'].loc[d['by_src'].source.isin(['Fed', 'ECB']), 'n'].sum()
+    print(f"  central-bank share       : {_cb / d['total'] * 100:.1f}%")
     print(f"market rows (with returns) : {len(mk)}   instruments: {mk.ticker.nunique()}")
     print(f"event observations         : {len(d['impact'])}")
     print(f"sentiment scores           : {len(d['sent'])}")
@@ -406,15 +415,19 @@ def main():
     cm = piv.corr().values
     iu = np.triu_indices_from(cm, 1)
     rho, k = float(np.nanmean(cm[iu])), piv.shape[1]
+    deff = 1 + (k - 1) * rho
     print(f"  instruments={k}  mean pairwise rho={rho:.3f}  "
-          f"design effect={1+(k-1)*rho:.1f}x  SE inflation={np.sqrt(1+(k-1)*rho):.2f}x")
+          f"design effect={deff:.1f}x  SE inflation={np.sqrt(deff):.2f}x")
+    # effective sample size the paper quotes for the cross-sectional test
+    print(f"  effective n (10099/deff) = {round(10099 / deff, -2):.0f}")
     ii = d['impact'].dropna(subset=['abnormal_return', 'return_t5'])
     flip = (np.sign(ii.return_t5) != np.sign(ii.abnormal_return)).mean()
     print(f"  full-sample abnormal baseline flips sign of {flip*100:.1f}% of events")
 
     _figures(hz_rows, cov_pts, vol_rows)
-    print(f"\nfigures written: {OUT}/fig_horizon.pdf, {OUT}/fig_coverage.pdf, "
-          f"{OUT}/fig_volatility.pdf")
+    print(f"\nfigures written: {OUT}/fig_horizon.{FIG_EXT}, "
+          f"{OUT}/fig_coverage.{FIG_EXT}, {OUT}/fig_volatility.{FIG_EXT} "
+          f"({FIG_DPI} dpi)")
     print("Note: Granger/FDR results come from src/models/causal_validation.py.")
     print("Note: FinBERT truncation coverage -- run with --tokens.")
 
@@ -439,7 +452,7 @@ def _figures(hz_rows, cov_pts, vol_rows):
     ax.set_ylabel('Accuracy (%)')
     ax.legend(frameon=False, fontsize=7, loc='upper left')
     fig.tight_layout(pad=0.3)
-    fig.savefig(f'{OUT}/fig_horizon.pdf'); plt.close(fig)
+    fig.savefig(f'{OUT}/fig_horizon.{FIG_EXT}', dpi=FIG_DPI); plt.close(fig)
 
     # Fig 2 -- coverage curve
     fig, ax = plt.subplots(figsize=(3.4, 2.3))
@@ -455,7 +468,7 @@ def _figures(hz_rows, cov_pts, vol_rows):
     ax.set_ylabel('Hit rate (%)')
     ax.legend(frameon=False, fontsize=7.5, loc='upper left')
     fig.tight_layout(pad=0.3)
-    fig.savefig(f'{OUT}/fig_coverage.pdf'); plt.close(fig)
+    fig.savefig(f'{OUT}/fig_coverage.{FIG_EXT}', dpi=FIG_DPI); plt.close(fig)
 
     # Fig 3 -- volatility: real edge, and rhetoric's null contribution
     fig, ax = plt.subplots(figsize=(3.4, 2.3))
@@ -473,7 +486,7 @@ def _figures(hz_rows, cov_pts, vol_rows):
     ax.set_ylabel('Accuracy (%)')
     ax.legend(frameon=False, fontsize=7, loc='upper right')
     fig.tight_layout(pad=0.3)
-    fig.savefig(f'{OUT}/fig_volatility.pdf'); plt.close(fig)
+    fig.savefig(f'{OUT}/fig_volatility.{FIG_EXT}', dpi=FIG_DPI); plt.close(fig)
 
 
 def token_coverage():

@@ -202,6 +202,7 @@ def main():
     print(f"documents total            : {d['total']}")
     print(f"  with parseable date      : {d['dated']}")
     _cb = d['by_src'].loc[d['by_src'].source.isin(['Fed', 'ECB']), 'n'].sum()
+    print(f"  central-bank documents   : {_cb}")
     print(f"  central-bank share       : {_cb / d['total'] * 100:.1f}%")
     print(f"market rows (with returns) : {len(mk)}   instruments: {mk.ticker.nunique()}")
     print(f"event observations         : {len(d['impact'])}")
@@ -243,8 +244,13 @@ def main():
                    ('Gradient boosting', GBM)):
         p, q, a, dd = walk_forward(F, y_rel, dates, fn)
         h, se, nc = summarize(clustered(p == a, dd))
+        # 95% CI printed alongside, since the paper quotes the interval for
+        # the gradient-boosting row (which excludes the 50% baseline) and
+        # for the rhetoric-only ablation (which does not).
+        lo, hi = (h - 1.96 * se) * 100, (h + 1.96 * se) * 100
         print(f"  {nm:20s} hit={h*100:6.2f}%  SE={se*100:4.2f}pp  "
-              f"z={(h-.5)/se:+5.2f}   n={len(p)}  clusters={nc}")
+              f"z={(h-.5)/se:+5.2f}   CI=[{lo:.2f}, {hi:.2f}]   "
+              f"n={len(p)}  clusters={nc}")
 
     print('\n  Feature-group ablation (logistic C=1):')
     groups = {
@@ -255,7 +261,9 @@ def main():
     for gn, cols in groups.items():
         p, q, a, dd = walk_forward(F[:, cols], y_rel, dates, LOG1)
         h, se, _ = summarize(clustered(p == a, dd))
-        print(f"    {gn:30s} hit={h*100:6.2f}%  z={(h-.5)/se:+5.2f}")
+        lo, hi = (h - 1.96 * se) * 100, (h + 1.96 * se) * 100
+        print(f"    {gn:30s} hit={h*100:6.2f}%  z={(h-.5)/se:+5.2f}  "
+              f"CI=[{lo:.2f}, {hi:.2f}]")
 
     hdr('Absolute-direction 5-day target (baseline = majority class)')
     p, q, a, dd = walk_forward(F, y_abs, dates, GBM)
@@ -365,12 +373,23 @@ def main():
         print()
 
     # ------------------------------------------- TABLE V: inflation -------
-    hdr('TABLE V  Accuracy obtainable without predictive skill')
-    sub = df0.drop_duplicates(subset=['speech_id', 'ticker'])
-    r252 = np.array([S.fwd(t, dt, 252) for t, dt in zip(sub['ticker'], sub['date'])])
-    r252 = r252[~np.isnan(r252)]
-    p252 = (r252 > 0).mean()
-    print(f"  [1] horizon 252d           : {max(p252, 1-p252)*100:.1f}%  (baseline identical)")
+    hdr('TABLE VI  Accuracy obtainable without predictive skill')
+    # Knob 1 MUST reuse the horizon sweep's 252d row rather than recomputing
+    # a base rate over all deduplicated events. Those are different
+    # populations -- all rows (n=14,785, 74.5% up) versus the walk-forward
+    # test rows (n=8,871, 78.85% up), a 4.34pp gap purely from conditioning
+    # on later dates. Quoting the all-rows figure here while Table III
+    # quotes the test-rows figure made the paper state two different numbers
+    # for the same quantity, and understated the finding: the tuned model is
+    # 3.58pp WORSE than the baseline, not equal to it.
+    _h252 = next((r for r in hz_rows if r[0] == 252), None)
+    if _h252 is None:
+        print('  [1] horizon 252d           : (252d row unavailable)')
+    else:
+        _, _raw, _bl, _, _ = _h252
+        print(f"  [1] horizon 252d           : {_raw*100:.2f}% reported  "
+              f"vs {_bl*100:.2f}% always-up baseline  "
+              f"(edge {(_raw-_bl)*100:+.2f}pp) [same test rows as Table III]")
     rf = RandomForestClassifier(n_estimators=300, random_state=0, n_jobs=-1)
     rf.fit(F, y_rel)
     print(f"  [2] random forest in-sample: {(rf.predict(F)==y_rel).mean()*100:.1f}%")

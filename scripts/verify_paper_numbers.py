@@ -86,6 +86,7 @@ EXTERNAL = {
     '0.226': '1 - 0.95^5, the min-over-5-lags null rate (derivation)',
     '9': 'chunk-and-aggregate cost ~ 4804/512 tokens, stated as "roughly 9x"',
     '0.2': 'prose bound: horizon sweep stays within 0.2pp of 50%',
+    '0.09': 'width of the rhetoric-only CI, i.e. 50.03 - 49.94 (both emitted)',
 }
 
 # Tokens that are section/table/figure cross-references or LaTeX plumbing

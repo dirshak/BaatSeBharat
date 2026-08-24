@@ -23,9 +23,12 @@
 
 \begin{document}
 
+% Main title matches the registered Project Synopsis. The subtitle carries
+% the finding so the cover does not promise predictive performance the body
+% then reports as absent.
 \title{Leadership Records Driven Market Regime Prediction and Risk Assessment\\
-\large An AI-Driven Framework for Political Communication Analytics and
-Financial Market Intelligence}
+\large A Reproducible Framework for Political Communication Analytics, and a
+Null Result on Directional Predictability}
 
 % Three authors: IEEEtran lays these out as one row of three columns at
 % conference width. If a fourth is ever added, insert \linebreak after the
@@ -54,7 +57,7 @@ email}
 \maketitle
 
 \begin{abstract}
-Political leadership communication is widely assumed to move financial markets, and a growing literature reports directional accuracies of 74--87\% from NLP pipelines built on such text. We construct one of these pipelines end to end and test the assumption directly. Our corpus comprises 1{,}288 leadership communications spanning May 2016 to August 2026 --- Mann ki Baat broadcasts, European Central Bank speeches, and U.S. Federal Reserve communications --- aligned to daily prices for 16 Indian and global instruments, yielding 16{,}832 analysable event observations. We evaluate under a cross-sectional design whose baseline is pinned at exactly 50\% by construction, with expanding-window walk-forward refits and standard errors clustered by event date. Rhetoric features score 49.99\% ($z=-0.63$); a horizon sweep from 1 to 252 trading days finds rhetoric-only accuracy confined to 49.88--50.02\% at every lag, ruling out delayed transmission. Under the absolute-direction framing, fitted models underperform a naive always-up rule by 5.86 percentage points ($z=-6.00$). Granger tests across ten topics yield zero discoveries surviving Benjamini--Hochberg correction, against a procedure whose null expectation is 2.26 nominal hits. As a positive control we show the same pipeline predicts realized-volatility direction at 68.67\% ($+17.07$pp over baseline, $z=+23.75$) --- but rhetoric contributes nothing there either ($-0.62$pp, $p=0.17$), and neither does India VIX. Finally we quantify how evaluation design manufactures accuracy: at a 252-day horizon our model reports 75.28\%, a figure that would headline a paper, while being 3.58pp \emph{worse} than a constant rule. We release the pipeline and evaluation harness.
+Leadership communication is widely assumed to move financial markets, and a growing literature reports directional accuracies of 74--87\% from NLP pipelines built on such text. We construct one of these pipelines end to end and test the assumption directly. Our corpus comprises 1{,}288 communications spanning May 2016 to August 2026 --- 746 U.S. Federal Reserve and 472 European Central Bank documents alongside 70 Mann ki Baat broadcasts, so 94.6\% of the corpus is central-bank rather than domestic political text --- aligned to daily prices for 16 Indian and global instruments, yielding 16{,}832 event observations. We evaluate under a cross-sectional design whose baseline is pinned at exactly 50\% by construction, with expanding-window walk-forward refits and standard errors clustered by event date. Rhetoric features score 49.99\% ($z=-0.63$), and a horizon sweep from 1 to 252 trading days confines rhetoric-only accuracy to 49.88--50.02\% at every lag, ruling out delayed transmission. Under the absolute-direction framing, fitted models underperform a naive always-up rule by 5.86 percentage points ($z=-6.00$). Granger tests across ten topics yield zero discoveries surviving Benjamini--Hochberg correction, against a procedure whose null expectation is 2.26 nominal hits. As a positive control the same pipeline predicts realized-volatility direction at 68.67\% ($+17.07$pp over baseline, $z=+23.75$), establishing that the harness detects structure where structure exists; rhetoric contributes nothing there either ($-0.62$pp, $p=0.17$). Two design bounds qualify the null: the corpus composition above, and FinBERT's 512-token limit, which exposes only 10.7\% of a median transcript to the sentiment model. We therefore claim no \emph{detectable} directional signal under this design rather than a general absence. Finally we quantify how evaluation design manufactures accuracy: tuning the horizon to 252 days reports 75.28\%, a headline-grade figure that is 3.58pp \emph{worse} than a constant rule on the same rows. We release the pipeline and evaluation harness.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -70,7 +73,9 @@ A reasonable hypothesis follows: a pipeline that ingests this communication, res
 
 We report the null as the primary finding for three reasons. First, it is established under a design whose baseline is exactly 50\%, so it cannot be attributed to equity drift, and it holds across every forecast horizon from one day to one year. Second, the accuracies commonly reported in this area --- 74\% \cite{jain2023}, 87\% \cite{biswal2022}, $R^2=0.9866$ \cite{bhandari2025} --- are difficult to reconcile with market efficiency, and we reproduce figures in exactly that band on our own data using choices that add no predictive content. Third, a null accompanied by a reproducible harness is more useful than an unreplicable positive.
 
-To establish that the null reflects the data rather than a weak pipeline, we include a positive control: the same features and protocol predict realized-volatility direction at 68.67\%, $+17.07$ percentage points over baseline at $z=+23.75$. The machinery works. Rhetoric simply carries no directional information.
+To establish that the null reflects the data rather than a weak pipeline, we include a positive control: the same features and protocol predict realized-volatility direction at 68.67\%, $+17.07$ percentage points over baseline at $z=+23.75$. The machinery detects structure when structure is present. What it does not detect is any directional signal in the rhetoric features.
+
+We state the scope of that claim precisely, because two properties of this design bound it. First, the corpus is 94.6\% central-bank communication: 1{,}218 ECB and Federal Reserve documents against 70 Mann ki Baat broadcasts. What we test is therefore predominantly institutional monetary communication, not domestic political rhetoric, and the Indian political channel is measured on thin data. Second, FinBERT's 512-token limit means our sentiment features observe only 10.7\% of a median Mann ki Baat transcript. The correct reading of our result is \textit{no detectable directional signal under this design} --- daily resolution, truncated document-level sentiment, and a corpus dominated by central banks --- rather than a general claim that leadership communication is uninformative.
 
 The distinction we press throughout is between \textit{accuracy} and \textit{skill}. An accuracy figure is uninterpretable without three companions: the baseline a trivial rule achieves on the same test window, the coverage over which it is computed, and the clustering used for inference. Omit any one and a null becomes indistinguishable from a strong result.
 
@@ -166,7 +171,13 @@ Table~\ref{tab:main} reports the central result. The strongest specification, gr
 The ablation settles its interpretation. Restricting to rhetoric features alone --- sentiment and topic probabilities, the quantities this paper is about --- yields 49.99\% ($z=-0.63$), indistinguishable from chance, as do the topic$\times$instrument interactions in isolation (50.04\%). Market controls alone yield 50.63\%. The marginal edge is attributable to price momentum, not to leadership communication. On the hypothesis under test, the result is a clean null.
 
 \begin{table}[t]
-\caption{Out-of-sample accuracy, cross-sectional 5-day target. Baseline exactly 50.0\%. $n=10{,}099$ predictions across 484 event-date clusters; SEs clustered by date.}
+\caption{Out-of-sample accuracy, cross-sectional 5-day target. Baseline
+exactly 50.0\%. $n=10{,}099$ predictions across 484 event-date clusters; SEs
+clustered by date. Note the gradient-boosting row: its 95\% interval,
+$[50.55, 52.86]$, excludes the baseline. The ablation beneath it locates
+that margin --- rhetoric features alone sit at 49.99\% with a 95\% interval
+of $[49.94, 50.03]$, a span 0.09pp wide centred on chance, so the effect is
+carried by the price-momentum controls rather than by communication.}
 \label{tab:main}
 \centering
 \small
@@ -300,18 +311,23 @@ No topic survives correction. More instructive: taking a minimum across five lag
 Table~\ref{tab:inflate} applies four routine choices to this same data. Each yields a figure in the band this literature reports; none adds predictive skill.
 
 \begin{table}[t]
-\caption{Accuracy obtainable on this dataset without predictive skill.}
+\caption{Accuracy obtainable on this dataset without predictive skill. All
+four are evaluated on the walk-forward test rows of Section~\ref{sec:protocol}
+unless the third column says otherwise, so they are directly comparable to
+Table~\ref{tab:main}. The first row breaks nothing at all --- it is the
+protocol run honestly at a tuned horizon, which is what makes it the most
+instructive of the four.}
 \label{tab:inflate}
 \centering
 \small
-\begin{tabular}{p{2.9cm}cp{3.4cm}}
+\begin{tabular}{p{2.2cm}cp{1.9cm}p{2.0cm}}
 \toprule
-\textbf{Choice} & \textbf{Reported} & \textbf{What it is} \\
+\textbf{Choice} & \textbf{Reported} & \textbf{Protocol element broken} & \textbf{What it actually is} \\
 \midrule
-Horizon $\rightarrow$ 252 days & 74.5\% & Always-up baseline is \textit{also} 74.5\% \\
-Random forest, no train/test split & 100.0\% & Memorization of 16{,}832 rows \\
-Post-event variable among features & 72.7\% & Target algebraically inside features \\
-Top 1\% most-confident only & 78.0\% \textit{or} 50.0\% & $n=50$; flips with target choice \\
+Horizon $\rightarrow$ 252 days & 75.28\% & none --- the protocol is intact & Baseline on the \textit{same} rows is 78.85\%; the model is 3.58pp \textit{worse} \\
+Random forest, in-sample & 100.0\% & no train/test split & Memorization of 16{,}832 rows \\
+Post-event variable added & 72.7\% & feature causality & Target algebraically inside the features \\
+Top 1\% most-confident & 78.0\% \textit{or} 50.0\% & full-coverage reporting & $n=50$; flips sign with target choice \\
 \bottomrule
 \end{tabular}
 \end{table}

@@ -175,10 +175,25 @@ def rounds_to(paper_value, computed_values):
     return False
 
 
+# Commands whose braces contain identifiers, not claims. These are stripped
+# document-wide BEFORE line scanning, because a \cite{...} spanning two
+# lines leaves its continuation line with no \cite on it -- so a line-level
+# skip silently lets citation keys like "bailey2014" through as if they were
+# numeric claims.
+STRIP_CMDS = re.compile(
+    BS + BS + r'(cite|ref|label|includegraphics|usepackage|documentclass)'
+    r'(\[[^\]]*\])?\{[^}]*\}', re.S)
+
+
 def paper_body(tex):
-    """Body only -- the bibliography is years, volumes and page ranges."""
+    """Body only, with identifier-bearing commands removed.
+
+    The bibliography is excluded outright: it is years, volumes and page
+    ranges, none of which this codebase produces or should be asked to.
+    """
     i = tex.find(BS + 'begin{thebibliography}')
-    return tex[:i] if i > 0 else tex
+    body = tex[:i] if i > 0 else tex
+    return STRIP_CMDS.sub(' ', body)
 
 
 def main():

@@ -57,7 +57,11 @@ email}
 \maketitle
 
 \begin{abstract}
-Leadership communication is widely assumed to move financial markets, and a growing literature reports directional accuracies of 74--87\% from NLP pipelines built on such text. We construct one of these pipelines end to end and test the assumption directly. Our corpus comprises 1{,}288 communications spanning May 2016 to August 2026 --- 746 U.S. Federal Reserve and 472 European Central Bank documents alongside 70 Mann ki Baat broadcasts, so 94.6\% of the corpus is central-bank rather than domestic political text --- aligned to daily prices for 16 Indian and global instruments, yielding 16{,}832 event observations. We evaluate under a cross-sectional design whose baseline is pinned at exactly 50\% by construction, with expanding-window walk-forward refits and standard errors clustered by event date. Rhetoric features score 49.99\% ($z=-0.63$), and a horizon sweep from 1 to 252 trading days confines rhetoric-only accuracy to 49.88--50.02\% at every lag, ruling out delayed transmission. Under the absolute-direction framing, fitted models underperform a naive always-up rule by 5.86 percentage points ($z=-6.00$). Granger tests across ten topics yield zero discoveries surviving Benjamini--Hochberg correction, against a procedure whose null expectation is 2.26 nominal hits. As a positive control the same pipeline predicts realized-volatility direction at 68.67\% ($+17.07$pp over baseline, $z=+23.75$), establishing that the harness detects structure where structure exists; rhetoric contributes nothing there either ($-0.62$pp, $p=0.17$). Two design bounds qualify the null: the corpus composition above, and FinBERT's 512-token limit, which exposes only 10.7\% of a median transcript to the sentiment model. We therefore claim no \emph{detectable} directional signal under this design rather than a general absence. Finally we quantify how evaluation design manufactures accuracy: tuning the horizon to 252 days reports 75.28\%, a headline-grade figure that is 3.58pp \emph{worse} than a constant rule on the same rows. We release the pipeline and evaluation harness.
+Leadership communication is widely assumed to move financial markets, and a growing literature reports directional accuracies of 74--87\% from NLP pipelines built on such text. We construct one such pipeline and test the assumption directly. Our corpus is 1{,}288 communications from May 2016 to August 2026 --- 746 Federal Reserve and 472 ECB documents alongside 70 Mann ki Baat broadcasts, so 94.6\% is central-bank rather than domestic political text --- aligned to daily prices for 16 instruments, giving 16{,}832 event observations. Evaluation uses a cross-sectional target whose baseline is exactly 50\% by construction, expanding-window walk-forward refits, and errors clustered across 484 event dates.
+
+Rhetoric features score 49.99\%, 95\% interval $[49.94, 50.03]$. A sweep from 1 to 252 trading days holds rhetoric-only accuracy within 49.88--50.02\% at every lag, ruling out delayed transmission. Under the absolute-direction framing, fitted models trail a naive always-up rule by 5.86 percentage points, and Granger tests across ten topics yield zero discoveries surviving Benjamini--Hochberg correction. As a positive control the same pipeline predicts realized-volatility direction at 68.67\% ($+17.07$pp over baseline, $z=+23.75$): the harness detects structure where structure exists, and rhetoric adds nothing there either.
+
+Two bounds qualify the null --- the corpus composition above, and FinBERT's 512-token limit, which exposes 10.7\% of a median transcript --- so we claim no \emph{detectable} signal under this design, not a general absence. Finally, tuning the horizon to 252 days reports 75.28\%, a headline-grade figure that is 3.58pp \emph{worse} than a constant rule on the same rows. We release the pipeline and verification harness.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -81,10 +85,36 @@ The distinction we press throughout is between \textit{accuracy} and \textit{ski
 
 \textbf{Contributions.}
 \begin{enumerate}
-\item A reproducible multi-source pipeline over 1{,}288 documents and 16 instruments (2016--2026).
-\item A null result for return direction, robust across two targets, three model classes, and eight forecast horizons, with an ablation localizing all marginal effect to price momentum rather than rhetoric.
-\item A positive control on realized volatility (68.67\%, $z=+23.75$) demonstrating the null is a property of the signal, not the method --- and a second null showing rhetoric adds nothing there either.
-\item A quantified account of how four routine evaluation choices manufacture 72.7--100\% accuracy on this data, including a 252-day configuration reporting 75.28\% while underperforming a constant rule.
+\item \textbf{A negative result that is hard to dismiss as a weak
+implementation.} We separate the question ``is there signal?'' from ``is
+this pipeline any good?'' by pairing the rhetoric null with a positive
+control on the same features, protocol and code. A harness that returns
+chance on rhetoric while recovering a $+17$pp effect on realized volatility
+is not failing to look.
+
+\item \textbf{An evaluation design under which drift cannot masquerade as
+skill.} Absolute-direction accuracy is confounded by equity drift, which
+rises with horizon and makes tuned windows look progressively better. Posing
+the question cross-sectionally --- does this instrument beat the median
+instrument after this speech? --- pins the baseline at exactly 50\% by
+construction, so any margin is skill by definition.
+
+\item \textbf{Evidence that the null is a property of the signal, not of the
+window.} A lag defence is the natural objection to a short-horizon null. We
+test all lags from one day to one year and find rhetoric-only accuracy
+immobile at chance throughout, which closes that defence empirically rather
+than by assertion.
+
+\item \textbf{A demonstration that routine evaluation choices, not
+misconduct, produce this literature's headline numbers.} Four defensible-in-
+isolation decisions yield 72.7--100\% on our own data with no added
+predictive content --- most instructively a tuned horizon reporting 75.28\%
+while being worse than a constant rule. We argue that an accuracy figure is
+uninterpretable without a stated baseline, coverage, and clustering scheme,
+and adopt that convention throughout.
+
+\item \textbf{A released pipeline and verification harness}, in which every
+numeric claim in this paper is regenerated by a single script.
 \end{enumerate}
 
 %=========================================================================
@@ -96,7 +126,32 @@ The distinction we press throughout is between \textit{accuracy} and \textit{ski
 
 \textbf{Topic models and event studies.} Seng and Lim \cite{seng2023} show BERTopic features improve downstream error metrics; Buehlmaier and Whited \cite{buehlmaier2018} apply LDA to 70{,}000 8-K filings; Mishev et al.\ \cite{mishev2022} disentangle co-occurring announcement topics. For the Indian setting, Srivastava and Mitra \cite{srivastava2019} find significant abnormal returns around the Pulwama--Balakot crisis persisting roughly 11 days. A discrete unanticipated geopolitical shock and a decade of scheduled monthly broadcasts are different objects; our results suggest the latter does not inherit the predictability of the former.
 
-\textbf{Multiple testing and overfitting.} White \cite{white2000} introduced the reality-check bootstrap for data snooping. Harvey et al.\ \cite{harvey2016} argue most published cross-sectional predictors are false discoveries under proper multiplicity accounting. Bailey et al.\ \cite{bailey2014} formalize backtest overfitting. Benjamini and Hochberg \cite{benjamini1995} supply the FDR procedure we apply. Gu et al.\ \cite{gu2020} provide the evaluation template we follow. This toolkit is standard in asset pricing and comparatively underused in the political-communication literature.
+\textbf{Multiple testing and overfitting.} White \cite{white2000} introduced the reality-check bootstrap for data snooping. Harvey et al.\ \cite{harvey2016} argue most published cross-sectional predictors are false discoveries under proper multiplicity accounting. Bailey et al.\ \cite{bailey2014} formalize backtest overfitting. Benjamini and Hochberg \cite{benjamini1995} supply the FDR procedure we apply. Gu et al.\ \cite{gu2020} provide the evaluation template we follow.
+
+\textbf{Synthesis: two literatures that do not cite each other.} Read
+together, the studies above fall into two groups that reach incompatible
+conclusions and largely ignore one another. The applied text-and-markets
+work \cite{bhandari2025, jain2023, biswal2022, seng2023, rambola2021}
+reports directional accuracies of 74--87\% and $R^2$ up to 0.9866, while the
+methodological work in asset pricing \cite{white2000, harvey2016,
+bailey2014, gu2020} holds that effects of that size almost never survive
+multiplicity correction and honest out-of-sample protocol. Both cannot be
+right about the same markets.
+
+Three specific gaps explain the divergence, and each maps to a design choice
+here. First, \textit{baselines are usually unreported}: none of the applied
+studies we reviewed states what a constant or persistence rule achieves on
+its own test window, which is precisely the comparison that separates
+Table~\ref{tab:horizon}'s 75.28\% from skill. Second, \textit{dependence is
+usually unmodelled}: panel designs pairing many assets with shared events
+generate correlated rows, and unclustered standard errors overstate
+significance --- by $2.68\times$ in our data. Third, \textit{multiplicity is
+usually uncorrected}: our own Granger analysis yields one nominally
+significant topic and zero after FDR adjustment, an inversion that an
+uncorrected reading would report as a finding. Nazari et al.\
+\cite{nazari2025} is the closest existing warning from inside the applied
+literature; we supply the quantitative version of it, on data where the
+answer is known because we also measured what a working signal looks like.
 
 %=========================================================================
 \section{Data and Pipeline}
@@ -197,6 +252,7 @@ We cluster at the \textit{event date} rather than the document or the instrument
 
 %=========================================================================
 \section{Results}
+\label{sec:results}
 %=========================================================================
 \subsection{Return Direction}
 Table~\ref{tab:main} reports the central result. The strongest specification, gradient boosting, reaches 51.71\% against a 50\% baseline ($z=+2.90$) --- nominally significant across three specifications tested.

@@ -336,22 +336,21 @@ looks like on the same pipeline.
 \section{Data and Pipeline}
 \label{sec:pipeline}
 
-\begin{figure*}[t]
+\begin{figure}[t]
 \centering
-\includegraphics[width=\textwidth]{figs/methodology.png}
-\caption{Pipeline architecture. Counts are read from the released database
-when the figure is rendered, so they cannot drift from the tables. The
-diagram shows only components that are implemented and exercised in the
-results reported here; mechanisms considered during design but not built
-are listed in Section~\ref{sec:limits} rather than drawn. Note the two
-properties that bound every claim in this paper: the corpus is dominated by
-central-bank text (746 Fed and 472 ECB documents against 70 Mann ki Baat
-broadcasts), and FinBERT observes only the first 512 tokens, about 10.7\% of
-a median transcript. The final stage contrasts the two outcomes --- a null
-on return direction against a positive control on realized volatility ---
-which is the comparison the paper rests on.}
+\includegraphics[width=\columnwidth]{figs/methodology.png}
+\caption{High-level design. A textual and a numerical branch are computed
+independently, fused at event alignment, and passed through a single
+evaluation harness that emits two contrasting outcomes. The design shows
+only components that are implemented and exercised in the results reported
+here; mechanisms considered during design but not built are recorded in
+Section~\ref{sec:limits} rather than drawn, so no box needs decoding.
+Placing the volatility result inside the same architecture is deliberate:
+it is a positive control, and the fact that one path recovers a strong
+effect while the other returns chance is what distinguishes an absent signal
+from an inadequate pipeline.}
 \label{fig:methodology}
-\end{figure*}
+\end{figure}
 %=========================================================================
 Fig.~\ref{fig:methodology} summarizes the pipeline end to end. The
 subsections below describe each stage; the two design bounds noted in the

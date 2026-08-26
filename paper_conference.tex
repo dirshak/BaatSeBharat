@@ -59,7 +59,7 @@ jugal@somaiya.edu}
 \begin{abstract}
 Leadership communication is widely assumed to move financial markets, and a growing literature reports directional accuracies of 74--87\% from NLP pipelines built on such text. We construct one such pipeline and test the assumption directly. Our corpus is 1{,}288 communications from May 2016 to August 2026 --- 746 Federal Reserve and 472 ECB documents alongside 70 Mann ki Baat broadcasts, so 94.6\% is central-bank rather than domestic political text --- aligned to daily prices for 16 instruments, giving 16{,}832 event observations. Evaluation uses a cross-sectional target whose baseline is exactly 50\% by construction, expanding-window walk-forward refits, and errors clustered across 484 event dates.
 
-Rhetoric features score 49.99\%, 95\% interval $[49.94, 50.03]$. A sweep from 1 to 252 trading days holds rhetoric-only accuracy within 49.88--50.02\% at every lag, ruling out delayed transmission. Under the absolute-direction framing, fitted models trail a naive always-up rule by 5.86 percentage points, and Granger tests across ten topics yield zero discoveries surviving Benjamini--Hochberg correction. As a positive control the same pipeline predicts realized-volatility direction at 68.67\% ($+17.07$pp over baseline, $z=+23.75$): the harness detects structure where structure exists, and rhetoric adds nothing there either.
+Rhetoric features score 49.99\%, 95\% interval $[49.94, 50.03]$. A sweep from 1 to 252 trading days holds rhetoric-only accuracy within 49.88--50.02\% at every lag, finding no evidence of delayed transmission over the tested horizons. Under the absolute-direction framing, fitted models trail a naive always-up rule by 5.86 percentage points, and Granger tests across ten topics yield zero discoveries surviving Benjamini--Hochberg correction. As a positive control the same pipeline predicts realized-volatility direction at 68.67\% ($+17.07$pp over baseline, $z=+23.75$): the harness detects structure where structure exists, and rhetoric adds nothing there either.
 
 Two bounds qualify the null --- the corpus composition above, and FinBERT's 512-token limit, which exposes 10.7\% of a median transcript --- so we claim no \emph{detectable} signal under this design, not a general absence. Finally, tuning the horizon to 252 days reports 75.28\%, a headline-grade figure that is 3.58pp \emph{worse} than a constant rule on the same rows. We release the pipeline and verification harness.
 \end{abstract}
@@ -97,7 +97,8 @@ skill.} Absolute-direction accuracy is confounded by equity drift, which
 rises with horizon and makes tuned windows look progressively better. Posing
 the question cross-sectionally --- does this instrument beat the median
 instrument after this speech? --- pins the baseline at exactly 50\% by
-construction, so any margin is skill by definition.
+construction, so any statistically reliable margin is interpretable as
+predictive skill rather than market drift.
 
 \item \textbf{Evidence that the null is a property of the signal, not of the
 window.} A lag defence is the natural objection to a short-horizon null. We
@@ -456,7 +457,7 @@ We cluster at the \textit{event date} rather than the document or the instrument
 \label{sec:results}
 %=========================================================================
 \subsection{Return Direction}
-Table~\ref{tab:main} reports the central result. The strongest specification, gradient boosting, reaches 51.71\% against a 50\% baseline ($z=+2.90$) --- nominally significant across three specifications tested.
+Table~\ref{tab:main} reports the central result. Of the three model specifications fitted, one --- gradient boosting --- exceeds the 50\% baseline at conventional significance, reaching 51.71\% with a 95\% interval of $[50.55, 52.86]$ that excludes the baseline ($z=+2.90$). The other two are not distinguishable from chance ($z=+1.70$ and $z=+1.65$). We read that single exceedance cautiously rather than as a finding: obtaining one nominally significant result among three specifications is close to what multiplicity alone would yield, and we did not raise the threshold to account for it. The ablation below, not the significance test, is what settles the interpretation.
 
 The ablation settles its interpretation. Restricting to rhetoric features alone --- sentiment and topic probabilities, the quantities this paper is about --- yields 49.99\% ($z=-0.63$), indistinguishable from chance, as do the topic$\times$instrument interactions in isolation (50.04\%). Market controls alone yield 50.63\%. The marginal edge is attributable to price momentum, not to leadership communication. On the hypothesis under test, the result is a clean null.
 
@@ -646,7 +647,7 @@ so an apparent 10{,}099 records carry the information of roughly 1{,}400, and un
 %=========================================================================
 The most economical explanation is the standard one. Mann ki Baat is a pre-announced, nationally broadcast monthly address; ECB and Fed communications are scheduled and intensely scrutinized. Any information content reaches all participants simultaneously at zero cost, and weak-form efficiency \cite{fama1970} predicts incorporation faster than a daily-resolution pipeline can act on.
 
-Three pieces of evidence make this hard to attribute to a weak implementation. The ablation shows rhetoric at exactly chance while momentum controls carry the entire marginal effect. The horizon sweep shows the same at every lag from one day to one year, closing off delayed transmission. And the volatility control shows the identical harness detecting a $+17$pp effect where genuine structure exists. A pipeline that finds volatility clustering at $z=+23.75$ and rhetoric at $z=-0.63$ is not failing to look.
+Three pieces of evidence make this hard to attribute to a weak implementation. The ablation shows rhetoric at exactly chance while momentum controls carry the entire marginal effect. The horizon sweep shows the same at every lag from one day to one year, so delayed transmission finds no support over the range we can test. And the volatility control shows the identical harness detecting a $+17$pp effect where genuine structure exists. A pipeline that finds volatility clustering at $z=+23.75$ and rhetoric at $z=-0.63$ is not failing to look.
 
 This does not establish that leadership communication is irrelevant to markets. It establishes something narrower: at daily resolution, over a decade of routine communications, using topic distributions and document-level sentiment, there is no directional edge to extract, in first or second moments. The event-study finding of \cite{srivastava2019} around a discrete geopolitical shock is not contradicted.
 

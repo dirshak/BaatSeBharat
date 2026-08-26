@@ -44,14 +44,28 @@ REPRO = os.path.join(ROOT, 'scripts', 'reproduce_results.py')
 BS = chr(92)
 INCLUDE_RE = re.compile(BS + BS + r'includegraphics[^{]*\{([^}]*)\}')
 
+# An unescaped % starts a LaTeX comment. Comments must be stripped before
+# scanning for figures: the pattern above allows any run of non-brace
+# characters between \includegraphics and its argument, so the word
+# "\includegraphics" appearing inside a comment swallows everything up to
+# the next brace anywhere in the file. That produced a build failure
+# reporting a missing figure named "IEEEtran", picked up from
+# \documentclass{IEEEtran} several lines below a comment that merely
+# mentioned the command.
+COMMENT_RE = re.compile(r'(?<!' + BS + BS + r')%.*?$', re.M)
+
+
+def strip_comments(tex):
+    return COMMENT_RE.sub('', tex)
+
 README = """\
 BaatSeBharat -- conference paper bundle
 =======================================
 
 Upload overleaf_bundle.zip to Overleaf (New Project -> Upload Project).
 
-  main.tex   the paper (IEEEtran, conference option, two-column)
-  figs/      the three figures it references
+  main.tex   the paper (IEEEtran, conference option, SINGLE column)
+  figs/      the figures it references
 
 Overleaf will select main.tex automatically -- it is the only .tex here.
 If it does not, use Menu -> Main document -> main.tex.
@@ -94,7 +108,7 @@ def main():
         regenerate_figures()
 
     tex = open(TEX_SRC, encoding='utf-8').read()
-    figs = INCLUDE_RE.findall(tex)
+    figs = INCLUDE_RE.findall(strip_comments(tex))
     if not figs:
         raise SystemExit('no \\includegraphics found in the paper -- nothing to bundle')
 

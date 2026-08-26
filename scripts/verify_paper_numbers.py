@@ -186,15 +186,23 @@ STRIP_CMDS = re.compile(
     r'(\[[^\]]*\])?\{[^}]*\}', re.S)
 
 
+# An unescaped % starts a LaTeX comment. Stripping these document-wide is
+# safer than skipping whole comment lines: a trailing comment on a content
+# line would otherwise contribute its numbers as if they were claims, and
+# comments legitimately carry figures like page widths and dpi that the
+# analysis has no reason to emit.
+COMMENT_RE = re.compile(r'(?<!' + BS + BS + r')%.*?$', re.M)
+
+
 def paper_body(tex):
-    """Body only, with identifier-bearing commands removed.
+    """Body only, with comments and identifier-bearing commands removed.
 
     The bibliography is excluded outright: it is years, volumes and page
     ranges, none of which this codebase produces or should be asked to.
     """
     i = tex.find(BS + 'begin{thebibliography}')
     body = tex[:i] if i > 0 else tex
-    return STRIP_CMDS.sub(' ', body)
+    return STRIP_CMDS.sub(' ', COMMENT_RE.sub('', body))
 
 
 def main():

@@ -10,7 +10,14 @@
 %  a number here by hand -- change the analysis and re-run, so the paper and
 %  the code cannot drift apart.
 %=========================================================================
-\documentclass[conference]{IEEEtran}
+% Single column. IEEEtran defaults to two, so `onecolumn` is explicit.
+% Consequence worth knowing: \columnwidth now equals \textwidth (~6.5in
+% rather than ~3.5in), so every \includegraphics that previously said
+% width=\columnwidth would upscale a figure drawn at 3.4in to nearly twice
+% its native size and drop it under 300 dpi. Figure widths below are set as
+% fractions of \textwidth chosen to keep each one at or above its native
+% size. Re-check them if the figures are ever redrawn at a different size.
+\documentclass[onecolumn,conference]{IEEEtran}
 \IEEEoverridecommandlockouts
 
 \usepackage{cite}
@@ -339,7 +346,7 @@ looks like on the same pipeline.
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\columnwidth]{figs/methodology.png}
+\includegraphics[width=0.52\textwidth]{figs/methodology.png}
 \caption{High-level design. A textual and a numerical branch are computed
 independently, fused at event alignment, and passed through a single
 evaluation harness that emits two contrasting outcomes. The design shows
@@ -521,7 +528,7 @@ Second, and central to Section~\ref{sec:inflate}: raw accuracy rises monotonical
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\columnwidth]{figs/fig_horizon.png}
+\includegraphics[width=0.55\textwidth]{figs/fig_horizon.png}
 \caption{Accuracy by forecast horizon. The fitted model (squares) tracks below the always-up baseline (circles) at every horizon, while rhetoric-only accuracy (triangles) stays pinned at 50\%. Reporting the model curve alone would suggest steadily improving performance.}
 \label{fig:horizon}
 \end{figure}
@@ -562,7 +569,7 @@ Rhetoric adds nothing to it. Incremental contributions across the three horizons
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\columnwidth]{figs/fig_volatility.png}
+\includegraphics[width=0.55\textwidth]{figs/fig_volatility.png}
 \caption{Volatility direction: model versus majority baseline. The large, highly significant edge here is the positive control --- the same protocol that returns 50\% on rhetoric returns 66--69\% when genuine structure is present.}
 \label{fig:vol}
 \end{figure}
@@ -611,7 +618,7 @@ instructive of the four.}
 \label{tab:inflate}
 \centering
 \small
-\begin{tabular}{p{2.2cm}cp{1.9cm}p{2.0cm}}
+\begin{tabular}{p{4.0cm}cp{3.4cm}p{5.2cm}}
 \toprule
 \textbf{Choice} & \textbf{Reported} & \textbf{Protocol element broken} & \textbf{What it actually is} \\
 \midrule
@@ -629,7 +636,7 @@ The selective-reporting case is subtler, since restricting to high-confidence pr
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\columnwidth]{figs/fig_coverage.png}
+\includegraphics[width=0.55\textwidth]{figs/fig_coverage.png}
 \caption{Hit rate against retained coverage, with 95\% intervals from date-clustered standard errors. Calibrated confidence would rise monotonically as coverage falls; this curve wanders within its intervals.}
 \label{fig:coverage}
 \end{figure}

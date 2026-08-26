@@ -48,6 +48,7 @@ EXTERNAL = {
     '87': 'Biswal et al. reported accuracy / band upper bound',
     '70000': 'Buehlmaier & Whited corpus size (8-K filings)',
     '3044': 'Mishev et al. corpus size',
+    '500': 'index name (S&P 500) in a cited study, not a measurement',
     '11': 'Srivastava & Mitra event-window length (days)',
 
     # --- design constants chosen by us, not computed ---

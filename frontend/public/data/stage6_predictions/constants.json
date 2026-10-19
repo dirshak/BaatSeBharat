@@ -1,1 +1,1 @@
-{"regimeMultiplier":{"Bull":1.0,"Neutral":0.0,"Bear":-1.0,"Stable":0.5,"Transitional":0.0,"Volatile":-0.5},"horizons":{"1":"1-Day","5":"1-Week","10":"10-Day"},"liveDefaults":{"sentiment":-0.001,"topicStrength":0.629,"regime":"Bull","historicalReturn":0.0023734649025589968}}
+{"regimeMultiplier":{"Bull":1.0,"Neutral":0.0,"Bear":-1.0,"Stable":0.5,"Transitional":0.0,"Volatile":-0.5},"horizons":{"1":"1-Day","5":"1-Week","10":"10-Day"},"liveDefaults":{"sentiment":-0.001,"topicStrength":0.628,"regime":"Bull","historicalReturn":0.002452757937197963}}
